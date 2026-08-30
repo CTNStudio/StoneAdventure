@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv3stone_chestplate"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["A A", "AAA", "AAA"],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv3stone"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv3stone"
+      },
+      {
+        "item": "stonecraft:lv3stone_chestplate"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv3stone_chestplate",
+      "count": 1
+    }
+  }
+}

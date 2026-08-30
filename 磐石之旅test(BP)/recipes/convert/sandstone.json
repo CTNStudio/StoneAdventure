@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "stonecraft:sandstone_to_cobblestone"
+    },
+    "tags": ["stone_convert_table"],
+    "ingredients": [
+      {
+        "item": "sandstone"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "sandstone"
+      }
+    ],
+    "result": {
+      "item": "cobblestone"
+    }
+  }
+}

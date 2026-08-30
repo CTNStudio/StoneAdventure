@@ -1,0 +1,56 @@
+
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:inlaid_essence_bead_bleeding"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+        "BIB", 
+        "COC", 
+        "CDC"
+        ],
+      "key": {
+        "B": {
+          "item": "stonecraft:withered_stone"
+        },
+        "O": {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        "D": {
+          "item": "stonecraft:ancient_stone_totem_doll"
+        },
+        "I": {
+          "item": "minecraft:iron_sword"
+        },
+        "C": {
+          "item": "minecraft:oxidized_copper"
+        }
+      },
+      "unlock": [
+        {
+          "item": "stonecraft:withered_stone"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead_bleeding"
+        },
+        {
+          "item": "stonecraft:ancient_stone_totem_doll"
+        },
+        {
+          "item": "minecraft:iron_sword"
+        },
+        {
+          "item": "minecraft:oxidized_copper"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead_bleeding",
+        "count": 1
+      }
+    }
+}

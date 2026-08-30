@@ -1,0 +1,95 @@
+{
+  "format_version": "1.26.40",
+  "minecraft:block": {
+    "description": {
+      "identifier": "stonecraft:stone_summoner_activated",
+      "menu_category": {
+        "category": "construction"
+      },
+      "traits": {
+        "minecraft:placement_direction": {
+          "enabled_states": ["minecraft:cardinal_direction"],
+          "y_rotation_offset": 180
+        }
+      }
+    },
+    "components": {
+      "minecraft:loot": "loot_tables/blocks/stone_summoner_activated.json",
+      "minecraft:geometry": {
+        "identifier": "minecraft:geometry.full_block"
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "stone_summoner",
+          "render_method": "opaque"
+        },
+        "north": {
+          "texture": "activated_stone_summoner_front",
+          "render_method": "opaque"
+        },
+        "south": {
+          "texture": "stone_summoner",
+          "render_method": "opaque"
+        },
+        "east": {
+          "texture": "stone_summoner",
+          "render_method": "opaque"
+        },
+        "west": {
+          "texture": "stone_summoner",
+          "render_method": "opaque"
+        },
+        "up": {
+          "texture": "stone_summoner",
+          "render_method": "opaque"
+        },
+        "down": {
+          "texture": "stone_summoner",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 23.31,
+        "item_specific_speeds": [
+          {
+            "destroy_speed": 7,
+            "item": {
+              "tags": "q.all_tags('minecraft:is_tool', 'minecraft:is_pickaxe') && q.any_tag( 'minecraft:diamond_tier', 'minecraft:netherite_tier')"
+            }
+          }
+        ]
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 300
+      },
+      "minecraft:tags": ["stone", "iron_pick_diggable", "tag:diamond_pick_diggable", "not_feature_replaceable", "stonecraft:compressed_stones", "minecraft:diamond_tier_destructible", "minecraft:is_pickaxe_item_destructible"],
+      "minecraft:map_color": "#636060"
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+        "components": {
+          "minecraft:transformation": { "rotation": [0, 0, 0] }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+        "components": {
+          "minecraft:transformation": { "rotation": [0, -90, 0] }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+        "components": {
+          "minecraft:transformation": { "rotation": [0, 180, 0] }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+        "components": {
+          "minecraft:transformation": { "rotation": [0, 90, 0] }
+        }
+      }
+    ]
+  }
+}

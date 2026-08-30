@@ -1,0 +1,51 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "stonecraft:rock_lion",
+      "materials": { 
+        "default": "entity_alphatest" 
+      },
+      "textures": {
+        "default": "textures/entity/rock_lion"
+      },
+      "geometry": {
+        "default": "geometry.rock_lion"
+      },
+      "scripts": {
+        "pre_animation": [
+          "variable.animation_progress = Math.mod(query.modified_distance_moved, 10.0);",
+          "variable.shake_angle = Math.sin(variable.animation_progress * 57.3) * 0.1;"
+        ],
+        "scale": "1.0"
+      },/*
+      "animations": {
+        "walk": "animation.rock_lion.walk",
+        "hurt": "animation.rock_lion.hurt", 
+        "sleep": "animation.rock_lion.sleep",
+        "sprint": "animation.rock_lion.sprint",
+        "swim": "animation.rock_lion.swim",
+        "attack": "animation.rock_lion.attack",
+        "look_at": "animation.common.look_at_target"
+      },
+      "animation_controllers": [
+        { 
+          "move": "controller.animation.rock_lion.move" 
+        },
+        { 
+          "attack": "controller.animation.rock_lion.attack" 
+        },
+        { 
+          "look_at": "controller.animation.rock_lion.look_at" 
+        }
+      ],*/
+      "render_controllers": [ 
+        "controller.render.default" 
+      ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 4
+      }
+    }
+  }
+}

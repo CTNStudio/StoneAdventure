@@ -1,0 +1,18 @@
+{
+	"format_version": "1.20.30",
+	"minecraft:structure_template_feature": {
+		"description": {
+			"identifier": "stonecraft:stone_guard_room"
+		},
+		"structure_name": "mystructure:stone_guard_room",
+		"adjustment_radius": 2,
+		"facing_direction": "random",
+		"constraints": {
+			"block_intersection": {
+				"block_allowlist": [
+					"minecraft:stone"
+				]
+			}
+		}
+	}
+}

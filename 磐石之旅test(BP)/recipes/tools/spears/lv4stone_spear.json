@@ -1,0 +1,37 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv4stone_spear"
+    },
+    "tags": ["crafting_table", "stone_crafting_table" ],
+    "pattern": [
+                "  A", 
+                " I",
+                "I"
+               ],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv4stone"
+      },
+      "I": {
+        "item": "minecraft:stick"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv4stone"
+      },
+      {
+        "item": "minecraft:stick"
+      },
+      {
+        "item": "stonecraft:lv4stone_spear"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv4stone_spear",
+      "count": 1
+    }
+  }
+}

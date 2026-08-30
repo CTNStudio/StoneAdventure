@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:stone_essence_crystal"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["AAA", "AAA", "AAA"],
+    "key": {
+      "A": {
+        "item": "stonecraft:stone_essence"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:stone_essence"
+      },
+      {
+        "item": "stonecraft:stone_essence_crystal"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_essence_crystal",
+      "count": 1
+    }
+  }
+}

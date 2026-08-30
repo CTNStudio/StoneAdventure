@@ -1,0 +1,701 @@
+{
+  "format_version": "1.21.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "stonecraft:ancient_stone_totem",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "component_groups": {
+      "stonecraft:angry_roar": {
+        "minecraft:area_attack": {
+          "cause": "entity_attack",
+          "damage_cooldown": 0.5,
+          "damage_per_tick": 2,
+          "damage_range": 8.0,
+          "entity_filter": {
+            "any_of": [
+              { "test": "is_family", "subject": "other", "value": "player"},
+              { "test": "is_family", "subject": "other", "value": "snowgolem" },
+              { "test": "is_family", "subject": "other", "value": "irongolem" },
+              { "test": "is_family", "subject": "other", "value": "warden" }
+            ]
+          }
+        },
+        
+        "minecraft:timer": {
+          "looping": true,
+          "time": 3,
+          "time_down_event": {
+            "event": "stonecraft:stop_angry_roar_event"
+          }
+        }
+      },
+      "stonecraft:conquest_mode": {
+        "minecraft:damage_sensor": {
+          "triggers": [
+            {
+              "on_damage": {
+                "filters": {
+                  "any_of": [
+                    {"test": "is_family", "subject": "other", "value": "player"}
+                  ],
+                  "all_of": [
+                    {"test": "has_damage", "value": "fatal"}
+                  ]
+                },
+                "damage_multiplier": 0.8
+              }
+            },
+            {
+              "cause": "fall",
+              "deals_damage": "no"
+            },
+            {
+              "cause": "magic",
+              "deals_damage": "no"
+            },
+            {
+              "cause": "fire_tick",
+              "deals_damage": "no"
+            },
+            {
+              "cause": "fire",
+              "deals_damage": "no"
+            }
+          ]
+        },
+        "minecraft:ageable": {
+          "duration": 15,
+          "grow_up": {
+            "event": "stonecraft:change_mode_war_event",
+            "target": "self"
+          }
+        },
+        "minecraft:boss": {
+          "should_darken_sky": true,
+          "name": "§8石之图腾-棘沼§r",
+          "hud_range": 250
+        },
+        "minecraft:spawn_entity": {
+          "entities": [
+            {
+              "min_wait_time": 8,
+              "max_wait_time": 10,
+              "num_to_spawn": 2,
+              "single_use": false,
+              "spawn_event": "minecraft:timer",
+              "spawn_entity":"stonecraft:mossy_stone_guard"
+            }
+          ]
+        },
+        "minecraft:attack": {
+          "damage": 4,
+          "effect_name": "poison",
+          "effect_duration": 4
+        },
+        "minecraft:behavior.melee_attack": {
+          "priority": 3,
+          "melee_fov": 90.0,
+          "reach_multiplier": 2.0,
+          "cooldown_time": 1.0
+        },
+        "minecraft:behavior.knockback_roar": {
+          "knockback_damage": 2,
+          "knockback_horizontal_strength": 1,
+          "duration": 1.0,
+          "cooldown_time": 5.0,
+          "knockback_range": 3,
+          "knockback_filters":{
+            "any_of": [
+              { "test": "is_family", "subject": "other", "value": "player"},
+              { "test": "is_family", "subject": "other", "value": "snowgolem" },
+              { "test": "is_family", "subject": "other", "value": "irongolem" },
+              { "test": "is_family", "subject": "other", "value": "warden" }
+            ]
+          }
+        },
+        "minecraft:teleport": {
+          "max_random_teleport_time": 8.0,
+          "min_random_teleport_time": 2.0,
+          "random_teleport_cube": [6, 0, 6],
+          "random_teleports": true
+        },
+        "minecraft:behavior.summon_entity": {//学唤魔者的
+          "priority": 0,
+          "summon_choices": [
+            {
+              "cast_duration": 1,
+              "particle_color": "#FF664D59",
+              "cooldown_time": 2,
+              "max_activation_range": 2,
+              "min_activation_range": 0,
+              "sequence": [
+                {
+                  "base_delay": 0.5,
+                  "shape": "circle",
+                  "num_entities_spawned": 5,
+                  "delay_per_summon": 0,
+                  "entity_lifespan": 1.1,
+                  "entity_type": "minecraft:evocation_fang",
+                  "size": 1.5,
+                  "sound_event": "prepare.attack",
+                  "target": "self"
+                },
+                {
+                  "base_delay": 0.15,
+                  "target": "self",
+                  "delay_per_summon": 0,
+                  "num_entities_spawned": 8,
+                  "shape": "circle",
+                  "entity_lifespan": 1.1,
+                  "entity_type": "minecraft:evocation_fang",
+                  "size": 2.5
+                }
+              ],
+              "start_sound_event": "cast.spell",
+              "weight": 1
+            },
+            {
+              "cast_duration": 1,
+              "particle_color": "#FF664D59",
+              "cooldown_time": 2,
+              "min_activation_range": 2,
+              "sequence": [
+                {
+                  "base_delay": 1,
+                  "target": "self",
+                  "delay_per_summon": 0.05,
+                  "num_entities_spawned": 16,
+                  "shape": "line",
+                  "entity_lifespan": 1.1,
+                  "entity_type": "minecraft:evocation_fang",
+                  "size": 20
+                }
+              ],
+              "start_sound_event": "cast.spell",
+              "weight": 1
+            }
+          ]
+        }
+      },
+      "stonecraft:war_mode": {
+        "minecraft:damage_sensor": {
+          "triggers": [
+            {
+              "on_damage": {
+                "filters": {
+                  "any_of": [
+                    {"test": "is_family", "subject": "other", "value": "player"}
+                  ],
+                  "all_of": [
+                    {"test": "has_damage", "value": "fatal"}
+                  ]
+                },
+                "damage_multiplier": 0.8
+              }
+            },
+            {
+              "cause": "fall",
+              "deals_damage": "no"
+            },
+            {
+              "cause": "magic",
+              "deals_damage": "no"
+            },
+            {
+              "cause": "fire_tick",
+              "deals_damage": "no"
+            },
+            {
+              "cause": "fire",
+              "deals_damage": "no"
+            }
+          ]
+        },
+        "minecraft:ageable": {
+          "duration": 15,
+          "grow_up": {
+            "event": "stonecraft:change_mode_famine_event",
+            "target": "self"
+          }
+        },
+        "minecraft:boss": {
+          "should_darken_sky": true,
+          "name": "§8石之图腾-战狂§r",
+          "hud_range": 250
+        },
+        "minecraft:timer": {
+          "looping": true,
+          "time": 12,
+          "time_down_event": {
+            "event": "stonecraft:angry_roar_event"
+          }
+        },
+        "minecraft:spawn_entity": {
+          "entities": [
+            {
+              "min_wait_time": 9,
+              "max_wait_time": 12,
+              "num_to_spawn": 2,
+              "single_use": false,
+              "spawn_event": "minecraft:timer",
+              "spawn_entity": "stonecraft:molten_stone_puppet"
+            }
+          ]
+        },
+        "minecraft:shooter": {
+          "def": "minecraft:small_fireball"
+        },
+        "minecraft:behavior.ranged_attack": {
+          "charge_shoot_trigger": 3.0,
+          "attack_interval_max": 2.0,
+          "attack_interval_min": 2.0,
+          "attack_radius": 32.0,
+          "burst_interval": 0.1,
+          "burst_shots": 4,
+          "priority": 0,
+          "charge_charged_trigger": 3.0
+        },
+        "minecraft:attack": {
+          "damage": 6,
+          "effect_name": "slowness",
+          "effect_duration": 8
+        },
+        "minecraft:behavior.melee_attack": {
+          "priority": 3,
+          "melee_fov": 90.0,
+          "reach_multiplier": 2.0,
+          "cooldown_time": 1.0
+        },
+        "minecraft:behavior.knockback_roar": {
+          "knockback_damage": 5,
+          "knockback_horizontal_strength": 1,
+          "duration": 1.0,
+          "cooldown_time": 2.0,
+          "knockback_range": 5,
+          "knockback_filters":{
+            "any_of": [
+              { "test": "is_family", "subject": "other", "value": "player"},
+              { "test": "is_family", "subject": "other", "value": "snowgolem" },
+              { "test": "is_family", "subject": "other", "value": "irongolem" },
+              { "test": "is_family", "subject": "other", "value": "warden" }
+            ]
+          }
+        },
+        "minecraft:teleport": {
+          "max_random_teleport_time": 3.0,
+          "min_random_teleport_time": 1.0,
+          "random_teleport_cube": [8, 0, 8],
+          "random_teleports": true
+        }
+      },
+      "stonecraft:famine_mode": {
+        "minecraft:damage_sensor": {
+          "triggers": [
+            {
+              "on_damage": {
+                "filters": {
+                  "any_of": [
+                    {"test": "is_family", "subject": "other", "value": "player"}
+                  ],
+                  "all_of": [
+                    {"test": "has_damage", "value": "fatal"}
+                  ]
+                },
+                "damage_multiplier": 0.8
+              }
+            },
+            {
+              "cause": "fall",
+              "deals_damage": "no"
+            },
+            {
+              "cause": "magic",
+              "deals_damage": "no"
+            },
+            {
+              "cause": "fire_tick",
+              "deals_damage": "no"
+            },
+            {
+              "cause": "fire",
+              "deals_damage": "no"
+            }
+          ]
+        },
+        "minecraft:ageable": {
+          "duration": 15,
+          "grow_up": {
+            "event": "stonecraft:change_mode_death_event",
+            "target": "self"
+          }
+        },
+        "minecraft:boss": {
+          "should_darken_sky": true,
+          "name": "§8石之图腾-荒芜§r",
+          "hud_range": 250
+        },
+        "minecraft:spawn_entity": {
+          "entities": [
+            {
+              "min_wait_time": 3,
+              "max_wait_time": 8,
+              "num_to_spawn": 3,
+              "single_use": false,
+              "spawn_event": "minecraft:timer",
+              "spawn_entity": "stonecraft:sandstone_guard"
+            }
+          ]
+        },
+        "minecraft:mob_effect": {
+          "cooldown_time": 8,
+          "effect_range": 12,
+          "effect_time": 6,
+          "entity_filter": {
+            "any_of": [
+              { "test": "is_family", "subject": "other", "value": "player"},
+              { "test": "is_family", "subject": "other", "value": "snowgolem" },
+              { "test": "is_family", "subject": "other", "value": "irongolem" },
+              { "test": "is_family", "subject": "other", "value": "warden" }
+            ]
+          },
+          "mob_effect": "blindness"
+        },
+        "minecraft:attack": {
+          "damage": 4,
+          "effect_name": "hunger",
+          "effect_duration": 8
+        },
+        "minecraft:behavior.melee_attack": {
+          "priority": 3,
+          "melee_fov": 90.0,
+          "reach_multiplier": 2.0,
+          "cooldown_time": 1.0
+        },
+        "minecraft:behavior.knockback_roar": {
+          "knockback_damage": 3,
+          "knockback_horizontal_strength": 1,
+          "duration": 1.0,
+          "cooldown_time": 2.0,
+          "knockback_range": 4,
+          "knockback_filters":{
+            "any_of": [
+              { "test": "is_family", "subject": "other", "value": "player"},
+              { "test": "is_family", "subject": "other", "value": "snowgolem" },
+              { "test": "is_family", "subject": "other", "value": "irongolem" },
+              { "test": "is_family", "subject": "other", "value": "warden" }
+            ]
+          }
+        },
+        "minecraft:teleport": {
+          "max_random_teleport_time": 15.0,
+          "min_random_teleport_time": 8.0,
+          "random_teleport_cube": [4, 0, 4],
+          "random_teleports": true
+        }
+      },
+      "stonecraft:death_mode": {
+        "minecraft:damage_sensor": {
+          "triggers": [
+            {
+              "on_damage": {
+                "filters": {
+                  "any_of": [
+                    {"test": "is_family", "subject": "other", "value": "player"}
+                  ],
+                  "all_of": [
+                    {"test": "has_damage", "value": "fatal"}
+                  ]
+                },
+                "damage_multiplier": 0.8
+              }
+            },
+            {
+              "cause": "fall",
+              "deals_damage": "no"
+            },
+            {
+              "cause": "magic",
+              "deals_damage": "no"
+            },
+            {
+              "cause": "fire_tick",
+              "deals_damage": "no"
+            },
+            {
+              "cause": "fire",
+              "deals_damage": "no"
+            }
+          ]
+        },
+        "minecraft:ageable": {
+          "duration": 15,
+          "grow_up": {
+            "event": "stonecraft:change_mode_event",
+            "target": "self"
+          }
+        },
+        "minecraft:boss": {
+          "should_darken_sky": true,
+          "name": "§8石之图腾-终末§r",
+          "hud_range": 250
+        },
+        "minecraft:spawn_entity": {
+          "entities": [
+            {
+              "min_wait_time": 8,
+              "max_wait_time": 10,
+              "num_to_spawn": 2,
+              "single_use": false,
+              "spawn_event": "minecraft:timer",
+              "spawn_entity": "stonecraft:stone_puppet"
+            }
+          ]
+        },
+        "minecraft:shooter": {//内鬼技能
+          "def": "minecraft:dragon_fireball"
+        },
+        "minecraft:behavior.ranged_attack": {
+          "priority": 0,
+          "attack_interval_min": 6,
+          "attack_interval_max": 6,
+          "attack_radius": 15.0,
+          "ranged_fov": 90
+        },
+        "minecraft:attack": {
+          "damage": 6,
+          "effect_name": "slowness",
+          "effect_duration": 8
+        },
+        "minecraft:behavior.melee_attack": {
+          "priority": 3,
+          "melee_fov": 90.0,
+          "reach_multiplier": 2.0,
+          "cooldown_time": 1.0
+        },
+        "minecraft:behavior.knockback_roar": {
+          "knockback_damage": 3,
+          "knockback_horizontal_strength": 1,
+          "duration": 1.0,
+          "cooldown_time": 3.0,
+          "knockback_range": 4,
+          "knockback_filters":{
+            "any_of": [
+              { "test": "is_family", "subject": "other", "value": "player"},
+              { "test": "is_family", "subject": "other", "value": "snowgolem" },
+              { "test": "is_family", "subject": "other", "value": "irongolem" },
+              { "test": "is_family", "subject": "other", "value": "warden" }
+            ]
+          }
+        },
+        "minecraft:teleport": {
+          "max_random_teleport_time": 2.0,
+          "min_random_teleport_time": 1.0,
+          "random_teleport_cube": [15, 0, 15],
+          "random_teleports": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": ["monster", "boss", "stone_boss", "undead", "mob"]
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/ancient_stone_totem.json"
+      },
+      "minecraft:spawn_entity": {
+        "entities": [
+          {
+            "min_wait_time": 12,
+            "max_wait_time": 16,
+            "num_to_spawn": 2,
+            "single_use": false,
+            "spawn_event": "minecraft:timer",
+            "spawn_entity": "stonecraft:stone_puppet"
+          }
+        ]
+      },
+      "minecraft:boss": {
+        "should_darken_sky": true,
+        "name": "§8石之图腾§r",
+        "hud_range": 300
+      },
+      "minecraft:health": {
+        "value": 300
+      },
+      "minecraft:on_death": {
+        "event": "stonecraft:clear_mob",
+        "target": "self"
+      },
+      "minecraft:experience_reward": {
+        "on_death": "query.last_hit_by_player ? 2000 : 0"
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": false
+      },
+      "minecraft:knockback_resistance": {
+        "value": 100.0
+      },
+      "minecraft:scale": {
+        "value": 2.0
+      },
+      "minecraft:collision_box": {
+        "height": 2.0,
+        "width": 1.0
+      },
+      "minecraft:physics": {
+        "has_gravity": true,
+        "has_collision": true,
+        "push_towards_closest_space": true
+      },
+      "minecraft:behavior.melee_attack": {
+        "priority": 3,
+        "melee_fov": 90.0,
+        "reach_multiplier": 2.0,
+        "cooldown_time": 0.2
+      },
+      "minecraft:is_hidden_when_invisible": {},
+      "minecraft:behavior.knockback_roar": {
+        "knockback_damage": 2,
+        "knockback_horizontal_strength": 1,
+        "duration": 1.0,
+        "cooldown_time": 4.0,
+        "knockback_range": 2,
+        "knockback_filters":{
+          "any_of": [
+            { "test": "is_family", "subject": "other", "value": "player"},
+            { "test": "is_family", "subject": "other", "value": "snowgolem" },
+            { "test": "is_family", "subject": "other", "value": "irongolem" },
+            { "test": "is_family", "subject": "other", "value": "warden" }
+          ]
+        }
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "within_radius": 30.0,
+        "must_see_forget_duration": 20.0,
+        "must_reach": false,
+        "reselect_targets": true,
+        "entity_types": [
+          {
+            "filters": {
+              "any_of": [
+                { "test": "is_family", "subject": "other", "value": "player"},
+                { "test": "is_family", "subject": "other", "value": "snowgolem" },
+                { "test": "is_family", "subject": "other", "value": "irongolem" }
+              ]
+            },
+            "max_dist": 35.0
+          }
+        ],
+        "must_see": false
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+            {
+                "on_damage": {
+                    "filters": {
+                        "all_of": [
+                            {
+                                "test": "has_equipment_tag",
+                                "subject": "other",
+                                "domain": "hand",
+                                "value": "minecraft:is_pickaxe"
+                            }
+                        ]
+                    }
+                },
+                "deals_damage": "yes"
+            },
+            {
+                "deals_damage": "no"
+            }
+        ]
+      },
+      "minecraft:underwater_movement": {
+        "value": 0
+      },
+      "minecraft:navigation.generic": {
+        "is_amphibious": false,
+        "can_path_over_water": false,
+        "can_swim": false,
+        "avoid_water": true,
+        "avoid_sun": false,
+        "can_walk": true,
+        "can_break_doors": true,
+        "can_pass_doors": true
+      }
+    },
+    "events": {
+      "stonecraft:enter_second_phase": {
+        "add": {
+          "component_groups": [
+            "stonecraft:conquest_mode"
+          ]
+        },
+        "queue_command": {
+          "command": [
+            "gamerule sendcommandfeedback false",
+            "summon stonecraft:fanglimao ~ ~ ~",
+            "gamerule sendcommandfeedback true"
+          ]
+        }
+      },
+      "stonecraft:clear_mob": {
+        "queue_command": {
+          "command": [
+            "gamerule sendcommandfeedback false",
+            "kill @e[family=stone]",
+            "gamerule sendcommandfeedback true"
+          ]
+        }
+      },
+      "stonecraft:change_mode_event": {
+        "add": {
+          "component_groups": ["stonecraft:conquest_mode"]
+        }
+      },
+      "stonecraft:change_mode_war_event": {
+        "add": {
+          "component_groups": ["stonecraft:war_mode"]
+        },
+        "remove": {
+          "component_groups": ["stonecraft:conquest_mode"]
+        }
+      },
+      "stonecraft:change_mode_famine_event": {
+        "add": {
+          "component_groups": ["stonecraft:famine_mode"]
+        },
+        "remove": {
+          "component_groups": ["stonecraft:war_mode", "stonecraft:angry_roar"]
+        }
+      },
+      "stonecraft:change_mode_death_event": {
+        "add": {
+          "component_groups": ["stonecraft:death_mode"]
+        },
+        "remove": {
+          "component_groups": ["stonecraft:famine_mode"]
+        }
+      },
+      "stonecraft:angry_roar_event": {
+        "add": {
+          "component_groups": ["stonecraft:angry_roar"]
+        },
+        "queue_command": {
+          "command": [
+            "say 石之图腾陷入了愤怒"
+          ]
+        }
+      },
+      "stonecraft:stop_angry_roar_event": {
+        "remove": {
+          "component_groups": ["stonecraft:angry_roar"]
+        }
+      }
+    }
+  } 
+}

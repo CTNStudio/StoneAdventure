@@ -1,0 +1,32 @@
+{
+    "format_version": "1.21.20",
+    "minecraft:processor_list": {
+        "description": {
+            "identifier": "stonecraft:snatcher_camp_processor"
+        },
+        "processors": [
+            {
+                "processor_type": "minecraft:rule",
+
+                "rules": [
+                    {
+                        "input_predicate": {
+                            "predicate_type": "minecraft:block_match",
+                            "block": "minecraft:barrel"
+                        },
+
+                        "output_state": {
+                            "name": "minecraft:barrel"
+                        },
+
+                        "block_entity_modifier": {
+                            "type": "minecraft:append_loot",
+                            "loot_table":
+                            "loot_tables/chests/snatcher_camp.json"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,33 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:stone_potato"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["AAA", "ABA", "AAA"],
+    "key": {
+      "A": {
+        "tag": "minecraft:stone_crafting_materials"
+      },
+      "B": {
+        "item": "minecraft:potato"
+      }
+    },
+    "unlock": [
+      {
+        "tag": "minecraft:stone_crafting_materials"
+      },
+      {
+        "item": "minecraft:potato"
+      },
+      {
+        "item": "stonecraft:stone_potato"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_potato",
+      "count": 1
+    }
+  }
+}

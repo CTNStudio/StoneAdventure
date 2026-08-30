@@ -1,0 +1,28 @@
+{
+  "format_version": "1.20.30",
+  "minecraft:ore_feature": {
+    "description": {
+      "identifier": "stonecraft:stone_essence_ore_barren_stone_fields_feature"
+    },
+    "count": 10,
+    "discard_chance_on_air_exposure": 0.5,
+    "replace_rules": [
+      {
+        "places_block": "stonecraft:stone_essence_ore",
+        "may_replace": [
+          {
+            "name": "minecraft:stone"
+          }
+        ]
+      },
+      {
+        "places_block": "stonecraft:deepslate_stone_essence_ore",
+        "may_replace": [
+          {
+            "name": "minecraft:deepslate"
+          }
+        ]
+      }
+    ]
+  }
+}

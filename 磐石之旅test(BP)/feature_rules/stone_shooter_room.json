@@ -1,0 +1,39 @@
+{
+	"format_version": "1.20.30",
+	"minecraft:feature_rules": {
+		"description": {
+			"identifier": "stonecraft:stone_shooter_room",
+			"places_feature": "stonecraft:stone_shooter_room"
+		},
+		"conditions": {
+			"placement_pass": "underground_pass",
+			"minecraft:biome_filter": {
+				"test": "has_biome_tag",
+				"operator": "==",
+				"value": "overworld"
+			}
+		},
+		"distribution": {
+			"iterations": 1,
+			"x": {
+				"extent": [0, 16],
+				"distribution": "uniform"
+			},
+			"y": {
+				"extent": [
+					5,
+					70
+				],
+				"distribution": "uniform"
+			},
+			"z": {
+				"extent": [0, 16],
+				"distribution": "uniform"
+			},
+			"scatter_chance": {
+				"numerator": 1,
+				"denominator": 30
+			}
+		}
+	}
+}

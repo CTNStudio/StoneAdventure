@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv5stone"
+    },
+    "tags": ["stone_crafting_table"],
+    "pattern": ["AAA", "AAA", "AAA"],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv4stone"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv4stone"
+      },
+      {
+        "item": "stonecraft:lv5stone"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv5stone",
+      "count": 1
+    }
+  }
+}

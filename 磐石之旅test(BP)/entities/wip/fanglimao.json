@@ -1,0 +1,32 @@
+{
+  "format_version": "1.20.70",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "stonecraft:fanglimao",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "components": {
+      "minecraft:collision_box": {
+        "width": 0.1,
+        "height": 0.1
+      },
+      "minecraft:health": {
+        "value": 2778,
+        "max": 2778
+      },
+      "minecraft:explode": {
+        "breaks_blocks": false,
+        "causes_fire": true,
+        "destroy_affected_by_griefing": true,
+        "fire_affected_by_griefing": false,
+        "fuse_length": [-1.0, -1.0],
+        "fuse_lit": true,
+        "power": 2.5
+      },
+      "minecraft:physics": {}
+    }
+  }
+}
+// 被发现了略略略

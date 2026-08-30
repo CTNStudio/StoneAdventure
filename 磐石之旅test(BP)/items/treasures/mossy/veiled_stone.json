@@ -1,0 +1,21 @@
+//藏生之石
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:veiled_stone",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "stonecraft.item.veiled_stone"
+      },
+      "minecraft:compostable": {
+        "composting_chance": 20
+      },
+      "minecraft:icon": "stonecraft.veiled_stone"
+    }
+  }
+}

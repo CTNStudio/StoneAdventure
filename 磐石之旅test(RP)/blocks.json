@@ -1,0 +1,36 @@
+{
+  "format_version": [1, 1, 0],
+  "stonecraft:lv1stone": {
+    "sound": "stone"
+  },
+  "stonecraft:lv2stone": {
+    "sound": "stone"
+  },
+  "stonecraft:lv3stone": {
+    "sound": "stone"
+  },
+  "stonecraft:lv4stone": {
+    "sound": "stone"
+  },
+  "stonecraft:lv5stone": {
+    "sound": "stone"
+  },
+  "stonecraft:stone_essence_ore": {
+    "sound": "stone"
+  },
+  "stonecraft:mimic_stone_flower": {
+    "sound": "grass"
+  },
+  "stonecraft:deepslate_stone_essence_ore": {
+    "sound": "deepslate"
+  },
+  "stonecraft:stone_crafting_table": {
+    "sound": "stone"
+  },
+  "stonecraft:stone_convert_table": {
+    "sound": "stone"
+  },
+  "stonecraft:stone_smithing_table": {
+    "sound": "stone"
+  }
+}

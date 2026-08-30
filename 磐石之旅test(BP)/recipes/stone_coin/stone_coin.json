@@ -1,0 +1,33 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:stone_coin"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["AAA", "ABA", "AAA"],
+    "key": {
+      "A": {
+        "tag": "minecraft:stone_crafting_materials"
+      },
+      "B": {
+        "item": "stonecraft:stone_essence"
+      }
+    },
+    "unlock": [
+      {
+        "tag": "minecraft:stone_crafting_materials"
+      },
+      {
+        "item": "stonecraft:stone_essence"
+      },
+      {
+        "item": "stonecraft:stone_coin"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_coin",
+      "count": 1
+    }
+  }
+}

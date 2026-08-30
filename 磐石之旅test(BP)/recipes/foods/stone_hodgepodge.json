@@ -1,0 +1,61 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "stonecraft:stone_hodgepodge"
+    },
+    "tags": ["stone_crafting_table"],
+    "ingredients": [
+      {
+        "item": "stonecraft:stone_apple"
+      },
+      {
+        "item": "stonecraft:stone_carrot"
+      },
+      {
+        "item": "stonecraft:stone_bread"
+      },
+      {
+        "item": "stonecraft:stone_potato"
+      },
+      {
+        "item": "stonecraft:stone_kelp"
+      },
+      {
+        "item": "stonecraft:stone_melon"
+      },
+      {
+        "item": "stonecraft:stone_star"
+      },
+      {
+        "item": "minecraft:bowl"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "stonecraft:stone_apple"
+      },
+      {
+        "item": "stonecraft:stone_carrot"
+      },
+      {
+        "item": "stonecraft:stone_bread"
+      },
+      {
+        "item": "stonecraft:stone_potato"
+      },
+      {
+        "item": "stonecraft:stone_kelp"
+      },
+      {
+        "item": "stonecraft:stone_melon"
+      },
+      {
+        "item": "minecraft:bowl"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_hodgepodge"
+    }
+  }
+}

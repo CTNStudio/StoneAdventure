@@ -1,0 +1,26 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:recipe_shapeless": {
+        "description": {
+            "identifier": "stonecraft:stonecutter_cobblestone_to_stone_nugget"
+        },
+        "unlock": [
+            {
+                "tag": "minecraft:stone_crafting_materials"
+            },
+            {
+                "item": "stonecraft:stone_nugget"
+            }
+        ],
+        "tags": ["stonecutter"],
+        "ingredients": [
+            {
+                "tag": "minecraft:stone_crafting_materials"
+            }
+        ],
+        "result": {
+            "item": "stonecraft:stone_nugget",
+            "count": 4
+        }
+    }
+}

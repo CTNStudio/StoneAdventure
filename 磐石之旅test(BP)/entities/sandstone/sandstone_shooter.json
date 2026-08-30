@@ -1,0 +1,295 @@
+{
+  "format_version": "1.20.70",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "stonecraft:sandstone_shooter",
+      "is_spawnable": true,
+      "is_summonable": true
+    },
+    "component_groups": {
+      "minecraft:ranged_attack": {
+        "minecraft:behavior.ranged_attack": {
+          "priority": 0,
+          "attack_interval_min": 2,
+          "attack_interval_max": 4,
+          "attack_radius": 16.0
+        },
+        "minecraft:type_family": {
+          "family": ["monster", "stone", "undead", "mob"]
+        },
+        "minecraft:behavior.hurt_by_target": {
+          "priority": 1,
+          "entity_types": {
+            "filters": {
+              "test": "is_family",
+              "subject": "other",
+              "operator": "!=",
+              "value": "stone"
+            },
+            "max_dist": 64
+          }
+        },
+        "minecraft:shooter": {
+          "def": "minecraft:arrow"//饥饿效果用脚本做
+        },
+        "minecraft:environment_sensor": {
+          "triggers": [
+            {
+              "filters": {
+                "test": "is_underwater",
+                "subject": "self",
+                "operator": "==",
+                "value": true
+              },
+              "event": "minecraft:melee_mode"
+            },
+            {
+              "filters": {
+                "test": "has_ranged_weapon",
+                "subject": "self",
+                "operator": "==",
+                "value": false
+              },
+              "event": "minecraft:melee_mode"
+            }
+          ]
+        }
+      },
+      "minecraft:melee_attack": {
+        "minecraft:behavior.melee_attack": {
+          "priority": 4,
+          "track_target": true,
+          "speed_multiplier": 1.0,
+          "cooldown_time": 1,
+          "random_stop_interval": 100,
+          "reach_multiplier": 1.4
+        },
+        "minecraft:attack": {
+          "damage": 8,
+          "effect_name": "slowness",
+          "effect_duration": 10
+        },
+        "minecraft:knockback_resistance": {
+          "value": 100,
+          "max": 100
+        },
+        "minecraft:environment_sensor": {
+          "triggers": [
+            {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "in_water",
+                    "subject": "self",
+                    "operator": "==",
+                    "value": false
+                  },
+                  {
+                    "test": "has_ranged_weapon",
+                    "subject": "self",
+                    "operator": "==",
+                    "value": true
+                  }
+                ]
+              },
+              "event": "minecraft:ranged_mode"
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "minecraft:knockback_resistance": {
+       "value": 100,
+       "max": 100
+     },
+      "minecraft:is_hidden_when_invisible": {},
+      "minecraft:experience_reward": {
+        "on_death": "query.last_hit_by_player ? 30 : 0"
+      },
+      "minecraft:breathable": {
+        "total_supply": 114514,
+        "suffocate_time": 0,
+        "breathes_water": true
+      },
+      "minecraft:equip_item": {},
+      "minecraft:collision_box": {
+        "width": 0.6,
+        "height": 1.9
+      },
+      "minecraft:nameable": {},
+      "minecraft:health": {
+        "value": 20,
+        "max": 20
+      },
+      "minecraft:hurt_on_condition": {
+        "damage_conditions": [
+          {
+            "filters": {
+              "test": "in_lava",
+              "subject": "self",
+              "operator": "==",
+              "value": true
+            },
+            "cause": "lava",
+            "damage_per_tick": 4
+          }
+        ]
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/sandstone/sandstone_shooter.json"
+      },
+      "minecraft:movement": {
+        "value": 0.2
+      },
+      "minecraft:underwater_movement": {
+        "value": 0
+      },
+      "minecraft:navigation.generic": {
+        "is_amphibious": false,
+        "can_path_over_water": false,
+        "can_swim": false,
+        "avoid_water": true,
+        "avoid_sun": false,
+        "can_walk": true,
+        "can_break_doors": true,
+        "can_pass_doors": true
+      },
+      "minecraft:movement.basic": {},
+      "minecraft:jump.static": {},
+      "minecraft:can_climb": {},
+      "minecraft:equipment": {
+        "table": "loot_tables/entities/gear/stone_shooter_gear.json"
+      },
+      "minecraft:shooter": {
+        "def": "stonecraft:stone_arrow",
+        "aux_val": 17
+      },
+      "minecraft:despawn": {
+        "filters": {
+          "test": "is_difficulty",
+          "value": "peaceful"
+        }
+      },
+      "minecraft:environment_sensor": {
+        "triggers": [
+          {
+            "filters": {
+              "test": "is_underwater",
+              "subject": "self",
+              "operator": "==",
+              "value": true
+            },
+            "event": "minecraft:melee_mode"
+          },
+          {
+            "filters": {
+              "test": "has_ranged_weapon",
+              "subject": "self",
+              "operator": "==",
+              "value": false
+            },
+            "event": "minecraft:melee_mode"
+          }
+        ]
+      },
+      "minecraft:shareables": {
+        "items": [
+          {
+            "item": "stonecraft:stone_bow",
+            "want_amount": 1,
+            "surplus_amount": 1,
+            "priority": 6
+          }
+        ]
+      },
+      "minecraft:behavior.ranged_attack": {
+        "priority": 0,
+        "attack_interval_min": 2,
+        "attack_interval_max": 4,
+        "attack_radius": 15.0,
+        "ranged_fov": 90
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 3,
+        "alert_same_type": true,
+        "entity_types": {
+          "filters": {
+            "any_of": [
+              { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone_boss"},
+              { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone"}
+            ]
+          }
+        }
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "priority": 2,
+        "must_see": true,
+        "within_radius": 15.0,
+        "must_see_forget_duration": 17.0,
+        "reselect_targets": true,
+        "entity_types": [
+          {
+            "filters": {
+              "test": "is_family",
+              "subject": "other",
+              "value": "player"
+            },
+            "max_dist": 16
+          }
+        ]
+      },
+      "minecraft:behavior.equip_item": {
+        "priority": 3
+      },
+      "minecraft:behavior.pickup_items": {
+        "priority": 5,
+        "max_dist": 3,
+        "goal_radius": 2,
+        "speed_multiplier": 1.0,
+        "pickup_based_on_chance": true,
+        "can_pickup_any_item": true
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 6,
+        "speed_multiplier": 1.0
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 7,
+        "look_distance": 8
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 8
+      },
+      "minecraft:physics": {},
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:conditional_bandwidth_optimization": {}
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "add": {
+          "component_groups": ["minecraft:ranged_attack"]
+        }
+      },
+      "minecraft:melee_mode": {
+        "remove": {
+          "component_groups": ["minecraft:ranged_attack"]
+        },
+        "add": {
+          "component_groups": ["minecraft:melee_attack"]
+        }
+      },
+      "minecraft:ranged_mode": {
+        "remove": {
+          "component_groups": ["minecraft:melee_attack"]
+        },
+        "add": {
+          "component_groups": ["minecraft:ranged_attack"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "stonecraft:gravel_to_cobblestone"
+    },
+    "tags": ["stone_convert_table"],
+    "ingredients": [
+      {
+        "item": "gravel"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "gravel"
+      }
+    ],
+    "result": {
+      "item": "cobblestone"
+    }
+  }
+}

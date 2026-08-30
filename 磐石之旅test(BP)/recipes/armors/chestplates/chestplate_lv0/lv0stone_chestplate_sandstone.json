@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv0stone_chestplate_sandstone"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["A A", "AAA", "AAA"],
+    "key": {
+      "A": {
+        "item": "minecraft:sandstone"
+      }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:sandstone"
+      },
+      {
+        "item": "stonecraft:lv0stone_chestplate"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv0stone_chestplate",
+      "count": 1
+    }
+  }
+}

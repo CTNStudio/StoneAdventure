@@ -1,0 +1,12 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_brewing_mix": {
+    "description": {
+      "identifier": "longer_blindness_potion"
+    },
+    "tags": ["brewing_stand"],
+    "input": "stonecraft:blindness_potion",
+    "reagent": "minecraft:redstone",
+    "output": "stonecraft:longer_blindness_potion"
+  }
+}

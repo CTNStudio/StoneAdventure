@@ -1,0 +1,16 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_furnace": {
+    "description": {
+    "identifier": "stone_hoe_to_stonecraft_stone_nugget"
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stone_hoe"
+      }
+    ],
+    "tags": ["furnace", "blast_furnace"],
+    "input": "minecraft:stone_hoe",
+    "output": "stonecraft:stone_nugget"
+  }  
+}

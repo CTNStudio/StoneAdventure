@@ -1,0 +1,21 @@
+{
+    "format_version": "1.8.0",
+    "minecraft:client_entity": {
+      "description": {
+        "identifier": "stonecraft:stone_block",
+        "materials": {
+          "default": "skeleton"
+        },
+        "textures": {
+          "default": "textures/entity/stone_block.png"
+        },
+        "geometry": {
+          "default": "geometry.stone_block.geo"
+        },
+        "render_controllers": [
+          "controller.render.hurt.color"
+        ],
+        "enable_attachables": true
+      }
+    }
+  }

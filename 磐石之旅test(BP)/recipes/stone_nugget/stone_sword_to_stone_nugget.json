@@ -1,0 +1,16 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_furnace": {
+    "description": {
+    "identifier": "stone_sword_to_stonecraft_stone_nugget"
+    },
+    "unlock": [ //配方解锁
+      {
+        "item": "minecraft:stone_sword"
+      }
+    ],
+    "tags": ["furnace", "blast_furnace"], //可放入熔炉的标签
+    "input": "minecraft:stone_sword", //输入
+    "output": "stonecraft:stone_nugget" //输出
+  }  
+}

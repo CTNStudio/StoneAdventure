@@ -1,0 +1,43 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:stone_smithing_table"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+      "ACA",
+      "ABA",
+      "AAA"
+    ],
+    "key": {
+      "A": {
+        "tag": "minecraft:stone_crafting_materials"
+      },
+      "B": {
+        "item": "minecraft:smithing_table"
+      },
+      "C": {
+        "item": "stonecraft:stone_star"
+      }
+    },
+    "unlock": [
+      {
+        "tag": "minecraft:stone_crafting_materials"
+      },
+      {
+        "item": "minecraft:smithing_table"
+      },
+      {
+        "item": "stonecraft:stone_star"
+      },
+      {
+        "item": "stonecraft:stone_smithing_table"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_smithing_table",
+      "count": 1
+    }
+  }
+}

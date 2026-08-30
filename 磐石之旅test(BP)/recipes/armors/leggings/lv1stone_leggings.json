@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv1stone_leggings"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["AAA", "A A", "A A"],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv1stone"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv1stone"
+      },
+      {
+        "item": "stonecraft:lv1stone_leggings"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv1stone_leggings",
+      "count": 1
+    }
+  }
+}

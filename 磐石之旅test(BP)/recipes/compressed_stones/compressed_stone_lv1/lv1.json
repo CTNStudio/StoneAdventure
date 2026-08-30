@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv1stone"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["AAA", "AAA", "AAA"],
+    "key": {
+      "A": {
+        "tag": "minecraft:stone_crafting_materials"
+      }
+    },
+    "unlock": [
+      {
+        "tag": "minecraft:stone_crafting_materials"
+      },
+      {
+        "item": "stonecraft:lv1stone"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv1stone",
+      "count": 1
+    }
+  }
+}

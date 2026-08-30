@@ -1,0 +1,37 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:wooden_slingshot"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+        "#L#",
+        " # ",
+        " # "
+    ],
+    "key": {
+      "#": {
+        "tag": "minecraft:planks"
+      },
+      "L": {
+        "item": "minecraft:leather"
+      }
+    },
+    "unlock": [
+      {
+        "tag": "minecraft:planks"
+      },
+      {
+        "item": "minecraft:leather"
+      },
+      {
+        "item": "stonecraft:wooden_slingshot"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:wooden_slingshot",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+    "controller.animation.snatcher.base": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "blend_transition": 0.2,
+          "blend_via_shortest_path": true,
+          "transitions": [
+            {
+              "hand_attack": "!query.is_item_equipped && variable.has_target && variable.attack_time >= 0.0"
+            },
+            {
+              "melee_attack": "query.is_item_equipped && variable.has_target && variable.attack_time >= 0.0"
+            }
+          ]
+        },
+        "hand_attack": {
+          "blend_transition": 0.2,
+          "blend_via_shortest_path": true,
+          "animations": [ "snatcher_hand_attack" ],
+          "transitions": [
+            {
+              "default": "query.is_item_equipped || !variable.has_target || variable.attack_time < 0.0"
+            }
+          ]
+        },
+        "melee_attack": {
+          "blend_transition": 0.2,
+          "blend_via_shortest_path": true,
+          "animations": [ "snatcher_attack" ],
+          "transitions": [
+            {
+              "default": "!query.is_item_equipped || !variable.has_target || variable.attack_time < 0.0"
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.snatcher.base.v1.0" : {
+			"initial_state" : "default",
+			"states" : {
+        "default": {
+          "animations": [ "snatcher_base", "snatcher_attack", "snatcher_walk" ]
+        }
+			}
+		}
+	}
+}

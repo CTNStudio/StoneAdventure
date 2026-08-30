@@ -1,0 +1,16 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {   
+    "controller.render.hurt.color": {
+      "geometry": "Geometry.default",
+      "is_hurt_color": {
+				"r": 1,
+				"g": 0,
+				"b": 0,
+				"a": "(query.is_alive * 0.4)+(!query.is_alive * 0.4)"
+			},
+      "materials": [ { "*": "Material.default" } ],
+      "textures": [ "Texture.default" ]
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:compressed_stonickers_lv4"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+         "AAA",
+         "ABA",
+         "AAA"
+        ],
+      "key": {
+        "A": {
+          "item": "stonecraft:lv5stone"
+        },
+        "B": {
+          "item": "minecraft:cookie"
+        }
+      },
+      "unlock": [
+        {
+          "item": "stonecraft:lv5stone"
+        },
+        {
+          "item": "minecraft:cookie"
+        },
+        {
+          "item": "stonecraft:compressed_stonickers_lv4"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:compressed_stonickers_lv4",
+        "count": 1
+      }
+    }
+  }
+  

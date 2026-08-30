@@ -1,0 +1,26 @@
+{
+    "format_version": "1.26.40",
+    "minecraft:jigsaw": {
+        "description": {
+            "identifier": "stonecraft:ancient_stone_altar"
+        },
+        "step": "surface_structures",
+        "heightmap_projection": "world_surface",
+        "liquid_settings": "ignore_waterlogging",
+        "start_height": {
+            "type": "constant",
+            "value": {
+                "absolute": 0
+            }
+        },
+        "max_depth": 15,
+        "start_pool": "stonecraft:pool_ancient_stone_altar_main",
+        "biome_filters": [
+            {
+                "test": "has_biome_tag",
+                "value": "barren_stone_fields"
+            }
+        ],
+        "max_distance_from_center": 128
+    }
+}

@@ -1,0 +1,38 @@
+
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:inlaid_essence_bead_health_boost"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+        "BBB", 
+        "BOB", 
+        "BBB"
+        ],
+      "key": {
+        "B": {
+          "item": "stonecraft:budding_stone"
+        },
+        "O": {
+          "item": "stonecraft:inlaid_essence_bead"
+        }
+      },
+      "unlock": [
+        {
+          "item": "stonecraft:budding_stone"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead_health_boost"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead_health_boost",
+        "count": 1
+      }
+    }
+}

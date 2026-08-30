@@ -1,0 +1,33 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:stone_cooked_cod"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["AAA", "ABA", "AAA"],
+    "key": {
+      "A": {
+        "tag": "minecraft:stone_crafting_materials"
+      },
+      "B": {
+        "item": "minecraft:cooked_cod"
+      }
+    },
+    "unlock": [
+      {
+        "tag": "minecraft:stone_crafting_materials"
+      },
+      {
+        "item": "minecraft:cooked_cod"
+      },
+      {
+        "item": "stonecraft:stone_cooked_cod"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_cooked_cod",
+      "count": 1
+    }
+  }
+}

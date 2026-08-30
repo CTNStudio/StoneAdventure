@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv0stone_helmet_stone"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["AAA", "A A"],
+    "key": {
+      "A": {
+        "item": "minecraft:stone"
+      }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stone"
+      },
+      {
+        "item": "stonecraft:lv0stone_helmet"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv0stone_helmet",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:wither_skll"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["AAA", "ABA", "AAA"],
+    "key": {
+      "A": {
+        "item": "stonecraft:head_debris"
+      },
+      "B": {
+        "item": "minecraft:skull",
+        "data": 0
+      }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:skull",
+        "data": 1
+      },
+      {
+        "item": "stonecraft:head_debris"
+      },
+      {
+        "item": "minecraft:skull",
+        "data": 0
+      }
+    ],
+    "result": {
+      "item": "minecraft:skull",
+      "data": 1,
+      "count": 1
+    }
+  }
+}

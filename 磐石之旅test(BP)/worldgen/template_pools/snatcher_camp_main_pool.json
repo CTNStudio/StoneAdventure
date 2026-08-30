@@ -1,0 +1,19 @@
+{
+  "format_version": "1.21.20",
+  "minecraft:template_pool": {
+    "description": {
+      "identifier": "stonecraft:pool_snatcher_camp_main"
+    },
+    "elements": [
+      {
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "projection": "rigid",
+          "processors": "stonecraft:snatcher_camp_processor",
+          "location": "mysturcture:snatcher_camp_main"
+        },
+        "weight": 1
+      }
+    ]
+  }
+}

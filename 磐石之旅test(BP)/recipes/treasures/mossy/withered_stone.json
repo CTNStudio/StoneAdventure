@@ -1,0 +1,37 @@
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "stonecraft:withered_stone"
+        },
+        "tags": ["crafting_table"],
+        "pattern": [
+            "FFF",
+            "FSF",
+            "FFF"
+        ],
+        "key": {
+            "F": {
+                "item": "minecraft:wither_rose"
+            },
+            "S": {
+                "item": "stonecraft:veiled_stone"
+            }
+        },
+        "unlock": [
+            {
+                "item": "minecraft:wither_rose"
+            },
+            {
+                "item": "stonecraft:veiled_stone"
+            },
+            {
+                "item": "stonecraft:withered_stone"
+            }
+        ],
+        "result": {
+            "item": "stonecraft:withered_stone",
+            "count": 1
+        }
+    }
+}

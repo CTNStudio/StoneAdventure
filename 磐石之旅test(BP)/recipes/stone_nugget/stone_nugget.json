@@ -1,0 +1,22 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+    "identifier": "stonecraft:stone_nugget_rec"
+    },    
+    "tags": [ "crafting_table","stone_crafting_table" ],
+    "ingredients": [
+      {
+        "tag": "minecraft:stone_crafting_materials"
+      }
+    ],
+	"unlock": [
+      {
+        "tag": "minecraft:stone_crafting_materials"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_nugget"
+    }
+  }
+}

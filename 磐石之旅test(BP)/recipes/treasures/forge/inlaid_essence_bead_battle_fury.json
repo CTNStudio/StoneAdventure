@@ -1,0 +1,28 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:recipe_shapeless": {
+      "description": {
+      "identifier": "inlaid_essence_bead_battle_fury"
+      },
+      "tags": [ "crafting_table" ],
+      "ingredients": [
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "stonecraft:lv3stone_sword"
+        }
+      ],
+      "unlock": [
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "stonecraft:lv3stone_sword"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead_battle_fury"
+      }
+    }
+}

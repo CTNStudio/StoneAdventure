@@ -1,0 +1,98 @@
+{
+    "format_version": "1.26.0",
+    "minecraft:block": {
+        "description": {
+            "identifier": "stonecraft:ancient_stone_totem_doll",
+            "menu_category": {
+                "category": "items"
+            },
+            "traits": {
+                "minecraft:placement_direction": {
+                    "enabled_states": [
+                        "minecraft:cardinal_direction"
+                    ]
+                }
+            }
+        },
+        "permutations": [
+            {
+                "condition": "query.block_state('minecraft:cardinal_direction') == 'north'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, 180, 0]
+                    }
+                }
+            },
+            {
+                "condition": "query.block_state('minecraft:cardinal_direction') == 'south'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, 0, 0]
+                    }
+                }
+            },
+            {
+                "condition": "query.block_state('minecraft:cardinal_direction') == 'west'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, 270, 0]
+                    }
+                }
+            },
+            {
+                "condition": "query.block_state('minecraft:cardinal_direction') == 'east'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, 90, 0]
+                    }
+                }
+            }
+        ],
+        "components": {
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 9.99,
+                "item_specific_speeds": [
+                {
+                    "destroy_speed": 3,
+                    "item": {
+                    "tags": "q.all_tags('minecraft:is_tool', 'minecraft:is_pickaxe') && q.any_tag('minecraft:stone_tier', 'minecraft:copper_tier', 'minecraft:iron_tier', 'minecraft:diamond_tier', 'minecraft:netherite_tier')"
+                    }
+                }
+                ]
+            },
+            "minecraft:loot": "loot_tables/blocks/ancient_stone_totem_doll.json",
+            "minecraft:destructible_by_explosion": {
+                "explosion_resistance": 6
+            },
+            "minecraft:collision_box": true,
+            "minecraft:selection_box": true,
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "ancient_stone_totem_doll",
+                    "render_method": "alpha_test"
+                }
+            },
+            "minecraft:geometry": {
+                "identifier": "geometry.ancient_stone_totem_doll.geo"
+            },
+            "minecraft:destruction_particles": {
+                "texture": "ancient_stone_totem_doll",
+                "particle_count": 30
+            },
+            "minecraft:liquid_detection": {
+                "detection_rules": [
+                    {
+                        "on_liquid_touches": "blocking"
+                    }
+                ]
+            },
+            "minecraft:connection_rule": {
+                "accepts_connections_from": "none"
+            },
+            "minecraft:precipitation_interactions": {
+                "precipitation_behavior": "obstruct_rain"
+            },
+            "stonecraft:doll": {}
+        }
+    }
+}

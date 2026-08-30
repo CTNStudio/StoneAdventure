@@ -1,0 +1,39 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.ancient_stone_totem.geo",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "bottom",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-8, 0, -8], "size": [16, 3, 16], "uv": [0, 0]},
+						{"origin": [-6, 3, -6], "size": [12, 2, 12], "uv": [28, 34]}
+					]
+				},
+				{
+					"name": "middle",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-5, 5, -5], "size": [10, 17, 10], "uv": [0, 19]}
+					]
+				},
+				{
+					"name": "top",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-4, 22, -4], "size": [8, 7, 8], "uv": [40, 19]}
+					]
+				}
+			]
+		}
+	]
+}

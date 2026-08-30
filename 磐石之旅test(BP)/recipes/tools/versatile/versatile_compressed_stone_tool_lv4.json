@@ -1,0 +1,51 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:versatile_compressed_stone_tool_lv4"
+    },
+    "tags": ["crafting_table", "stone_crafting_table" ],
+    "pattern": ["ABC", " D ", " E "],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv4stone_axe"
+      },
+      "B": {
+        "item": "stonecraft:lv4stone_pickaxe"
+      },
+      "C": {
+        "item": "stonecraft:lv4stone_hoe"
+      },
+      "D": {
+        "item": "minecraft:stick"
+      },
+      "E": {
+        "item": "stonecraft:lv4stone_shovel"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv4stone_axe"
+      },
+      {
+        "item": "stonecraft:lv4stone_pickaxe"
+      },
+      {
+        "item": "stonecraft:lv4stone_hoe"
+      },
+      {
+        "item": "minecraft:stick"
+      },
+      {
+        "item": "stonecraft:lv4stone_shovel"
+      },
+      {
+        "item": "stonecraft:versatile_compressed_stone_tool_lv4"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:versatile_compressed_stone_tool_lv4",
+      "count": 1
+    }
+  }
+}

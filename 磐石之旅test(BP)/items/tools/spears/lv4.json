@@ -1,0 +1,114 @@
+{
+    "format_version": "1.21.130",
+    "minecraft:item": {
+        "description": {
+            "identifier": "stonecraft:lv4stone_spear",
+            "menu_category": {
+                "category": "equipment",
+                "group": "minecraft:itemGroup.name.spear"
+            }
+        },
+        "components": {
+            "minecraft:icon": "stonecraft.spear.lv4",
+            "minecraft:display_name": {
+                "value": "stonecraft.item.spear.lv4"
+            },
+            "minecraft:damage": 6,
+            "minecraft:swing_duration": {
+                "value": 1.05
+            },
+            "minecraft:swing_sounds": {
+                "attack_miss": "item.spear.attack_miss",
+                "attack_hit": "item.spear.attack_hit"
+            },
+            "minecraft:enchantable": {
+                "value": 30,
+                "slot": "melee_spear"
+            },
+            "minecraft:durability": {
+                "max_durability": 2750
+            },
+            "minecraft:repairable": {
+                "repair_items": [
+                    {
+                        "items": ["stonecraft:lv4stone"],
+                        "repair_amount": "context.other->query.max_durability * 0.2"
+                    },
+                    {
+                        "items": ["stonecraft:lv4stone_spear"],
+                        "repair_amount": "context.other->query.remaining_durability + 0.2 * context.other->query.max_durability"
+                    }
+                ]
+            },
+            "minecraft:hand_equipped": true,
+            "minecraft:cooldown": {
+                "category": "spear",
+                "duration": 1.05,//与上述挥砍组件的数值务必相同！
+                "type": "attack"
+            },
+            "minecraft:use_modifiers": {
+                "use_duration": 72000,
+                "emit_vibrations": false,//不要修改，这是适用于弓类武器使用时的抖动效果
+                "start_sound": "item.spear.use",//矛的使用音效
+                "movement_modifier": 1.0//使用时不削减移动速度
+            },
+            "minecraft:piercing_weapon": {
+                "reach": {
+                    "min": 1.2,
+                    "max": 5.2
+                },
+                "creative_reach": {
+                    "min": 1.2,
+                    "max": 8.2
+                },//在创造模式下可以拥有更长的攻击距离
+                "hitbox_margin": 0.35//命中碰撞范围
+            },//戳刺武器的组件会限制这把矛无法进行跳劈暴击
+            "minecraft:kinetic_weapon": {
+                "delay": 10,//延迟，数值越低代表它举起来进行动能冲锋的持续时间越短
+                "reach": {
+                    "min": 1.2,//施加动能时的最小攻击距离
+                    "max": 5.2//与之对应的最大攻击距离
+                },
+                "creative_reach": {
+                    "min": 1.2,
+                    "max": 8.2
+                },
+                "hitbox_margin": 0.35,//碰撞范围
+                "damage_multiplier": 1.15,//冲锋攻击造成的动能伤害倍数
+                "damage_conditions": {
+                    "max_duration": 200,//可造成伤害的最大持续时间条件
+                    "min_relative_speed": 4.6//造成伤害的最小相对速度条件，都为4.6
+                },
+                "knockback_conditions": {
+                    "max_duration": 120,//最大持续时间
+                    "min_speed": 5.1//所有的都是5.1
+                },//这个组件的作用是在冲锋时将对手造成动能伤害的同时施加额外击退效果的条件
+                "dismount_conditions": {
+                    "max_duration": 60,//最大持续时间
+                    "min_speed": 10.0//最小相对速度
+                }
+            },//在冲锋时将对手造成动能伤害的同时顺带从坐骑上击落下来的条件
+            "minecraft:tags": {
+                "tags": [
+                    "stonecraft:lv4_tier",
+                    "stonecraft:spear",
+                    "minecraft:is_spear",
+                    "minecraft:is_tool",
+                    "stonecraft:custom_weapon",
+                    "minecraft:netherite_tier",
+                    "minecraft:weapon",
+                    "forge_weapon",
+                    "forge_spear"
+                ]
+            },
+            "minecraft:max_stack_size": 1
+        }
+    }
+}
+//模板by JDingot，十分感谢您的贡献
+//延迟:木矛为15，石矛为14，铜矛13，铁矛12，金矛14，钻石矛10，下界合金矛9
+//动能伤害倍数:木矛为0.7，石矛为0.82，铜矛0.82，铁矛0.95，金矛0.7，钻石矛1.075，下界合金矛1.2
+//能造成动能伤害的最大持续时间条件:木矛为300，石矛为275，铜矛250，铁矛225，金矛275，钻石矛200，下界合金矛175（越高越好）
+//持续时间-击退条件:木矛为200，石矛为180，铜矛165，铁矛135，金矛170，钻石矛130，下界合金矛110（越高越好）
+//持续时间-击落条件:木矛为100，石矛为90，铜矛80，铁矛50，金矛70，钻石矛60，下界合金矛50（越高越好）
+//最小相对速度-击落条件:木矛为14.0，石矛为13.0，铜矛12.0，铁矛11.0，金矛13.0，钻石矛10.0，下界合金矛9.0（越高越好）

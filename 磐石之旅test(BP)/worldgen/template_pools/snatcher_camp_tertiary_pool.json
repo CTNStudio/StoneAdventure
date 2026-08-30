@@ -1,0 +1,46 @@
+{
+  "format_version": "1.21.20",
+  "minecraft:template_pool": {
+    "description": {
+      "identifier": "stonecraft:pool_snatcher_camp_tertiary"
+    },
+    "elements": [
+      {
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "projection": "terrain_matching",
+          "processors": "stonecraft:snatcher_camp_processor",
+          "location": "mysturcture:snatcher_camp_wall"
+        },
+        "weight": 1
+      },
+      {
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "projection": "terrain_matching",
+          "processors": "stonecraft:snatcher_camp_processor",
+          "location": "mysturcture:snatcher_camp_torch"
+        },
+        "weight": 1
+      },
+      {
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "projection": "terrain_matching",
+          "processors": "stonecraft:snatcher_camp_processor",
+          "location": "mysturcture:snatcher_camp_grill"
+        },
+        "weight": 1
+      },
+      {
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "projection": "terrain_matching",
+          "processors": "stonecraft:snatcher_camp_processor",
+          "location": "mysturcture:snatcher_camp_triangle_wall"
+        },
+        "weight": 1
+      }
+    ]
+  }
+}

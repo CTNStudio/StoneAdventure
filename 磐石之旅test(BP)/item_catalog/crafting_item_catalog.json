@@ -1,0 +1,122 @@
+{
+   "format_version" : "1.21.60",
+   "minecraft:crafting_items_catalog" : {
+      "categories" : [
+         {
+            "category_name" : "construction",
+            "groups" : [
+               {
+                  "group_identifier" : {
+                     "icon" : "stonecraft:lv1stone",
+                     "name" : "stonecraft:itemGroup.name.compressed_stones"
+                  },
+                  "items" : [
+                     "stonecraft:lv1stone",
+                     "stonecraft:lv2stone",
+                     "stonecraft:lv3stone",
+                     "stonecraft:lv4stone",
+                     "stonecraft:lv5stone"
+                  ]
+               }
+            ]
+         },
+         {
+            "category_name" : "equipment",
+            "groups" : [
+               {
+                  "group_identifier" : {
+                     "icon" : "stonecraft:versatile_stone_tool",
+                     "name" : "stonecraft:itemGroup.name.versatile"
+                  },
+                  "items" : [
+                     "stonecraft:versatile_stone_tool",
+                     "stonecraft:versatile_compressed_stone_tool_lv1",
+                     "stonecraft:versatile_compressed_stone_tool_lv2",
+                     "stonecraft:versatile_compressed_stone_tool_lv3",
+                     "stonecraft:versatile_compressed_stone_tool_lv4",
+                     "stonecraft:versatile_compressed_stone_tool_lv5"
+                  ]
+               }
+            ]
+         },
+         {
+            "category_name" : "equipment",
+            "groups" : [
+               {
+                  "group_identifier" : {
+                     "icon" : "stonecraft:lv1stone_hammer",
+                     "name" : "stonecraft:itemGroup.name.stone_hammer"
+                  },
+                  "items" : [
+                     "stonecraft:stone_hammer",
+                     "stonecraft:lv1stone_hammer",
+                     "stonecraft:lv2stone_hammer",
+                     "stonecraft:lv3stone_hammer",
+                     "stonecraft:lv4stone_hammer",
+                     "stonecraft:lv5stone_hammer"
+                  ]
+               }
+            ]
+         },
+         {
+            "category_name" : "items",
+            "groups" : [
+               {
+                  "group_identifier" : {
+                     "icon" : "stonecraft:stone_essence_crystal",
+                     "name" : "stonecraft:itemGroup.name.stone_essences"
+                  },
+                  "items" : [
+                     "stonecraft:raw_stone_essence",
+                     "stonecraft:stone_essence",
+                     "stonecraft:stone_essence_crystal"
+                  ]
+               }
+            ]
+         },
+         {
+            "category_name" : "equipment",
+            "groups" : [
+               {
+                  "group_identifier" : {
+                     "icon" : "stonecraft:inlaid_essence_bead",
+                     "name" : "stonecraft:itemGroup.name.inlaid_essence_bead"
+                  },
+                  "items" : [
+                     
+                     "stonecraft:inlaid_essence_bead",
+                     "stonecraft:inlaid_essence_bead_wither",
+                     "stonecraft:inlaid_essence_bead_regeneration",
+                     "stonecraft:inlaid_essence_bead_blindness",
+                     "stonecraft:inlaid_essence_bead_cleansing",
+                     "stonecraft:inlaid_essence_bead_stun",
+                     "stonecraft:inlaid_essence_bead_battle_fury",
+                     "stonecraft:inlaid_essence_bead_concuss",
+                     "stonecraft:inlaid_essence_bead_resistance",
+                     "stonecraft:inlaid_essence_bead_health_boost",
+                     "stonecraft:inlaid_essence_bead_night_vision",
+                     "stonecraft:inlaid_essence_bead_bleeding"
+                  ]
+               }
+            ]
+         },
+         {
+            "category_name" : "equipment",
+            "groups" : [
+               {
+                  "group_identifier" : {
+                     "icon" : "stonecraft:blood_offering_vial",
+                     "name" : "stonecraft:itemGroup.name.blood_relics"
+                  },
+                  "items" : [
+                     "stonecraft:blood_bottle",
+                     "stonecraft:blood_offering_vial",
+                     "stonecraft:ersatz_blood_vial",
+                     "stonecraft:sacrificial_blade"
+                  ]
+               }
+            ]
+         }
+      ]
+   }
+}

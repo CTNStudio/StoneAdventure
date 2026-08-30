@@ -1,0 +1,22 @@
+{
+  "format_version": "1.10.0",
+  "animations": {
+    "animation.mythicus_wa.bow.wield_first_person_pull2": {
+      "loop": true,
+      "bones": {
+        "rightitem": {
+          "position": [
+            -1.5,
+            " v.shake_amp * (2.5 + math.sin(v.shake_time * 1300) * 0.1 - math.sin(v.shake_time * 45) * 0.5) ",
+            -4.8
+          ],
+          "rotation": [
+            -53.0,
+            8.0,
+            35.0
+          ]
+        }
+      }
+    }
+  }
+}

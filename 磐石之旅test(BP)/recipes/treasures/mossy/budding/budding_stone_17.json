@@ -1,0 +1,37 @@
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "stonecraft:budding_stone_from_pitcher_plant"
+        },
+        "tags": ["crafting_table"],
+        "pattern": [
+            "FFF",
+            "FSF",
+            "FFF"
+        ],
+        "key": {
+            "F": {
+                "item": "minecraft:pitcher_plant"
+            },
+            "S": {
+                "item": "stonecraft:veiled_stone"
+            }
+        },
+        "unlock": [
+            {
+                "item": "minecraft:pitcher_plant"
+            },
+            {
+                "item": "stonecraft:veiled_stone"
+            },
+            {
+                "item": "stonecraft:budding_stone"
+            }
+        ],
+        "result": {
+            "item": "stonecraft:budding_stone",
+            "count": 1
+        }
+    }
+}

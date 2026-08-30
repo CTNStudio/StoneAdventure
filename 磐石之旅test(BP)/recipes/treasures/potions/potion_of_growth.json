@@ -1,0 +1,17 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_brewing_container": {
+    "description": {
+      "identifier": "stonecraft:potion_of_growth"
+    },
+    "tags": [ "brewing_stand" ],
+    "input": {
+        "item": "minecraft:potion",
+        "data": 4
+    },
+    "reagent": "stonecraft:budding_stone",
+    "output": {
+        "item":"stonecraft:potion_of_growth"
+    }
+  }
+}

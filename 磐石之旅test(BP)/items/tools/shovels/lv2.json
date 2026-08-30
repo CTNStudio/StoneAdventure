@@ -1,0 +1,77 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.shovel"
+      },
+      "identifier": "stonecraft:lv2stone_shovel"
+    },
+    "components": {
+      "minecraft:icon": "stonecraft.shovel.lv2",
+      "minecraft:display_name": {
+        "value": "stonecraft.item.shovel.lv2"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:durability": {
+        "max_durability": 650
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["stonecraft:lv2stone"],
+            "repair_amount": "context.other->query.max_durability * 0.2"
+          },
+          {
+            "items": ["stonecraft:lv2stone_shovel"],
+            "repair_amount": "context.other->query.remaining_durability + 0.2 * context.other->query.max_durability"
+          }
+        ]
+      },
+      "minecraft:damage": 5,
+      "minecraft:enchantable": {
+        "value": 20,
+        "slot": "shovel"
+      },
+      "minecraft:can_destroy_in_creative": true,
+      "minecraft:digger": {
+        "use_efficiency": true,
+        "destroy_speeds": [
+          {
+            "block": {
+              "tags": "query.any_tag('dirt', 'sand', 'gravel', 'grass', 'snow')"
+            },
+            "speed": 8
+          },
+          {
+            "block": {
+              "tags": "query.all_tags('minecraft:is_shovel_item_destructible')"
+            },
+            "speed": 8
+          },
+          {
+            "block": "soul_soil",
+            "speed": 8
+          },
+          {
+            "block": "concrete_powder",
+            "speed": 8
+          }
+        ]
+      },
+      "minecraft:tags": {
+        "tags": [
+          "stonecraft:lv2_tier",
+          "stonecraft:shovel",
+          "minecraft:digger",
+          "minecraft:is_shovel",
+          "minecraft:is_tool",
+          "minecraft:diamond_tier",
+          "stonecraft:custom_tool"
+        ]
+      }
+    }
+  }
+}

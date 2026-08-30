@@ -1,0 +1,51 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:versatile_stone_tool"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["ABC", " D ", " E "],
+    "key": {
+      "A": {
+        "item": "minecraft:stone_axe"
+      },
+      "B": {
+        "item": "minecraft:stone_pickaxe"
+      },
+      "C": {
+        "item": "minecraft:stone_hoe"
+      },
+      "D": {
+        "item": "minecraft:stick"
+      },
+      "E": {
+        "item": "minecraft:stone_shovel"
+      }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stone_axe"
+      },
+      {
+        "item": "minecraft:stone_pickaxe"
+      },
+      {
+        "item": "minecraft:stone_hoe"
+      },
+      {
+        "item": "minecraft:stick"
+      },
+      {
+        "item": "minecraft:stone_shovel"
+      },
+      {
+        "item": "stonecraft:versatile_stone_tool"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:versatile_stone_tool",
+      "count": 1
+    }
+  }
+}

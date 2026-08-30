@@ -1,0 +1,29 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:recipe_shapeless": {
+      "description": {
+      "identifier": "inlaid_essence_bead_longer_blindness"
+      },
+      "tags": [ "crafting_table" ],
+      "ingredients": [
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "stonecraft:longer_blindness_potion"
+        }
+      ],
+      "unlock": [
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "stonecraft:longer_blindness_potion"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead_blindness"
+      }
+    }
+  }
+  

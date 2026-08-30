@@ -1,0 +1,144 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.hoe"
+      },
+      "identifier": "stonecraft:lv5stone_hoe"
+    },
+    "components": {
+      "minecraft:icon": "stonecraft.hoe.lv5",
+      "minecraft:display_name": {
+        "value": "stonecraft.item.hoe.lv5"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:durability": {
+        "max_durability": 6000
+      },
+      "minecraft:fire_resistant": {
+        "value": true
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["stonecraft:lv5stone"],
+            "repair_amount": "context.other->query.max_durability * 0.2"
+          },
+          {
+            "items": ["stonecraft:lv5stone_hoe"],
+            "repair_amount": "context.other->query.remaining_durability + 0.2 * context.other->query.max_durability"
+          }
+        ]
+      },
+      "minecraft:damage": 9,
+      "minecraft:enchantable": {
+        "value": 40,
+        "slot": "hoe"
+      },
+      "minecraft:can_destroy_in_creative": true,
+      "minecraft:digger": {
+        "use_efficiency": true,
+        "destroy_speeds": [
+          {
+            "block": {
+              "tags": "query.all_tags('minecraft:is_hoe_item_destructible')"
+            },
+            "speed": 15
+          },
+          {
+            "block": {
+              "tags": "query.any_tag('wood', 'pumpkin', 'plant')"
+            },
+            "speed": 15
+          },
+          {
+            "block": "crafting_table",
+            "speed": 15
+          },
+          {
+            "block": "chest",
+            "speed": 15
+          },
+          {
+            "block": "trapped_chest",
+            "speed": 15
+          },
+          {
+            "block": "lectern",
+            "speed": 15
+          },
+          {
+            "block": "smithing_table",
+            "speed": 15
+          },
+          {
+            "block": "loom",
+            "speed": 15
+          },
+          {
+            "block": "cartography_table",
+            "speed": 15
+          },
+          {
+            "block": "barrel",
+            "speed": 15
+          },
+          {
+            "block": "jukebox",
+            "speed": 15
+          },
+          {
+            "block": "campfire",
+            "speed": 15
+          },
+          {
+            "block": "soul_campfire",
+            "speed": 15
+          },
+          {
+            "block": "bookshelf",
+            "speed": 15
+          },
+          {
+            "block": "chiseled_bookshelf",
+            "speed": 15
+          },
+          {
+            "block": "noteblock",
+            "speed": 15
+          },
+          {
+            "block": "beehive",
+            "speed": 15
+          },
+          {
+            "block": "bee_nest",
+            "speed": 15
+          },
+          {
+            "block": "daylight_detector",
+            "speed": 15
+          },
+          {
+            "block": "melon_block",
+            "speed": 15
+          }
+        ]
+      },
+      "minecraft:tags": {
+        "tags": [
+          "stonecraft:lv5_tier",
+          "stonecraft:hoe",
+          "minecraft:digger",
+          "minecraft:is_hoe",
+          "minecraft:is_tool",
+          "minecraft:netherite_tier",
+          "stonecraft:custom_tool"
+        ]
+      }
+    }
+  }
+}

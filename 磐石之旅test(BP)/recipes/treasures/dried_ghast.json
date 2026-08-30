@@ -1,0 +1,38 @@
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:dried_ghast"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+        "SSS", 
+        "SBS", 
+        "SSS"
+        ],
+      "key": {
+        "B": {
+          "item": "minecraft:soul_sand"
+        },
+        "S": {
+          "item": "stonecraft:stone_tear"
+        }
+      },
+      "unlock": [
+        {
+          "item": "stonecraft:stone_tear"
+        },
+        {
+          "item": "minecraft:soul_sand"
+        },
+        {
+          "item": "minecraft:dried_ghast"
+        }
+      ],
+      "result": {
+        "item": "minecraft:dried_ghast",
+        "count": 1
+      }
+    }
+  }
+  

@@ -1,0 +1,12 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_brewing_mix": {
+    "description": {
+      "identifier": "stonecraft:blood_offering_vial"
+    },
+    "tags": [ "brewing_stand" ],
+    "input": "stonecraft:ersatz_blood_vial",
+    "reagent": "stonecraft:stone_star",
+    "output": "stonecraft:blood_offering_vial"
+  }
+}

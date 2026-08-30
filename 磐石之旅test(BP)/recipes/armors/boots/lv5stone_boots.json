@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv5stone_boots"
+    },
+    "tags": ["crafting_table", "stone_crafting_table" ],
+    "pattern": ["A A", "A A"],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv5stone"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv5stone"
+      },
+      {
+        "item": "stonecraft:lv5stone_boots"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv5stone_boots",
+      "count": 1
+    }
+  }
+}

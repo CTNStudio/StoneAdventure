@@ -1,0 +1,20 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:oily_withered_remains",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "stonecraft.item.oily_withered_remains"
+      },
+      "minecraft:fuel": {
+        "duration": 100.0
+      },
+      "minecraft:icon": "stonecraft.oily_withered_remains"
+    }
+  }
+}

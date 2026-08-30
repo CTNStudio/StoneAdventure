@@ -1,0 +1,33 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv5stone_shovel"
+    },
+    "tags": ["crafting_table", "stone_crafting_table" ],
+    "pattern": [" A ", " B ", " B "],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv5stone"
+      },
+      "B": {
+        "item": "minecraft:stick"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv5stone"
+      },
+      {
+        "item": "minecraft:stick"
+      },
+      {
+        "item": "stonecraft:lv5stone_shovel"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv5stone_shovel",
+      "count": 1
+    }
+  }
+}

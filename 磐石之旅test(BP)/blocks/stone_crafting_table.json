@@ -1,0 +1,61 @@
+{
+  "format_version": "1.21.100",
+  "minecraft:block": {
+    "description": {
+      "identifier": "stonecraft:stone_crafting_table",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:loot": "loot_tables/blocks/stone_crafting_table.json",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 16.65,
+        "item_specific_speeds": [
+          {
+            "destroy_speed": 5,
+            "item": {
+             "tags": "q.all_tags('minecraft:is_tool', 'minecraft:is_pickaxe') && q.any_tag('minecraft:iron_tier', 'minecraft:diamond_tier', 'minecraft:netherite_tier')"
+            }
+          }
+        ]
+     },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 500
+      },
+      "minecraft:geometry": "minecraft:geometry.full_block",
+      "minecraft:material_instances": {
+        "up": {
+          "texture": "stone_crafting_table_up"
+        },
+        "down": {
+          "texture": "stone_convert_table_down"
+        },
+        "north": {
+          "texture": "stone_convert_table_north"
+        },
+        "south": {
+          "texture": "stone_convert_table_south"
+        },
+        "east": {
+          "texture": "stone_convert_table_east"
+        },
+        "west": {
+          "texture": "stone_convert_table_west"
+        },
+        "*": {
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:crafting_table": {
+        "crafting_tags": ["stone_crafting_table"],
+        "table_name": "tile.stonecraft:stone_crafting_table.name"
+      },
+      "tag:stone": {},
+      "tag:minecraft:iron_tier_destructible": {},
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "minecraft:flammable": false,
+      "minecraft:map_color": "#636060"
+    }
+  }
+}

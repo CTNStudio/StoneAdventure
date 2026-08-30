@@ -1,0 +1,36 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:stone_cookie"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+      "AAA",
+      "ABA",
+      "AAA"],
+    "key": {
+      "A": {
+        "tag": "minecraft:stone_crafting_materials"
+      },
+      "B": {
+        "item": "minecraft:cookie"
+      }
+    },
+    "unlock": [
+      {
+        "tag": "minecraft:stone_crafting_materials"
+      },
+      {
+        "item": "minecraft:cookie"
+      },
+      {
+        "item": "stonecraft:stone_cookie"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_cookie",
+      "count": 1
+    }
+  }
+}

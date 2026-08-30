@@ -1,0 +1,44 @@
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:end_crystal"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+        "GGG", 
+        "GEG", 
+        "GSG"
+        ],
+      "key": {
+        "G": {
+          "item": "minecraft:glass"
+        },
+        "E": {
+          "item": "minecraft:ender_eye"
+        },
+        "S": {
+          "item": "stonecraft:stone_tear"
+        }
+      },
+      "unlock": [
+        {
+          "item": "minecraft:ender_eye"
+        },
+        {
+          "item": "stonecraft:stone_tear"
+        },
+        {
+          "item": "minecraft:glass"
+        },
+        {
+          "item": "minecraft:end_crystal"
+        }
+      ],
+      "result": {
+        "item": "minecraft:end_crystal",
+        "count": 1
+      }
+    }
+  }
+  

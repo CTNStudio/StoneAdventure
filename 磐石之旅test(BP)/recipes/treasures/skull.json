@@ -1,0 +1,36 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:skull"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+      "ABA", 
+      "BAB", 
+      "ABA"],
+    "key": {
+      "A": {
+        "item": "minecraft:bone"
+      },
+      "B": {
+        "item": "stonecraft:head_shard"
+      }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:skull"
+      },
+      {
+        "item": "stonecraft:head_shard"
+      },
+      {
+        "item": "minecraft:bone"
+      }
+    ],
+    "result": {
+      "item": "minecraft:skull",
+      "count": 1
+    }
+  }
+}

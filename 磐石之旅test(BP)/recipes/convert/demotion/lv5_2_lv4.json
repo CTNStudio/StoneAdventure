@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "stonecraft:lv5_2_lv4"
+    },
+    "tags": ["stone_convert_table"],
+    "ingredients": [
+      {
+        "item": "stonecraft:lv5stone"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "stonecraft:lv4stone"
+      },
+      {
+        "item": "stonecraft:lv5stone"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv4stone",
+      "count": 9
+    }
+  }
+}

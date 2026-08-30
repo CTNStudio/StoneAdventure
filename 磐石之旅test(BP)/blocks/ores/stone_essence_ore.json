@@ -1,0 +1,51 @@
+{
+  "format_version": "1.21.100",
+  "minecraft:block": {
+    "description": {
+      "identifier": "stonecraft:stone_essence_ore",
+      "menu_category": {
+        "category": "nature",
+        "group": "minecraft:itemGroup.name.ore"
+      }
+    },
+    "components": {
+      "minecraft:loot": "loot_tables/blocks/stone_essence_ore.json",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 9.99,//普通石髓
+        "item_specific_speeds": [
+        {
+            "destroy_speed": 3,
+            "item": {
+                "tags": "q.all_tags('minecraft:is_tool', 'minecraft:is_pickaxe') && q.any_tag('minecraft:diamond_tier', 'minecraft:netherite_tier')"
+            }
+          },
+
+          {
+            "item": {
+              "tags": "q.any_tag('stonecraft:custom_tool') "
+            },
+            "destroy_speed": 2.0
+          }
+        ]
+     },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 500
+      },
+      "minecraft:geometry": "minecraft:geometry.full_block",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "stone_essence_ore",
+          "render_method": "opaque"
+        }
+      },
+      "tag:stone": {},
+      "tag:iron_pick_diggable": {},
+      "tag:diamond_pick_diggable": {},
+      "tag:stonecraft:ores": {},
+      "tag:minecraft:diamond_tier_destructible": {},
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "minecraft:flammable": false,
+      "minecraft:map_color": "#636060"
+    }
+  }
+}

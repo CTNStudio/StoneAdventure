@@ -1,0 +1,21 @@
+{
+    "format_version": "1.26.40",
+    "minecraft:structure_set": {
+        "description": {
+            "identifier": "stonecraft:ancient_stone_altar_structure_sets"
+        },
+        "placement": {
+            "type": "minecraft:random_spread",
+            "salt": 89673456,
+            "separation": 10,
+            "spacing": 100,
+            "spread_type": "triangular"
+        },
+        "structures": [
+            {
+                "structure": "stonecraft:ancient_stone_altar",
+                "weight": 1
+            }
+        ]
+    }
+}

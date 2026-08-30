@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv4stone"
+    },
+    "tags": ["stone_crafting_table"],
+    "pattern": ["AAA", "AAA", "AAA"],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv3stone"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv3stone"
+      },
+      {
+        "item": "stonecraft:lv4stone"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv4stone",
+      "count": 1
+    }
+  }
+}

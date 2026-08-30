@@ -1,0 +1,135 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.hoe"
+      },
+      "identifier": "stonecraft:lv1stone_hoe"
+    },
+    "components": {
+      "minecraft:icon": "stonecraft.hoe.lv1",
+      "minecraft:display_name": {
+        "value": "stonecraft.item.hoe.lv1"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:durability": {
+        "max_durability": 250
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["stonecraft:lv1stone"],
+            "repair_amount": "context.other->query.max_durability * 0.2"
+          },
+          {
+            "items": ["stonecraft:lv1stone_hoe"],
+            "repair_amount": "context.other->query.remaining_durability + 0.2 * context.other->query.max_durability"
+          }
+        ]
+      },
+      "minecraft:damage": 5,
+      "minecraft:enchantable": {
+        "value": 15,
+        "slot": "hoe"
+      },
+      "minecraft:can_destroy_in_creative": true,
+      "minecraft:digger": {
+        "use_efficiency": true,
+        "destroy_speeds": [
+          {
+            "block": {
+              "tags": "query.all_tags('minecraft:is_hoe_item_destructible')"
+            },
+            "speed": 6
+          },
+          {
+            "block": "nether_wart_block",
+            "speed": 6
+          },
+          {
+            "block": "warped_wart_block",
+            "speed": 6
+          },
+          {
+            "block": "shroomlight",
+            "speed": 6
+          },
+          {
+            "block": "hay_block",
+            "speed": 6
+          },
+          {
+            "block": "target",
+            "speed": 6
+          },
+          {
+            "block": "dried_kelp_block",
+            "speed": 6
+          },
+          {
+            "block": "sponge",
+            "speed": 6
+          },
+          {
+            "block": "moss_block",
+            "speed": 6
+          },
+          {
+            "block": "leaves",
+            "speed": 6
+          },
+          {
+            "block": "leaves2",
+            "speed": 6
+          },
+          {
+            "block": "mangrove_leaves",
+            "speed": 6
+          },
+          {
+            "block": "azalea_leaves",
+            "speed": 6
+          },
+          {
+            "block": "azalea_leaves_flowered",
+            "speed": 6
+          },
+          {
+            "block": "sculk",
+            "speed": 6
+          },
+          {
+            "block": "sculk_vein",
+            "speed": 6
+          },
+          {
+            "block": "sculk_sensor",
+            "speed": 6
+          },
+          {
+            "block": "sculk_catalyst",
+            "speed": 6
+          },
+          {
+            "block": "sculk_shrieker",
+            "speed": 6
+          }
+        ]
+      },
+      "minecraft:tags": {
+        "tags": [
+          "stonecraft:lv1_tier",
+          "stonecraft:hoe",
+          "minecraft:digger",
+          "minecraft:is_hoe",
+          "minecraft:is_tool",
+          "minecraft:iron_tier",
+          "stonecraft:custom_tool"
+        ]
+      }
+    }
+  }
+}

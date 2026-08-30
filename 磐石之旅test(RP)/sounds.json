@@ -1,0 +1,411 @@
+{
+  "entity_sounds": {
+    "entities": {
+      "stonecraft:stone_guard": {
+        "events": {
+          "ambient": "stonecraft.stone.step",
+          "death": "stonecraft.stone.death",
+          "hurt": {
+            "sound": "stonecraft.stone.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.stone.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:wandering_collector" : {
+        "events" : {
+          "ambient" : "mob.wanderingtrader.idle",
+          "death" : "mob.wanderingtrader.death",
+          "disappeared" : "mob.wanderingtrader.disappeared",
+          "drink" : "mob.wanderingtrader.drink_potion",
+          "drink.milk" : "mob.wanderingtrader.drink_milk",
+          "haggle" : "mob.wanderingtrader.haggle",
+          "haggle.no" : "mob.wanderingtrader.no",
+          "haggle.yes" : "mob.wanderingtrader.yes",
+          "hurt" : "mob.wanderingtrader.hurt",
+          "reappeared" : "mob.wanderingtrader.reappeared"
+        },
+        "pitch" : [ 0.80, 1.20 ],
+        "volume" : 1.0
+      },
+      "stonecraft:snatcher" : {
+            "events" : {
+               "ambient" : "mob.vindicator.idle",
+               "ambient.in.raid" : {
+                  "pitch" : [ 0.80, 1.20 ],
+                  "sound" : "mob.vindicator.idle",
+                  "volume" : 3.0
+               },
+               "celebrate" : "mob.vindicator.celebrate",
+               "death" : "mob.vindicator.death",
+               "hurt" : "mob.vindicator.hurt"
+            },
+            "pitch" : [ 0.80, 1.20 ],
+            "volume" : 1.0
+         },
+      "stonecraft:stone_vagabond": {
+        "events": {
+          "ambient": "stonecraft.stone.step",
+          "death": "stonecraft.stone.death",
+          "hurt": {
+            "sound": "stonecraft.stone.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.stone.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:stone_block": {
+        "events": {
+          "ambient": "stonecraft.stone.step",
+          "death": "stonecraft.stone.death",
+          "hurt": {
+            "sound": "stonecraft.stone.hurt",
+            "volume": 0.3
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.stone.step",
+            "volume": 0.3
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:stone_fissuring_husk": {
+        "events": {
+          "ambient": "stonecraft.stone.step",
+          "death": "stonecraft.stone.death",
+          "hurt": {
+            "sound": "stonecraft.stone.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.stone.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:molten_stone_guard": {
+        "events": {
+          "ambient": "stonecraft.molten.step",
+          "death": "stonecraft.molten.death",
+          "hurt": {
+            "sound": "stonecraft.molten.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.molten.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:molten_stone_vagabond": {
+        "events": {
+          "ambient": "stonecraft.molten.step",
+          "death": "stonecraft.molten.death",
+          "hurt": {
+            "sound": "stonecraft.molten.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.molten.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:molten_stone_shooter": {
+        "events": {
+          "ambient": "stonecraft.molten.step",
+          "death": "stonecraft.molten.death",
+          "hurt": {
+            "sound": "stonecraft.molten.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.molten.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:molten_stone_puppet": {
+        "events": {
+          "ambient": "stonecraft.molten.step",
+          "death": "stonecraft.molten.death",
+          "hurt": {
+            "sound": "stonecraft.molten.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.molten.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:molten_stone_fissuring_husk": {
+        "events": {
+          "ambient": "stonecraft.molten.step",
+          "death": "stonecraft.molten.death",
+          "hurt": {
+            "sound": "stonecraft.molten.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.molten.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:molten_elder_stone_guard": {
+        "events": {
+          "ambient": "stonecraft.molten.step",
+          "death": "stonecraft.molten.death",
+          "hurt": {
+            "sound": "stonecraft.molten.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.molten.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:mossy_stone_guard": {
+        "events": {
+          "ambient": "stonecraft.mossy.step",
+          "death": "stonecraft.mossy.death",
+          "hurt": {
+            "sound": "stonecraft.mossy.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.mossy.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:mossy_stone_shooter": {
+        "events": {
+          "ambient": "stonecraft.mossy.step",
+          "death": "stonecraft.mossy.death",
+          "hurt": {
+            "sound": "stonecraft.mossy.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.mossy.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:ancient_stone_totem": {
+        "events": {
+          "ambient": "stonecraft.stone.step",
+          "death": "stonecraft.totem.death",
+          "hurt": {
+            "sound": "stonecraft.stone.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.stone.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:ancient_stone_totem_2": {
+        "events": {
+          "ambient": "stonecraft.stone.step",
+          "death": "stonecraft.totem.death",
+          "hurt": {
+            "sound": "stonecraft.stone.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.stone.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:elder_stone_guard": {
+        "events": {
+          "ambient": "stonecraft.stone.step",
+          "death": "stonecraft.stone.death",
+          "hurt": {
+            "sound": "stonecraft.stone.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.stone.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:stone_vendor": {
+        "events": {
+          "ambient": "stonecraft.stone.step",
+          "death": "stonecraft.stone.death",
+          "hurt": {
+            "sound": "stonecraft.stone.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.stone.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:stone_puppet": {
+        "events": {
+          "ambient": "stonecraft.stone.step",
+          "death": "stonecraft.stone.death",
+          "hurt": {
+            "sound": "stonecraft.stone.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.stone.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:stone_shooter": {
+        "events": {
+          "ambient": "stonecraft.stone.step",
+          "death": "stonecraft.stone.death",
+          "hurt": {
+            "sound": "stonecraft.stone.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.stone.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:deepslate_stone_shooter": {
+        "events": {
+          "ambient": "stonecraft.stone.step",
+          "death": "stonecraft.stone.death",
+          "hurt": {
+            "sound": "stonecraft.stone.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.stone.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:deepslate_stone_guard": {
+        "events": {
+          "ambient": "stonecraft.stone.step",
+          "death": "stonecraft.stone.death",
+          "hurt": {
+            "sound": "stonecraft.stone.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.stone.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:sandstone_shooter": {
+        "events": {
+          "ambient": "stonecraft.sandstone.step",
+          "death": "stonecraft.sandstone.death",
+          "hurt": {
+            "sound": "stonecraft.sandstone.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.sandstone.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      },
+      "stonecraft:sandstone_guard": {
+        "events": {
+          "ambient": "stonecraft.sandstone.step",
+          "death": "stonecraft.sandstone.death",
+          "hurt": {
+            "sound": "stonecraft.sandstone.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.sandstone.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
+      }
+    }
+  }
+}

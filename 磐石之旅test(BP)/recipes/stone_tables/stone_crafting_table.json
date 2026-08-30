@@ -1,0 +1,39 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stone_crafting_table"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["ACA", "ABA", "AAA"],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv3stone"
+      },
+      "B": {
+        "item": "minecraft:crafting_table"
+      },
+      "C": {
+        "item": "stonecraft:stone_star"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv3stone"
+      },
+      {
+        "item": "minecraft:crafting_table"
+      },
+      {
+        "item": "stonecraft:stone_star"
+      },
+      {
+        "item": "stonecraft:stone_crafting_table"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_crafting_table",
+      "count": 1
+    }
+  }
+}

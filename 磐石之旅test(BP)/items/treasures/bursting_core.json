@@ -1,0 +1,28 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:bursting_core",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "stonecraft.item.bursting_core"
+      },
+      "minecraft:max_stack_size": 16,
+      "minecraft:throwable": {
+        "do_swing_animation": true
+      },
+      "minecraft:projectile": {
+        "projectile_entity": "stonecraft:bursting_core_entity"
+      },
+      "minecraft:cooldown": {
+        "category": "bursting_core",
+        "duration": 0.3 
+      },
+      "minecraft:icon": "stonecraft.bursting_core"
+    }
+  }
+}

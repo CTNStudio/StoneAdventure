@@ -1,0 +1,37 @@
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:stone_bow_dripstone_block"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+        " AB",
+        "A B",
+        " AB"],
+      "key": {
+        "A": {
+          "item": "minecraft:dripstone_block"
+        },
+        "B": {
+          "item": "minecraft:string"
+        }
+      },
+      "unlock": [
+        {
+          "item": "minecraft:dripstone_block"
+        },
+        {
+          "item": "minecraft:string"
+        },
+        {
+          "item": "stonecraft:stone_bow"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:stone_bow",
+        "count": 1
+      }
+    }
+  }
+  

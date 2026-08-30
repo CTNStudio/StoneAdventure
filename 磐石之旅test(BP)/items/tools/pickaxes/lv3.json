@@ -1,0 +1,83 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.pickaxe"
+      },
+      "identifier": "stonecraft:lv3stone_pickaxe"
+    },
+    "components": {
+      "minecraft:icon": "stonecraft.pickaxe.lv3",
+      "minecraft:display_name": {
+        "value": "stonecraft.item.pickaxe.lv3"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:durability": {
+        "max_durability": 1350
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["stonecraft:lv3stone"],
+            "repair_amount": "context.other->query.max_durability * 0.2"
+          },
+          {
+            "items": ["stonecraft:lv3stone_pickaxe"],
+            "repair_amount": "context.other->query.remaining_durability + 0.2 * context.other->query.max_durability"
+          }
+        ]
+      },
+      "minecraft:damage": 5,
+      "minecraft:enchantable": {
+        "value": 25,
+        "slot": "pickaxe"
+      },
+      "minecraft:can_destroy_in_creative": true,
+      "minecraft:digger": {
+        "use_efficiency": true,
+        "destroy_speeds": [
+          {
+            "block": {
+              "tags": "query.any_tag('stone', 'metal', 'stone_pick_diggable', 'iron_pick_diggable')"
+            },
+            "speed": 9
+          },
+          {
+            "block": {
+              "tags": "query.all_tags('minecraft:is_pickaxe_item_destructible', 'minecraft:iron_tier_destructible')"
+            },
+            "speed": 9
+          },
+          {
+            "block": {
+              "tags": "query.all_tags('minecraft:is_pickaxe_item_destructible', 'minecraft:diamond_tier_destructible')"
+            },
+            "speed": 9
+          },
+          {
+            "block": {
+              "tags": "query.any_tag('minecraft:is_pickaxe_item_destructible')"
+            },
+            "speed": 9
+          }
+        ]
+      },
+      "minecraft:tags": {
+        "tags": [
+          "stonecraft:lv3_tier",
+          "stonecraft:pickaxe",
+          "minecraft:digger",
+          "minecraft:is_pickaxe",
+          "minecraft:is_tool",
+          "minecraft:iron_tier",
+          "minecraft:diamond_tier",
+          "minecraft:netherite_tier",
+          "stonecraft:custom_tool"
+        ]
+      }
+    }
+  }
+}

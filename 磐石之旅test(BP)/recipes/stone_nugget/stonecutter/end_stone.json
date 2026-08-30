@@ -1,0 +1,26 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:recipe_shapeless": {
+        "description": {
+            "identifier": "stonecraft:end_stone_to_stone_nugget"
+        },
+        "unlock": [
+            {
+                "item": "minecraft:end_stone"
+            },
+            {
+                "item": "stonecraft:stone_nugget"
+            }
+        ],
+        "tags": ["stonecutter"],
+        "ingredients": [
+            {
+                "item": "minecraft:end_stone"
+            }
+        ],
+        "result": {
+            "item": "stonecraft:stone_nugget",
+            "count": 4
+        }
+    }
+}

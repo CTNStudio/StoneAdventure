@@ -1,0 +1,56 @@
+
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:inlaid_essence_bead_resistance"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+        " N ", 
+        "SOI", 
+        " D "
+        ],
+      "key": {
+        "N": {
+          "item": "minecraft:netherite_chestplate"
+        },
+        "S": {
+          "item": "stonecraft:lv0stone_chestplate"
+        },
+        "O": {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        "I": {
+          "item": "minecraft:iron_chestplate"
+        },
+        "D": {
+          "item": "minecraft:diamond_chestplate"
+        }
+      },
+      "unlock": [
+        {
+          "item": "minecraft:netherite_chestplate"
+        },
+        {
+          "item": "stonecraft:lv0stone_chestplate"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "minecraft:iron_chestplate"
+        },
+        {
+          "item": "minecraft:diamond_chestplate"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead_resistance"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead_resistance",
+        "count": 1
+      }
+    }
+}

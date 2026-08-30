@@ -1,0 +1,116 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.sword"
+      },
+      "identifier": "stonecraft:lv2stone_sword"
+    },
+    "components": {
+      "minecraft:icon": "stonecraft.sword.lv2",
+      "minecraft:display_name": {
+        "value": "stonecraft.item.sword.lv2"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:durability": {
+        "max_durability": 650
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["stonecraft:lv2stone"],
+            "repair_amount": "context.other->query.max_durability * 0.2"
+          },
+          {
+            "items": ["stonecraft:lv2stone_sword"],
+            "repair_amount": "context.other->query.remaining_durability + 0.2 * context.other->query.max_durability"
+          }
+        ]
+      },
+      "minecraft:damage": 7,
+      "minecraft:enchantable": {
+        "value": 20,
+        "slot": "sword"
+      },
+      "minecraft:can_destroy_in_creative": false,
+      "minecraft:digger": {
+        "use_efficiency": true,
+        "destroy_speeds": [
+          {
+            "block": "web",
+            "speed": 15
+          },
+          {
+            "block": "bamboo",
+            "speed": 60
+          },
+          {
+            "block": "cocoa",
+            "speed": 15
+          },
+          {
+            "block": "glow_lichen",
+            "speed": 60
+          },
+          {
+            "block": "azalea_leaves_flowered",
+            "speed": 15
+          },
+          {
+            "block": "azalea_leaves",
+            "speed": 15
+          },
+          {
+            "block": "leaves",
+            "speed": 15
+          },
+          {
+            "block": "leaves2",
+            "speed": 15
+          },
+          {
+            "block": "mangrove_leaves",
+            "speed": 15
+          },
+          {
+            "block": "cherry_leaves",
+            "speed": 15
+          },
+          {
+            "block": "melon_block",
+            "speed": 15
+          },
+          {
+            "block": "vine",
+            "speed": 30
+          },
+          {
+            "block": "pumpkin",
+            "speed": 15
+          },
+          {
+            "block": "lit_pumpkin",
+            "speed": 15
+          },
+          {
+            "block": "moss_carpet",
+            "speed": 15
+          }
+        ]
+      },
+      "minecraft:tags": {
+        "tags": [
+          "stonecraft:lv2_tier",
+          "stonecraft:sword",
+          "minecraft:is_sword",
+          "minecraft:is_tool",
+          "minecraft:diamond_tier",
+          "stonecraft:custom_weapon"
+        ]
+      }
+    }
+  }
+}

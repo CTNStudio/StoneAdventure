@@ -1,0 +1,98 @@
+{
+  "resource_pack_name": "磐石之旅",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "lv1stone": {
+      "textures": "textures/blocks/compressed_stones/lv1"
+    },
+    "lv2stone": {
+      "textures": "textures/blocks/compressed_stones/lv2"
+    },
+    "lv3stone": {
+      "textures": "textures/blocks/compressed_stones/lv3"
+    },
+    "lv4stone": {
+      "textures": "textures/blocks/compressed_stones/lv4"
+    },
+    "lv5stone": {
+      "textures": "textures/blocks/compressed_stones/lv5"
+    },
+    "stone_essence_ore": {
+      "textures": "textures/blocks/stone_essence_ore"
+    },
+    "deepslate_stone_essence_ore": {
+      "textures": "textures/blocks/deepslate_stone_essence_ore"
+    },
+    "stone_crafting_table_up": {
+      "textures": "textures/blocks/stone_crafting_table/top"
+    },
+    "stone_crafting_table_down": {
+      "textures": "textures/blocks/stone_crafting_table/down"
+    },
+    "stone_crafting_table_north": {
+      "textures": "textures/blocks/stone_crafting_table/front"
+    },
+    "stone_crafting_table_south": {
+      "textures": "textures/blocks/stone_crafting_table/front"
+    },
+    "stone_crafting_table_west": {
+      "textures": "textures/blocks/stone_crafting_table/side"
+    },
+    "stone_crafting_table_east": {
+      "textures": "textures/blocks/stone_crafting_table/side"
+    },
+    "stone_convert_table_up": {
+      "textures": "textures/blocks/stone_convert_table/top"
+    },
+    "stone_convert_table_down": {
+      "textures": "textures/blocks/stone_convert_table/down"
+    },
+    "stone_convert_table_north": {
+      "textures": "textures/blocks/stone_convert_table/front"
+    },
+    "stone_convert_table_south": {
+      "textures": "textures/blocks/stone_convert_table/front"
+    },
+    "stone_convert_table_west": {
+      "textures": "textures/blocks/stone_convert_table/side"
+    },
+    "stone_convert_table_east": {
+      "textures": "textures/blocks/stone_convert_table/side"
+    },
+    "stone_smithing_table": {
+      "textures": "textures/blocks/stone_smithing_table"
+    },
+    "activated_stone_summoner": {
+      "textures": "textures/blocks/stone_summoner/stone_summoner"
+    },
+    "activated_stone_summoner_front": {
+      "textures": "textures/blocks/stone_summoner/activated_stone_summoner_front"
+    },
+    "stone_summoner": {
+      "textures": "textures/blocks/stone_summoner/stone_summoner"
+    },
+    "stone_summoner_front": {
+      "textures": "textures/blocks/stone_summoner/stone_summoner_front"
+    },
+    "mimic_stone_flower": {
+      "textures": "textures/blocks/mimic_stone_flower"
+    },
+    "mimic_stone_flower_0": {
+      "textures": "textures/blocks/mimic_stone_flower_0"
+    },
+    "mimic_stone_flower_1": {
+      "textures": "textures/blocks/mimic_stone_flower_1"
+    },
+    "mimic_stone_flower_2": {
+      "textures": "textures/blocks/mimic_stone_flower_2"
+    },
+    "mimic_stone_flower_3": {
+      "textures": "textures/blocks/mimic_stone_flower_3"
+    },
+    "ancient_stone_totem_doll": {
+      "textures": "textures/blocks/dolls/ancient_stone_totem_doll"
+    }
+  }
+}

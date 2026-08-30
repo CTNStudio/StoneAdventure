@@ -1,0 +1,28 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:recipe_shapeless": {
+      "description": {
+      "identifier": "inlaid_essence_bead_cleansing"
+      },
+      "tags": [ "crafting_table" ],
+      "ingredients": [
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "stonecraft:stone_apple"
+        }
+      ],
+      "unlock": [
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "stonecraft:stone_apple"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead_cleansing"
+      }
+    }
+}

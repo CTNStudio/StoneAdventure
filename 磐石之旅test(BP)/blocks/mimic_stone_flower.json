@@ -1,0 +1,163 @@
+{
+	"format_version": "1.26.0",
+	"minecraft:block": {
+		"description": {
+			"identifier": "stonecraft:mimic_stone_flower",
+			"menu_category": {
+				"category": "none"
+			},
+			"states": {
+				"stonecraft:growth": {
+					"values": {
+						"min": 0,
+						"max": 4
+					}
+				}
+			}
+		},
+		"components": {
+			"minecraft:liquid_detection": {
+				"detection_rules": [
+					{
+						"liquid_type": "water",
+						"on_liquid_touches": "broken"
+					}
+				]
+			},
+			"minecraft:movable": {
+				"movement_type": "popped"
+			},
+			"minecraft:connection_rule": {
+				"accepts_connections_from": "none"
+			},
+			"minecraft:collision_box": false,
+			"minecraft:material_instances": {
+				"*": {
+					"face_dimming": false,
+					"ambient_occlusion": false,
+					"render_method": "alpha_test",
+					"texture": "mimic_stone_flower"
+				}
+			},
+			"minecraft:geometry": "geometry.mimic_stone_flower.geo",
+			"minecraft:light_dampening": 0,
+			"minecraft:placement_filter": {
+				"conditions": [
+					{
+						"allowed_faces": [
+							"up"
+						],
+						"block_filter": [
+							{
+								"name": "minecraft:farmland"
+							}
+						]
+					}
+				]
+			}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('stonecraft:growth') < 4",
+				"components": {
+					"stonecraft:growable": {
+						"growth_state": "stonecraft:growth",
+						"growth_chance": 15,
+						"min_light_level": 5,
+						"max_growth": 4
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('stonecraft:growth') == 0",
+				"components": {
+					"minecraft:loot": "loot_tables/blocks/mimic_stone_flower_0.json",
+					"minecraft:material_instances": {
+						"*": {
+							"face_dimming": false,
+							"ambient_occlusion": false,
+							"render_method": "alpha_test",
+							"texture": "mimic_stone_flower_0"
+						}
+					},
+					"minecraft:selection_box": {
+						"origin": [-8, 0, -8],
+						"size": [16, 1, 16]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('stonecraft:growth') == 1",
+				"components": {
+					"minecraft:loot": "loot_tables/blocks/mimic_stone_flower_unripe.json",
+					"minecraft:material_instances": {
+						"*": {
+							"face_dimming": false,
+							"ambient_occlusion": false,
+							"render_method": "alpha_test",
+							"texture": "mimic_stone_flower_1"
+						}
+					},
+					"minecraft:selection_box": {
+						"origin": [-8, 0, -8],
+						"size": [16, 3, 16]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('stonecraft:growth') == 2",
+				"components": {
+					"minecraft:loot": "loot_tables/blocks/mimic_stone_flower_unripe.json",
+					"minecraft:material_instances": {
+						"*": {
+							"face_dimming": false,
+							"ambient_occlusion": false,
+							"render_method": "alpha_test",
+							"texture": "mimic_stone_flower_2"
+						}
+					},
+					"minecraft:selection_box": {
+						"origin": [-8, 0, -8],
+						"size": [16, 5, 16]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('stonecraft:growth') == 3",
+				"components": {
+					"minecraft:loot": "loot_tables/blocks/mimic_stone_flower_unripe.json",
+					"minecraft:material_instances": {
+						"*": {
+							"face_dimming": false,
+							"ambient_occlusion": false,
+							"render_method": "alpha_test",
+							"texture": "mimic_stone_flower_3"
+						}
+					},
+					"minecraft:selection_box": {
+						"origin": [-8, 0, -8],
+						"size": [16, 9, 16]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('stonecraft:growth') == 4",
+				"components": {
+					"minecraft:loot": "loot_tables/blocks/mimic_stone_flower.json",
+					"minecraft:material_instances": {
+						"*": {
+							"face_dimming": false,
+							"ambient_occlusion": false,
+							"render_method": "alpha_test",
+							"texture": "mimic_stone_flower"
+						}
+					},
+					"minecraft:selection_box": {
+						"origin": [-8, 0, -8],
+						"size": [16, 16, 16]
+					}
+				}
+			}
+		]
+	}
+}

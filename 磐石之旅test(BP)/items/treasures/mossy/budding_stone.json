@@ -1,0 +1,28 @@
+//新生之石
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:budding_stone",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "stonecraft.item.budding_stone"
+      },
+      "minecraft:compostable": {
+        "composting_chance": 50
+      },
+      "minecraft:block_placer": {
+        "block": "stonecraft:mimic_stone_flower",
+        "use_on": [
+          "minecraft:farmland"
+        ],
+        "replace_block_item": true
+      },
+      "minecraft:icon": "stonecraft.budding_stone"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv2stone_axe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [" AA", " BA", " B "],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv2stone"
+      },
+      "B": {
+        "item": "minecraft:stick"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv2stone"
+      },
+      {
+        "item": "minecraft:stick"
+      },
+      {
+        "item": "stonecraft:lv2stone_axe"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv2stone_axe",
+      "count": 1
+    }
+  }
+}

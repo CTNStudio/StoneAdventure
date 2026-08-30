@@ -1,0 +1,18 @@
+//葬生之石
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:withered_stone",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "stonecraft.item.withered_stone"
+      },
+      "minecraft:icon": "stonecraft.withered_stone"
+    }
+  }
+}

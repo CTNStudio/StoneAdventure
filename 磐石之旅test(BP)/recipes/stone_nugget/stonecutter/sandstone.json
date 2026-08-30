@@ -1,0 +1,26 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:recipe_shapeless": {
+        "description": {
+            "identifier": "stonecraft:sandstone_to_stone_nugget"
+        },
+        "unlock": [
+            {
+                "item": "minecraft:sandstone"
+            },
+            {
+                "item": "stonecraft:stone_nugget"
+            }
+        ],
+        "tags": ["stonecutter"],
+        "ingredients": [
+            {
+                "item": "minecraft:sandstone"
+            }
+        ],
+        "result": {
+            "item": "stonecraft:stone_nugget",
+            "count": 4
+        }
+    }
+}

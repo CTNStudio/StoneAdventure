@@ -1,0 +1,42 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:recipe_shapeless": {
+      "description": {
+      "identifier": "inlaid_essence_bead_blindness"
+      },
+      "tags": [ "crafting_table" ],
+      "ingredients": [
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "stonecraft:blindness_potion"
+        }
+      ],
+      "unlock": [
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "stonecraft:blindness_potion"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead_blindness"
+      }
+    }
+}
+
+/*{
+    "format_version": "1.21.40",
+    "minecraft:recipe_smithing_transform": {
+        "description": {
+            "identifier": "inlaid_essence_bead_blindness"
+        },
+        "tags": [ "smithing_table" ],
+        "template": "stonecraft:inlaid_essence_bead", //必须有"minecraft:transform_templates"的tag
+        "base": "stonecraft:blindness_potion", //必须是装备？
+        //"addition": "stonecraft:blindness_potion", //似乎不是必须
+        "result": "stonecraft:inlaid_essence_bead_blindness"
+    }
+}*/

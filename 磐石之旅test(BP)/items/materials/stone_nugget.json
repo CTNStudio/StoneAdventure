@@ -1,0 +1,24 @@
+{//格式版本最好不要改，1.20.40往上的版本可能会导致投掷物伤害和填写的数值不一样
+  "format_version": "1.20.40",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:stone_nugget",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:max_stack_size": 64,
+      "minecraft:throwable": {
+        "do_swing_animation": true
+      },
+      "minecraft:projectile": {
+        "projectile_entity": "stonecraft:thrown_stone_nugget"
+      },
+      "minecraft:display_name": {
+        "value": "stonecraft.item.stone_nugget"
+      },
+      "minecraft:icon": "stonecraft.stone_nugget"
+    }
+  }
+}

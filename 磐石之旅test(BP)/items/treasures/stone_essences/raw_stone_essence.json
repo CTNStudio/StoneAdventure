@@ -1,0 +1,17 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:raw_stone_essence",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": "stonecraft.raw_stone_essence",
+      "minecraft:display_name": {
+        "value": "stonecraft.item.raw_stone_essence"
+      }
+    }
+  }
+}

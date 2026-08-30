@@ -1,0 +1,394 @@
+{
+  "resource_pack_name": "磐石之旅",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "stonecraft.stone_star": {
+      "textures": "textures/items/treasures/stone_star"
+    },
+    "stonecraft.stone_coin": {
+      "textures": "textures/items/treasures/stone_coin"
+    },
+    "stonecraft.head_shard": {
+      "textures": "textures/items/treasures/head_shard"
+    },
+    "stonecraft.head_debris": {
+      "textures": "textures/items/treasures/head_debris"
+    },
+    "stonecraft.stone_tear": {
+      "textures": "textures/items/treasures/stone_tear"
+    },
+    "stonecraft.lavatic_remains": {
+      "textures": "textures/items/treasures/lavatic_remains"
+    },
+    "stonecraft.withered_remains": {
+      "textures": "textures/items/treasures/withered_remains"
+    },
+    "stonecraft.oily_withered_remains": {
+      "textures": "textures/items/treasures/oily_withered_remains"
+    },
+    "stonecraft.bursting_core": {
+      "textures": "textures/items/treasures/bursting_core"
+    },
+    "stonecraft.withered_stone": {
+      "textures": "textures/items/treasures/withered_stone"
+    },
+    "stonecraft.budding_stone": {
+      "textures": "textures/items/treasures/budding_stone"
+    },
+    "stonecraft.veiled_stone": {
+      "textures": "textures/items/treasures/veiled_stone"
+    },
+    "stonecraft.blood_offering_vial": {
+      "textures": "textures/items/sacrifice/blood_offering_vial"
+    },
+    "stonecraft.sacrificial_blade": {
+      "textures": "textures/items/sacrifice/sacrificial_blade"
+    },
+
+    "stonecraft.stone_bread": {
+      "textures": "textures/items/foods/stone_bread"
+    },
+    "stonecraft.stone_apple": {
+      "textures": "textures/items/foods/stone_apple"
+    },
+    "stonecraft.stone_potato": {
+      "textures": "textures/items/foods/stone_potato"
+    },
+    "stonecraft.stone_carrot": {
+      "textures": "textures/items/foods/stone_carrot"
+    },
+    "stonecraft.stone_kelp": {
+      "textures": "textures/items/foods/stone_kelp"
+    },
+    "stonecraft.stone_melon": {
+      "textures": "textures/items/foods/stone_melon"
+    },
+    "stonecraft.stone_cooked_cod": {
+      "textures": "textures/items/foods/stone_cooked_cod"
+    },
+    "stonecraft.stone_cookie": {
+      "textures": "textures/items/foods/stone_cookie"
+    },
+    "stonecraft.stone_glow_berries": {
+      "textures": "textures/items/foods/stone_glow_berries"
+    },
+    "stonecraft.stone_cooked_beef": {
+      "textures": "textures/items/foods/stone_cooked_beef"
+    },
+    "stonecraft.stone_sweet_berries": {
+      "textures": "textures/items/foods/stone_sweet_berries"
+    },
+    "stonecraft.stonickers": {
+      "textures": "textures/items/foods/stonickers/stonickers"
+    },
+    "stonecraft.compressed_stonickers_lv1": {
+      "textures": "textures/items/foods/stonickers/compressed_stonickers_lv1"
+    },
+    "stonecraft.compressed_stonickers_lv2": {
+      "textures": "textures/items/foods/stonickers/compressed_stonickers_lv2"
+    },
+    "stonecraft.compressed_stonickers_lv3": {
+      "textures": "textures/items/foods/stonickers/compressed_stonickers_lv3"
+    },
+    "stonecraft.compressed_stonickers_lv4": {
+      "textures": "textures/items/foods/stonickers/compressed_stonickers_lv4"
+    },
+    "stonecraft.compressed_stonickers_lv5": {
+      "textures": "textures/items/foods/stonickers/compressed_stonickers_lv5"
+    },
+    "stonecraft.stone_hodgepodge": {
+      "textures": "textures/items/foods/stone_hodgepodge"
+    },
+    "stonecraft.stone_nugget": {
+      "textures": "textures/items/materials/stone_nugget"
+    },
+    "stonecraft.stone_essence_crystal": {
+      "textures": "textures/items/treasures/essences/stone_essence_crystal"
+    },
+    "stonecraft.inlaid_essence_bead": {
+      "textures": "textures/items/treasures/essences/inlaid_essence_bead"
+    },
+    "stonecraft.raw_stone_essence": {
+      "textures": "textures/items/treasures/essences/raw_stone_essence"
+    },
+    "stonecraft.stone_essence": {
+      "textures": "textures/items/treasures/essences/stone_essence"
+    },
+    "stonecraft.expansion_slab": {
+      "textures": "textures/items/treasures/essences/expansion_slab"
+    },
+    
+    "stonecraft.helmet.lv0": {
+      "textures": "textures/items/armors/helmets/lv0"
+    },
+    "stonecraft.helmet.lv1": {
+      "textures": "textures/items/armors/helmets/lv1"
+    },
+    "stonecraft.helmet.lv2": {
+      "textures": "textures/items/armors/helmets/lv2"
+    },
+    "stonecraft.helmet.lv3": {
+      "textures": "textures/items/armors/helmets/lv3"
+    },
+    "stonecraft.helmet.lv4": {
+      "textures": "textures/items/armors/helmets/lv4"
+    },
+    "stonecraft.helmet.lv5": {
+      "textures": "textures/items/armors/helmets/lv5"
+    },
+    
+    "stonecraft.chestplate.lv0": {
+      "textures": "textures/items/armors/chestplates/lv0"
+    },
+    "stonecraft.chestplate.lv1": {
+      "textures": "textures/items/armors/chestplates/lv1"
+    },
+    "stonecraft.chestplate.lv2": {
+      "textures": "textures/items/armors/chestplates/lv2"
+    },
+    "stonecraft.chestplate.lv3": {
+      "textures": "textures/items/armors/chestplates/lv3"
+    },
+    "stonecraft.chestplate.lv4": {
+      "textures": "textures/items/armors/chestplates/lv4"
+    },
+    "stonecraft.chestplate.lv5": {
+      "textures": "textures/items/armors/chestplates/lv5"
+    },
+    
+    "stonecraft.leggings.lv0": {
+      "textures": "textures/items/armors/leggings/lv0"
+    },
+    "stonecraft.leggings.lv1": {
+      "textures": "textures/items/armors/leggings/lv1"
+    },
+    "stonecraft.leggings.lv2": {
+      "textures": "textures/items/armors/leggings/lv2"
+    },
+    "stonecraft.leggings.lv3": {
+      "textures": "textures/items/armors/leggings/lv3"
+    },
+    "stonecraft.leggings.lv4": {
+      "textures": "textures/items/armors/leggings/lv4"
+    },
+    "stonecraft.leggings.lv5": {
+      "textures": "textures/items/armors/leggings/lv5"
+    },
+    
+    "stonecraft.boots.lv0": {
+      "textures": "textures/items/armors/boots/lv0"
+    },
+    "stonecraft.boots.lv1": {
+      "textures": "textures/items/armors/boots/lv1"
+    },
+    "stonecraft.boots.lv2": {
+      "textures": "textures/items/armors/boots/lv2"
+    },
+    "stonecraft.boots.lv3": {
+      "textures": "textures/items/armors/boots/lv3"
+    },
+    "stonecraft.boots.lv4": {
+      "textures": "textures/items/armors/boots/lv4"
+    },
+    "stonecraft.boots.lv5": {
+      "textures": "textures/items/armors/boots/lv5"
+    },
+    
+    "stonecraft.axe.lv1": {
+      "textures": "textures/items/tools/axes/lv1"
+    },
+    "stonecraft.axe.lv2": {
+      "textures": "textures/items/tools/axes/lv2"
+    },
+    "stonecraft.axe.lv3": {
+      "textures": "textures/items/tools/axes/lv3"
+    },
+    "stonecraft.axe.lv4": {
+      "textures": "textures/items/tools/axes/lv4"
+    },
+    "stonecraft.axe.lv5": {
+      "textures": "textures/items/tools/axes/lv5"
+    },
+    
+    "stonecraft.hoe.lv1": {
+      "textures": "textures/items/tools/hoes/lv1"
+    },
+    "stonecraft.hoe.lv2": {
+      "textures": "textures/items/tools/hoes/lv2"
+    },
+    "stonecraft.hoe.lv3": {
+      "textures": "textures/items/tools/hoes/lv3"
+    },
+    "stonecraft.hoe.lv4": {
+      "textures": "textures/items/tools/hoes/lv4"
+    },
+    "stonecraft.hoe.lv5": {
+      "textures": "textures/items/tools/hoes/lv5"
+    },
+    
+    "stonecraft.pickaxe.lv1": {
+      "textures": "textures/items/tools/pickaxes/lv1"
+    },
+    "stonecraft.pickaxe.lv2": {
+      "textures": "textures/items/tools/pickaxes/lv2"
+    },
+    "stonecraft.pickaxe.lv3": {
+      "textures": "textures/items/tools/pickaxes/lv3"
+    },
+    "stonecraft.pickaxe.lv4": {
+      "textures": "textures/items/tools/pickaxes/lv4"
+    },
+    "stonecraft.pickaxe.lv5": {
+      "textures": "textures/items/tools/pickaxes/lv5"
+    },
+    
+    "stonecraft.shovel.lv1": {
+      "textures": "textures/items/tools/shovels/lv1"
+    },
+    "stonecraft.shovel.lv2": {
+      "textures": "textures/items/tools/shovels/lv2"
+    },
+    "stonecraft.shovel.lv3": {
+      "textures": "textures/items/tools/shovels/lv3"
+    },
+    "stonecraft.shovel.lv4": {
+      "textures": "textures/items/tools/shovels/lv4"
+    },
+    "stonecraft.shovel.lv5": {
+      "textures": "textures/items/tools/shovels/lv5"
+    },
+    
+    "stonecraft.sword.lv1": {
+      "textures": "textures/items/tools/swords/lv1"
+    },
+    "stonecraft.sword.lv2": {
+      "textures": "textures/items/tools/swords/lv2"
+    },
+    "stonecraft.sword.lv3": {
+      "textures": "textures/items/tools/swords/lv3"
+    },
+    "stonecraft.sword.lv4": {
+      "textures": "textures/items/tools/swords/lv4"
+    },
+    "stonecraft.sword.lv5": {
+      "textures": "textures/items/tools/swords/lv5"
+    },
+    
+    "stonecraft.sword.uc1": {
+      "textures": "textures/items/tools/swords/uc1"
+    },
+    "stonecraft.sword.uc2": {
+      "textures": "textures/items/tools/swords/uc2"
+    },
+    "stonecraft.sword.uc3": {
+      "textures": "textures/items/tools/swords/uc3"
+    },
+    
+    "stonecraft.versatile.lv0": {
+      "textures": "textures/items/tools/versatile/versatile_stone_tool"
+    },
+    "stonecraft.versatile.lv1": {
+      "textures": "textures/items/tools/versatile/versatile_compressed_stone_tool_lv1"
+    },
+    "stonecraft.versatile.lv2": {
+      "textures": "textures/items/tools/versatile/versatile_compressed_stone_tool_lv2"
+    },
+    "stonecraft.versatile.lv3": {
+      "textures": "textures/items/tools/versatile/versatile_compressed_stone_tool_lv3"
+    },
+    "stonecraft.versatile.lv4": {
+      "textures": "textures/items/tools/versatile/versatile_compressed_stone_tool_lv4"
+    },
+    "stonecraft.versatile.lv5": {
+      "textures": "textures/items/tools/versatile/versatile_compressed_stone_tool_lv5"
+    },
+    
+    "stonecraft.spear.lv1": {
+      "textures": "textures/items/tools/spears/lv1"
+    },
+    "stonecraft.spear.lv2": {
+      "textures": "textures/items/tools/spears/lv2"
+    },
+    "stonecraft.spear.lv3": {
+      "textures": "textures/items/tools/spears/lv3"
+    },
+    "stonecraft.spear.lv4": {
+      "textures": "textures/items/tools/spears/lv4"
+    },
+    "stonecraft.spear.lv5": {
+      "textures": "textures/items/tools/spears/lv5"
+    },
+    
+    "stonecraft.hammer.lv0": {
+      "textures": "textures/items/tools/hammers/stone_hammer"
+    },
+    "stonecraft.hammer.lv1": {
+      "textures": "textures/items/tools/hammers/stone_hammer_lv1"
+    },
+    "stonecraft.hammer.lv2": {
+      "textures": "textures/items/tools/hammers/stone_hammer_lv2"
+    },
+    "stonecraft.hammer.lv3": {
+      "textures": "textures/items/tools/hammers/stone_hammer_lv3"
+    },
+    "stonecraft.hammer.lv4": {
+      "textures": "textures/items/tools/hammers/stone_hammer_lv4"
+    },
+    "stonecraft.hammer.lv5": {
+      "textures": "textures/items/tools/hammers/stone_hammer_lv5"
+    },
+    
+    "stonecraft.stone_bow": {
+      "textures": "textures/items/tools/bows/stone_bow"
+    },
+    "stonecraft.wooden_slingshot": {
+      "textures": "textures/items/tools/slingshots/wooden_slingshot"
+    },
+    "stonecraft.stone_arrow": {
+      "textures": "textures/items/stone_arrow"
+    },
+    "stonecraft.blindness_potion": {
+      "textures": "textures/items/blindness_potion"
+    },
+    "stonecraft.potion_of_growth": {
+      "textures": "textures/items/potion_of_growth"
+    },
+    "stonecraft.potion_of_corruption": {
+      "textures": "textures/items/potion_of_corruption"
+    },
+    "stonecraft.blood_bottle": {
+      "textures": "textures/items/sacrifice/blood_bottle"
+    },
+    "stonecraft.ersatz_blood_vial": {
+      "textures": "textures/items/sacrifice/ersatz_blood_vial"
+    },
+    "stonecraft.spawn_eggs": {
+      "textures": [
+        "textures/items/spawn_eggs/spawn_egg_stone_shooter",//0
+        "textures/items/spawn_eggs/spawn_egg_ancient_stone_totem",//1
+        "textures/items/spawn_eggs/spawn_egg_stone_puppet",//2
+        "textures/items/spawn_eggs/spawn_egg_stone_vendor",//3
+        "textures/items/spawn_eggs/spawn_egg_stone_guard",//4
+        "textures/items/spawn_eggs/spawn_egg_elder_stone_guard",//5
+        "textures/items/spawn_eggs/spawn_egg_stone_vagabond",//6
+        "textures/items/spawn_eggs/spawn_egg_molten_stone_guard",//7
+        "textures/items/spawn_eggs/spawn_egg_molten_stone_shooter",//8
+        "textures/items/spawn_eggs/spawn_egg_molten_stone_puppet",//9
+        "textures/items/spawn_eggs/spawn_egg_stone_fissuring_husk",//10
+        "textures/items/spawn_eggs/spawn_egg_deepslate_stone_shooter",//11
+        "textures/items/spawn_eggs/spawn_egg_deepslate_stone_guard",//12
+        "textures/items/spawn_eggs/spawn_egg_mossy_stone_shooter",//13
+        "textures/items/spawn_eggs/spawn_egg_mossy_stone_guard",//14
+        "textures/items/spawn_eggs/spawn_egg_molten_elder_stone_guard",//15
+        "textures/items/spawn_eggs/spawn_egg_stone_vagabond",//16
+        "textures/items/spawn_eggs/spawn_egg_sandstone_guard",//17
+        "textures/items/spawn_eggs/spawn_egg_sandstone_shooter",//18
+        "textures/items/spawn_eggs/spawn_egg_wandering_collector",//19
+        "textures/items/spawn_eggs/spawn_egg_snatcher"//20
+      ]
+    },
+    "stonecraft.stone_encyclopedia": {
+      "textures": "textures/items/stone_encyclopedia"
+    }
+  }
+}

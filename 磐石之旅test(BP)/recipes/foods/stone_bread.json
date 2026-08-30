@@ -1,0 +1,33 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:stone_bread"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["AAA", "ABA", "AAA"],
+    "key": {
+      "A": {
+        "tag": "minecraft:stone_crafting_materials"
+      },
+      "B": {
+        "item": "minecraft:bread"
+      }
+    },
+    "unlock": [
+      {
+        "tag": "minecraft:stone_crafting_materials"
+      },
+      {
+        "item": "minecraft:bread"
+      },
+      {
+        "item": "stonecraft:stone_bread"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_bread",
+      "count": 1
+    }
+  }
+}

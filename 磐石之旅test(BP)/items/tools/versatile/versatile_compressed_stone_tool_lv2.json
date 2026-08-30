@@ -1,0 +1,326 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "menu_category": {
+        "category": "equipment"
+      },
+      "identifier": "stonecraft:versatile_compressed_stone_tool_lv2"
+    },
+    "components": {
+      "minecraft:icon": "stonecraft.versatile.lv2",
+      "minecraft:display_name": {
+        "value": "stonecraft.item.versatile.lv2"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:durability": {
+        "max_durability": 1950
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["stonecraft:lv2stone"],
+            "repair_amount": "context.other->query.max_durability * 0.2"
+          },
+          {
+            "items": ["stonecraft:versatile_compressed_stone_tool_lv2"],
+            "repair_amount": "context.other->query.remaining_durability + 0.2 * context.other->query.max_durability"
+          }
+        ]
+      },
+      "minecraft:damage": 7,
+      "minecraft:enchantable": {
+        "value": 15,
+        "slot": "pickaxe"
+      },
+      "minecraft:can_destroy_in_creative": true,
+      "minecraft:digger": {
+        "use_efficiency": true,
+        "destroy_speeds": [
+          {
+            "block": {
+              "tags": "query.any_tag('stone', 'metal', 'stone_pick_diggable')"
+            },
+            "speed": 8
+          },
+          {
+            "block": {
+              "tags": "query.all_tags('minecraft:is_pickaxe_item_destructible', 'minecraft:iron_tier_destructible')"
+            },
+            "speed": 8
+          },
+          {
+            "block": {
+              "tags": "query.all_tags('minecraft:is_pickaxe_item_destructible', 'minecraft:diamond_tier_destructible')"
+            },
+            "speed": 8
+          },
+          {
+            "block": {
+              "tags": "query.any_tag('minecraft:is_pickaxe_item_destructible')"
+            },
+            "speed": 8
+          },
+          {
+            "block": {
+              "tags": "query.all_tags('minecraft:is_shovel_item_destructible')"
+            },
+            "speed": 8
+          },
+          {
+            "block": {
+              "tags": "query.all_tags('minecraft:is_hoe_item_destructible')"
+            },
+            "speed": 8
+          },
+          {
+            "block": {
+              "tags": "query.all_tags('minecraft:is_axe_item_destructible')"
+            },
+            "speed": 8
+          },
+          {
+            "block": {
+              "tags": "query.any_tag('wood', 'pumpkin', 'plant')"
+            },
+            "speed": 8
+          },
+          {
+            "block": "crafting_table",
+            "speed": 8
+          },
+          {
+            "block": "chest",
+            "speed": 8
+          },
+          {
+            "block": "trapped_chest",
+            "speed": 8
+          },
+          {
+            "block": "lectern",
+            "speed": 8
+          },
+          {
+            "block": "smithing_table",
+            "speed": 8
+          },
+          {
+            "block": "loom",
+            "speed": 8
+          },
+          {
+            "block": "cartography_table",
+            "speed": 8
+          },
+          {
+            "block": "barrel",
+            "speed": 8
+          },
+          {
+            "block": "jukebox",
+            "speed": 8
+          },
+          {
+            "block": "campfire",
+            "speed": 8
+          },
+          {
+            "block": "soul_campfire",
+            "speed": 8
+          },
+          {
+            "block": "bookshelf",
+            "speed": 8
+          },
+          {
+            "block": "chiseled_bookshelf",
+            "speed": 8
+          },
+          {
+            "block": "noteblock",
+            "speed": 8
+          },
+          {
+            "block": "beehive",
+            "speed": 8
+          },
+          {
+            "block": "bee_nest",
+            "speed": 8
+          },
+          {
+            "block": "daylight_detector",
+            "speed": 8
+          },
+          {
+            "block": "melon_block",
+            "speed": 8
+          },
+          {
+            "block": "nether_wart_block",
+            "speed": 8
+          },
+          {
+            "block": "warped_wart_block",
+            "speed": 8
+          },
+          {
+            "block": "shroomlight",
+            "speed": 8
+          },
+          {
+            "block": "hay_block",
+            "speed": 8
+          },
+          {
+            "block": "target",
+            "speed": 8
+          },
+          {
+            "block": "dried_kelp_block",
+            "speed": 8
+          },
+          {
+            "block": "sponge",
+            "speed": 8
+          },
+          {
+            "block": "moss_block",
+            "speed": 8
+          },
+          {
+            "block": "leaves",
+            "speed": 8
+          },
+          {
+            "block": "leaves2",
+            "speed": 8
+          },
+          {
+            "block": "mangrove_leaves",
+            "speed": 8
+          },
+          {
+            "block": "azalea_leaves",
+            "speed": 8
+          },
+          {
+            "block": "azalea_leaves_flowered",
+            "speed": 8
+          },
+          {
+            "block": "sculk",
+            "speed": 8
+          },
+          {
+            "block": "sculk_vein",
+            "speed": 8
+          },
+          {
+            "block": "sculk_sensor",
+            "speed": 8
+          },
+          {
+            "block": "sculk_catalyst",
+            "speed": 8
+          },
+          {
+            "block": "sculk_shrieker",
+            "speed": 8
+          },
+          {
+            "block": {
+              "tags": "query.any_tag('dirt', 'sand', 'gravel', 'grass', 'snow')"
+            },
+            "speed": 8
+          },
+          {
+            "block": "soul_soil",
+            "speed": 8
+          },
+          {
+            "block": "concrete_powder",
+            "speed": 8
+          },
+          {
+            "block": "web",
+            "speed": 15
+          },
+          {
+            "block": "bamboo",
+            "speed": 60
+          },
+          {
+            "block": "cocoa",
+            "speed": 15
+          },
+          {
+            "block": "glow_lichen",
+            "speed": 60
+          },
+          {
+            "block": "azalea_leaves_flowered",
+            "speed": 15
+          },
+          {
+            "block": "azalea_leaves",
+            "speed": 15
+          },
+          {
+            "block": "leaves",
+            "speed": 15
+          },
+          {
+            "block": "leaves2",
+            "speed": 15
+          },
+          {
+            "block": "mangrove_leaves",
+            "speed": 15
+          },
+          {
+            "block": "cherry_leaves",
+            "speed": 15
+          },
+          {
+            "block": "melon_block",
+            "speed": 15
+          },
+          {
+            "block": "vine",
+            "speed": 30
+          },
+          {
+            "block": "pumpkin",
+            "speed": 15
+          },
+          {
+            "block": "lit_pumpkin",
+            "speed": 15
+          },
+          {
+            "block": "moss_carpet",
+            "speed": 15
+          }
+        ]
+      },
+      "minecraft:tags": {
+        "tags": [
+          "stonecraft:lv1_tier",
+          "stonecraft:versatile",
+          "minecraft:digger",
+          "minecraft:is_pickaxe",
+          "minecraft:is_axe",
+          "minecraft:is_hoe",
+          "minecraft:is_sword",
+          "minecraft:is_shovel",
+          "minecraft:is_tool",
+          "minecraft:diamond_tier",
+          "stonecraft:custom_tool"
+        ]
+      }
+    }
+  }
+}

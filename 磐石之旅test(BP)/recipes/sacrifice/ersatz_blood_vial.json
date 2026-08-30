@@ -1,0 +1,68 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:recipe_shapeless": {
+      "description": {
+      "identifier": "ersatz_blood_vial"
+      },
+      "tags": [ "crafting_table" ],
+      "ingredients": [
+        {
+          "item": "stonecraft:budding_stone"
+        },
+        {
+          "item": "stonecraft:withered_stone"
+        },
+        {
+          "item": "stonecraft:oily_withered_remains"
+        },
+        {
+          "item": "stonecraft:bursting_core"
+        },
+        {
+          "item": "stonecraft:head_shard"
+        },
+        {
+          "item": "stonecraft:lavatic_remains"
+        },
+        {
+          "item": "stonecraft:stone_tear"
+        },
+        {
+          "item": "stonecraft:blood_bottle"
+        }
+      ],
+      "unlock": [
+        {
+          "item": "stonecraft:budding_stone"
+        },
+        {
+          "item": "stonecraft:withered_stone"
+        },
+        {
+          "item": "stonecraft:oily_withered_remains"
+        },
+        {
+          "item": "stonecraft:bursting_core"
+        },
+        {
+          "item": "stonecraft:head_shard"
+        },
+        {
+          "item": "stonecraft:lavatic_remains"
+        },
+        {
+          "item": "stonecraft:stone_tear"
+        },
+        {
+          "item": "stonecraft:ersatz_blood_vial"
+        },
+        {
+          "item": "stonecraft:blood_bottle"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:ersatz_blood_vial"
+      }
+    }
+  }
+  

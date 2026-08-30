@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv1stone_calcite"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["AAA", "AAA", "AAA"],
+    "key": {
+      "A": {
+        "item": "minecraft:calcite"
+      }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:calcite"
+      },
+      {
+        "item": "stonecraft:lv1stone"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv1stone",
+      "count": 1
+    }
+  }
+}

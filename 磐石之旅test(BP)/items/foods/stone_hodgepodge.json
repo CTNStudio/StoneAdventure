@@ -1,0 +1,33 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:stone_hodgepodge",
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.cookedFood"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "stonecraft.item.stone_hodgepodge"
+      },
+      "minecraft:icon": "stonecraft.stone_hodgepodge",
+      "minecraft:use_animation": "eat",
+      "minecraft:use_modifiers": {
+        "use_duration": 1.4,
+        "movement_modifier": 0.35
+      },
+      "minecraft:food": {
+        "nutrition": 20,
+        "can_always_eat": true,
+        "saturation_modifier": 0.6,
+        "using_converts_to": "minecraft:bowl"
+      },
+      "minecraft:hover_text_color": "aqua",
+      "minecraft:tags": {
+        "tags": ["minecraft:is_food", "stonecraft:stone_food"]
+      }
+    }
+  }
+}

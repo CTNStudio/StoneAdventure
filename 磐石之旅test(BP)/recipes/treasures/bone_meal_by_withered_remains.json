@@ -1,0 +1,26 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:recipe_shapeless": {
+      "description": {
+      "identifier": "bone_meal_by_withered_remains"
+      },
+      "tags": [ "crafting_table" ],
+      "ingredients": [
+        {
+          "item": "stonecraft:withered_remains"
+        }
+      ],
+      "unlock": [
+        {
+          "item": "stonecraft:withered_remains"
+        },
+        {
+          "item": "minecraft:bone_meal"
+        }
+      ],
+      "result": {
+        "item": "minecraft:bone_meal"
+      }
+    }
+  }
+  

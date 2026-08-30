@@ -1,0 +1,37 @@
+{
+  "format_version": "1.21.20",
+  "minecraft:template_pool": {
+    "description": {
+      "identifier": "stonecraft:pool_snatcher_camp_secondary"
+    },
+    "elements": [
+      {
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "projection": "terrain_matching",
+          "processors": "stonecraft:snatcher_camp_processor",
+          "location": "mysturcture:snatcher_camp_bonfire"
+        },
+        "weight": 2
+      },
+      {
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "projection": "terrain_matching",
+          "processors": "stonecraft:snatcher_camp_processor",
+          "location": "mysturcture:snatcher_camp_fabric"
+        },
+        "weight": 1
+      },
+      {
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "projection": "terrain_matching",
+          "processors": "stonecraft:snatcher_camp_processor",
+          "location": "mysturcture:snatcher_camp_wooden_barrel"
+        },
+        "weight": 2
+      }
+    ]
+  }
+}

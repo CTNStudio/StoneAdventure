@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv1stone_sandstone"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["AAA", "AAA", "AAA"],
+    "key": {
+      "A": {
+        "item": "minecraft:sandstone"
+      }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:sandstone"
+      },
+      {
+        "item": "stonecraft:lv1stone"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv1stone",
+      "count": 1
+    }
+  }
+}

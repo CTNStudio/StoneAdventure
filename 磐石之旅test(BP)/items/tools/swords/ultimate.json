@@ -1,0 +1,111 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:uc_stone_sword",
+      "menu_category": {
+      "category": "none"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "stonecraft.item.sword.uc1"
+      },
+      "minecraft:icon": "stonecraft.sword.uc1",
+      "minecraft:damage": 325,
+      "minecraft:durability": {
+        "max_durability": 325,
+        "damage_chance": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "minecraft:can_destroy_in_creative": false,
+      "minecraft:rarity": "uncommon",
+      "minecraft:digger": {
+        "use_efficiency": true,
+        "destroy_speeds": [
+          {
+            "block": "web",
+            "speed": 15
+          },
+          {
+            "block": "bamboo",
+            "speed": 60
+          },
+          {
+            "block": "cocoa",
+            "speed": 15
+          },
+          {
+            "block": "glow_lichen",
+            "speed": 60
+          },
+          {
+            "block": "azalea_leaves_flowered",
+            "speed": 15
+          },
+          {
+            "block": "azalea_leaves",
+            "speed": 15
+          },
+          {
+            "block": "leaves",
+            "speed": 15
+          },
+          {
+            "block": "leaves2",
+            "speed": 15
+          },
+          {
+            "block": "mangrove_leaves",
+            "speed": 15
+          },
+          {
+            "block": "cherry_leaves",
+            "speed": 15
+          },
+          {
+            "block": "melon_block",
+            "speed": 15
+          },
+          {
+            "block": "vine",
+            "speed": 30
+          },
+          {
+            "block": "pumpkin",
+            "speed": 15
+          },
+          {
+            "block": "lit_pumpkin",
+            "speed": 15
+          },
+          {
+            "block": "moss_carpet",
+            "speed": 15
+          }
+        ]
+      },
+      "minecraft:enchantable": {
+        "value": 500,
+        "slot": "sword"
+      },
+      "minecraft:hand_equipped": true,
+      "minecraft:max_stack_size": 1,
+      "minecraft:tags": {
+        "tags": [
+          "stonecraft:uc_tier",
+          "stonecraft:sword",
+          "minecraft:is_sword",
+          "minecraft:is_tool",
+          "stonecraft:custom_weapon",
+          "minecraft:netherite_tier",
+          "stonecraft:can_smithing",
+          "forge_sword",
+          "forge_weapon"
+        ]
+      }
+    }
+  }
+}

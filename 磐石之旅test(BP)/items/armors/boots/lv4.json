@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:lv4stone_boots",
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.boots"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "stonecraft.item.boots.lv4"
+      },
+      "minecraft:icon": "stonecraft.boots.lv4",
+      "minecraft:max_stack_size": 1,
+      "minecraft:enchantable": {
+        "value": 30,
+        "slot": "armor_feet"
+      },
+      "minecraft:durability": {
+        "max_durability": 625
+      },
+      "minecraft:wearable": {
+        "slot": "slot.armor.feet",
+        "protection": 5
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["stonecraft:lv4stone", "stonecraft:lv4stone_boots"],
+            "repair_amount": "query.max_durability * 0.2"
+          }
+        ]
+      },
+      "minecraft:tags": {
+        "tags": [
+          "stonecraft:lv4_tier",
+          "stonecraft:boots",
+          "minecraft:is_armor",
+          "minecraft:trimmable_armors",
+          "forge_boots"
+        ]
+      }
+    }
+  }
+}

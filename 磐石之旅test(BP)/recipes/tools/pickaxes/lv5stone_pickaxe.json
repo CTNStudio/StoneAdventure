@@ -1,0 +1,33 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv5stone_pickaxe"
+    },
+    "tags": ["crafting_table", "stone_crafting_table" ],
+    "pattern": ["AAA", " B ", " B "],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv5stone"
+      },
+      "B": {
+        "item": "minecraft:stick"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv5stone"
+      },
+      {
+        "item": "minecraft:stick"
+      },
+      {
+        "item": "stonecraft:lv5stone_pickaxe"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv5stone_pickaxe",
+      "count": 1
+    }
+  }
+}

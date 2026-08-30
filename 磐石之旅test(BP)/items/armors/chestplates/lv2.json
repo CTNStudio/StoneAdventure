@@ -1,0 +1,46 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:lv2stone_chestplate",
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.chestplate"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "stonecraft.item.chestplate.lv2"
+      },
+      "minecraft:icon": "stonecraft.chestplate.lv2",
+      "minecraft:max_stack_size": 1,
+      "minecraft:enchantable": {
+        "value": 20,
+        "slot": "armor_torso"
+      },
+      "minecraft:durability": {
+        "max_durability": 365
+      },
+      "minecraft:wearable": {
+        "slot": "slot.armor.chest",
+        "protection": 6
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["stonecraft:lv2stone", "stonecraft:lv2stone_chestplate"],
+            "repair_amount": "query.max_durability * 0.2"
+          }
+        ]
+      },
+      "minecraft:tags": {
+        "tags": [
+          "stonecraft:lv2_tier",
+          "stonecraft:chestplates",
+          "minecraft:is_armor",
+          "minecraft:trimmable_armors"
+        ]
+      }
+    }
+  }
+}

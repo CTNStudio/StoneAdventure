@@ -1,0 +1,51 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:lv0stone_leggings",
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.leggings"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "stonecraft.item.leggings.lv0"
+      },
+      "minecraft:icon": "stonecraft.leggings.lv0",
+      "minecraft:max_stack_size": 1,
+      "minecraft:enchantable": {
+        "value": 10,
+        "slot": "armor_legs"
+      },
+      "minecraft:durability": {
+        "max_durability": 118
+      },
+      "minecraft:wearable": {
+        "slot": "slot.armor.legs",
+        "protection": 3
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": [
+              "minecraft:stone",
+              "stonecraft:lv0stone_leggings",
+              "minecraft:blackstone",
+              "minecraft:cobblestone"
+            ],
+            "repair_amount": "query.max_durability * 0.2"
+          }
+        ]
+      },
+      "minecraft:tags": {
+        "tags": [
+          "stonecraft:lv0_tier",
+          "stonecraft:leggings",
+          "minecraft:is_armor",
+          "minecraft:trimmable_armors"
+        ]
+      }
+    }
+  }
+}

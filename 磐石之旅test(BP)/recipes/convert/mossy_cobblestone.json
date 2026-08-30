@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "stonecraft:mossy_cobblestone_to_cobblestone"
+    },
+    "tags": ["stone_convert_table"],
+    "ingredients": [
+      {
+        "item": "mossy_cobblestone"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "mossy_cobblestone"
+      }
+    ],
+    "result": {
+      "item": "cobblestone"
+    }
+  }
+}

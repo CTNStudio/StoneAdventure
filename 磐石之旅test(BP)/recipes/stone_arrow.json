@@ -1,0 +1,41 @@
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:stone_arrow"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+        " A ", 
+        " B ", 
+        " C "
+        ],
+      "key": {
+        "A": {
+          "tag": "minecraft:stone_crafting_materials"
+        },
+        "B": {
+          "item": "minecraft:stick"
+        },
+        "C": {
+            "item": "minecraft:feather"
+          }
+      },
+      "unlock": [
+        {
+          "tag": "minecraft:stone_crafting_materials"
+        },
+        {
+          "item": "minecraft:stick"
+        },
+        {
+          "item": "stonecraft:stone_arrow"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:stone_arrow",
+        "count": 4
+      }
+    }
+  }
+  

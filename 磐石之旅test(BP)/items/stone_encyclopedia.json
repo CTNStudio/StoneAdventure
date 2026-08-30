@@ -1,0 +1,20 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:stone_encyclopedia",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "stonecraft.item.stone_encyclopedia"
+      },
+      "minecraft:can_destroy_in_creative": false,
+      "minecraft:max_stack_size": 1,
+      "minecraft:icon": "stonecraft.stone_encyclopedia",
+      "minecraft:rarity": "rare"
+    }
+  }
+}

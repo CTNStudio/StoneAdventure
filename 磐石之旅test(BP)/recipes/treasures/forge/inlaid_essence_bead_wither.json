@@ -1,0 +1,30 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:recipe_shapeless": {
+      "description": {
+      "identifier": "inlaid_essence_bead_wither"
+      },
+      "tags": [ "crafting_table" ],
+      "ingredients": [
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "minecraft:potion",
+          "data": 36
+        }
+      ],
+      "unlock": [
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "minecraft:potion",
+          "data": 36
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead_wither"
+      }
+    }
+  }

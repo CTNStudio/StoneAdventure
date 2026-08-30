@@ -1,0 +1,103 @@
+{
+    "format_version": "1.21.20",
+    "minecraft:processor_list": {
+        "description": {
+            "identifier": "stonecraft:ancient_stone_altar_processor"
+        },
+        "processors": [
+            {
+                "processor_type": "minecraft:rule",
+                "rules": [
+                    {
+                        "input_predicate": {
+                            "predicate_type": "minecraft:blockstate_match",
+                            "block_state": {
+                                "name": "minecraft:chest",
+                                "states": {
+                                    "minecraft:cardinal_direction": "north"
+                                }
+                            }
+                        },
+                        "output_state": {
+                            "name": "minecraft:chest",
+                            "states": {
+                                "minecraft:cardinal_direction": "north"
+                            }
+                        },
+                        "block_entity_modifier": {
+                            "type": "minecraft:append_loot",
+                            "loot_table":
+                            "loot_tables/chests/ancient_stone_altar.json"
+                        }
+                    },
+                    {
+                        "input_predicate": {
+                            "predicate_type": "minecraft:blockstate_match",
+                            "block_state": {
+                                "name": "minecraft:chest",
+                                "states": {
+                                    "minecraft:cardinal_direction": "south"
+                                }
+                            }
+                        },
+                        "output_state": {
+                            "name": "minecraft:chest",
+                            "states": {
+                                "minecraft:cardinal_direction": "south"
+                            }
+                        },
+                        "block_entity_modifier": {
+                            "type": "minecraft:append_loot",
+                            "loot_table":
+                            "loot_tables/chests/ancient_stone_altar.json"
+                        }
+                    },
+                    {
+                        "input_predicate": {
+                            "predicate_type": "minecraft:blockstate_match",
+                            "block_state": {
+                                "name": "minecraft:chest",
+                                "states": {
+                                    "minecraft:cardinal_direction": "east"
+                                }
+                            }
+                        },
+                        "output_state": {
+                            "name": "minecraft:chest",
+                            "states": {
+                                "minecraft:cardinal_direction": "east"
+                            }
+                        },
+                        "block_entity_modifier": {
+                            "type": "minecraft:append_loot",
+                            "loot_table":
+                            "loot_tables/chests/ancient_stone_altar.json"
+                        }
+                    },
+                    {
+                        "input_predicate": {
+                            "predicate_type": "minecraft:blockstate_match",
+                            "block_state": {
+                                "name": "minecraft:chest",
+                                "states": {
+                                    "minecraft:cardinal_direction": "west"
+                                }
+                            }
+                        },
+                        "output_state": {
+                            "name": "minecraft:chest",
+                            "states": {
+                                "minecraft:cardinal_direction": "west"
+                            }
+                        },
+                        "block_entity_modifier": {
+                            "type": "minecraft:append_loot",
+                            "loot_table":
+                            "loot_tables/chests/ancient_stone_altar.json"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

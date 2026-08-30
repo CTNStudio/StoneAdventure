@@ -1,0 +1,19 @@
+{
+  "format_version": "1.21.110", //最低适配版本
+  "minecraft:client_biome": {
+    "description": {
+      "identifier": "stonecraft:barren_stone_fields" 
+    },
+    "components": {
+      "minecraft:sky_color": {
+        "sky_color": "#696969" //天空颜色，改改改
+      }, //你不加这玩意那就是默认群系的天空
+      "minecraft:water_appearance": {
+        "surface_color": "#696969" //水的颜色，改改改
+      },
+      "minecraft:fog_appearance": {
+        "fog_identifier": "stonecraft:barren_stone_fields_fog"
+      }
+    }
+  }
+}

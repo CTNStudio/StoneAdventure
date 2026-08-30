@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:versatile_compressed_stone_tool_lv3_2"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["AAA", "AAA", "AAA"],
+    "key": {
+      "A": {
+        "item": "stonecraft:versatile_compressed_stone_tool_lv2"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:versatile_compressed_stone_tool_lv2"
+      },
+      {
+        "item": "stonecraft:versatile_compressed_stone_tool_lv3"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:versatile_compressed_stone_tool_lv3",
+      "count": 1
+    }
+  }
+}

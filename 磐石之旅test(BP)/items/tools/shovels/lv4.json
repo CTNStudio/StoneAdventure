@@ -1,0 +1,77 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.shovel"
+      },
+      "identifier": "stonecraft:lv4stone_shovel"
+    },
+    "components": {
+      "minecraft:icon": "stonecraft.shovel.lv4",
+      "minecraft:display_name": {
+        "value": "stonecraft.item.shovel.lv4"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:durability": {
+        "max_durability": 2750
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["stonecraft:lv4stone"],
+            "repair_amount": "context.other->query.max_durability * 0.2"
+          },
+          {
+            "items": ["stonecraft:lv4stone_shovel"],
+            "repair_amount": "context.other->query.remaining_durability + 0.2 * context.other->query.max_durability"
+          }
+        ]
+      },
+      "minecraft:damage": 7,
+      "minecraft:enchantable": {
+        "value": 30,
+        "slot": "shovel"
+      },
+      "minecraft:can_destroy_in_creative": true,
+      "minecraft:digger": {
+        "use_efficiency": true,
+        "destroy_speeds": [
+          {
+            "block": {
+              "tags": "query.any_tag('dirt', 'sand', 'gravel', 'grass', 'snow')"
+            },
+            "speed": 12
+          },
+          {
+            "block": {
+              "tags": "query.all_tags('minecraft:is_shovel_item_destructible')"
+            },
+            "speed": 12
+          },
+          {
+            "block": "soul_soil",
+            "speed": 12
+          },
+          {
+            "block": "concrete_powder",
+            "speed": 12
+          }
+        ]
+      },
+      "minecraft:tags": {
+        "tags": [
+          "stonecraft:lv4_tier",
+          "stonecraft:shovel",
+          "minecraft:digger",
+          "minecraft:is_shovel",
+          "minecraft:is_tool",
+          "minecraft:netherite_tier",
+          "stonecraft:custom_tool"
+        ]
+      }
+    }
+  }
+}

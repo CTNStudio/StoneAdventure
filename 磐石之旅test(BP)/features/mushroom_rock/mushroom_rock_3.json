@@ -1,0 +1,20 @@
+{
+	"format_version": "1.20.30",
+	"minecraft:structure_template_feature": {
+		"description": {
+			"identifier": "stonecraft:mushroom_rock_3"
+		},
+		"structure_name": "mystructure:mushroom_rock_3",
+		"adjustment_radius": 4,
+		"facing_direction": "random",
+		"constraints": {
+            "grounded": {},
+            "unburied": {},
+			"block_intersection": {
+				"block_allowlist": [
+					"minecraft:air"
+				]
+			}
+		}
+	}
+}

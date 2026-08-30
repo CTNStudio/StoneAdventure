@@ -1,0 +1,47 @@
+{
+  "format_version": "1.21.110",
+  "minecraft:biome": {
+    "description": {
+      "identifier": "stonecraft:barren_stone_fields"
+    },
+    "components": {
+      "minecraft:replace_biomes": {
+        "replacements": [
+          {
+            "dimension": "minecraft:overworld", //目前只能填主世界overworld
+            "targets": ["minecraft:desert","minecraft:mesa"], //自定义生物群系能够替换的原版生物群系目标
+            "amount": 0.25, //替换指数间接性地决定了这个自定义生物群系的稀有程度，0.25表示它只会替换25%的面积，你也可以改成别的
+            "noise_frequency_scale": 1 //数字越小生物群系就越集中，数字太大那就成斑块了
+          }
+        ]
+      },
+      "minecraft:climate": {
+        "downfall": 0, //应该是降雨力度吧？
+        "snow_accumulation": [0.0, 0.125], //降雪的
+        "temperature": 5.0 //气温，你可以填负数，代价是雪花飘飘，好像填0.1也会雪花飘飘，这里沙漠的值为2.0到3.0，气温适中的话正常降雨
+      },
+      "minecraft:overworld_height": {
+        "noise_type": "lowlands" 
+      },
+      "minecraft:surface_builder": {
+        "builder": {
+          "type": "minecraft:overworld",
+          "sea_floor_depth": 15, 
+          "sea_floor_material": "Minecraft:blackstone", //海底地基为沙砾，你改掉也不是不行
+          "foundation_material": "minecraft:stone", //这一般是泥土下面的方块，平常是石头，你也可以改
+          "mid_material": "minecraft:cobblestone", //中心材料为泥土，也就是地表下面的方块，你可以改
+          "top_material": "minecraft:cobblestone", //地表方块
+          "sea_material": "minecraft:water" //海洋方块为水，如果你想“热”闹一点就填la-la-la-lava～
+        }
+      },
+      "minecraft:tags": {
+        "tags": [
+          "overworld", 
+          "custom_plains",
+          "stone",
+          "barren_stone_fields"
+        ]
+      }
+    }
+  }
+} //感谢方漓猫的代码~

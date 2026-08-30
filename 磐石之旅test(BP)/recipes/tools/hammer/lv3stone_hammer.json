@@ -1,0 +1,37 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv3stone_hammer"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+                "AAA", 
+                "AIA",
+                " I "
+               ],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv3stone"
+      },
+      "I": {
+        "item": "minecraft:stick"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv3stone"
+      },
+      {
+        "item": "minecraft:stick"
+      },
+      {
+        "item": "stonecraft:lv3stone_hammer"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv3stone_hammer",
+      "count": 1
+    }
+  }
+}

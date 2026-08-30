@@ -1,0 +1,55 @@
+{
+  "format_version": 2,
+  "header": {
+    "description": "pack.description",
+    "name": "pack.name",
+    "uuid": "96f9f6ff-c8ae-8b06-9620-e5bf0099f3d6",
+    "version": "1.0.1",
+    "min_engine_version": [1, 26, 0],
+    "pack_scope": "world"
+  },
+  "metadata": {
+    "authors": [
+      "星屹工作室",
+      "BakaBee ",
+      "方漓猫",
+      "爱玩的小尽",
+      "大队长_Captain",
+      "RawDiamondMC"
+    ],
+    "license": "BSD-3-Clause",
+    "url": "https://www.mcmod.cn/class/9862.html"
+  },
+  "capabilities": ["pbr"],
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "7323b3c8-818c-67fa-5fdf-e908c147eb30",
+      "version": "1.0.1"
+    }
+  ],
+  "subpacks": [
+    {
+      "folder_name": "classic",
+      "name": "磐石之旅经典纹理包",
+      "memory_tier": 2
+    },
+    {
+      "folder_name": "default",
+      "name": "磐石之旅默认纹理包",
+      "memory_tier": 1
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "625e420e-bb27-15ae-585d-d7ff76f41338",
+      "version": "1.0.1"
+    }
+  ],
+  "settings": [
+    {
+      "type": "label",
+      "text": "§l§e制作人员 Production staff§r\n\n星屹工作室（CTN STUDIO）成员：\n- NewBee：原作/程序/策划/美术\n- 方漓猫：程序/策划\n- 星零大队长：主美术\n- KuLou_D：美术\n- 是亚克力：美术\n- Goldencat：美术\n- 哈基尽：程序\n- Stone_Nugget：英文本地化\n- Призмарин：俄文本地化\n\n过往参与成员：\n- 流然：英文本地化\n- 初雪·冰：美术\n- 一护次叶（已退出工作室）：美术\n\n非星屹成员：\n- 涵AH：美术\n- JD：代码支持\n- simple-mq：代码贡献者\n- 星云：代码贡献者\n\n§l§e CTN STUDIO§r\n\n§c 苦力怕论坛§l§9 https://klpbbs.com/thread-28013-1-1.html §r\n\n\n §l§d石头工艺 · 官方交流群 群号: 860577116\n"
+    }
+  ]
+}

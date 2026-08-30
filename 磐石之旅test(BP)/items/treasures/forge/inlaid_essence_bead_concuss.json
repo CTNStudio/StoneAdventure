@@ -1,0 +1,21 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:inlaid_essence_bead_concuss",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": "stonecraft.inlaid_essence_bead",
+      "minecraft:display_name": {
+        "value": "stonecraft.item.stone_essence_crystal.concuss"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:tags": {
+        "tags": [ "inlaid_essence_bead_weapon_concuss_hammer" ]
+      }
+    }
+  }
+}

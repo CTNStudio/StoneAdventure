@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft_stone_nugget_to_cobblestone"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "AAA",
+      "AAA",
+      "AAA"
+    ],
+    "key": {
+      "A": {
+        "item": "stonecraft:stone_nugget",
+        "data": 0
+      }
+    },
+    "result": {
+      "item": "minecraft:cobblestone",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:stone_hammer"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+                "AAA", 
+                "AIA",
+                " I "
+               ],
+    "key": {
+      "A": {
+        "item": "minecraft:cobblestone"
+      },
+      "I": {
+        "item": "minecraft:stick"
+      }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:cobblestone"
+      },
+      {
+        "item": "minecraft:stick"
+      },
+      {
+        "item": "stonecraft:stone_hammer"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_hammer",
+      "count": 1
+    }
+  }
+}

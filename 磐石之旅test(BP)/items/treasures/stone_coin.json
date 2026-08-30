@@ -1,0 +1,17 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:stone_coin",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": "stonecraft.stone_coin",
+      "minecraft:display_name": {
+        "value": "stonecraft.item.stone_coin"
+      }
+    }
+  }
+}

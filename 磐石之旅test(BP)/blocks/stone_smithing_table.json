@@ -1,0 +1,87 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "stonecraft:stone_smithing_table",
+      "states": {
+        "stonecraft:filled_item": [false, true],
+        "stonecraft:filled_item_id": [
+          "none",
+          "stonecraft:uc_stone_sword",
+          "stonecraft:uc2_stone_sword",
+          "stonecraft:uc3_stone_sword"
+        ],
+        "stonecraft:filled_item_blindness": [false, true],
+        "stonecraft:filled_item_regeneration": [false, true],
+        "stonecraft:filled_item_wither": [false, true]
+      },
+      "traits": {
+        "minecraft:placement_direction": {
+          "enabled_states": ["minecraft:cardinal_direction"],
+          "y_rotation_offset": 180
+        }
+      },
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+        "components": {
+          "minecraft:transformation": { "rotation": [0, 0, 0] }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+        "components": {
+          "minecraft:transformation": { "rotation": [0, 90, 0] }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+        "components": {
+          "minecraft:transformation": { "rotation": [0, 180, 0] }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+        "components": {
+          "minecraft:transformation": { "rotation": [0, -90, 0] }
+        }
+      }
+    ],
+    "components": {
+      "minecraft:loot": "loot_tables/blocks/stone_smithing_table.json",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 16.65,
+        "item_specific_speeds": [
+          {
+            "destroy_speed": 5,
+            "item": {
+             "tags": "q.all_tags('minecraft:is_tool', 'minecraft:is_pickaxe') && q.any_tag('minecraft:iron_tier', 'minecraft:diamond_tier', 'minecraft:netherite_tier')"
+            }
+          }
+        ]
+     },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 500
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "stone_smithing_table",
+          "render_method": "alpha_test"
+        }
+      },
+      "minecraft:geometry": {
+        "identifier": "geometry.stone_smithing_table"
+      },
+       "minecraft:custom_components": [ "stonecraft:stone_smithing_table" ],
+      "tag:stone": {},
+      "tag:minecraft:iron_tier_destructible": {},
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "minecraft:flammable": false,
+      "minecraft:map_color": "#636060"
+    }
+  }
+}

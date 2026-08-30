@@ -1,0 +1,253 @@
+{
+  "tiers": [
+    {
+      "trades": [
+        {
+          "wants": [
+            {
+              "item": "stonecraft:stone_coin",
+              "quantity": 5,
+              "price_multiplier": 0.05
+            }
+          ],
+          "gives": [
+            {
+              "item": "minecraft:iron_ingot",
+              "quantity": 1
+            }
+          ],
+          "trader_exp": 2,
+          "max_uses": 22,
+          "reward_exp": true
+        },
+        {
+          "wants": [
+            {
+              "item": "stonecraft:stone_coin",
+              "quantity": 64
+            }
+          ],
+          "gives": [
+            {
+              "item": "minecraft:emerald",
+              "quantity": 1
+            }
+          ],
+          "trader_exp": 10,
+          "max_uses": 3,
+          "reward_exp": true
+        },
+        {
+          "wants": [
+            {
+              "item": "stonecraft:stone_coin",
+              "quantity": 32,
+              "price_multiplier": 0.05
+            }
+          ],
+          "gives": [
+            {
+              "item": "minecraft:diamond",
+              "quantity": 1
+            }
+          ],
+          "trader_exp": 5,
+          "max_uses": 8,
+          "reward_exp": true
+        },
+        {
+          "wants": [
+            {
+              "item": "stonecraft:stone_coin",
+              "quantity": 64,
+              "price_multiplier": 0.05
+            }
+          ],
+          "gives": [
+            {
+              "item": "netherite_ingot",
+              "quantity": 1
+            }
+          ],
+          "trader_exp": 10,
+          "max_uses": 4,
+          "reward_exp": true
+        },
+        {
+          "wants": [
+            {
+              "item": "stonecraft:stone_coin",
+              "quantity": 4,
+              "price_multiplier": 0.05
+            }
+          ],
+          "gives": [
+            {
+              "item": "minecraft:gold_ingot",
+              "quantity": 1
+            }
+          ],
+          "trader_exp": 2,
+          "max_uses": 22,
+          "reward_exp": true
+        },
+        {
+          "wants": [
+            {
+              "item": "stonecraft:stone_coin",
+              "quantity": 1,
+              "price_multiplier": 0.05
+            }
+          ],
+          "gives": [
+            {
+              "item": "lapis_lazuli",
+              "quantity": 2
+            }
+          ],
+          "trader_exp": 4,
+          "max_uses": 22,
+          "reward_exp": true
+        },
+        {
+          "wants": [
+            {
+              "item": "stonecraft:stone_coin",
+              "quantity": 1,
+              "price_multiplier": 0.05
+            }
+          ],
+          "gives": [
+            {
+              "item": "minecraft:coal",
+              "quantity": 2
+            }
+          ],
+          "trader_exp": 1,
+          "max_uses": 22,
+          "reward_exp": true
+        },
+        {
+          "wants": [
+            {
+              "item": "stonecraft:stone_coin",
+              "quantity": 2,
+              "price_multiplier": 0.05
+            }
+          ],
+          "gives": [
+            {
+              "item": "redstone",
+              "quantity": 10
+            }
+          ],
+          "trader_exp": 2,
+          "max_uses": 22,
+          "reward_exp": true
+        },
+        {
+          "wants": [
+            {
+              "item": "stonecraft:stone_coin",
+              "quantity": 4
+            }
+          ],
+          "gives": [
+            {
+              "choice": [
+                {
+                  "item": "stonecraft:stone_bread",
+                  "quantity": 8
+                },
+                {
+                  "item": "stonecraft:stone_apple",
+                  "quantity": 8
+                },
+                {
+                  "item": "stonecraft:stone_kelp",
+                  "quantity": 16
+                },
+                {
+                  "item": "stonecraft:stone_melon",
+                  "quantity": 16
+                },
+                {
+                  "item": "stonecraft:stone_cooked_cod",
+                  "quantity": 8
+                },
+                {
+                  "item": "stonecraft:stone_cooked_beef",
+                  "quantity": 6
+                },
+                {
+                  "item": "stonecraft:stone_cookie",
+                  "quantity": 8
+                },
+                {
+                  "item": "stonecraft:stone_glow_berries",
+                  "quantity": 16
+                },
+                {
+                  "item": "stonecraft:stone_potato",
+                  "quantity": 8
+                },
+                {
+                  "item": "stonecraft:stone_sweet_berries",
+                  "quantity": 16
+                },
+                {
+                  "item": "stonecraft:stone_carrot",
+                  "quantity": 8
+                },
+                {
+                  "item": "stonecraft:stonickers",
+                  "quantity": 2
+                }
+              ]
+            }
+          ],
+          "trader_exp": 5,
+          "max_uses": 64,
+          "reward_exp": true
+        },
+        {
+          "wants": [
+            {
+              "item": "stonecraft:stone_coin",
+              "quantity": 32
+            }
+          ],
+          "gives": [
+            {
+              "choice": [
+                {
+                  "item": "stonecraft:lv2stone_pickaxe",
+                  "quantity": 1
+                },
+                {
+                  "item": "stonecraft:lv2stone_sword",
+                  "quantity": 1
+                },
+                {
+                  "item": "stonecraft:lv2stone_axe",
+                  "quantity": 1
+                },
+                {
+                  "item": "stonecraft:lv2stone_hoe",
+                  "quantity": 1
+                },
+                {
+                  "item": "stonecraft:lv2stone_shovel",
+                  "quantity": 1
+                }
+              ]
+            }
+          ],
+          "trader_exp": 30,
+          "max_uses": 3,
+          "reward_exp": true
+        }
+      ]
+    }
+  ]
+}

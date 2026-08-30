@@ -1,0 +1,16 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_furnace": {
+    "description": {
+    "identifier": "stone_pickaxe_to_stonecraft_stone_nugget"
+    },
+    "unlock": [
+      {
+        "item": "minecraft:stone_pickaxe"
+      }
+    ],
+    "tags": ["furnace", "blast_furnace"],
+    "input": "minecraft:stone_pickaxe",
+    "output": "stonecraft:stone_nugget"
+  }  
+}

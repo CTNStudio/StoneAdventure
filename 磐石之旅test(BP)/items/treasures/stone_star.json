@@ -1,0 +1,22 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:stone_star",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": "stonecraft.stone_star",
+      "minecraft:rarity": "uncommon",
+      "minecraft:display_name": {
+        "value": "stonecraft.item.stone_star"
+      },
+      "minecraft:fire_resistant": {
+        "value": true
+      },
+      "minecraft:should_despawn": false
+    }
+  }
+}

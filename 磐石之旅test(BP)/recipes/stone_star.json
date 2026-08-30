@@ -1,0 +1,33 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:stone_star"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [" A ", "ABA", " A "],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv3stone"
+      },
+      "B": {
+        "item": "minecraft:netherstar"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv3stone"
+      },
+      {
+        "item": "stonecraft:stone_star"
+      },
+      {
+        "item": "minecraft:netherstar"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_star",
+      "count": 1
+    }
+  }
+}

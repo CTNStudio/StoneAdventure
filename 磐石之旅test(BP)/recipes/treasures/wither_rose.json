@@ -1,0 +1,11 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "stonecraft:wither_rose"
+    },
+    "tags": ["furnace"],
+    "input": "minecraft:poppy",
+    "output": "minecraft:wither_rose"
+  }
+}

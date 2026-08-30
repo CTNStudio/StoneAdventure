@@ -1,0 +1,141 @@
+{
+  "format_version": "1.21.100",
+  "minecraft:item": {
+    "description": {
+      "menu_category": {
+        "category": "equipment",
+        "group": "minecraft:itemGroup.name.axe"
+      },
+      "identifier": "stonecraft:lv1stone_axe"
+    },
+    "components": {
+      "minecraft:icon": "stonecraft.axe.lv1",
+      "minecraft:display_name": {
+        "value": "stonecraft.item.axe.lv1"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:durability": {
+        "max_durability": 250
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["stonecraft:lv1stone"],
+            "repair_amount": "context.other->query.max_durability * 0.2"
+          },
+          {
+            "items": ["stonecraft:lv1stone_axe"],
+            "repair_amount": "context.other->query.remaining_durability + 0.2 * context.other->query.max_durability"
+          }
+        ]
+      },
+      "minecraft:damage": 5,
+      "minecraft:enchantable": {
+        "value": 15,
+        "slot": "axe"
+      },
+      "minecraft:can_destroy_in_creative": true,
+      "minecraft:digger": {
+        "use_efficiency": true,
+        "destroy_speeds": [
+          {
+            "block": {
+              "tags": "query.any_tag('wood', 'pumpkin', 'plant')"
+            },
+            "speed": 6
+          },
+          {
+            "block": {
+              "tags": "query.all_tags('minecraft:is_axe_item_destructible')"
+            },
+            "speed": 6
+          },
+          {
+            "block": "crafting_table",
+            "speed": 6
+          },
+          {
+            "block": "chest",
+            "speed": 6
+          },
+          {
+            "block": "trapped_chest",
+            "speed": 6
+          },
+          {
+            "block": "lectern",
+            "speed": 6
+          },
+          {
+            "block": "smithing_table",
+            "speed": 6
+          },
+          {
+            "block": "loom",
+            "speed": 6
+          },
+          {
+            "block": "cartography_table",
+            "speed": 6
+          },
+          {
+            "block": "barrel",
+            "speed": 6
+          },
+          {
+            "block": "jukebox",
+            "speed": 6
+          },
+          {
+            "block": "campfire",
+            "speed": 6
+          },
+          {
+            "block": "soul_campfire",
+            "speed": 6
+          },
+          {
+            "block": "bookshelf",
+            "speed": 6
+          },
+          {
+            "block": "chiseled_bookshelf",
+            "speed": 6
+          },
+          {
+            "block": "noteblock",
+            "speed": 6
+          },
+          {
+            "block": "beehive",
+            "speed": 6
+          },
+          {
+            "block": "bee_nest",
+            "speed": 6
+          },
+          {
+            "block": "daylight_detector",
+            "speed": 6
+          },
+          {
+            "block": "melon_block",
+            "speed": 6
+          }
+        ]
+      },
+      "minecraft:tags": {
+        "tags": [
+          "stonecraft:lv1_tier",
+          "stonecraft:axe",
+          "minecraft:digger",
+          "minecraft:is_axe",
+          "minecraft:is_tool",
+          "minecraft:iron_tier",
+          "stonecraft:custom_tool"
+        ]
+      }
+    }
+  }
+}

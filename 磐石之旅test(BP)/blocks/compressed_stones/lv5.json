@@ -1,0 +1,43 @@
+{
+  "format_version": "1.21.100",
+  "minecraft:block": {
+    "description": {
+      "identifier": "stonecraft:lv5stone",
+      "menu_category": {
+        "category": "construction"
+      }
+    },
+    "components": {
+      "minecraft:loot": "loot_tables/blocks/lv5stone.json",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 23.31,
+        "item_specific_speeds": [
+          {
+            "destroy_speed": 7,
+            "item": {
+             "tags": "q.all_tags('minecraft:is_tool', 'minecraft:is_pickaxe') && q.any_tag( 'minecraft:diamond_tier', 'minecraft:netherite_tier')"
+            }
+          }
+        ]
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 200
+      },
+      "minecraft:geometry": "minecraft:geometry.full_block",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "lv5stone",
+          "render_method": "opaque"
+        }
+      },
+      "tag:stone": {},
+      "tag:iron_pick_diggable": {},
+      "tag:diamond_pick_diggable": {},
+      "tag:not_feature_replaceable": {},
+      "tag:stonecraft:compressed_stones": {},
+      "tag:minecraft:diamond_tier_destructible": {},
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "minecraft:map_color": "#636060"
+    }
+  }
+}

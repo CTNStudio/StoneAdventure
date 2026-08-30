@@ -1,0 +1,155 @@
+{
+  "format_version": "1.14.0",
+  "sound_definitions": {
+    "stonecraft.stone.step": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/stone_step",
+          "volume": 1.0
+        }
+      ]
+    },
+    "stonecraft.stone.hurt": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/stone_hurt",
+          "volume": 2.0
+        }
+      ]
+    },
+    "stonecraft.stone.death": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/stone_death",
+          "volume": 2.0
+        }
+      ]
+    },
+    "stonecraft.molten.step": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/molten/molten_step",
+          "volume": 1.0
+        }
+      ]
+    },
+    "stonecraft.molten.hurt": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/molten/molten_hurt",
+          "volume": 2.0
+        }
+      ]
+    },
+    "stonecraft.molten.death": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/molten/molten_death",
+          "volume": 2.0
+        }
+      ]
+    },
+    "stonecraft.sandstone.step": {
+      "category": "neutral",
+      "sounds": [
+        { "name": "sounds/sandstone/step/sandstone_step1", "volume": 1.0 },
+        { "name": "sounds/sandstone/step/sandstone_step2", "volume": 1.0 },
+        { "name": "sounds/sandstone/step/sandstone_step3", "volume": 1.0 }
+      ]
+    },
+    "stonecraft.sandstone.hurt": {
+      "category": "neutral",
+      "sounds": [
+        { "name": "sounds/sandstone/hurt/sandstone_hurt1", "volume": 1.0 },
+        { "name": "sounds/sandstone/hurt/sandstone_hurt2", "volume": 1.0 },
+        { "name": "sounds/sandstone/hurt/sandstone_hurt3", "volume": 1.0 }
+      ]
+    },
+    "stonecraft.sandstone.death": {
+      "category": "neutral",
+      "sounds": [
+        { "name": "sounds/sandstone/death/sandstone_death1", "volume": 1.0 },
+        { "name": "sounds/sandstone/death/sandstone_death2", "volume": 1.0 },
+        { "name": "sounds/sandstone/death/sandstone_death3", "volume": 1.0 }
+      ]
+    },
+    "stonecraft.mossy.step": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/mossy/mossy_step",
+          "volume": 1.0
+        }
+      ]
+    },
+    "stonecraft.mossy.hurt": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/mossy/mossy_hurt",
+          "volume": 2.0
+        }
+      ]
+    },
+    "stonecraft.mossy.death": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/mossy/mossy_death",
+          "volume": 2.0
+        }
+      ]
+    },
+    "stonecraft.totem.death": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/totem_death",
+          "volume": 2.0
+        }
+      ]
+    },
+    "stonecraft.stone.transform": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/stone_transform",
+          "volume": 6.0
+        }
+      ]
+    },
+    "stonecraft.sacrificial_blood_infusion": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/sacrificial_blood_infusion",
+          "volume": 1.0
+        }
+      ]
+    },
+    "mob.ball.hurt": {
+      "__use_legacy_max_distance": "true",
+      "category": "neutral",
+      "max_distance": null,
+      "min_distance": null,
+      "sounds": [
+        "sounds/empty"
+      ]
+    },
+    "stonecraft.poured_into_the_bottle": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/poured_into_the_bottle",
+          "volume": 1.0
+        }
+      ]
+    }
+  }
+}

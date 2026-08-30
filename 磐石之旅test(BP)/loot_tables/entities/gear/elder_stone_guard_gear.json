@@ -1,0 +1,42 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "stonecraft:lv1stone_sword",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "enchant_random_gear",
+                "chance": 0.15
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "stonecraft:lv2stone_sword",
+          "weight": 2,
+          "functions": [
+            {
+            "function": "enchant_random_gear",
+                "chance": 0.05
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "stonecraft:lv3stone_sword",
+          "weight": 1,
+          "functions": [
+            {
+            "function": "enchant_random_gear",
+                "chance": 0.01
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "stonecraft:lv1_2_cobblestone"
+    },
+    "tags": ["stone_convert_table"],
+    "ingredients": [
+      {
+        "item": "stonecraft:lv1stone"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "stonecraft:lv1stone"
+      },
+      {
+        "item": "minecraft:cobblestone"
+      }
+    ],
+    "result": {
+      "item": "minecraft:cobblestone",
+      "count": 9
+    }
+  }
+}

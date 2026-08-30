@@ -1,0 +1,15 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_brewing_mix": {
+    "description": {
+      "identifier": "blindness_potion"
+    },
+    "tags": [ "brewing_stand" ],
+    "input": {
+        "item": "minecraft:potion",
+        "data": 4
+    },
+    "reagent": "minecraft:echo_shard",
+    "output": "stonecraft:blindness_potion"
+  }
+}

@@ -1,0 +1,18 @@
+{
+	"format_version": "1.20.30",
+	"minecraft:structure_template_feature": {
+		"description": {
+			"identifier": "stonecraft:deepslate_stone_shooter_room"
+		},
+		"structure_name": "mystructure:deepslate_stone_shooter_room",
+		"adjustment_radius": 4,
+		"facing_direction": "random",
+		"constraints": {
+			"block_intersection": {
+				"block_allowlist": [
+					"minecraft:deepslate"
+				]
+			}
+		}
+	}
+}

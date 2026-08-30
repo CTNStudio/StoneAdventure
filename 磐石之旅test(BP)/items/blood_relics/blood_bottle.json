@@ -1,0 +1,30 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:blood_bottle",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "stonecraft.item.blood_bottle"
+      },
+      "minecraft:icon": "stonecraft.blood_bottle",
+      "minecraft:use_animation": "drink",
+      "minecraft:use_modifiers": {
+        "use_duration": 1.4
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:glint": true,
+      "minecraft:food": {
+        "nutrition": 1,
+        "can_always_eat": true,
+        "saturation_modifier": 0.6,
+        "using_converts_to": "minecraft:glass_bottle"
+      }
+    }
+  }
+}
+//喝血？你吸血鬼吗？

@@ -1,0 +1,174 @@
+{
+  "tiers": [
+    {
+      "groups": [
+        {
+          "num_to_select": 1,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 1
+                }
+              ],
+              "gives": [
+                {
+                  "item": "stonecraft:stone_coin",
+                  "quantity": 32
+                }
+              ],
+              "trader_exp": 10,
+              "max_uses": 16,
+              "reward_exp": true
+            }
+          ]
+        },
+        {
+          "num_to_select": 4,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 1
+                }
+              ],
+              "gives": [
+                {
+                  "item": "stonecraft:stone_arrow",
+                  "quantity": 16
+                }
+              ],
+              "trader_exp": 2,
+              "max_uses": 6,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 1
+                }
+              ],
+              "gives": [
+                {
+                  "item": "stonecraft:stone_nugget",
+                  "quantity": 32
+                }
+              ],
+              "trader_exp": 2,
+              "max_uses": 6,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 32
+                }
+              ],
+              "gives": [
+                {
+                  "choice": [
+                    {
+                      "item": "stonecraft:lv3stone_pickaxe",
+                      "quantity": 1
+                    },
+                    {
+                      "item": "stonecraft:lv3stone_sword",
+                      "quantity": 1
+                    },
+                    {
+                      "item": "stonecraft:lv3stone_axe",
+                      "quantity": 1
+                    },
+                    {
+                      "item": "stonecraft:lv3stone_shovel",
+                      "quantity": 1
+                    },
+                    {
+                      "item": "stonecraft:lv3stone_hoe",
+                      "quantity": 1
+                    }
+                  ]
+                }
+              ],
+              "trader_exp": 5,
+              "max_uses": 4,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 2
+                }
+              ],
+              "gives": [
+                {
+                  "item": "stonecraft:head_shard",
+                  "quantity": 1
+                }
+              ],
+              "trader_exp": 4,
+              "max_uses": 4,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 2
+                }
+              ],
+              "gives": [
+                {
+                  "item": "stonecraft:budding_stone",
+                  "quantity": 1
+                }
+              ],
+              "trader_exp": 4,
+              "max_uses": 4,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 2
+                }
+              ],
+              "gives": [
+                {
+                  "item": "stonecraft:veiled_stone",
+                  "quantity": 1
+                }
+              ],
+              "trader_exp": 4,
+              "max_uses": 4,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 3
+                }
+              ],
+              "gives": [
+                {
+                  "item": "stonecraft:bursting_core",
+                  "quantity": 1
+                }
+              ],
+              "trader_exp": 6,
+              "max_uses": 3,
+              "reward_exp": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

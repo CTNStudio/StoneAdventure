@@ -1,0 +1,38 @@
+
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:inlaid_essence_bead"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+        " G ", 
+        "GEG", 
+        " G "
+        ],
+      "key": {
+        "G": {
+          "item": "stonecraft:lv5stone"
+        },
+        "E": {
+          "item": "stonecraft:stone_essence_crystal"
+        }
+      },
+      "unlock": [
+        {
+          "item": "stonecraft:stone_essence_crystal"
+        },
+        {
+          "item": "stonecraft:lv5stone"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead",
+        "count": 1
+      }
+    }
+}

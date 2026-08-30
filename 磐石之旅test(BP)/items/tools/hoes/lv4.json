@@ -1,0 +1,141 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:item": {
+    "description": {
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.hoe"
+      },
+      "identifier": "stonecraft:lv4stone_hoe"
+    },
+    "components": {
+      "minecraft:icon": "stonecraft.hoe.lv4",
+      "minecraft:display_name": {
+        "value": "stonecraft.item.hoe.lv4"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:durability": {
+        "max_durability": 2750
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["stonecraft:lv4stone"],
+            "repair_amount": "context.other->query.max_durability * 0.2"
+          },
+          {
+            "items": ["stonecraft:lv4stone_hoe"],
+            "repair_amount": "context.other->query.remaining_durability + 0.2 * context.other->query.max_durability"
+          }
+        ]
+      },
+      "minecraft:damage": 8,
+      "minecraft:enchantable": {
+        "value": 30,
+        "slot": "hoe"
+      },
+      "minecraft:can_destroy_in_creative": true,
+      "minecraft:digger": {
+        "use_efficiency": true,
+        "destroy_speeds": [
+          {
+            "block": {
+              "tags": "query.all_tags('minecraft:is_hoe_item_destructible')"
+            },
+            "speed": 12
+          },
+          {
+            "block": {
+              "tags": "query.any_tag('wood', 'pumpkin', 'plant')"
+            },
+            "speed": 12
+          },
+          {
+            "block": "crafting_table",
+            "speed": 12
+          },
+          {
+            "block": "chest",
+            "speed": 12
+          },
+          {
+            "block": "trapped_chest",
+            "speed": 12
+          },
+          {
+            "block": "lectern",
+            "speed": 12
+          },
+          {
+            "block": "smithing_table",
+            "speed": 12
+          },
+          {
+            "block": "loom",
+            "speed": 12
+          },
+          {
+            "block": "cartography_table",
+            "speed": 12
+          },
+          {
+            "block": "barrel",
+            "speed": 12
+          },
+          {
+            "block": "jukebox",
+            "speed": 12
+          },
+          {
+            "block": "campfire",
+            "speed": 12
+          },
+          {
+            "block": "soul_campfire",
+            "speed": 12
+          },
+          {
+            "block": "bookshelf",
+            "speed": 12
+          },
+          {
+            "block": "chiseled_bookshelf",
+            "speed": 12
+          },
+          {
+            "block": "noteblock",
+            "speed": 12
+          },
+          {
+            "block": "beehive",
+            "speed": 12
+          },
+          {
+            "block": "bee_nest",
+            "speed": 12
+          },
+          {
+            "block": "daylight_detector",
+            "speed": 12
+          },
+          {
+            "block": "melon_block",
+            "speed": 12
+          }
+        ]
+      },
+      "minecraft:tags": {
+        "tags": [
+          "stonecraft:lv4_tier",
+          "stonecraft:hoe",
+          "minecraft:digger",
+          "minecraft:is_hoe",
+          "minecraft:is_tool",
+          "minecraft:netherite_tier",
+          "stonecraft:custom_tool"
+        ]
+      }
+    }
+  }
+}

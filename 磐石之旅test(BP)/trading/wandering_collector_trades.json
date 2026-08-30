@@ -1,0 +1,265 @@
+{
+  "tiers": [
+    {
+      "groups": [
+        {
+          "num_to_select": 5,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "stonecraft:head_debris",
+                  "quantity": 1
+                }
+              ],
+              "gives": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 1
+                }
+              ],
+              "trader_exp": 6,
+              "max_uses": 8,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "stonecraft:head_shard",
+                  "quantity": 1
+                }
+              ],
+              "gives": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 2
+                }
+              ],
+              "trader_exp": 3,
+              "max_uses": 12,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "stonecraft:budding_stone",
+                  "quantity": 1
+                }
+              ],
+              "gives": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 1
+                }
+              ],
+              "trader_exp": 3,
+              "max_uses": 12,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "stonecraft:veiled_stone",
+                  "quantity": 1
+                }
+              ],
+              "gives": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 1
+                }
+              ],
+              "trader_exp": 3,
+              "max_uses": 12,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "stonecraft:withered_stone",
+                  "quantity": 1
+                }
+              ],
+              "gives": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 2
+                }
+              ],
+              "trader_exp": 3,
+              "max_uses": 12,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "stonecraft:stone_arrow",
+                  "quantity": 16
+                }
+              ],
+              "gives": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 1
+                }
+              ],
+              "trader_exp": 2,
+              "max_uses": 32,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "stonecraft:stone_tear",
+                  "quantity": 1
+                }
+              ],
+              "gives": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 1
+                }
+              ],
+              "trader_exp": 4,
+              "max_uses": 10,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "stonecraft:bursting_core",
+                  "quantity": 1
+                }
+              ],
+              "gives": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 2
+                }
+              ],
+              "trader_exp": 5,
+              "max_uses": 8,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "stonecraft:lavatic_remains",
+                  "quantity": 2
+                }
+              ],
+              "gives": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 1
+                }
+              ],
+              "trader_exp": 4,
+              "max_uses": 10,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "stonecraft:withered_remains",
+                  "quantity": 2
+                }
+              ],
+              "gives": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 1
+                }
+              ],
+              "trader_exp": 3,
+              "max_uses": 12,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "item": "stonecraft:oily_withered_remains",
+                  "quantity": 1
+                }
+              ],
+              "gives": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 4
+                }
+              ],
+              "trader_exp": 10,
+              "max_uses": 3,
+              "reward_exp": true
+            },
+            {
+              "wants": [
+                {
+                  "choice": [
+                    {
+                      "item": "stonecraft:stone_bread",
+                      "quantity": 8
+                    },
+                    {
+                      "item": "stonecraft:stone_apple",
+                      "quantity": 8
+                    },
+                    {
+                      "item": "stonecraft:stone_kelp",
+                      "quantity": 16
+                    },
+                    {
+                      "item": "stonecraft:stone_melon",
+                      "quantity": 16
+                    },
+                    {
+                      "item": "stonecraft:stone_cooked_cod",
+                      "quantity": 8
+                    },
+                    {
+                      "item": "stonecraft:stone_cooked_beef",
+                      "quantity": 6
+                    },
+                    {
+                      "item": "stonecraft:stone_cookie",
+                      "quantity": 8
+                    },
+                    {
+                      "item": "stonecraft:stone_glow_berries",
+                      "quantity": 16
+                    },
+                    {
+                      "item": "stonecraft:stone_potato",
+                      "quantity": 8
+                    },
+                    {
+                      "item": "stonecraft:stone_sweet_berries",
+                      "quantity": 16
+                    },
+                    {
+                      "item": "stonecraft:stone_carrot",
+                      "quantity": 8
+                    },
+                    {
+                      "item": "stonecraft:stonickers",
+                      "quantity": 2
+                    }
+                  ]
+                }
+              ],
+              "gives": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": 1
+                }
+              ],
+              "trader_exp": 8,
+              "max_uses": 32,
+              "reward_exp": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:recipe_brewing_mix": {
+    "description": {
+      "identifier": "stonecraft:regeneration_potion_by_stone_tear"
+    },
+    "tags": [ "brewing_stand" ],
+    "input": "minecraft:potion_type:awkward",
+    "reagent": "stonecraft:stone_tear",
+    "output": "minecraft:potion_type:regeneration"
+  }
+}

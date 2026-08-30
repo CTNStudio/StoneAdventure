@@ -1,0 +1,241 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "stonecraft:snatcher",
+      "is_summonable": true,
+      "is_spawnable": true,
+      "spawn_category": "monster"
+    },
+    "components": {
+      "minecraft:attack": {
+        "damage": 4
+      },
+      "minecraft:behavior.avoid_mob_type": {
+        "entity_types": [
+          {
+            "filters": {
+              "AND": [
+                {
+                  "test": "is_family",
+                  "subject": 1,
+                  "operator": 0,
+                  "value": "creaking"
+                }
+              ]
+            },
+            "max_dist": 8,
+            "sprint_speed_multiplier": 1.2
+          }
+        ],
+        "priority": 2
+      },
+      "minecraft:behavior.equip_item": {
+        "priority": 3
+      },
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "entity_types": {
+          "filters": {
+            "operator": "!=",
+            "test": "is_family",
+            "subject": "other",
+            "value": "illager"
+          },
+          "max_dist": 64
+        },
+        "priority": 1
+      },
+      "minecraft:behavior.look_at_player": {
+        "look_time": {
+          "min": 1,
+          "max": 2
+        },
+        "priority": 10
+      },
+      "minecraft:behavior.melee_box_attack": {
+        "priority": 3
+      },
+      "minecraft:behavior.pickup_items": {
+        "goal_radius": 2,
+        "priority": 7,
+        "max_dist": 3,
+        "speed_multiplier": 1
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 9,
+        "speed_multiplier": 1
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "must_see": true,
+        "within_radius": 12,
+        "must_see_forget_duration": 40,
+        "entity_types": [
+          {
+            "filters": {
+              "AND": [
+                {
+                  "OR": [
+                    {
+                      "test": "is_family",
+                      "subject": 1,
+                      "operator": 0,
+                      "value": "player"
+                    },
+                    {
+                      "test": "is_family",
+                      "subject": 1,
+                      "operator": 0,
+                      "value": "snowgolem"
+                    },
+                    {
+                      "test": "is_family",
+                      "subject": 1,
+                      "operator": 0,
+                      "value": "irongolem"
+                    },
+                    {
+                      "test": "is_family",
+                      "subject": 1,
+                      "operator": 0,
+                      "value": "wandering_trader"
+                    }
+                  ]
+                }
+              ]
+            },
+            "max_dist": 12
+          },
+          {
+            "filters": {
+              "AND": [
+                {
+                  "test": "is_family",
+                  "subject": 1,
+                  "operator": 0,
+                  "value": "villager"
+                },
+                {
+                  "test": "has_component",
+                  "subject": 1,
+                  "operator": 1,
+                  "value": "minecraft:is_baby"
+                }
+              ]
+            },
+            "max_dist": 12
+          }
+        ],
+        "priority": 2
+      },
+      "minecraft:breathable": {
+        "suffocate_time": 0,
+        "total_supply": 15
+      },
+      "minecraft:collision_box": {
+        "height": 1.9,
+        "width": 0.6
+      },
+      "minecraft:conditional_bandwidth_optimization": {},
+      "minecraft:equip_item": {},
+      "minecraft:equipment": {
+        "table": "loot_tables/entities/gear/snatcher_gear.json"
+      },
+      "minecraft:experience_reward": {
+        "on_death": "query.last_hit_by_player ? 10 : 0"
+      },
+      "minecraft:follow_range": {
+        "value": 64
+      },
+      "minecraft:health": {
+        "max": 20,
+        "value": 20
+      },
+      "minecraft:hurt_on_condition": {
+        "damage_conditions": [
+          {
+            "cause": "lava",
+            "damage_per_tick": 4,
+            "filters": {
+              "operator": "==",
+              "test": "in_lava",
+              "subject": "self",
+              "value": true
+            }
+          }
+        ]
+      },
+      "minecraft:jump.static": {},
+      "minecraft:loot": {
+        "table": "loot_tables/entities/snatcher.json"
+      },
+      "minecraft:movement": {
+        "value": 0.35
+      },
+      "minecraft:movement.basic": {},
+      "minecraft:navigation.walk": {
+        "can_path_over_water": true,
+        "using_door_annotation": true
+      },
+      "minecraft:on_target_acquired": {
+        "event": "minecraft:become_aggro",
+        "target": "self"
+      },
+      "minecraft:on_target_escape": {
+        "event": "minecraft:stop_aggro",
+        "target": "self"
+      },
+      "minecraft:physics": {},
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:type_family": {
+        "family": [
+          "snatcher",
+          "monster",
+          "illager",
+          "mob"
+        ]
+      },
+      "minecraft:variant": {
+        "value": 0
+      }
+    },
+    "component_groups": {
+      "minecraft:snatcher_aggro": {
+        "minecraft:angry": {
+          "broadcast_anger": false,
+          "calm_event": {
+            "event": "minecraft:stop_aggro",
+            "target": "self"
+          },
+          "duration": -1
+        }
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "add": {
+          "component_groups": []
+        }
+      },
+      "minecraft:become_aggro": {
+        "add": {
+          "component_groups": [
+            "minecraft:snatcher_aggro"
+          ]
+        }
+      },
+      "minecraft:stop_aggro": {
+        "remove": {
+          "component_groups": [
+            "minecraft:snatcher_aggro"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:lv0stone_chestplate_end_stone"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["A A", "AAA", "AAA"],
+    "key": {
+      "A": {
+        "item": "minecraft:end_stone"
+      }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:end_stone"
+      },
+      {
+        "item": "stonecraft:lv0stone_chestplate"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:lv0stone_chestplate",
+      "count": 1
+    }
+  }
+}

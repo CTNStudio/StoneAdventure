@@ -1,0 +1,210 @@
+{
+    "pools": [
+        {
+            "rolls": 1,
+            "conditions": [
+                {
+                    "condition": "match_tool",
+                    "count": 1,
+             "minecraft:match_tool_filter_all": [
+                       "minecraft:is_tool",
+                       "minecraft:is_pickaxe"
+                    ],
+            "minecraft:match_tool_filter_any": [
+                      "minecraft:diamond_tier",
+                      "minecraft:netherite_tier"
+                    ]
+                }
+            ],
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "stonecraft:raw_stone_essence"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "conditions": [
+               {
+                "condition": "match_tool",
+                "enchantments": [
+                {
+                "enchantment": "fortune",
+                "levels": 1
+                    }
+                  ]
+                },
+                {
+                    "condition": "match_tool",
+                    "count": 1,
+             "minecraft:match_tool_filter_all": [
+                       "minecraft:is_tool",
+                       "minecraft:is_pickaxe"
+                    ],
+     "minecraft:match_tool_filter_any": [     
+                      "minecraft:diamond_tier",
+                      "minecraft:netherite_tier"
+                    ]
+                }
+            ],
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 33,
+                    "name": "stonecraft:raw_stone_essence",
+                    "functions": [
+                {
+                    "function": "set_count",
+                    "count": 1
+                      }
+                   ]
+                },
+                {
+                    "type": "item",
+                    "weight": 67,
+                    "name": "stonecraft:raw_stone_essence",
+                    "functions": [
+                {
+                    "function": "set_count",
+                    "count": 0
+                      }
+                   ]
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "conditions": [
+               {
+                "condition": "match_tool",
+                "enchantments": [
+                {
+                "enchantment": "fortune",
+                "levels": 2
+                    }
+                  ]
+                },
+                {
+                    "condition": "match_tool",
+                    "count": 1,
+             "minecraft:match_tool_filter_all": [
+                       "minecraft:is_tool",
+                       "minecraft:is_pickaxe"
+                    ],
+            "minecraft:match_tool_filter_any": [
+                      "minecraft:diamond_tier",
+                      "minecraft:netherite_tier"
+                    ]
+                }
+            ],
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 25,
+                    "name": "stonecraft:raw_stone_essence",
+                    "functions": [
+                {
+                    "function": "set_count",
+                    "count": 1
+                      }
+                   ]
+                },
+                {
+                    "type": "item",
+                    "weight": 25,
+                    "name": "stonecraft:raw_stone_essence",
+                    "functions": [
+                {
+                    "function": "set_count",
+                    "count": 2
+                      }
+                   ]
+                },
+                {
+                    "type": "item",
+                    "weight": 50,
+                    "name": "stonecraft:raw_stone_essence",
+                    "functions": [
+                {
+                    "function": "set_count",
+                    "count": 0
+                      }
+                   ]
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "conditions": [
+               {
+                "condition": "match_tool",
+                "enchantments": [
+                {
+                "enchantment": "fortune",
+                "levels": 3
+                    }
+                  ]
+                },
+                {
+                    "condition": "match_tool",
+                    "count": 1,
+             "minecraft:match_tool_filter_all": [
+                       "minecraft:is_tool",
+                       "minecraft:is_pickaxe"
+                    ],
+            "minecraft:match_tool_filter_any": [
+                      "minecraft:diamond_tier",
+                      "minecraft:netherite_tier"
+                    ]
+                }
+            ],
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 20,
+                    "name": "stonecraft:raw_stone_essence",
+                    "functions": [
+                {
+                    "function": "set_count",
+                    "count": 1
+                      }
+                   ]
+                },
+                {
+                    "type": "item",
+                    "weight": 20,
+                    "name": "stonecraft:raw_stone_essence",
+                    "functions": [
+                {
+                    "function": "set_count",
+                    "count": 2
+                      }
+                   ]
+                },
+                {
+                    "type": "item",
+                    "weight": 20,
+                    "name": "stonecraft:raw_stone_essence",
+                    "functions": [
+                {
+                    "function": "set_count",
+                    "count": 3
+                      }
+                   ]
+                },
+                {
+                    "type": "item",
+                    "weight": 40,
+                    "name": "stonecraft:raw_stone_essence",
+                    "functions": [
+                {
+                    "function": "set_count",
+                    "count": 0
+                      }
+                   ]
+                }
+            ]
+        }
+    ]
+}

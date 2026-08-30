@@ -1,0 +1,11 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "stonecraft:stone_essence"
+    },
+    "tags": ["furnace", "blast_furnace"],
+    "input": "stonecraft:raw_stone_essence",
+    "output": "stonecraft:stone_essence"
+  }
+}
