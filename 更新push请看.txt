@@ -1,0 +1,9 @@
+git add .
+git commit -m "更新说明（如库依此，则吾啥子）"
+git pull
+git push
+git add .
+
+git commit -m "修改了自定义药水的描述"
+git pull
+git push
