@@ -1,1 +1,8 @@
-echo 更新push请看.txt >> .gitignore
+(
+echo *
+echo !磐石之旅BP/
+echo !磐石之旅RP/
+echo !LICENSE
+echo !README.md
+echo !.gitignore
+) > .gitignore
