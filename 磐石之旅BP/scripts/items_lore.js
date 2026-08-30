@@ -49,6 +49,20 @@ const ITEM_LORE_CONFIG = {
         { translate: 'stonecraft.weapon_only' },
         { translate: 'stonecraft.bleeding_lore' }
     ],
+    'stonecraft:blindness_potion': [
+        { translate: 'stonecraft.blindness_potion' }
+    ],
+    'stonecraft:longer_blindness_potion': [
+        { translate: 'stonecraft.longer_blindness_potion' }
+    ],
+    'stonecraft:potion_of_growth': [
+        { translate: 'stonecraft.potion_of_growth1' },
+        { translate: 'stonecraft.potion_of_growth2' }
+    ],
+    'stonecraft:potion_of_corruption': [
+        { translate: 'stonecraft.potion_of_corruption1' },
+        { translate: 'stonecraft.potion_of_corruption2' }
+    ],
 };
 
 function isLoreEqual(currentLore, expectedLore) {
