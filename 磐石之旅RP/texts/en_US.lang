@@ -1,6 +1,6 @@
-pack.name=Stone Craft
-pack.description=Stone Craft's resource pack
-stonecraft.download_thanks=Thanks for playing Stone Craft!%%1Current version: 1.0.1
+pack.name=Stone Adventure
+pack.description=Stone Adventure's resource pack! Current version: 1.0.0
+stonecraft.download_thanks=Thanks for playing Stone Adventure!%%1Current version: 1.0.0
 stonecraft.changelog=Changelog:
 stonecraft.changelog.content=Completely rewrite the whole addon!
 
