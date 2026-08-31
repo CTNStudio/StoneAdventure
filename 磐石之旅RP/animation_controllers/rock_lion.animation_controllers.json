@@ -48,7 +48,7 @@
 					"animations": ["idle"],
 					"transitions": [
 						{"hurt": "query.hurt_time > 0.0"},
-						{"sleep": "query.is_sleeping"},
+						{"sleep": "query.is_sitting"},
 						{"attack": "variable.attack_time > 0.0"}
 					]
 				},
@@ -56,7 +56,7 @@
 					"animations": ["attack"],
 					"transitions": [
 						{"hurt": "query.hurt_time > 0.0"},
-						{"sleep": "query.is_sleeping"},
+						{"sleep": "query.is_sitting"},
 						{"idle": "variable.attack_time <= 0.0"}
 					],
 					"blend_transition": 0.1
@@ -72,7 +72,7 @@
 					"animations": ["sleep"],
 					"transitions": [
 						{"hurt": "query.hurt_time > 0.0"},
-						{"idle": "!query.is_sleeping"}
+						{"idle": "!query.is_sitting"}
 					],
 					"blend_transition": 0.2
 				}

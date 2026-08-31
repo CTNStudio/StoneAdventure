@@ -1,5 +1,5 @@
 {
-  "format_version": "1.21.40",
+  "format_version": "1.21.100",
   "minecraft:entity": {
     "description": {
       "identifier": "stonecraft:rock_lion",
@@ -11,6 +11,14 @@
 
     "component_groups": {
       "stonecraft:rock_lion_hostile": {
+        "minecraft:tameable": {
+          "probability": 0.33,
+          "tame_items": "bone",
+          "tame_event": {
+            "event": "stonecraft:on_tame",
+            "target": "self"
+          }
+        },
         "minecraft:behavior.melee_attack": {
           "priority": 3,
           "melee_fov": 90.0,
@@ -60,13 +68,43 @@
 
       "stonecraft:rock_lion_tame": {
         "minecraft:is_tamed": {},
-        "minecraft:tameable": {
-          "probability": 0.33,
-          "tame_items": "bone",
-          "tame_event": {
-            "event": "stonecraft:on_tame",
-            "target": "self"
-          }
+        "minecraft:leashable_to": {},
+        "minecraft:leashable": {
+          "presets": [
+            {
+              "hard_distance": 4,
+              "rotation_adjustment": 90,
+              "soft_distance": 2
+            }
+          ]
+        },
+        "minecraft:environment_sensor": {
+          "triggers": [
+            {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "bool_property",
+                    "operator": "!=",
+                    "domain": "minecraft:has_increased_max_health"
+                  },
+                  {
+                    "test": "has_component",
+                    "value": "minecraft:is_tamed"
+                  }
+                ]
+              },
+              "event": "stonecraft:increase_max_health"
+            },
+            {
+              "filters": {
+                "test": "bool_property",
+                "operator": "!=",
+                "domain": "minecraft:was_upgraded_to_1_21_100"
+              },
+              "event": "minecraft:upgrade_to_1_21_100"
+            }
+          ]
         },
         "minecraft:behavior.teleport_to_owner": {
           "priority": 1,
@@ -136,10 +174,13 @@
     },
 
     "components": {
-      "minecraft:leashable": {
-        "soft_distance": 4.0,
-        "hard_distance": 6.0,
-        "max_distance": 10.0
+      "minecraft:healable": {
+        "items": [
+          {
+            "item": "bone",
+            "heal_amount": 10
+          }
+        ]
       },
       "minecraft:is_hidden_when_invisible": {},
       "minecraft:nameable": {},
@@ -155,8 +196,8 @@
         "height": 1.8
       },
       "minecraft:health": {
-        "value": 60,
-        "max": 60
+        "value": 40,
+        "max": 40
       },
       "minecraft:hurt_on_condition": {
         "damage_conditions": [
@@ -194,6 +235,11 @@
         "is_pushable": true,
         "is_pushable_by_piston": true
       },
+      "minecraft:pushable_by_entity": {
+      },
+      "minecraft:pushable_by_block": {
+      },
+      
       "minecraft:conditional_bandwidth_optimization": {},
       "minecraft:behavior.float": {
         "priority": 0
@@ -252,7 +298,6 @@
           ]
         }
       },
-
       "stonecraft:on_tame": {
         "remove": {
           "component_groups": [
