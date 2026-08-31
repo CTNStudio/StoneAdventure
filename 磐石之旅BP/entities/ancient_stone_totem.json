@@ -350,9 +350,9 @@
           ]
         },
         "minecraft:mob_effect": {
-          "cooldown_time": 8,
+          "cooldown_time": 7,
           "effect_range": 12,
-          "effect_time": 6,
+          "effect_time": 4,
           "entity_filter": {
             "any_of": [
               { "test": "is_family", "subject": "other", "value": "player"},

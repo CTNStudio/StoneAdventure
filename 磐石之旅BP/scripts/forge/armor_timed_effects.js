@@ -14,13 +14,7 @@ export const TIMED_EFFECT_CONFIG = {
     baseDurationTicks: 9999999,
     durationPerLevelTicks: 0,
     armorOnly: true,
-    getAmplifier: (level) =>
-      Math.min(
-        Math.floor(
-          4.5 * (1 - Math.exp(-0.19 * level))
-        ),
-        4
-      ),
+    getAmplifier: (level) => Math.min(Math.floor(4.5 * (1 - Math.exp(-0.19 * level))),4),
   },
 
   health_boost: {

@@ -39,16 +39,18 @@
         "effect_name": "poison"
       },
       "minecraft:behavior.hurt_by_target": {
-        "entity_types": {
-          "filters": {
-            "any_of": [
-              { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone_boss"},
-              { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone"}
-            ]
-          },
-          "max_dist": 64
-        },
-        "priority": 1
+        "priority": 1,
+        "entity_types": [
+          {
+            "filters": {
+                "all_of": [
+                  { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone_boss" },
+                  { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone" }
+                ]
+            },
+            "max_dist": 64
+          }
+        ]
       },
       "minecraft:behavior.look_at_player": {
         "look_distance": 8,
