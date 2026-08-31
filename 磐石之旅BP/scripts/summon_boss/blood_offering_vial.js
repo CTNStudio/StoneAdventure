@@ -72,7 +72,16 @@ function activateSummoner(player, block) {
 }
 
 
-if (world.beforeEvents && world.beforeEvents.playerInteractWithBlock && world.beforeEvents.playerInteractWithBlock.subscribe) {
+if (world.beforeEvents && world.beforeEvents.itemUseOn && world.beforeEvents.itemUseOn.subscribe) {
+    world.beforeEvents.itemUseOn.subscribe((event) => {
+        const { source, itemStack, block } = event;
+        if (!source || source.typeId !== 'minecraft:player') return;
+        if (!itemStack || !block) return;
+        if (itemStack.typeId === KEY_ID && block.typeId === SUMMONER_ID) {
+            activateSummoner(source, block);
+        }
+    });
+} else if (world.beforeEvents && world.beforeEvents.playerInteractWithBlock && world.beforeEvents.playerInteractWithBlock.subscribe) {
     world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
         const { player, block } = event;
         if (!player || !block) return;

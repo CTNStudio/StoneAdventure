@@ -94,14 +94,6 @@ export const ATTRIBUTE_DEFS = [
     loreText: "§c抗火",
     beadTagPrefix: "inlaid_essence_bead",
     materialTagPrefix: "forge",
-  },
-  {
-    id: "bleeding",
-    key: "stonecraft:bleeding_level",
-    playerKey: "stonecraft:bleeding",
-    loreText: "§c失血",
-    beadTagPrefix: "inlaid_essence_bead",
-    materialTagPrefix: "forge",
   }
 ];
 

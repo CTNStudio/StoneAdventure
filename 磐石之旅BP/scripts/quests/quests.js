@@ -173,9 +173,11 @@ export const CHAPTERS = [
                     ]
                 },
                 condition: {
-                    anyTag: [
-                        { tag: "stonecraft:stone_food", name: { translate: "stonecraft.tag.stone_food" } }
-                    ]
+                    item: {
+                        itemId: "stonecraft:stone_bread",
+                        amount: 1,
+                        name: { translate: "stonecraft.item.stone_bread" }
+                    }
                 },
                 award: { exp: 15 },
                 iconPath: "textures/items/foods/stone_bread"

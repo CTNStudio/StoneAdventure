@@ -4,8 +4,8 @@
     "description": {
       "identifier": "stonecraft:stone_cooked_beef",
       "menu_category": {
-        "category": "equipment",
-        "group": "itemGroup.name.cookedFood"
+        "category": "nature",
+        "group": "itemGroup.name.crop"
       }
     },
     "components": {

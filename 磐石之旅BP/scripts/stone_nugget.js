@@ -71,6 +71,7 @@ function handleBallHit(dimension, location, typeId) {
 
 
     try {
+
         dimension.playSound(
             data.sound,
             location,
@@ -79,24 +80,31 @@ function handleBallHit(dimension, location, typeId) {
                 pitch: data.pitch
             }
         );
+
     } catch (e) {}
 
+
     try {
+
         dimension.spawnParticle(
             data.particle,
             location
         );
+
     } catch (e) {}
+
 }
 
 
 function isBall(typeId) {
+
     return ballEffects[typeId] !== undefined;
+
 }
 
 world.afterEvents.projectileHitEntity.subscribe((event)=>{
 
-    
+
     const projectile = event.projectile;
 
 
