@@ -15,6 +15,13 @@
       "minecraft:compostable": {
         "composting_chance": 50
       },
+      "minecraft:block_placer": {
+        "block": "stonecraft:mimic_stone_flower",
+        "use_on": [
+          "minecraft:farmland"
+        ],
+        "replace_block_item": true
+      },
       "minecraft:icon": "stonecraft.budding_stone"
     }
   }

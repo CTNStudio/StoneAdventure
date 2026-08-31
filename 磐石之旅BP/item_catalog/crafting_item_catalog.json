@@ -83,6 +83,8 @@
                      "name" : "stonecraft:itemGroup.name.inlaid_essence_bead"
                   },
                   "items" : [
+                     
+                     "stonecraft:inlaid_essence_bead",
                      "stonecraft:inlaid_essence_bead_wither",
                      "stonecraft:inlaid_essence_bead_regeneration",
                      "stonecraft:inlaid_essence_bead_blindness",
@@ -93,7 +95,7 @@
                      "stonecraft:inlaid_essence_bead_resistance",
                      "stonecraft:inlaid_essence_bead_health_boost",
                      "stonecraft:inlaid_essence_bead_night_vision",
-                     "stonecraft:inlaid_essence_bead"
+                     "stonecraft:inlaid_essence_bead_bleeding"
                   ]
                }
             ]

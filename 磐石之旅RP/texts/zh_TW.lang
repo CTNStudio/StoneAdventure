@@ -1,6 +1,6 @@
 pack.name=磐石之旅
-pack.description=磐石之旅資源包.當前版本 1.0.0
-stonecraft.download_thanks=感謝遊玩磐石之旅！%%1當前版本 1.0.0
+pack.description=磐石之旅資源包.當前版本 1.0.1
+stonecraft.download_thanks=感謝遊玩磐石之旅！
 stonecraft.changelog=更新日誌：
 
 stonecraft:itemGroup.name.compressed_stones=壓縮圓石

@@ -4,8 +4,8 @@
     "description": {
       "identifier": "stonecraft:stone_cooked_cod",
       "menu_category": {
-        "category": "nature",
-        "group": "itemGroup.name.crop"
+        "category": "equipment",
+        "group": "itemGroup.name.cookedFood"
       }
     },
     "components": {

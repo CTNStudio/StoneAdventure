@@ -112,8 +112,7 @@
           "minecraft:is_tool",
           "minecraft:netherite_tier",
           "stonecraft:custom_weapon",
-          "forge_sword",
-          "forge_weapon"
+          "forge_sword"
         ]
       }
     }

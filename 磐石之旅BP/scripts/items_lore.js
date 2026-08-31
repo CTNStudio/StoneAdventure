@@ -1,4 +1,5 @@
 import { world, system } from '@minecraft/server';
+
 const ITEM_LORE_CONFIG = {
     'stonecraft:expansion_slab': [
         { translate: 'stonecraft.expansion_slab' },
@@ -44,6 +45,24 @@ const ITEM_LORE_CONFIG = {
         { translate: 'stonecraft.weapon_only' },
         { translate: 'stonecraft.wither_lore' }
     ],
+    'stonecraft:inlaid_essence_bead_bleeding': [
+        { translate: 'stonecraft.weapon_only' },
+        { translate: 'stonecraft.bleeding_lore' }
+    ],
+    'stonecraft:blindness_potion': [
+        { translate: 'stonecraft.blindness_potion' }
+    ],
+    'stonecraft:longer_blindness_potion': [
+        { translate: 'stonecraft.longer_blindness_potion' }
+    ],
+    'stonecraft:potion_of_growth': [
+        { translate: 'stonecraft.potion_of_growth1' },
+        { translate: 'stonecraft.potion_of_growth2' }
+    ],
+    'stonecraft:potion_of_corruption': [
+        { translate: 'stonecraft.potion_of_corruption1' },
+        { translate: 'stonecraft.potion_of_corruption2' }
+    ],
 };
 
 function isLoreEqual(currentLore, expectedLore) {
@@ -52,23 +71,14 @@ function isLoreEqual(currentLore, expectedLore) {
     }
     for (let i = 0; i < expectedLore.length; i++) {
 
-        if (
-            JSON.stringify(currentLore[i]) !==
-            JSON.stringify(expectedLore[i])
-        ) {
+        if ( JSON.stringify(currentLore[i]) !== JSON.stringify(expectedLore[i]) ) {
             return false;
         }
 
     }
     return true;
 }
-/**
- *
- * @param {ItemStack} item
- * @returns {boolean}
- * true  = Lore 已经修改
- * false = 不需要修改
- */
+
 function updateItemLore(item) {
 
     if (!item) {
@@ -87,10 +97,7 @@ function updateItemLore(item) {
 }
 
 function updateInventory(player) {
-    const inventory =
-        player
-            .getComponent('minecraft:inventory')
-            ?.container;
+    const inventory = player.getComponent('minecraft:inventory')?.container;
     if (!inventory) {
         return;
     }
@@ -115,13 +122,7 @@ function updateEquipment(player) {
         return;
     }
 
-    const slots = [
-        'Head',
-        'Chest',
-        'Legs',
-        'Feet',
-        'Offhand'
-    ];
+    const slots = [ 'Head', 'Chest', 'Legs', 'Feet', 'Offhand' ];
 
     for (const slot of slots) {
 
@@ -166,10 +167,9 @@ if (world.afterEvents.playerInventoryItemChange?.subscribe) {
     });
 
 }
+if (world.afterEvents.entityItemPickup?.subscribe) {
 
-if (world.afterEvents.itemPickup?.subscribe) {
-
-    world.afterEvents.itemPickup.subscribe(({ player, itemStack }) => {
+    world.afterEvents.entityItemPickup.subscribe(({ player, itemStack }) => {
 
         if (!player || !itemStack) {
             return;
@@ -184,11 +184,3 @@ if (world.afterEvents.itemPickup?.subscribe) {
     });
 
 }
-/*
-system.runInterval(() => {
-
-    for (const player of world.getAllPlayers()) {
-        updatePlayerItems(player);
-    }
-
-}, 10);*/

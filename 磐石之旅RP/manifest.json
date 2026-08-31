@@ -4,7 +4,7 @@
     "description": "pack.description",
     "name": "pack.name",
     "uuid": "96f9f6ff-c8ae-8b06-9620-e5bf0099f3d6",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "min_engine_version": [1, 26, 40],
     "pack_scope": "world"
   },
@@ -25,7 +25,7 @@
     {
       "type": "resources",
       "uuid": "7323b3c8-818c-67fa-5fdf-e908c147eb30",
-      "version": "1.0.0"
+      "version": "1.0.1"
     }
   ],
   "subpacks": [
@@ -43,7 +43,7 @@
   "dependencies": [
     {
       "uuid": "625e420e-bb27-15ae-585d-d7ff76f41338",
-      "version": "1.0.0"
+      "version": "1.0.1"
     }
   ],
   "settings": [

@@ -3,6 +3,7 @@ import "./food.js";
 import "./durability.js";
 import "./entities_effect.js";
 import "./stone_nugget.js";
+import "./custom_crop.js";
 import "./custom_command.js";
 import "./items_lore.js";
 import "./doll.js";
@@ -18,10 +19,6 @@ import { world } from "@minecraft/server";
 initForgeCore();
 initPlayerAttributes();
 initWeaponEffects();
-/**
- * @typedef {Object} RawText
- * @property {RawMessage[]} [rawtext]
- */
 
 world.afterEvents.playerSpawn.subscribe((eventData) => {
     if (!eventData.initialSpawn) return;

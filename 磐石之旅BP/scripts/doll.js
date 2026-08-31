@@ -1,4 +1,5 @@
-import { system,  } from "@minecraft/server";
+import { system } from "@minecraft/server";
+
 system.beforeEvents.startup.subscribe((event)=>{
   event.blockComponentRegistry.registerCustomComponent("stonecraft:doll",{
     onPlayerInteract: (event) => {
