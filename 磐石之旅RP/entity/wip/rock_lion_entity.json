@@ -1,51 +1,58 @@
 {
-  "format_version": "1.10.0",
-  "minecraft:client_entity": {
-    "description": {
-      "identifier": "stonecraft:rock_lion",
-      "materials": { 
-        "default": "entity_alphatest" 
-      },
-      "textures": {
-        "default": "textures/entity/rock_lion"
-      },
-      "geometry": {
-        "default": "geometry.rock_lion"
-      },
-      "scripts": {
-        "pre_animation": [
-          "variable.animation_progress = Math.mod(query.modified_distance_moved, 10.0);",
-          "variable.shake_angle = Math.sin(variable.animation_progress * 57.3) * 0.1;"
-        ],
-        "scale": "1.0"
-      },/*
-      "animations": {
-        "walk": "animation.rock_lion.walk",
-        "hurt": "animation.rock_lion.hurt", 
-        "sleep": "animation.rock_lion.sleep",
-        "sprint": "animation.rock_lion.sprint",
-        "swim": "animation.rock_lion.swim",
-        "attack": "animation.rock_lion.attack",
-        "look_at": "animation.common.look_at_target"
-      },
-      "animation_controllers": [
-        { 
-          "move": "controller.animation.rock_lion.move" 
-        },
-        { 
-          "attack": "controller.animation.rock_lion.attack" 
-        },
-        { 
-          "look_at": "controller.animation.rock_lion.look_at" 
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "stonecraft:rock_lion",
+
+            "materials": {
+                "default": "entity_alphatest"
+            },
+
+            "textures": {
+                "default": "textures/entity/rock_lion"
+            },
+
+            "geometry": {
+                "default": "geometry.rock_lion"
+            },
+
+            "scripts": {
+                "pre_animation": [
+                    "variable.animation_progress = math.mod(query.modified_distance_moved, 10.0);",
+                    "variable.shake_angle = math.sin(variable.animation_progress * 57.3) * 0.1;"
+                ],
+
+                "animate": [
+                    "move",
+                    "action",
+                    "look_at"
+                ]
+            },
+
+            "animations": {
+                "move": "controller.animation.rock_lion.move",
+                "action": "controller.animation.rock_lion.action",
+
+                "idle": "animation.rock_lion.idle",
+                "walk": "animation.rock_lion.walk",
+                "sprint": "animation.rock_lion.sprint",
+                "swim": "animation.rock_lion.swim",
+
+                "attack": "animation.rock_lion.attack",
+                "hurt": "animation.rock_lion.hurt",
+                "sleep": "animation.rock_lion.sleep",
+
+                "look_at": "animation.common.look_at_target"
+            },
+
+            "render_controllers": [
+                "controller.render.default"
+            ],
+
+            "spawn_egg": {
+                "texture": "spawn_egg",
+                "texture_index": 4
+            }
         }
-      ],*/
-      "render_controllers": [ 
-        "controller.render.default" 
-      ],
-      "spawn_egg": {
-        "texture": "spawn_egg",
-        "texture_index": 4
-      }
     }
-  }
 }

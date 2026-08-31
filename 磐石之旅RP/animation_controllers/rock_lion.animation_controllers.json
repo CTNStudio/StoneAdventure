@@ -1,0 +1,82 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.rock_lion.move": {
+			"initial_state": "idle",
+			"states": {
+				"idle": {
+					"animations": ["idle"],
+					"transitions": [
+						{"swim": "query.is_in_water"},
+						{"sprint": "query.modified_move_speed > 4.0"},
+						{"walk": "query.modified_move_speed > 0.1"}
+					]
+				},
+				"walk": {
+					"animations": ["walk"],
+					"transitions": [
+						{"swim": "query.is_in_water"},
+						{"sprint": "query.modified_move_speed > 4.0"},
+						{"idle": "query.modified_move_speed <= 0.1"}
+					],
+					"blend_transition": 0.15
+				},
+				"sprint": {
+					"animations": ["sprint"],
+					"transitions": [
+						{"swim": "query.is_in_water"},
+						{"walk": "query.modified_move_speed <= 4.0"},
+						{"idle": "query.modified_move_speed <= 0.1"}
+					],
+					"blend_transition": 0.15
+				},
+				"swim": {
+					"animations": ["swim"],
+					"transitions": [
+						{"sprint": "!query.is_in_water && query.modified_move_speed > 4.0"},
+						{"walk": "!query.is_in_water && query.modified_move_speed > 0.1"},
+						{"idle": "!query.is_in_water && query.modified_move_speed <= 0.1"}
+					],
+					"blend_transition": 0.2
+				}
+			}
+		},
+		"controller.animation.rock_lion.action": {
+			"initial_state": "idle",
+			"states": {
+				"idle": {
+					"animations": ["idle"],
+					"transitions": [
+						{"hurt": "query.hurt_time > 0.0"},
+						{"sleep": "query.is_sleeping"},
+						{"attack": "variable.attack_time > 0.0"}
+					]
+				},
+				"attack": {
+					"animations": ["attack"],
+					"transitions": [
+						{"hurt": "query.hurt_time > 0.0"},
+						{"sleep": "query.is_sleeping"},
+						{"idle": "variable.attack_time <= 0.0"}
+					],
+					"blend_transition": 0.1
+				},
+				"hurt": {
+					"animations": ["hurt"],
+					"transitions": [
+						{"idle": "query.hurt_time <= 0.0"}
+					],
+					"blend_transition": 0.05
+				},
+				"sleep": {
+					"animations": ["sleep"],
+					"transitions": [
+						{"hurt": "query.hurt_time > 0.0"},
+						{"idle": "!query.is_sleeping"}
+					],
+					"blend_transition": 0.2
+				}
+			}
+		}
+	}
+}
