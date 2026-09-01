@@ -38,7 +38,7 @@ export function showAchievements(player) {
 
 function showAchievementDetail(player, quest) {
     const isCompleted = isQuestCompleted(player, quest);
-    const body = buildQuestBody(quest);
+    const body = buildQuestBody(quest, player);
 
     const form = new MessageFormData()
         .title(quest.title)

@@ -251,7 +251,7 @@ export function giveQuestAward(player, quest) {
     player.sendMessage(message);
 }
 
-export function buildQuestBody(quest) {
+export function buildQuestBody(quest, player) {
     const condition = quest.condition;
     const award = quest.award;
     let body = {
@@ -298,10 +298,16 @@ export function buildQuestBody(quest) {
             });
         }
     } else if (condition.killEntity) {
-        const amount = condition.killEntity.amount || 1;
+        const required = condition.killEntity.amount || 1;
+        const current = getKillCount(player, quest.id);
         body.rawtext.push({
             translate: "quest.kill",
-            with: { rawtext: [{ text: amount.toString() }, condition.killEntity.name] }
+            with: {
+                rawtext: [
+                    condition.killEntity.name,
+                    { text: ` §7${current}/${required}` }
+                ]
+            }
         });
     } else {
         body.rawtext.push({ translate: "quest.condition.none" });
@@ -426,7 +432,7 @@ function showChapterQuests(player, chapter, backCallback) {
 
 function showQuestDetail(player, quest, returnCallback) {
     const isCompleted = isQuestCompleted(player, quest);
-    const body = buildQuestBody(quest);
+    const body = buildQuestBody(quest, player);
     const form = new MessageFormData()
         .title(quest.title)
         .body(body)
@@ -576,7 +582,7 @@ function showQuestList(player, quests, title, backCallback) {
 
 function showQuestDetailWithBack(player, quest, backCallback) {
     const isCompleted = isQuestCompleted(player, quest);
-    const body = buildQuestBody(quest);
+    const body = buildQuestBody(quest, player);
     const form = new MessageFormData()
         .title(quest.title)
         .body(body)
