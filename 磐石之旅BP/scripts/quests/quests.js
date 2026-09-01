@@ -1619,6 +1619,7 @@ export const CHAPTERS = [
                         { text: "\n" }
                     ]
                 },
+                autoComplete: true,
                 condition: {
                     killEntity: {
                         entityType: "stonecraft:stone_guard",

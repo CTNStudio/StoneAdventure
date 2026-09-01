@@ -500,14 +500,13 @@ world.afterEvents.entityDie.subscribe((event) => {
     const { deadEntity, damageSource } = event;
     const player = damageSource.damagingEntity;
     if (!(player instanceof Player)) return;
-
     const entityType = deadEntity.typeId;
     const quests = entityToQuests.get(entityType);
     if (!quests) return;
-
     for (const quest of quests) {
         if (isQuestCompleted(player, quest)) continue;
         addKillCount(player, quest.id, 1);
+        checkAutoAchievement(player, quest);
     }
 });
 
@@ -624,6 +623,22 @@ function tryCompleteQuestWithBack(player, quest, backCallback) {
     markQuestCompleted(player, quest);
     giveQuestAward(player, quest);
     if (backCallback) backCallback(player);
+}
+
+export function checkAutoAchievement(player, quest) {
+    if (!player || !quest) return false;
+    if (quest.autoComplete !== true) return false;
+    if (isQuestCompleted(player, quest)) return false;
+
+    const result = checkQuestConditionWithQuest(player, quest);
+
+    if (!result.success) {
+        return false;
+    }
+    markQuestCompleted(player, quest);
+    giveQuestAward(player, quest);
+
+    return true;
 }
 
 export { giveItem };
