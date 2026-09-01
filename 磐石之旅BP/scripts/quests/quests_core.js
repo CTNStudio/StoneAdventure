@@ -97,12 +97,7 @@ export function checkQuestConditionWithQuest(player, quest) {
         if (!hasEnoughItems(player, condition.item.itemId, condition.item.amount)) {
             messages.push({
                 translate: "quest.not_enough.item",
-                with: {
-                    rawtext: [
-                        { text: condition.item.amount.toString() },
-                        condition.item.name
-                    ]
-                }
+                with: { rawtext: [{ text: condition.item.amount.toString() }, condition.item.name] }
             });
         }
     }
@@ -135,12 +130,7 @@ export function checkQuestConditionWithQuest(player, quest) {
             if (!hasEnoughItems(player, item.itemId, item.amount)) {
                 messages.push({
                     translate: "quest.not_enough.item",
-                    with: {
-                        rawtext: [
-                            { text: item.amount.toString() },
-                            item.name
-                        ]
-                    }
+                    with: { rawtext: [{ text: item.amount.toString() }, item.name] }
                 });
             }
         }
@@ -304,7 +294,7 @@ export function buildQuestBody(quest) {
             if (i > 0) body.rawtext.push({ translate: "quest.or" });
             body.rawtext.push({
                 translate: "quest.item_with_tag",
-                with: { rawtext: [tagItem.name] }
+                with: { rawtext: [tagItem.name] }  // 只有一个参数，仍用 rawtext 包裹
             });
         }
     } else if (condition.killEntity) {
@@ -330,13 +320,13 @@ export function buildQuestBody(quest) {
     if (award.exp) {
         body.rawtext.push({
             translate: "quest.xp",
-            with: [award.exp.toString()]
+            with: { rawtext: [{ text: award.exp.toString() }] }
         });
     }
     if (award.level) {
         body.rawtext.push({
             translate: "quest.level",
-            with: [award.level.toString()]
+            with: { rawtext: [{ text: award.level.toString() }] }
         });
     }
     if ((!award.items || award.items.length === 0) && !award.exp && !award.level) {

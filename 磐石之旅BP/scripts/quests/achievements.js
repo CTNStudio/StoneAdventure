@@ -38,7 +38,7 @@ export function showAchievements(player) {
 
 function showAchievementDetail(player, quest) {
     const isCompleted = isQuestCompleted(player, quest);
-    const body = buildQuestBody(quest); // 复用任务详情构建
+    const body = buildQuestBody(quest);
 
     const form = new MessageFormData()
         .title(quest.title)
