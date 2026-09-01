@@ -1600,5 +1600,46 @@ export const CHAPTERS = [
                 iconPath: "textures/ui/quest/entities/ancient_stone_totem"
             }
         ]
+    },
+    {
+        id: "sc_achievements",
+        title: { translate: "sc.achievements.title" },
+        description: { 
+            translate: "sc.achievements.description" },
+        iconPath: "textures/ui/quest/sc_achievements",
+        quests: [
+            {
+                id: "stone_guard_ach",
+                title: { translate: "sc.quest.stoneguard.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.stoneguard.body"  },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.stoneguard.body1" },
+                        { text: "\n" }
+                    ]
+                },
+                condition: {
+                    killEntity: {
+                        entityType: "stonecraft:stone_guard",
+                        amount: 10,
+                        name: { translate: "entity.stonecraft:stone_guard.name" }
+                    }
+                },
+                award: {
+                     exp: 20,
+                     items: [
+                        {
+                            itemId: "stonecraft:stone_coin",
+                            amount: 5,
+                            name: {
+                                translate: "stonecraft.item.stone_coin"
+                            }
+                        }
+                    ]
+                },
+                iconPath: "textures/ui/quest/entities/stone_guard"
+            }
+        ]
     }
 ];

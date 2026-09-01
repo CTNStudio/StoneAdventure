@@ -1,9 +1,39 @@
 import { world, ItemStack, Player } from "@minecraft/server";
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { CHAPTERS } from "./quests.js";
+import { showAchievements } from "./achievements.js";
 
 const NAMESPACE = "stonecraft";
 const QUEST_BOOK_ID = `${NAMESPACE}:stone_encyclopedia`;
+const kill_prefix = "kill_progress_"; // 动态属性键前缀
+
+/**
+ * 增加某个任务的击杀计数
+ * @param {Player} player
+ * @param {string} questId
+ * @param {number} increment
+ */
+export function addKillCount(player, questId, increment = 1) {
+    const key = `${NAMESPACE}:${kill_prefix}${questId}`;
+    const current = player.getDynamicProperty(key) ?? 0;
+    player.setDynamicProperty(key, current + increment);
+}
+
+/**
+ * 获取某个任务的当前击杀计数
+ */
+export function getKillCount(player, questId) {
+    const key = `${NAMESPACE}:${kill_prefix}${questId}`;
+    return player.getDynamicProperty(key) ?? 0;
+}
+
+/**
+ * 重置击杀计数（任务完成时调用）
+ */
+export function resetKillCount(player, questId) {
+    const key = `${NAMESPACE}:${kill_prefix}${questId}`;
+    player.setDynamicProperty(key, 0);
+}
 
 const entityToQuests = new Map();
 
@@ -59,7 +89,7 @@ function hasItemWithTag(player, tag) {
     return false;
 }
 
-function checkQuestConditionWithQuest(player, quest) {
+export function checkQuestConditionWithQuest(player, quest) {
     const condition = quest.condition;
     const messages = [];
 
@@ -141,15 +171,15 @@ function checkQuestConditionWithQuest(player, quest) {
     }
 
     if (condition.killEntity) {
-        const killTag = `${NAMESPACE}:kill_${quest.id}`;
-        if (!player.hasTag(killTag)) {
+        const required = condition.killEntity.amount || 1;
+        const current = getKillCount(player, quest.id);
+        if (current < required) {
             messages.push({
                 translate: "quest.not_enough.kill",
-                with: { rawtext: [condition.killEntity.name] }
+                with: { rawtext: [{ text: required.toString() }, condition.killEntity.name] }
             });
         }
     }
-
     return { success: messages.length === 0, messages };
 }
 
@@ -186,19 +216,18 @@ function giveItem(player, itemStack) {
     }
 }
 
-function isQuestCompleted(player, quest) {
+export function isQuestCompleted(player, quest) {
     return player.hasTag(`${NAMESPACE}:${quest.id}`);
 }
 
-function markQuestCompleted(player, quest) {
+export function markQuestCompleted(player, quest) {
     player.addTag(`${NAMESPACE}:${quest.id}`);
     const killTag = `${NAMESPACE}:kill_${quest.id}`;
-    if (player.hasTag(killTag)) {
-        player.removeTag(killTag);
-    }
+    if (player.hasTag(killTag)) player.removeTag(killTag);
+    resetKillCount(player, quest.id);
 }
 
-function giveQuestAward(player, quest) {
+export function giveQuestAward(player, quest) {
     const award = quest.award;
     if (award.exp) {
         player.addExperience(award.exp);
@@ -232,7 +261,7 @@ function giveQuestAward(player, quest) {
     player.sendMessage(message);
 }
 
-function buildQuestBody(quest) {
+export function buildQuestBody(quest) {
     const condition = quest.condition;
     const award = quest.award;
     let body = {
@@ -279,9 +308,10 @@ function buildQuestBody(quest) {
             });
         }
     } else if (condition.killEntity) {
+        const amount = condition.killEntity.amount || 1;
         body.rawtext.push({
             translate: "quest.kill",
-            with: { rawtext: [condition.killEntity.name] }
+            with: { rawtext: [{ text: amount.toString() }, condition.killEntity.name] }
         });
     } else {
         body.rawtext.push({ translate: "quest.condition.none" });
@@ -316,8 +346,9 @@ function buildQuestBody(quest) {
     return body;
 }
 
+
 // UI 函数
-function showCredits(player) {
+function showCredits(player) { //制作名单
     const form = new ActionFormData()
         .title({ translate: "sc.credits.title" })
         .label({ translate: "sc.credits.body" })
@@ -336,28 +367,32 @@ export function showQuestBook(player) {
     showMainMenu(player);
 }
 
-function showMainMenu(player) {
+export function showMainMenu(player) { //主页面
     const form = new ActionFormData()
         .title({ translate: "stonecraft.item.stone_encyclopedia" })
         .body({ translate: "stonecraft.item.stone_encyclopedia.body" });
     form.button({ translate: "sc.menu.tasks" }, "textures/ui/quest/tasks");
     form.button({ translate: "sc.menu.bestiary" }, "textures/ui/quest/biogeography");
+    form.button({ translate: "sc.menu.achievements" }, "textures/ui/quest/achievements");
     form.button({ translate: "sc.menu.credits" }, "textures/ui/quest/credits");
     form.show(player).then((response) => {
         if (response.canceled) return;
         switch (response.selection) {
             case 0: showTaskChapters(player); break;
             case 1: showBestiary(player); break;
-            case 2: showCredits(player); break;
+            case 2: showAchievements(player); break;
+            case 3: showCredits(player); break;
         }
     });
 }
 
-function showTaskChapters(player) {
+function showTaskChapters(player) { //任务
     const form = new ActionFormData();
     form.title({ translate: "sc.menu.tasks" });
     form.body({ translate: "sc.menu.tasks.body" });
-    const taskChapters = CHAPTERS.filter(ch => ch.id !== "sc_biogeography");
+    const taskChapters = CHAPTERS.filter(ch => 
+        !["sc_biogeography", "sc_achievements"].includes(ch.id)
+    ); //筛选不为生物志和成就的表单
     for (const chapter of taskChapters) {
         form.button(chapter.title, chapter.iconPath);
     }
@@ -476,8 +511,7 @@ world.afterEvents.entityDie.subscribe((event) => {
 
     for (const quest of quests) {
         if (isQuestCompleted(player, quest)) continue;
-        const killTag = `${NAMESPACE}:kill_${quest.id}`;
-        player.addTag(killTag);
+        addKillCount(player, quest.id, 1);
     }
 });
 
