@@ -45,18 +45,21 @@ export const TIMED_EFFECT_CONFIG = {
   },
 };
 
-// 用于存储定时器句柄，key: playerId:effectId
 const CHECK_TIMERS = new Map();
 
 function getNextApplyKey(effectId) {
   return `stonecraft:next_apply_${effectId}`;
 }
 
+function getManagedKey(effectId) {
+  return `stonecraft:managed_${effectId}`;
+}
+
 function getCurrentTick() {
   try {
     return system.currentTick;
   } catch {
-    return Date.now(); // 降级方案
+    return Date.now();
   }
 }
 
@@ -76,34 +79,85 @@ function clearNextApplyTime(player, effectId) {
   } catch {}
 }
 
+function isManaged(player, config) {
+  return getOrZero(player, getManagedKey(config.effectId), 0) === 1;
+}
+
+function markManaged(player, config) {
+  try {
+    player.setDynamicProperty(getManagedKey(config.effectId), 1);
+  } catch {}
+}
+
+function unmarkManaged(player, config) {
+  try {
+    player.setDynamicProperty(getManagedKey(config.effectId), 0);
+  } catch {}
+}
+
+// 取消特定效果的定时器
+function cancelScheduledCheck(player, effectId) {
+  const playerId = player.id;
+  const key = `${playerId}:${effectId}`;
+  const timer = CHECK_TIMERS.get(key);
+  if (timer !== undefined) {
+    try { system.clearRun(timer); } catch {}
+    CHECK_TIMERS.delete(key);
+  }
+}
+
 function scheduleCheck(player, config) {
   const effectId = config.effectId;
   const playerId = player.id;
   const key = `${playerId}:${effectId}`;
 
-  // 取消已存在的定时器
+  // 取消旧定时器
   const oldTimer = CHECK_TIMERS.get(key);
   if (oldTimer !== undefined) {
     try { system.clearRun(oldTimer); } catch {}
     CHECK_TIMERS.delete(key);
   }
 
-  // 计算下次检查时间：取 nextApplyTime 和当前 tick 的较大值，但至少延迟1 tick
+  // 检查等级
+  const level = getOrZero(player, config.playerKey, 0);
+  if (level <= 0) {
+    // 等级为0，如果该效果由装备管理，则移除效果并取消管理
+    if (isManaged(player, config)) {
+      try { player.removeEffect(effectId); } catch {}
+      unmarkManaged(player, config);
+    }
+    clearNextApplyTime(player, effectId);
+    return;
+  }
+
+  // 计算下次检查时间
   const nextApply = getNextApplyTime(player, effectId);
   const now = getCurrentTick();
   let delay = Math.max(1, nextApply - now);
-  // 如果 nextApply 为0（未设置），则不安排检查（由属性更新触发）
-  if (nextApply <= 0) return;
-
-  // 限制最大延迟，避免长时间无调度（比如玩家离线）
-  if (delay > 6000) delay = 6000; // 最多5分钟
+  if (nextApply <= 0) {
+    // 如果没有设置下次应用时间，根据当前效果剩余时间设置
+    const effect = player.getEffect(effectId);
+    if (effect && effect.duration > 0) {
+      const nextCheck = now + effect.duration + 1;
+      setNextApplyTime(player, effectId, nextCheck);
+      delay = effect.duration + 1;
+    } else {
+      // 没有效果，也没有冷却，不安排检查
+      return;
+    }
+  }
+  if (delay > 6000) delay = 6000; // 限制最大延迟
 
   const timer = system.runTimeout(() => {
     CHECK_TIMERS.delete(key);
     try {
-      // 检查是否应该重新施加
-      const level = getOrZero(player, config.playerKey, 0);
-      if (level <= 0) {
+      const level2 = getOrZero(player, config.playerKey, 0);
+      if (level2 <= 0) {
+        // 等级为0，如果由装备管理则移除
+        if (isManaged(player, config)) {
+          try { player.removeEffect(effectId); } catch {}
+          unmarkManaged(player, config);
+        }
         clearNextApplyTime(player, effectId);
         return;
       }
@@ -111,39 +165,65 @@ function scheduleCheck(player, config) {
       const now2 = getCurrentTick();
       const next = getNextApplyTime(player, effectId);
       if (now2 < next) {
-        // 还没到冷却结束，重新安排检查
         scheduleCheck(player, config);
         return;
       }
 
-      // 冷却结束，且等级>0，检查效果是否存在
       const effect = player.getEffect(effectId);
+      const duration = computeTimedDuration(config, level2);
+      const amplifier = config.getAmplifier ? config.getAmplifier(level2) : Math.max(level2 - 1, 0);
+
       if (!effect) {
-        // 效果已消失，重新施加
-        const duration = computeTimedDuration(config, level);
-        const amplifier = config.getAmplifier ? config.getAmplifier(level) : Math.max(level - 1, 0);
         try {
           player.addEffect(effectId, duration, {
             amplifier,
             showParticles: false,
           });
-          // 设置下一次冷却结束时间
+          markManaged(player, config);
           const nextApplyTime = now2 + duration + config.cooldownTicks;
           setNextApplyTime(player, effectId, nextApplyTime);
         } catch (e) {
           console.warn(`[Stonecraft] reapply ${effectId} failed`, e);
         }
       } else {
-        const remaining = effect.duration;
-        if (remaining > 0) {
-          // 安排检查在剩余时间后
-          const nextCheck = now2 + remaining + 1;
-          setNextApplyTime(player, effectId, nextCheck);
+        // 检查amplifier变化
+        if (effect.amplifier !== amplifier) {
+          try {
+            player.removeEffect(effectId);
+            player.addEffect(effectId, duration, {
+              amplifier,
+              showParticles: false,
+            });
+            markManaged(player, config);
+            const nextApplyTime = now2 + duration + config.cooldownTicks;
+            setNextApplyTime(player, effectId, nextApplyTime);
+          } catch (e) {
+            console.warn(`[Stonecraft] update ${effectId} failed`, e);
+          }
+        } else if (effect.duration < duration / 2) {
+          // 刷新持续时间
+          try {
+            player.addEffect(effectId, duration, {
+              amplifier,
+              showParticles: false,
+            });
+            markManaged(player, config);
+            const nextApplyTime = now2 + duration + config.cooldownTicks;
+            setNextApplyTime(player, effectId, nextApplyTime);
+          } catch (e) {
+            console.warn(`[Stonecraft] refresh ${effectId} failed`, e);
+          }
+        }
+        // 安排下一次检查
+        if (getNextApplyTime(player, effectId) > 0) {
           scheduleCheck(player, config);
         } else {
-          // 剩余时间为0，说明马上就要消失，我们可以立即安排检查
-          setNextApplyTime(player, effectId, now2 + 1);
-          scheduleCheck(player, config);
+          const remaining = effect.duration;
+          if (remaining > 0) {
+            const nextCheck = now2 + remaining + 1;
+            setNextApplyTime(player, effectId, nextCheck);
+            scheduleCheck(player, config);
+          }
         }
       }
     } catch (e) {
@@ -180,20 +260,24 @@ export function applyTimedSustainedEffects(player) {
       const level = getOrZero(player, config.playerKey, 0);
       const nextApply = getNextApplyTime(player, effectId);
 
+      // 取消可能存在的旧定时器（确保不会残留）
+      cancelScheduledCheck(player, effectId);
+
       if (level <= 0) {
-        // 等级为0，移除效果并清除冷却
+        // 等级为0：如果该效果由装备管理，则移除并取消管理
+        if (isManaged(player, config)) {
+          try { player.removeEffect(effectId); } catch {}
+          unmarkManaged(player, config);
+        }
         clearNextApplyTime(player, effectId);
-        try { player.removeEffect(effectId); } catch {}
         continue;
       }
 
       const duration = computeTimedDuration(config, level);
       const amplifier = config.getAmplifier ? config.getAmplifier(level) : Math.max(level - 1, 0);
 
-      // 检查效果是否存在
       const effect = player.getEffect(effectId);
 
-      // 如果效果不存在，且冷却已过，则施加
       if (!effect) {
         if (now >= nextApply) {
           try {
@@ -201,19 +285,19 @@ export function applyTimedSustainedEffects(player) {
               amplifier,
               showParticles: false,
             });
-            // 设置下一次冷却结束时间
+            markManaged(player, config);
             const nextApplyTime = now + duration + config.cooldownTicks;
             setNextApplyTime(player, effectId, nextApplyTime);
           } catch (e) {
             console.warn(`[Stonecraft] apply ${effectId} failed`, e);
           }
         }
-        // 如果还在冷却中，不施加，但确保有定时器在冷却结束时检查
+        // 安排检查（无论是否施加成功，都要监控）
         scheduleCheck(player, config);
         continue;
       }
 
-      // 效果存在，检查是否等级变化导致 amplifier 不同
+      // 效果存在，检查amplifier变化
       if (effect.amplifier !== amplifier) {
         try {
           player.removeEffect(effectId);
@@ -221,7 +305,7 @@ export function applyTimedSustainedEffects(player) {
             amplifier,
             showParticles: false,
           });
-          // 重置冷却计时器
+          markManaged(player, config);
           const nextApplyTime = now + duration + config.cooldownTicks;
           setNextApplyTime(player, effectId, nextApplyTime);
         } catch (e) {
@@ -230,8 +314,33 @@ export function applyTimedSustainedEffects(player) {
         scheduleCheck(player, config);
         continue;
       }
-      if (nextApply > 0) {
+
+      // amplifier 一致，检查是否需要刷新持续时间
+      if (effect.duration < duration / 2) {
+        try {
+          player.addEffect(effectId, duration, {
+            amplifier,
+            showParticles: false,
+          });
+          markManaged(player, config);
+          const nextApplyTime = now + duration + config.cooldownTicks;
+          setNextApplyTime(player, effectId, nextApplyTime);
+        } catch (e) {
+          console.warn(`[Stonecraft] refresh ${effectId} failed`, e);
+        }
         scheduleCheck(player, config);
+      } else {
+        // 确保有定时器监控后续变化
+        if (nextApply > 0) {
+          scheduleCheck(player, config);
+        } else {
+          const remaining = effect.duration;
+          if (remaining > 0) {
+            const nextCheck = now + remaining + 1;
+            setNextApplyTime(player, effectId, nextCheck);
+            scheduleCheck(player, config);
+          }
+        }
       }
     }
   } catch (error) {
@@ -242,7 +351,11 @@ export function applyTimedSustainedEffects(player) {
 export function clearTimedEffects(player) {
   for (const config of Object.values(TIMED_EFFECT_CONFIG)) {
     try {
-      player.removeEffect(config.effectId);
+      cancelScheduledCheck(player, config.effectId);
+      if (isManaged(player, config)) {
+        player.removeEffect(config.effectId);
+        unmarkManaged(player, config);
+      }
       clearNextApplyTime(player, config.effectId);
     } catch {}
   }
