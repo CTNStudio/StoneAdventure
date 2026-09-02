@@ -1,7 +1,7 @@
 import { world, ItemStack, Player } from "@minecraft/server";
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { CHAPTERS } from "./quests.js";
-import { showAchievements } from "./achievements.js";
+import { showAchievements, getUseCount, resetUseCount } from "./achievements.js";
 
 const NAMESPACE = "stonecraft";
 const QUEST_BOOK_ID = `${NAMESPACE}:stone_encyclopedia`;
@@ -170,6 +170,16 @@ export function checkQuestConditionWithQuest(player, quest) {
             });
         }
     }
+    if (condition.useItem) {
+        const required = condition.useItem.amount || 1;
+        const current = getUseCount(player, quest.id);
+        if (current < required) {
+            messages.push({
+                translate: "quest.not_enough.use_item",
+                with: { rawtext: [{ text: required.toString() }, condition.useItem.name] }
+            });
+        }
+    }
     return { success: messages.length === 0, messages };
 }
 
@@ -215,6 +225,7 @@ export function markQuestCompleted(player, quest) {
     const killTag = `${NAMESPACE}:kill_${quest.id}`;
     if (player.hasTag(killTag)) player.removeTag(killTag);
     resetKillCount(player, quest.id);
+    resetUseCount(player, quest.id);
 }
 
 export function giveQuestAward(player, quest) {
@@ -309,6 +320,18 @@ export function buildQuestBody(quest, player) {
                 ]
             }
         });
+    } else if (condition.useItem) {
+        const required = condition.useItem.amount || 1;
+        body.rawtext.push({
+            translate: "quest.use_item",
+            with: { rawtext: [{ text: required.toString() }, condition.useItem.name] }
+        });
+        if (player) {
+            const current = getUseCount(player, quest.id);
+            body.rawtext.push({
+                text: ` §7(${current}/${required})`
+            });
+        }
     } else {
         body.rawtext.push({ translate: "quest.condition.none" });
     }

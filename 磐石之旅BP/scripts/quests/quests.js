@@ -1610,12 +1610,10 @@ export const CHAPTERS = [
         quests: [
             {
                 id: "stone_guard_ach",
-                title: { translate: "sc.quest.stoneguard.title" },
+                title: { translate: "sc.quest.stone_guard_ach.title" },
                 description: {
                     rawtext: [
-                        { translate: "sc.quest.stoneguard.body"  },
-                        { text: "\n\n" },
-                        { translate: "sc.quest.stoneguard.body1" },
+                        { translate: "sc.quest.stone_guard_ach.body"  },
                         { text: "\n" }
                     ]
                 },
@@ -1623,7 +1621,7 @@ export const CHAPTERS = [
                 condition: {
                     killEntity: {
                         entityType: "stonecraft:stone_guard",
-                        amount: 10,
+                        amount: 50,
                         name: { translate: "entity.stonecraft:stone_guard.name" }
                     }
                 },
@@ -1640,6 +1638,70 @@ export const CHAPTERS = [
                     ]
                 },
                 iconPath: "textures/ui/quest/entities/stone_guard"
+            },
+            {
+                id: "stone_shooter_ach",
+                title: { translate: "sc.quest.stone_shooter_ach.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.stone_shooter_ach.body"  },
+                        { text: "\n" }
+                    ]
+                },
+                autoComplete: true,
+                condition: {
+                    killEntity: {
+                        entityType: "stonecraft:stone_shooter",
+                        amount: 50,
+                        name: { translate: "entity.stonecraft:stone_shooter.name" }
+                    }
+                },
+                award: {
+                     exp: 20,
+                     items: [
+                        {
+                            itemId: "stonecraft:stone_coin",
+                            amount: 5,
+                            name: {
+                                translate: "stonecraft.item.stone_coin"
+                            }
+                        }
+                    ]
+                },
+                iconPath: "textures/ui/quest/entities/stone_shooter"
+            },
+            {
+                id: "stone_baguette_ach",
+                title: { translate: "sc.quest.stone_baguette_ach.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.stone_baguette_ach.body"  },
+                        { text: "\n" }
+                    ]
+                },
+                autoComplete: true,
+                condition: {
+                    useItem: {
+                        itemId: "stonecraft:stone_bread",
+                        amount: 100,
+                        name: {
+                            translate: "stonecraft.item.stone_bread"
+                        }
+                    }
+                },
+                award: {
+                     exp: 20,
+                     items: [
+                        {
+                            itemId: "stonecraft:stone_coin",
+                            amount: 5,
+                            name: {
+                                translate: "stonecraft.item.stone_coin"
+                            }
+                        }
+                    ]
+                },
+                iconPath: "textures/items/foods/stone_bread"
             }
         ]
     }

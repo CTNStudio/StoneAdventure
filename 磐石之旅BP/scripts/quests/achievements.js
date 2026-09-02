@@ -1,6 +1,25 @@
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
-import { giveQuestAward, showMainMenu, isQuestCompleted, markQuestCompleted, checkQuestConditionWithQuest, buildQuestBody } from "./quests_core.js";
+import { world, Player } from "@minecraft/server";
+import { giveQuestAward, showMainMenu, isQuestCompleted, markQuestCompleted, checkQuestConditionWithQuest, buildQuestBody, checkAutoAchievement } from "./quests_core.js";
 import { CHAPTERS } from "./quests.js";
+
+const useItemToQuests = new Map();
+
+function initUseQuestMap() {
+    useItemToQuests.clear();
+    for (const chapter of CHAPTERS) {
+        for (const quest of chapter.quests) {
+            if (quest.condition.useItem) {
+                const itemId = quest.condition.useItem.itemId;
+                if (!useItemToQuests.has(itemId)) {
+                    useItemToQuests.set(itemId, []);
+                }
+                useItemToQuests.get(itemId).push(quest);
+            }
+        }
+    }
+}
+initUseQuestMap();
 
 export function showAchievements(player) {
     const achievementsChapter = CHAPTERS.find(ch => ch.id === "sc_achievements");
@@ -87,3 +106,35 @@ function tryCompleteAchievement(player, quest) {
     player.sendMessage({ translate: "achievement.unlocked" });
     showAchievements(player);
 }
+
+const USE_PREFIX = "use_progress_";
+
+export function addUseCount(player, questId, increment = 1) {
+    const key = `stonecraft:${USE_PREFIX}${questId}`;
+    const current = player.getDynamicProperty(key) ?? 0;
+    player.setDynamicProperty(key, current + increment);
+}
+
+export function getUseCount(player, questId) {
+    const key = `stonecraft:${USE_PREFIX}${questId}`;
+    return player.getDynamicProperty(key) ?? 0;
+}
+
+export function resetUseCount(player, questId) {
+    const key = `stonecraft:${USE_PREFIX}${questId}`;
+    player.setDynamicProperty(key, 0);
+}
+world.afterEvents.itemCompleteUse.subscribe((event) => {
+    const { source, itemStack } = event;
+    if (!(source instanceof Player)) return;
+
+    const itemId = itemStack.typeId;
+    const quests = useItemToQuests.get(itemId);
+    if (!quests) return;
+
+    for (const quest of quests) {
+        if (isQuestCompleted(source, quest)) continue;
+        addUseCount(source, quest.id, 1);
+         checkAutoAchievement(source, quest);
+    }
+});

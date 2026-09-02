@@ -294,7 +294,19 @@ quest.or=§e或§r
 quest.condition.any_tag_item=§6任意之一：§r
 quest.not_enough.any_tag_item=缺少任意一个该类型的物品：%s
 quest.item_with_tag=属于 §e%s§r 类型的物品
+quest.use_item=使用 %s 个 %s
+quest.not_enough.use_item=需要使用 %s 个 %s
 stonecraft.tag.stone_food=石头食物
+
+sc.menu.achievements=成就
+sc.achievements.title=成就
+sc.achievements.description=成就描述
+sc.quest.stone_guard_ach.title=刷石机
+sc.quest.stone_guard_ach.body=兄弟，我发现打石头守卫获得石头效率比挖石头高。
+sc.quest.stone_shooter_ach.title=刷石机2.0
+sc.quest.stone_shooter_ach.body=兄弟，这玩意的箭怎么不一样
+sc.quest.stone_baguette_ach.title=法棍爱好者
+sc.quest.stone_baguette_ach.body=法兰西男儿特有的防身武器
 
 stonecraft.item.stone_encyclopedia=磐石大典
 stonecraft.item.stone_encyclopedia.body=深藏于地下的故事
