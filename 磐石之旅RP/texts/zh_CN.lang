@@ -296,6 +296,12 @@ quest.not_enough.any_tag_item=缺少任意一个该类型的物品：%s
 quest.item_with_tag=属于 §e%s§r 类型的物品
 quest.use_item=使用 %s 个 %s
 quest.not_enough.use_item=需要使用 %s 个 %s
+quest.use_tag=使用属于%s 个 %s
+quest.not_enough.use_tag=需要使用属于%s 个 %s
+quest.use_each_item=需要食用 %s 个 %s
+quest.not_enough.use_each_item=还需要食用 %s 个 %s
+quest.need_all_items=需要以下所有物品：
+
 stonecraft.tag.stone_food=石头食物
 
 sc.menu.achievements=成就
@@ -307,6 +313,10 @@ sc.quest.stone_shooter_ach.title=刷石机2.0
 sc.quest.stone_shooter_ach.body=兄弟，这玩意的箭怎么不一样
 sc.quest.stone_baguette_ach.title=法棍爱好者
 sc.quest.stone_baguette_ach.body=法兰西男儿特有的防身武器
+sc.quest.stone_food_ach.title=食石食
+sc.quest.stone_food_ach.body=吃掉任意一个石头食物
+sc.quest.stone_food_collector_ach.title=史诗食世石
+sc.quest.stone_food_collector_ach.body=吃掉所有种类的石头食物
 
 stonecraft.item.stone_encyclopedia=磐石大典
 stonecraft.item.stone_encyclopedia.body=深藏于地下的故事

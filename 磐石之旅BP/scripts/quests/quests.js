@@ -1671,6 +1671,72 @@ export const CHAPTERS = [
                 iconPath: "textures/ui/quest/entities/stone_shooter"
             },
             {
+                id: "stone_food_ach",
+                title: { translate: "sc.quest.stone_food_ach.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.stone_food_ach.body"  },
+                        { text: "\n" }
+                    ]
+                },
+                autoComplete: true,
+                condition: {
+                     useTag: {
+                        tag: "stonecraft:stone_food",
+                        amount: 1,
+                        name: {
+                            translate: "stonecraft.tag.stone_food"
+                        }
+                    }
+                },
+                award: {
+                     exp: 20,
+                     items: [
+                        {
+                            itemId: "stonecraft:stone_coin",
+                            amount: 5,
+                            name: {
+                                translate: "stonecraft.item.stone_coin"
+                            }
+                        }
+                    ]
+                },
+                iconPath: "textures/items/foods/stone_bread"
+            },
+            {
+                id: "stone_food_collector_ach",
+                title: { translate: "sc.quest.stone_food_collector_ach.title" },
+                description: { translate: "sc.quest.stone_food_collector_ach.body" },
+                autoComplete: true,
+                condition: {
+                    useEachItem: {
+                        items: [
+                            { itemId: "stonecraft:stone_bread", amount: 1, name: { translate: "stonecraft.item.stone_bread" } },
+                            { itemId: "stonecraft:stone_cookie", amount: 1, name: { translate: "stonecraft.item.stone_cookie" } },
+                            { itemId: "stonecraft:stone_hodgepodge", amount: 1, name: { translate: "stonecraft.item.stone_hodgepodge" } },
+                            { itemId: "stonecraft:stone_apple", amount: 1, name: { translate: "stonecraft.item.stone_apple" } },
+                            { itemId: "stonecraft:stone_carrot", amount: 1, name: { translate: "stonecraft.item.stone_carrot" } },
+                            { itemId: "stonecraft:stone_kelp", amount: 1, name: { translate: "stonecraft.item.stone_kelp" } },
+                            { itemId: "stonecraft:stone_melon", amount: 1, name: { translate: "stonecraft.item.stone_melon" } },
+                            { itemId: "stonecraft:stone_potato", amount: 1, name: { translate: "stonecraft.item.stone_potato" } },
+                            { itemId: "stonecraft:stone_cooked_cod", amount: 1, name: { translate: "stonecraft.item.stone_cooked_cod" } },
+                            { itemId: "stonecraft:stone_glow_berries", amount: 1, name: { translate: "stonecraft.item.stone_glow_berries" } },
+                            { itemId: "stonecraft:stone_sweet_berries", amount: 1, name: { translate: "stonecraft.item.stone_sweet_berries" } },
+                            { itemId: "stonecraft:stone_cooked_beef", amount: 1, name: { translate: "stonecraft.item.stone_cooked_beef" } },
+                            { itemId: "stonecraft:stonickers", amount: 1, name: { translate: "stonecraft.item.stonickers" } },
+                            { itemId: "stonecraft:compressed_stonickers_lv1", amount: 1, name: { translate: "stonecraft.item.compressed_stonickers_lv1" } },
+                            { itemId: "stonecraft:compressed_stonickers_lv2", amount: 1, name: { translate: "stonecraft.item.compressed_stonickers_lv2" } },
+                            { itemId: "stonecraft:compressed_stonickers_lv3", amount: 1, name: { translate: "stonecraft.item.compressed_stonickers_lv3" } },
+                            { itemId: "stonecraft:compressed_stonickers_lv4", amount: 1, name: { translate: "stonecraft.item.compressed_stonickers_lv4" } },
+                            { itemId: "stonecraft:compressed_stonickers_lv5", amount: 1, name: { translate: "stonecraft.item.compressed_stonickers_lv5" } },
+                        ],
+                        displayName: { translate: "stonecraft.item.stone_coin" }
+                    }
+                },
+                award: { exp: 100 },
+                iconPath: "textures/items/foods/stone_bread"
+            },
+            {
                 id: "stone_baguette_ach",
                 title: { translate: "sc.quest.stone_baguette_ach.title" },
                 description: {

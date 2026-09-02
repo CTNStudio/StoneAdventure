@@ -4,6 +4,62 @@ import { giveQuestAward, showMainMenu, isQuestCompleted, markQuestCompleted, che
 import { CHAPTERS } from "./quests.js";
 
 const useItemToQuests = new Map();
+const USE_ITEM_PREFIX = "use_item_progress_"; // 用于分物品计数
+const useTagToQuests = new Map();
+
+function initUseTagQuestMap() {
+    useTagToQuests.clear();
+    for (const chapter of CHAPTERS) {
+        for (const quest of chapter.quests) {
+            if (quest.condition.useTag) {
+                const tag = quest.condition.useTag.tag;
+                if (!useTagToQuests.has(tag)) {
+                    useTagToQuests.set(tag, []);
+                }
+                useTagToQuests.get(tag).push(quest);
+            }
+        }
+    }
+}
+initUseTagQuestMap();
+
+export function addUseItemCount(player, questId, itemId, increment = 1) {
+    const key = `stonecraft:${USE_ITEM_PREFIX}${questId}_${itemId}`;
+    const current = player.getDynamicProperty(key) ?? 0;
+    player.setDynamicProperty(key, current + increment);
+}
+
+export function getUseItemCount(player, questId, itemId) {
+    const key = `stonecraft:${USE_ITEM_PREFIX}${questId}_${itemId}`;
+    return player.getDynamicProperty(key) ?? 0;
+}
+
+export function resetUseItemCounts(player, questId, items) {
+    for (const item of items) {
+        const key = `stonecraft:${USE_ITEM_PREFIX}${questId}_${item.itemId}`;
+        player.setDynamicProperty(key, 0);
+    }
+}
+const useEachItemToQuests = new Map();
+
+function initUseEachItemQuestMap() {
+    useEachItemToQuests.clear();
+    for (const chapter of CHAPTERS) {
+        for (const quest of chapter.quests) {
+            if (quest.condition.useEachItem) {
+                const items = quest.condition.useEachItem.items;
+                for (const item of items) {
+                    const itemId = item.itemId;
+                    if (!useEachItemToQuests.has(itemId)) {
+                        useEachItemToQuests.set(itemId, []);
+                    }
+                    useEachItemToQuests.get(itemId).push(quest);
+                }
+            }
+        }
+    }
+}
+initUseEachItemQuestMap();
 
 function initUseQuestMap() {
     useItemToQuests.clear();
@@ -129,12 +185,57 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
     if (!(source instanceof Player)) return;
 
     const itemId = itemStack.typeId;
-    const quests = useItemToQuests.get(itemId);
-    if (!quests) return;
+    const itemTags = itemStack.getTags?.() ?? [];
 
-    for (const quest of quests) {
-        if (isQuestCompleted(source, quest)) continue;
-        addUseCount(source, quest.id, 1);
-         checkAutoAchievement(source, quest);
+    // 原有 useItem 处理
+    const itemQuests = useItemToQuests.get(itemId);
+    if (itemQuests) {
+        for (const quest of itemQuests) {
+            if (isQuestCompleted(source, quest)) continue;
+            addUseCount(source, quest.id, 1);
+            checkAutoAchievement(source, quest);
+        }
+    }
+
+    for (const [tag, quests] of useTagToQuests) {
+        if (!itemTags.includes(tag)) continue;
+        for (const quest of quests) {
+            if (isQuestCompleted(source, quest)) continue;
+            addUseCount(source, quest.id, 1);
+            checkAutoAchievement(source, quest);
+        }
+    }
+
+    // 新增 useEachItem 处理
+    const eachQuests = useEachItemToQuests.get(itemId);
+    if (eachQuests) {
+        for (const quest of eachQuests) {
+            if (isQuestCompleted(source, quest)) continue;
+            // 增加该物品的使用计数
+            addUseItemCount(source, quest.id, itemId, 1);
+            // 检查是否所有物品都已达标
+            checkAutoAchievementEach(source, quest);
+        }
     }
 });
+function checkAutoAchievementEach(player, quest) {
+    if (!player || !quest) return false;
+    if (quest.autoComplete !== true) return false;
+    if (isQuestCompleted(player, quest)) return false;
+
+    const items = quest.condition.useEachItem.items;
+    for (const item of items) {
+        const count = getUseItemCount(player, quest.id, item.itemId);
+        if (count < (item.amount || 1)) {
+            return false; // 有物品未达标
+        }
+    }
+    // 全部达标
+    markQuestCompleted(player, quest);
+    giveQuestAward(player, quest);
+    return true;
+}
+export function resetUseItemCount(player, questId, itemId) {
+    const key = `stonecraft:${USE_ITEM_PREFIX}${questId}_${itemId}`;
+    player.setDynamicProperty(key, 0);
+}

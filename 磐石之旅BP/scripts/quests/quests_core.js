@@ -1,7 +1,7 @@
 import { world, ItemStack, Player } from "@minecraft/server";
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { CHAPTERS } from "./quests.js";
-import { showAchievements, getUseCount, resetUseCount } from "./achievements.js";
+import { showAchievements, getUseCount, resetUseCount, getUseItemCount, resetUseItemCounts } from "./achievements.js";
 
 const NAMESPACE = "stonecraft";
 const QUEST_BOOK_ID = `${NAMESPACE}:stone_encyclopedia`;
@@ -180,6 +180,31 @@ export function checkQuestConditionWithQuest(player, quest) {
             });
         }
     }
+    if (condition.useTag) {
+        const required = condition.useTag.amount || 1;
+        const current = getUseCount(player, quest.id); // 复用使用计数
+        if (current < required) {
+            messages.push({
+                translate: "quest.not_enough.use_tag",
+                with: { rawtext: [{ text: required.toString() }, condition.useTag.name] }
+            });
+        }
+    }
+    if (condition.useEachItem) {
+        const items = condition.useEachItem.items;
+        for (const item of items) {
+            const required = item.amount || 1;
+            const current = getUseItemCount(player, quest.id, item.itemId);
+            if (current < required) {
+                const itemName = item.name || { text: item.itemId };
+                messages.push({
+                    translate: "quest.not_enough.use_each_item",
+                    with: { rawtext: [{ text: required.toString() }, itemName] }
+                });
+                break;
+            }
+        }
+    }
     return { success: messages.length === 0, messages };
 }
 
@@ -222,6 +247,13 @@ export function isQuestCompleted(player, quest) {
 
 export function markQuestCompleted(player, quest) {
     player.addTag(`${NAMESPACE}:${quest.id}`);
+    if (quest.condition.useEachItem) {
+        const items = quest.condition.useEachItem.items;
+        resetUseItemCounts(player, quest.id, items);
+    }
+    if (quest.condition.useEachItem) {
+        resetUseItemCounts(player, quest.id, quest.condition.useEachItem.items);
+    }
     const killTag = `${NAMESPACE}:kill_${quest.id}`;
     if (player.hasTag(killTag)) player.removeTag(killTag);
     resetKillCount(player, quest.id);
@@ -332,7 +364,30 @@ export function buildQuestBody(quest, player) {
                 text: ` §7(${current}/${required})`
             });
         }
-    } else {
+    } else if (condition.useTag) {
+        const required = condition.useTag.amount || 1;
+        body.rawtext.push({
+            translate: "quest.use_tag",
+            with: { rawtext: [{ text: required.toString() }, condition.useTag.name] }
+        });
+        if (player) {
+            const current = getUseCount(player, quest.id);
+            body.rawtext.push({ text: ` §7(${current}/${required})` });
+        }
+    } else if (condition.useEachItem) {
+        const items = condition.useEachItem.items;
+        body.rawtext.push({ translate: "quest.need_all_items" });
+        for (const item of items) {
+            const required = item.amount || 1;
+            const current = player ? getUseItemCount(player, quest.id, item.itemId) : 0;
+            const name = item.name || { text: item.itemId };
+            const progress = player ? ` §7(${current}/${required})` : "";
+            body.rawtext.push({ text: "  " });
+            body.rawtext.push(name);
+            body.rawtext.push({ text: ` ${required} 个${progress}\n` });
+        }
+    }
+    else {
         body.rawtext.push({ translate: "quest.condition.none" });
     }
 
