@@ -1,4 +1,5 @@
 # 石头工艺 & 磐石之旅
+
 ![logo](https://i.imgs.ovh/2026/08/30/554c6f20aa88cd0a182c07706d298c49.png)
 > 「如是我见，窥磐石低语」
 
@@ -88,9 +89,11 @@
 ---
 
 ## 更新日志
+
 ### 更新记录
 
 **2024年：**
+
 - 8.5更新：[【石头工艺】1.0.0发布！](https://klpbbs.com/thread-143688-1-1.html)
 - 8.6更新：[【石头工艺】《石》与交易|1.1.0更新](https://klpbbs.com/thread-144370-1-1.html)
 - 8.11更新：[【石头工艺】BUG修复|1.1.1更新](https://klpbbs.com/thread-144534-1-1.html)
@@ -99,6 +102,7 @@
 - 11.9更新：[【磐石之旅】0.13.1.BE1.21.40+更新](https://klpbbs.com/forum.php?mod=viewthread&tid=150903)
 
 **2025年：**
+
 - 2.15更新：[【石头工艺】0.2.0更新及【磐石之旅】0.14.0更新](https://klpbbs.com/thread-158003-1-1.html)
 - 7.25更新：[【磐石之旅】0.15.1更新](https://klpbbs.com/thread-163364-1-1.html)
 - 7.31更新：[【磐石之旅】0.15.2更新](https://klpbbs.com/thread-163662-1-1.html)
@@ -106,6 +110,7 @@
 - 8.31更新：[【石头工艺】1.3.0更新](https://klpbbs.com/thread-165440-1-1.html)
 
 **2026年：**
+
 - 2.15更新：[【磐石之旅】0.15.4更新](https://klpbbs.com/thread-169028-1-1.html)
 - 2.24更新：[【石头工艺】1.4.0更新及【磐石之旅】0.16.0更新](https://klpbbs.com/thread-169497-1-1.html)
 - 2.28更新：[【磐石之旅】0.16.1更新](https://klpbbs.com/thread-169617-1-1.html)
@@ -121,7 +126,7 @@
 
 ## 相关链接
 
-- **MC百科**：[点击前往](https://www.mcmod.cn/class/9862.html)（欢迎各位补充内容）
+- **MC百科**：[点击前往](https://www.mcmod.cn/class/30320.html)（欢迎各位补充内容）
 - **作者B站**：[点我关注](https://space.bilibili.com/1902303091)
 - **QQ交流群**：860577116（加群注意正确回答问题，即写开发者们的名字，否则会被拒绝）
 - **意见反馈**：[腾讯文档问卷](https://docs.qq.com/form/page/DZXRZakpEUGFUR1R5)
@@ -137,7 +142,6 @@
 - [石头工艺JE移植版](https://klpbbs.com/thread-164580-1-2.html)  
   [![JE移植](https://s41.ax1x.com/2026/08/30/pnP45VI.png)](https://klpbbs.com/thread-164580-1-2.html)
 
-
 ---
 
 ## 网易我的世界
@@ -151,7 +155,7 @@
 ---
 
 ## 许可协议
- 
+
 使用 [BSD-3-Clause](https://opensource.org/license/BSD-3-clause) 进行授权。拷贝，分享时请遵循协议内容。
 
 ---
@@ -159,6 +163,7 @@
 ## 制作名单
 
 **星屹工作室（CTN STUDIO）成员：**
+
 - NewBee：原作/程序/策划/美术
 - 方漓猫：程序/策划
 - 星零大队长：主美术
@@ -170,11 +175,13 @@
 - Призмарин：俄文本地化
 
 **过往参与成员：**
+
 - 流然：英文本地化
 - 初雪·冰：美术
 - 一护次叶（已退出工作室）：美术
 
 **非星屹成员：**
+
 - 涵AH：美术
 - JD：代码支持
 - simple-mq：代码贡献者
