@@ -294,7 +294,36 @@ quest.or=§eили§r
 quest.condition.any_tag_item=§6Любой из:§r
 quest.not_enough.any_tag_item=Отсутствует любой предмет этого типа: %s
 quest.item_with_tag=Предмет типа §e%s§r
+quest.use_item=Использовать %s %s
+quest.not_enough.use_item=Нужно использовать %s %s
+quest.use_tag=Использовать %s типа %s
+quest.not_enough.use_tag=Нужно использовать %s типа %s
+quest.use_each_item=Нужно съесть %s %s
+quest.not_enough.use_each_item=Ещё нужно съесть %s %s
+quest.need_all_items=Нужны все следующие предметы:
+quest.claim_reward=Получить награду
+quest.reward_claimed=Получено
+quest.reward_claimed_success=Награда получена!
+quest.reward_already_claimed=Награда уже получена
+quest.completed_go_claim=Достижение выполнено, забери награду:
+
 stonecraft.tag.stone_food=Каменная еда
+
+sc.menu.achievements=Достижения
+sc.achievements.title=Достижения
+sc.achievements.description=Иди вперёд, следуй за сомнениями в своём сердце и открой неизведанную истину.
+sc.quest.andesite_ach.title=Получить андезит
+sc.quest.andesite_ach.body=Нажми W, чтобы поразмышлять.jpg
+sc.quest.stone_guard_ach.title=Каменный генератор
+sc.quest.stone_guard_ach.body=Бро, я заметил, что фармить стражей камня эффективнее, чем добывать камень киркой.
+sc.quest.stone_shooter_ach.title=Каменный генератор 2.0
+sc.quest.stone_shooter_ach.body=Бро, а почему у этого парня стрелы другие?
+sc.quest.stone_baguette_ach.title=Любитель багетов
+sc.quest.stone_baguette_ach.body=Фирменное оружие самообороны каждого француза.
+sc.quest.stone_food_ach.title=Камнеед
+sc.quest.stone_food_ach.body=Съешь любой предмет каменной еды.
+sc.quest.stone_food_collector_ach.title=Камнеед-гурман
+sc.quest.stone_food_collector_ach.body=Съешь все виды каменной еды.
 
 stonecraft.item.stone_encyclopedia=Каменная энциклопедия
 stonecraft.item.stone_encyclopedia.body=Истории, погребённые под землёй

@@ -293,7 +293,36 @@ quest.or=§e或§r
 quest.condition.any_tag_item=§6任意之一：§r
 quest.not_enough.any_tag_item=缺少任意一個該類型的物品：%s
 quest.item_with_tag=屬於 §e%s§r 類型的物品
+quest.use_item=使用 %s 個 %s
+quest.not_enough.use_item=需要使用 %s 個 %s
+quest.use_tag=使用屬於%s 個 %s
+quest.not_enough.use_tag=需要使用屬於%s 個 %s
+quest.use_each_item=需要食用 %s 個 %s
+quest.not_enough.use_each_item=還需要食用 %s 個 %s
+quest.need_all_items=需要以下所有物品：
+quest.claim_reward=領取獎勵
+quest.reward_claimed=已領取
+quest.reward_claimed_success=獎勵已領取！
+quest.reward_already_claimed=獎勵已領取
+quest.completed_go_claim=成就已完成，前往領取獎勵：
+
 stonecraft.tag.stone_food=石頭食物
+
+sc.menu.achievements=成就
+sc.achievements.title=成就
+sc.achievements.description=去吧，去追尋你心中的疑惑，去獲取未知的真相。
+sc.quest.andesite_ach.title=獲得安山岩
+sc.quest.andesite_ach.body=按w鍵進行思索.jpg
+sc.quest.stone_guard_ach.title=刷石機
+sc.quest.stone_guard_ach.body=兄弟，我發現打石頭守衛獲得石頭效率比挖石頭高。
+sc.quest.stone_shooter_ach.title=刷石機2.0
+sc.quest.stone_shooter_ach.body=兄弟，這玩意的箭怎麼不一樣
+sc.quest.stone_baguette_ach.title=法棍愛好者
+sc.quest.stone_baguette_ach.body=法蘭西男兒特有的防身武器
+sc.quest.stone_food_ach.title=食石食
+sc.quest.stone_food_ach.body=吃掉任意一個石頭食物
+sc.quest.stone_food_collector_ach.title=史詩食世石
+sc.quest.stone_food_collector_ach.body=吃掉所有種類的石頭食物
 
 stonecraft.item.stone_encyclopedia=磐石大典
 stonecraft.item.stone_encyclopedia.body=深藏於地下的故事

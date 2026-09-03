@@ -305,13 +305,13 @@ quest.claim_reward=领取奖励
 quest.reward_claimed=已领取
 quest.reward_claimed_success=奖励已领取！
 quest.reward_already_claimed=奖励已领取
-quest.completed_go_claim=成就已完成，前往领取奖励！
+quest.completed_go_claim=成就已完成，前往领取奖励:
 
 stonecraft.tag.stone_food=石头食物
 
 sc.menu.achievements=成就
 sc.achievements.title=成就
-sc.achievements.description=成就描述
+sc.achievements.description=去吧，去追寻你心中的疑惑，去获取未知的真相。
 sc.quest.andesite_ach.title=获得安山岩
 sc.quest.andesite_ach.body=按w键进行思索.jpg
 sc.quest.stone_guard_ach.title=刷石机

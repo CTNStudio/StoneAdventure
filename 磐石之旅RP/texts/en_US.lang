@@ -294,7 +294,36 @@ quest.or=§eor§r
 quest.condition.any_tag_item=§6Any one of:§r
 quest.not_enough.any_tag_item=Missing any item of this type: %s
 quest.item_with_tag=An item of type §e%s§r
+quest.use_item=Use %s %s
+quest.not_enough.use_item=Need to use %s %s
+quest.use_tag=Use %s of type %s
+quest.not_enough.use_tag=Need to use %s of type %s
+quest.use_each_item=Need to eat %s %s
+quest.not_enough.use_each_item=Still need to eat %s %s
+quest.need_all_items=Need all of the following:
+quest.claim_reward=Claim Reward
+quest.reward_claimed=Claimed
+quest.reward_claimed_success=Reward claimed!
+quest.reward_already_claimed=Reward already claimed
+quest.completed_go_claim=Achievement completed, go claim your reward:
+
 stonecraft.tag.stone_food=Stone Food
+
+sc.menu.achievements=Achievements
+sc.achievements.title=Achievements
+sc.achievements.description=Go forth, pursue the doubts in your heart, and uncover the unknown truth.
+sc.quest.andesite_ach.title=Obtain Andesite
+sc.quest.andesite_ach.body=Press W to Ponder.jpg
+sc.quest.stone_guard_ach.title=Stone Genie
+sc.quest.stone_guard_ach.body=Bro, I found that farming Stone Guards gives more stone than mining it.
+sc.quest.stone_shooter_ach.title=Stone Genie 2.0
+sc.quest.stone_shooter_ach.body=Bro, why are this guy's arrows different?
+sc.quest.stone_baguette_ach.title=Baguette Enthusiast
+sc.quest.stone_baguette_ach.body=The signature self-defense weapon of every Frenchman.
+sc.quest.stone_food_ach.title=Stone Foodie
+sc.quest.stone_food_ach.body=Eat any Stone Food item.
+sc.quest.stone_food_collector_ach.title=Stoned Feaster
+sc.quest.stone_food_collector_ach.body=Eat every type of Stone Food.
 
 stonecraft.item.stone_encyclopedia=Stone Encyclopedia
 stonecraft.item.stone_encyclopedia.body=Stories buried underground
