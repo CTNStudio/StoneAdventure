@@ -301,12 +301,19 @@ quest.not_enough.use_tag=需要使用属于%s 个 %s
 quest.use_each_item=需要食用 %s 个 %s
 quest.not_enough.use_each_item=还需要食用 %s 个 %s
 quest.need_all_items=需要以下所有物品：
+quest.claim_reward=领取奖励
+quest.reward_claimed=已领取
+quest.reward_claimed_success=奖励已领取！
+quest.reward_already_claimed=奖励已领取
+quest.completed_go_claim=成就已完成，前往领取奖励！
 
 stonecraft.tag.stone_food=石头食物
 
 sc.menu.achievements=成就
 sc.achievements.title=成就
 sc.achievements.description=成就描述
+sc.quest.andesite_ach.title=获得安山岩
+sc.quest.andesite_ach.body=按w键进行思索.jpg
 sc.quest.stone_guard_ach.title=刷石机
 sc.quest.stone_guard_ach.body=兄弟，我发现打石头守卫获得石头效率比挖石头高。
 sc.quest.stone_shooter_ach.title=刷石机2.0

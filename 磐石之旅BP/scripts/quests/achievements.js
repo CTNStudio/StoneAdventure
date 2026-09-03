@@ -1,11 +1,36 @@
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
-import { world, Player } from "@minecraft/server";
-import { giveQuestAward, showMainMenu, isQuestCompleted, markQuestCompleted, checkQuestConditionWithQuest, buildQuestBody, checkAutoAchievement } from "./quests_core.js";
+import { world, Player, system} from "@minecraft/server";
+import { giveQuestAward, showMainMenu, isQuestCompleted, markQuestCompleted, checkQuestConditionWithQuest, buildQuestBody, checkAutoAchievement, isRewardClaimed, setRewardClaimed, notifyAchievementComplete} from "./quests_core.js";
 import { CHAPTERS } from "./quests.js";
 
 const useItemToQuests = new Map();
 const USE_ITEM_PREFIX = "use_item_progress_"; // 用于分物品计数
 const useTagToQuests = new Map();
+const itemConditionQuests = new Map();
+
+function initItemConditionMap() {
+    itemConditionQuests.clear();
+    const achievementsChapter = CHAPTERS.find(ch => ch.id === "sc_achievements");
+    if (!achievementsChapter) return;
+    for (const quest of achievementsChapter.quests) {
+        const cond = quest.condition;
+        let itemIds = [];
+        if (cond.item) {
+            itemIds.push(cond.item.itemId);
+        } else if (cond.anyItem) {
+            itemIds = cond.anyItem.map(it => it.itemId);
+        } else if (cond.allItems) {
+            itemIds = cond.allItems.map(it => it.itemId);
+        }
+        for (const id of itemIds) {
+            if (!itemConditionQuests.has(id)) {
+                itemConditionQuests.set(id, []);
+            }
+            itemConditionQuests.get(id).push(quest);
+        }
+    }
+}
+initItemConditionMap();
 
 function initUseTagQuestMap() {
     useTagToQuests.clear();
@@ -84,7 +109,9 @@ export function showAchievements(player) {
         showMainMenu(player);
         return;
     }
-
+    for (const quest of achievementsChapter.quests) {
+        checkAutoAchievement(player, quest);
+    }
     const form = new ActionFormData()
         .title(achievementsChapter.title || { translate: "sc.menu.achievements" })
         .body(achievementsChapter.description || { translate: "sc.menu.achievements.body" });
@@ -113,6 +140,7 @@ export function showAchievements(player) {
 
 function showAchievementDetail(player, quest) {
     const isCompleted = isQuestCompleted(player, quest);
+    const isClaimed = isRewardClaimed(player, quest.id);
     const body = buildQuestBody(quest, player);
 
     const form = new MessageFormData()
@@ -120,10 +148,12 @@ function showAchievementDetail(player, quest) {
         .body(body)
         .button1({ translate: "gui.back" });
 
-    if (isCompleted) {
-        form.button2({ translate: "quest.done" });
-    } else {
+    if (!isCompleted) {
         form.button2({ translate: "quest.check" });
+    } else if (isCompleted && !isClaimed) {
+        form.button2({ translate: "quest.claim_reward" });
+    } else {
+        form.button2({ translate: "quest.reward_claimed" });
     }
 
     form.show(player).then((response) => {
@@ -134,10 +164,16 @@ function showAchievementDetail(player, quest) {
         if (response.selection === 0) {
             showAchievements(player);
         } else if (response.selection === 1) {
-            if (isCompleted) {
-                showAchievements(player);
-            } else {
+            if (!isCompleted) {
                 tryCompleteAchievement(player, quest);
+            } else if (isCompleted && !isClaimed) {
+                giveQuestAward(player, quest);      // 内部会标记已领取
+                player.playSound("random.orb");     // 领取奖励音效
+                player.sendMessage({ translate: "quest.reward_claimed_success" });
+                showAchievementDetail(player, quest);
+            } else {
+                player.sendMessage({ translate: "quest.reward_already_claimed" });
+                showAchievements(player);
             }
         }
     });
@@ -149,18 +185,15 @@ function tryCompleteAchievement(player, quest) {
         showAchievements(player);
         return;
     }
-
     const result = checkQuestConditionWithQuest(player, quest);
     if (!result.success) {
         player.sendMessage({ rawtext: result.messages });
         showAchievementDetail(player, quest);
         return;
     }
-
     markQuestCompleted(player, quest);
-    giveQuestAward(player, quest);
-    player.sendMessage({ translate: "achievement.unlocked" });
-    showAchievements(player);
+    notifyAchievementComplete(player, quest);
+    showAchievementDetail(player, quest);
 }
 
 const USE_PREFIX = "use_progress_";
@@ -218,6 +251,23 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
         }
     }
 });
+world.afterEvents.playerInventoryItemChange.subscribe((event) => {
+    const player = event.player;
+    if (!player) return;
+
+    // 延迟 2 个 tick，确保物品已完全更新到背包
+    system.runTimeout(() => {
+        // 遍历所有物品条件任务（来自 itemConditionQuests 映射）
+        for (const [itemId, quests] of itemConditionQuests) {
+            for (const quest of quests) {
+                // 只检查自动完成的任务（避免非自动任务被意外触发）
+                if (quest.autoComplete === true) {
+                    checkAutoAchievement(player, quest);
+                }
+            }
+        }
+    }, 2);
+});
 function checkAutoAchievementEach(player, quest) {
     if (!player || !quest) return false;
     if (quest.autoComplete !== true) return false;
@@ -227,15 +277,15 @@ function checkAutoAchievementEach(player, quest) {
     for (const item of items) {
         const count = getUseItemCount(player, quest.id, item.itemId);
         if (count < (item.amount || 1)) {
-            return false; // 有物品未达标
+            return false;
         }
     }
-    // 全部达标
     markQuestCompleted(player, quest);
-    giveQuestAward(player, quest);
+    notifyAchievementComplete(player, quest);
     return true;
 }
 export function resetUseItemCount(player, questId, itemId) {
     const key = `stonecraft:${USE_ITEM_PREFIX}${questId}_${itemId}`;
     player.setDynamicProperty(key, 0);
 }
+

@@ -1,6 +1,3 @@
-//import { world, system, ItemStack, Player, EquipmentSlot } from "@minecraft/server";
-//import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
-
 /**
  * @typedef {Object} Award
  * @property {number} [exp] - 奖励经验点数
@@ -1609,6 +1606,40 @@ export const CHAPTERS = [
         iconPath: "textures/ui/quest/sc_achievements",
         quests: [
             {
+                id: "andesite_ach",
+                title: { translate: "sc.quest.andesite_ach.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.andesite_ach.body"  },
+                        { text: "\n" }
+                    ]
+                },
+                autoComplete: true,
+                manualReward: true,
+                condition: {
+                    item: {
+                        itemId: "minecraft:andesite",
+                        amount: 1,
+                        name: {
+                            translate: "tile.stone.andesite.name"
+                        }
+                    }
+                },
+                award: {
+                     exp: 20,
+                     items: [
+                        {
+                            itemId: "stonecraft:stone_coin",
+                            amount: 5,
+                            name: {
+                                translate: "stonecraft.item.stone_coin"
+                            }
+                        }
+                    ]
+                },
+                iconPath: "textures/ui/quest/andesite_ach"
+            },
+            {
                 id: "stone_guard_ach",
                 title: { translate: "sc.quest.stone_guard_ach.title" },
                 description: {
@@ -1618,6 +1649,7 @@ export const CHAPTERS = [
                     ]
                 },
                 autoComplete: true,
+                manualReward: true,
                 condition: {
                     killEntity: {
                         entityType: "stonecraft:stone_guard",
@@ -1649,6 +1681,7 @@ export const CHAPTERS = [
                     ]
                 },
                 autoComplete: true,
+                manualReward: true,
                 condition: {
                     killEntity: {
                         entityType: "stonecraft:stone_shooter",
@@ -1680,6 +1713,7 @@ export const CHAPTERS = [
                     ]
                 },
                 autoComplete: true,
+                manualReward: true,
                 condition: {
                      useTag: {
                         tag: "stonecraft:stone_food",
@@ -1708,6 +1742,7 @@ export const CHAPTERS = [
                 title: { translate: "sc.quest.stone_food_collector_ach.title" },
                 description: { translate: "sc.quest.stone_food_collector_ach.body" },
                 autoComplete: true,
+                manualReward: true,
                 condition: {
                     useEachItem: {
                         items: [
@@ -1746,6 +1781,7 @@ export const CHAPTERS = [
                     ]
                 },
                 autoComplete: true,
+                manualReward: true,
                 condition: {
                     useItem: {
                         itemId: "stonecraft:stone_bread",

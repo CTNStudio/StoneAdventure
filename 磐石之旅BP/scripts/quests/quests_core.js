@@ -6,6 +6,15 @@ import { showAchievements, getUseCount, resetUseCount, getUseItemCount, resetUse
 const NAMESPACE = "stonecraft";
 const QUEST_BOOK_ID = `${NAMESPACE}:stone_encyclopedia`;
 const kill_prefix = "kill_progress_"; // 动态属性键前缀
+const reward_claimed_ = "reward_claimed_";
+
+export function isRewardClaimed(player, questId) {
+    return player.getDynamicProperty(`${NAMESPACE}:reward_claimed_${questId}`) ?? false;
+}
+
+export function setRewardClaimed(player, questId, claimed = true) {
+    player.setDynamicProperty(`${NAMESPACE}:reward_claimed_${questId}`, claimed);
+}
 
 /**
  * 增加某个任务的击杀计数
@@ -65,13 +74,17 @@ function getPlayerContainer(player) {
 
 function hasEnoughItems(player, itemId, requiredAmount) {
     const container = getPlayerContainer(player);
-    if (!container) return false;
+    if (!container) {
+        return false;
+    }
     let count = 0;
     for (let i = 0; i < container.size; i++) {
         const item = container.getItem(i);
         if (item?.typeId === itemId) {
             count += item.amount;
-            if (count >= requiredAmount) return true;
+            if (count >= requiredAmount) {
+                return true;
+            }
         }
     }
     return false;
@@ -254,6 +267,9 @@ export function markQuestCompleted(player, quest) {
     if (quest.condition.useEachItem) {
         resetUseItemCounts(player, quest.id, quest.condition.useEachItem.items);
     }
+    if (quest.manualReward) {
+        setRewardClaimed(player, quest.id, false);
+    }
     const killTag = `${NAMESPACE}:kill_${quest.id}`;
     if (player.hasTag(killTag)) player.removeTag(killTag);
     resetKillCount(player, quest.id);
@@ -274,24 +290,29 @@ export function giveQuestAward(player, quest) {
             giveItem(player, itemStack);
         }
     }
-    player.playSound("random.levelup");
-
-    const prefix = { translate: "quest.finished" };
-    let titleMessage;
-    if (typeof quest.title === "string") {
-        titleMessage = { text: quest.title };
+    if (quest.manualReward) {
+        // 手动领取奖励：标记已领取，不播放音效和消息
+        setRewardClaimed(player, quest.id, true);
     } else {
-        titleMessage = quest.title;
+        // 自动发放奖励：播放音效和完成消息
+        player.playSound("random.levelup");
+        const prefix = { translate: "quest.finished" };
+        let titleMessage;
+        if (typeof quest.title === "string") {
+            titleMessage = { text: quest.title };
+        } else {
+            titleMessage = quest.title;
+        }
+        const message = {
+            rawtext: [
+                prefix,
+                { text: "「" },
+                titleMessage,
+                { text: "」" }
+            ]
+        };
+        player.sendMessage(message);
     }
-    const message = {
-        rawtext: [
-            prefix,
-            { text: "「" },
-            titleMessage,
-            { text: "」" }
-        ]
-    };
-    player.sendMessage(message);
 }
 
 export function buildQuestBody(quest, player) {
@@ -705,18 +726,42 @@ function tryCompleteQuestWithBack(player, quest, backCallback) {
 
 export function checkAutoAchievement(player, quest) {
     if (!player || !quest) return false;
-    if (quest.autoComplete !== true) return false;
-    if (isQuestCompleted(player, quest)) return false;
+    if (quest.autoComplete !== true) {
+        return false;
+    }
+    if (isQuestCompleted(player, quest)) {
+        return false;
+    }
 
     const result = checkQuestConditionWithQuest(player, quest);
-
     if (!result.success) {
         return false;
     }
     markQuestCompleted(player, quest);
-    giveQuestAward(player, quest);
-
+    notifyAchievementComplete(player, quest);
     return true;
+}
+export function notifyAchievementComplete(player, quest) {
+    if (!player || !quest) return;
+    // 播放提示音效
+    player.playSound("random.levelup");
+    // 发送完成消息
+    const prefix = { translate: "quest.completed_go_claim" };
+    let titleMessage;
+    if (typeof quest.title === "string") {
+        titleMessage = { text: quest.title };
+    } else {
+        titleMessage = quest.title;
+    }
+    const message = {
+        rawtext: [
+            prefix,
+            { text: "「" },
+            titleMessage,
+            { text: "」" }
+        ]
+    };
+    player.sendMessage(message);
 }
 
 export { giveItem };
