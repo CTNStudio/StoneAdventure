@@ -14,6 +14,7 @@ import './entities/ancient_stone_totem.js';
 import "./stone_heart/stone_heart_core.js";
 import "./stone_heart/stone_heart_eat.js";
 import "./stone_heart/stone_heart_feedback.js";
+import './stone_heart/stone_heart_display.js';
 import { initForgeCore } from "./forge/forge_core.js";
 import { initPlayerAttributes } from "./forge/player_attributes.js";
 import { initWeaponEffects } from "./forge/weapon_effects.js";

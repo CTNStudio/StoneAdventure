@@ -1,0 +1,92 @@
+{
+  "namespace": "stone_heart",
+
+  // 石心面板（显示在右下角，可调整 offset）
+  "stone_heart_panel": {
+    "$key": "!sh.",
+    "$atext": "$actionbar_text",
+    "$num": "($atext - ('%.4s' * $atext))", // 提取数值（小数）
+    "type": "panel",
+    "size": ["100%", 9],
+    "offset": [100, -10],          // 调整位置（左下，靠近血条）
+    "layer": 200,
+    "anchor_from": "bottom_left",
+    "anchor_to": "bottom_left",
+    "visible": "(('%.4s' * $atext) = $key)",
+    "controls": [
+      // 20 个半心位，从右向左排列，每个位置先放半心，再放整心
+      // 偏移量 = (19 - i) * 9，每个位置两个控件
+      // i = 19（最右）
+      { "half_19": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [171,0], "visible": "(($num > 38) and ($num < 40))" } },
+      { "full_19": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [171,0], "visible": "($num > 39)" } },
+      // i = 18
+      { "half_18": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [162,0], "visible": "(($num > 36) and ($num < 38))" } },
+      { "full_18": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [162,0], "visible": "($num > 37)" } },
+      // i = 17
+      { "half_17": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [153,0], "visible": "(($num > 34) and ($num < 36))" } },
+      { "full_17": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [153,0], "visible": "($num > 35)" } },
+      // i = 16
+      { "half_16": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [144,0], "visible": "(($num > 16) and ($num < 16.5 or $num = 16.5))" } },
+      { "full_16": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [144,0], "visible": "($num > 16.5)" } },
+      // i = 15
+      { "half_15": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [135,0], "visible": "(($num > 15) and ($num < 15.5 or $num = 15.5))" } },
+      { "full_15": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [135,0], "visible": "($num > 15.5)" } },
+      // i = 14
+      { "half_14": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [126,0], "visible": "(($num > 14) and ($num < 14.5 or $num = 14.5))" } },
+      { "full_14": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [126,0], "visible": "($num > 14.5)" } },
+      // i = 13
+      { "half_13": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [117,0], "visible": "(($num > 13) and ($num < 13.5 or $num = 13.5))" } },
+      { "full_13": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [117,0], "visible": "($num > 13.5)" } },
+      // i = 12
+      { "half_12": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [108,0], "visible": "(($num > 12) and ($num < 12.5 or $num = 12.5))" } },
+      { "full_12": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [108,0], "visible": "($num > 12.5)" } },
+      // i = 11
+      { "half_11": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [99,0], "visible": "(($num > 11) and ($num < 11.5 or $num = 11.5))" } },
+      { "full_11": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [99,0], "visible": "($num > 11.5)" } },
+      // i = 10
+      { "half_10": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [90,0], "visible": "(($num > 10) and ($num < 10.5 or $num = 10.5))" } },
+      { "full_10": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [90,0], "visible": "($num > 10.5)" } },
+      // i = 9
+      { "half_9": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [81,0], "visible": "(($num > 9) and ($num < 9.5 or $num = 9.5))" } },
+      { "full_9": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [81,0], "visible": "($num > 9.5)" } },
+      // i = 8
+      { "half_8": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [72,0], "visible": "(($num > 8) and ($num < 8.5 or $num = 8.5))" } },
+      { "full_8": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [72,0], "visible": "($num > 8.5)" } },
+      // i = 7
+      { "half_7": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [63,0], "visible": "(($num > 7) and ($num < 7.5 or $num = 7.5))" } },
+      { "full_7": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [63,0], "visible": "($num > 7.5)" } },
+      // i = 6
+      { "half_6": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [54,0], "visible": "(($num > 6) and ($num < 6.5 or $num = 6.5))" } },
+      { "full_6": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [54,0], "visible": "($num > 6.5)" } },
+      // i = 5
+      { "half_5": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [45,0], "visible": "(($num > 5) and ($num < 5.5 or $num = 5.5))" } },
+      { "full_5": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [45,0], "visible": "($num > 5.5)" } },
+      // i = 4
+      { "half_4": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [36,0], "visible": "(($num > 4) and ($num < 4.5 or $num = 4.5))" } },
+      { "full_4": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [36,0], "visible": "($num > 4.5)" } },
+      // i = 3
+      { "half_3": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [27,0], "visible": "(($num > 3) and ($num < 3.5 or $num = 3.5))" } },
+      { "full_3": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [27,0], "visible": "($num > 3.5)" } },
+      // i = 2
+      { "half_2": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [18,0], "visible": "(($num > 2) and ($num < 2.5 or $num = 2.5))" } },
+      { "full_2": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [18,0], "visible": "($num > 2.5)" } },
+      // i = 1
+      { "half_1": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [9,0], "visible": "(($num > 1) and ($num < 1.5 or $num = 1.5))" } },
+      { "full_1": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [9,0], "visible": "($num > 1.5)" } },
+      // i = 0（最左）
+      { "half_0": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [0,0], "visible": "(($num > 0) and ($num < 0.5 or $num = 0.5))" } },
+      { "full_0": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [0,0], "visible": "($num > 0.5)" } }
+    ]
+  },
+
+  // 工厂：绑定到 ActionBar 文本
+  "stone_heart_factory": {
+    "type": "panel",
+    "factory": {
+      "name": "hud_actionbar_text_factory",
+      "control_ids": {
+        "hud_actionbar_text": "stone_heart_panel@stone_heart.stone_heart_panel"
+      }
+    }
+  }
+}

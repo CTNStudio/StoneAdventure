@@ -27,28 +27,24 @@ export function getStoneHeart(player) {
 }
 
 export function setStoneHeart(player, amount) {
-  const stoneHeartMax = getStoneHeartMax(player);
-  const stoneHeart = Math.min(stoneHeartMax, Math.max(0, amount));
-
-  player.setDynamicProperty('stone_heart', stoneHeart);
-  return stoneHeart;
+    const stoneHeartMax = getStoneHeartMax(player);
+    const stoneHeart = Math.min(stoneHeartMax, Math.max(0, amount));
+    player.setDynamicProperty('stone_heart', stoneHeart);
+    return stoneHeart;
 }
 
 export function setStoneHeartMax(player, amount) {
-  const oldStoneHeartMax = getStoneHeartMax(player);
-  const oldStoneHeart = getStoneHeart(player);
-  const stoneHeartMax = Math.max(0, amount);
-
-  const stoneHeart = stoneHeartMax > oldStoneHeartMax
-    ? Math.min(stoneHeartMax, oldStoneHeart + stoneHeartMax - oldStoneHeartMax)
-    : Math.min(oldStoneHeart, stoneHeartMax);
-
-  player.setDynamicProperties({
-    'stone_heartMax': stoneHeartMax,
-    'stone_heart': stoneHeart
-  });
-
-  return stoneHeartMax;
+    const oldStoneHeartMax = getStoneHeartMax(player);
+    const oldStoneHeart = getStoneHeart(player);
+    const stoneHeartMax = Math.max(0, amount);
+    const stoneHeart = stoneHeartMax > oldStoneHeartMax
+        ? Math.min(stoneHeartMax, oldStoneHeart + stoneHeartMax - oldStoneHeartMax)
+        : Math.min(oldStoneHeart, stoneHeartMax);
+    player.setDynamicProperties({
+        'stone_heartMax': stoneHeartMax,
+        'stone_heart': stoneHeart
+    });
+    return stoneHeartMax;
 }
 
 export function increaseStoneHeartMax(player, amount) {
@@ -240,15 +236,13 @@ system.runInterval(commitStoneHeartDamage, 1);
 system.runInterval(regenStoneHeart, 5);
 
 world.afterEvents.playerSpawn.subscribe(event => {
-  const player = event.player;
-  const stoneHeartMax = getStoneHeartMax(player);
-
-  lastDamageTick.set(player.id, system.currentTick);
-  lastRegenTick.delete(player.id);
-  stoneHeartInvulnerabilityUntil.delete(player.id);
-  pendingDamage.delete(player.id);
-
-  if (!event.initialSpawn && stoneHeartMax > 0) {
-    setStoneHeart(player, stoneHeartMax);
-  }
+    const player = event.player;
+    // 仅重置恢复相关状态，不操作分数
+    lastDamageTick.set(player.id, system.currentTick);
+    lastRegenTick.delete(player.id);
+    stoneHeartInvulnerabilityUntil.delete(player.id);
+    pendingDamage.delete(player.id);
+    if (!event.initialSpawn && getStoneHeartMax(player) > 0) {
+        setStoneHeart(player, getStoneHeartMax(player));
+    }
 });

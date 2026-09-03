@@ -1,0 +1,6 @@
+{
+  "ui_defs": [
+    "ui/javacombat/saturation.json",
+    "ui/stone_heart_hud.json"
+  ]
+}
