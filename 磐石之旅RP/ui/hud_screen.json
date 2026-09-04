@@ -2143,7 +2143,7 @@
     "offset": [ 0, "50%-68px" ],
     "texture": "textures/ui/hud_tip_text_background",
     "$atext": "$actionbar_text",
-    "visible": "(not (('%.4s' * $atext) = '!sh.'))",
+    "visible": "((('%.5s' * $atext) != '!shr.') and (('%.5s' * $atext) != '!shx.')))",
     "alpha": "@hud.anim_actionbar_text_background_alpha_out",
     "controls": [
       {

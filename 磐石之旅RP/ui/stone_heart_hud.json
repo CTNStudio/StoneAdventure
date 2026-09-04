@@ -1,85 +1,836 @@
 {
   "namespace": "stone_heart",
 
-  // 石心面板（显示在右下角，可调整 offset）
   "stone_heart_panel": {
-    "$key": "!sh.",
+    "$key": "!shr.",
     "$atext": "$actionbar_text",
-    "$num": "($atext - ('%.4s' * $atext))", // 提取数值（小数）
+
     "type": "panel",
-    "size": ["100%", 9],
-    "offset": [100, -10],          // 调整位置（左下，靠近血条）
+    "size": [106, 17],
+    "offset": [100, -10],
     "layer": 200,
     "anchor_from": "bottom_left",
     "anchor_to": "bottom_left",
-    "visible": "(('%.4s' * $atext) = $key)",
+
+    "bindings": [
+      {
+        "binding_name": "((('%.5s' * $atext) = $key) and #show_survival_ui)",
+        "binding_name_override": "#visible"
+      }
+    ],
+
     "controls": [
-      // 20 个半心位，从右向左排列，每个位置先放半心，再放整心
-      // 偏移量 = (19 - i) * 9，每个位置两个控件
-      // i = 19（最右）
-      { "half_19": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [171,0], "visible": "(($num > 38) and ($num < 40))" } },
-      { "full_19": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [171,0], "visible": "($num > 39)" } },
-      // i = 18
-      { "half_18": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [162,0], "visible": "(($num > 36) and ($num < 38))" } },
-      { "full_18": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [162,0], "visible": "($num > 37)" } },
-      // i = 17
-      { "half_17": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [153,0], "visible": "(($num > 34) and ($num < 36))" } },
-      { "full_17": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [153,0], "visible": "($num > 35)" } },
-      // i = 16
-      { "half_16": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [144,0], "visible": "(($num > 16) and ($num < 16.5 or $num = 16.5))" } },
-      { "full_16": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [144,0], "visible": "($num > 16.5)" } },
-      // i = 15
-      { "half_15": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [135,0], "visible": "(($num > 15) and ($num < 15.5 or $num = 15.5))" } },
-      { "full_15": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [135,0], "visible": "($num > 15.5)" } },
-      // i = 14
-      { "half_14": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [126,0], "visible": "(($num > 14) and ($num < 14.5 or $num = 14.5))" } },
-      { "full_14": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [126,0], "visible": "($num > 14.5)" } },
-      // i = 13
-      { "half_13": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [117,0], "visible": "(($num > 13) and ($num < 13.5 or $num = 13.5))" } },
-      { "full_13": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [117,0], "visible": "($num > 13.5)" } },
-      // i = 12
-      { "half_12": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [108,0], "visible": "(($num > 12) and ($num < 12.5 or $num = 12.5))" } },
-      { "full_12": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [108,0], "visible": "($num > 12.5)" } },
-      // i = 11
-      { "half_11": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [99,0], "visible": "(($num > 11) and ($num < 11.5 or $num = 11.5))" } },
-      { "full_11": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [99,0], "visible": "($num > 11.5)" } },
-      // i = 10
-      { "half_10": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [90,0], "visible": "(($num > 10) and ($num < 10.5 or $num = 10.5))" } },
-      { "full_10": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [90,0], "visible": "($num > 10.5)" } },
-      // i = 9
-      { "half_9": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [81,0], "visible": "(($num > 9) and ($num < 9.5 or $num = 9.5))" } },
-      { "full_9": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [81,0], "visible": "($num > 9.5)" } },
-      // i = 8
-      { "half_8": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [72,0], "visible": "(($num > 8) and ($num < 8.5 or $num = 8.5))" } },
-      { "full_8": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [72,0], "visible": "($num > 8.5)" } },
-      // i = 7
-      { "half_7": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [63,0], "visible": "(($num > 7) and ($num < 7.5 or $num = 7.5))" } },
-      { "full_7": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [63,0], "visible": "($num > 7.5)" } },
-      // i = 6
-      { "half_6": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [54,0], "visible": "(($num > 6) and ($num < 6.5 or $num = 6.5))" } },
-      { "full_6": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [54,0], "visible": "($num > 6.5)" } },
-      // i = 5
-      { "half_5": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [45,0], "visible": "(($num > 5) and ($num < 5.5 or $num = 5.5))" } },
-      { "full_5": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [45,0], "visible": "($num > 5.5)" } },
-      // i = 4
-      { "half_4": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [36,0], "visible": "(($num > 4) and ($num < 4.5 or $num = 4.5))" } },
-      { "full_4": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [36,0], "visible": "($num > 4.5)" } },
-      // i = 3
-      { "half_3": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [27,0], "visible": "(($num > 3) and ($num < 3.5 or $num = 3.5))" } },
-      { "full_3": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [27,0], "visible": "($num > 3.5)" } },
-      // i = 2
-      { "half_2": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [18,0], "visible": "(($num > 2) and ($num < 2.5 or $num = 2.5))" } },
-      { "full_2": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [18,0], "visible": "($num > 2.5)" } },
-      // i = 1
-      { "half_1": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [9,0], "visible": "(($num > 1) and ($num < 1.5 or $num = 1.5))" } },
-      { "full_1": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [9,0], "visible": "($num > 1.5)" } },
-      // i = 0（最左）
-      { "half_0": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon_half", "offset": [0,0], "visible": "(($num > 0) and ($num < 0.5 or $num = 0.5))" } },
-      { "full_0": { "type": "image", "size": [9,9], "texture": "textures/ui/shield_icon", "offset": [0,0], "visible": "($num > 0.5)" } }
+      {
+        "stone_heart_empty": {
+          "type": "image",
+          "size": [106, 17],
+          "texture": "textures/ui/stone_heart_bar_empty",
+          "layer": 1
+        }
+      },
+
+      {
+        "stone_heart_full_2": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.98,
+          "layer": 2,
+          "visible": "($atext = '!shr.2')"
+        }
+      },
+
+      {
+        "stone_heart_full_4": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.96,
+          "layer": 2,
+          "visible": "($atext = '!shr.4')"
+        }
+      },
+
+      {
+        "stone_heart_full_6": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.94,
+          "layer": 2,
+          "visible": "($atext = '!shr.6')"
+        }
+      },
+
+      {
+        "stone_heart_full_8": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.92,
+          "layer": 2,
+          "visible": "($atext = '!shr.8')"
+        }
+      },
+
+      {
+        "stone_heart_full_10": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.9,
+          "layer": 2,
+          "visible": "($atext = '!shr.10')"
+        }
+      },
+
+      {
+        "stone_heart_full_12": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.88,
+          "layer": 2,
+          "visible": "($atext = '!shr.12')"
+        }
+      },
+
+      {
+        "stone_heart_full_14": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.86,
+          "layer": 2,
+          "visible": "($atext = '!shr.14')"
+        }
+      },
+
+      {
+        "stone_heart_full_16": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.84,
+          "layer": 2,
+          "visible": "($atext = '!shr.16')"
+        }
+      },
+
+      {
+        "stone_heart_full_18": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.82,
+          "layer": 2,
+          "visible": "($atext = '!shr.18')"
+        }
+      },
+
+      {
+        "stone_heart_full_20": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.8,
+          "layer": 2,
+          "visible": "($atext = '!shr.20')"
+        }
+      },
+
+      {
+        "stone_heart_full_22": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.78,
+          "layer": 2,
+          "visible": "($atext = '!shr.22')"
+        }
+      },
+
+      {
+        "stone_heart_full_24": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.76,
+          "layer": 2,
+          "visible": "($atext = '!shr.24')"
+        }
+      },
+
+      {
+        "stone_heart_full_26": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.74,
+          "layer": 2,
+          "visible": "($atext = '!shr.26')"
+        }
+      },
+
+      {
+        "stone_heart_full_28": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.72,
+          "layer": 2,
+          "visible": "($atext = '!shr.28')"
+        }
+      },
+
+      {
+        "stone_heart_full_30": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.7,
+          "layer": 2,
+          "visible": "($atext = '!shr.30')"
+        }
+      },
+
+      {
+        "stone_heart_full_32": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.68,
+          "layer": 2,
+          "visible": "($atext = '!shr.32')"
+        }
+      },
+
+      {
+        "stone_heart_full_34": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.66,
+          "layer": 2,
+          "visible": "($atext = '!shr.34')"
+        }
+      },
+
+      {
+        "stone_heart_full_36": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.64,
+          "layer": 2,
+          "visible": "($atext = '!shr.36')"
+        }
+      },
+
+      {
+        "stone_heart_full_38": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.62,
+          "layer": 2,
+          "visible": "($atext = '!shr.38')"
+        }
+      },
+
+      {
+        "stone_heart_full_40": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.6,
+          "layer": 2,
+          "visible": "($atext = '!shr.40')"
+        }
+      },
+
+      {
+        "stone_heart_full_42": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.58,
+          "layer": 2,
+          "visible": "($atext = '!shr.42')"
+        }
+      },
+
+      {
+        "stone_heart_full_44": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.56,
+          "layer": 2,
+          "visible": "($atext = '!shr.44')"
+        }
+      },
+
+      {
+        "stone_heart_full_46": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.54,
+          "layer": 2,
+          "visible": "($atext = '!shr.46')"
+        }
+      },
+
+      {
+        "stone_heart_full_48": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.52,
+          "layer": 2,
+          "visible": "($atext = '!shr.48')"
+        }
+      },
+
+      {
+        "stone_heart_full_50": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.5,
+          "layer": 2,
+          "visible": "($atext = '!shr.50')"
+        }
+      },
+
+      {
+        "stone_heart_full_52": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.48,
+          "layer": 2,
+          "visible": "($atext = '!shr.52')"
+        }
+      },
+
+      {
+        "stone_heart_full_54": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.46,
+          "layer": 2,
+          "visible": "($atext = '!shr.54')"
+        }
+      },
+
+      {
+        "stone_heart_full_56": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.44,
+          "layer": 2,
+          "visible": "($atext = '!shr.56')"
+        }
+      },
+
+      {
+        "stone_heart_full_58": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.42,
+          "layer": 2,
+          "visible": "($atext = '!shr.58')"
+        }
+      },
+
+      {
+        "stone_heart_full_60": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.4,
+          "layer": 2,
+          "visible": "($atext = '!shr.60')"
+        }
+      },
+
+      {
+        "stone_heart_full_62": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.38,
+          "layer": 2,
+          "visible": "($atext = '!shr.62')"
+        }
+      },
+
+      {
+        "stone_heart_full_64": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.36,
+          "layer": 2,
+          "visible": "($atext = '!shr.64')"
+        }
+      },
+
+      {
+        "stone_heart_full_66": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.34,
+          "layer": 2,
+          "visible": "($atext = '!shr.66')"
+        }
+      },
+
+      {
+        "stone_heart_full_68": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.32,
+          "layer": 2,
+          "visible": "($atext = '!shr.68')"
+        }
+      },
+
+      {
+        "stone_heart_full_70": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.3,
+          "layer": 2,
+          "visible": "($atext = '!shr.70')"
+        }
+      },
+
+      {
+        "stone_heart_full_72": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.28,
+          "layer": 2,
+          "visible": "($atext = '!shr.72')"
+        }
+      },
+
+      {
+        "stone_heart_full_74": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.26,
+          "layer": 2,
+          "visible": "($atext = '!shr.74')"
+        }
+      },
+
+      {
+        "stone_heart_full_76": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.24,
+          "layer": 2,
+          "visible": "($atext = '!shr.76')"
+        }
+      },
+
+      {
+        "stone_heart_full_78": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.22,
+          "layer": 2,
+          "visible": "($atext = '!shr.78')"
+        }
+      },
+
+      {
+        "stone_heart_full_80": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.2,
+          "layer": 2,
+          "visible": "($atext = '!shr.80')"
+        }
+      },
+
+      {
+        "stone_heart_full_82": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.18,
+          "layer": 2,
+          "visible": "($atext = '!shr.82')"
+        }
+      },
+
+      {
+        "stone_heart_full_84": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.16,
+          "layer": 2,
+          "visible": "($atext = '!shr.84')"
+        }
+      },
+
+      {
+        "stone_heart_full_86": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.14,
+          "layer": 2,
+          "visible": "($atext = '!shr.86')"
+        }
+      },
+
+      {
+        "stone_heart_full_88": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.12,
+          "layer": 2,
+          "visible": "($atext = '!shr.88')"
+        }
+      },
+
+      {
+        "stone_heart_full_90": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.1,
+          "layer": 2,
+          "visible": "($atext = '!shr.90')"
+        }
+      },
+
+      {
+        "stone_heart_full_92": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.08,
+          "layer": 2,
+          "visible": "($atext = '!shr.92')"
+        }
+      },
+
+      {
+        "stone_heart_full_94": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.06,
+          "layer": 2,
+          "visible": "($atext = '!shr.94')"
+        }
+      },
+
+      {
+        "stone_heart_full_96": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.04,
+          "layer": 2,
+          "visible": "($atext = '!shr.96')"
+        }
+      },
+
+      {
+        "stone_heart_full_98": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0.02,
+          "layer": 2,
+          "visible": "($atext = '!shr.98')"
+        }
+      },
+
+      {
+        "stone_heart_full_100": {
+          "type": "image",
+          "size": [89, 17],
+          "offset": [8, 0],
+          "texture": "textures/ui/stone_heart_bar_full",
+          "uv": [17, 0],
+          "uv_size": [89, 17],
+          "clip_direction": "left",
+          "clip_pixelperfect": true,
+          "clip_ratio": 0,
+          "layer": 2,
+          "visible": "($atext = '!shr.100')"
+        }
+      }
     ]
   },
 
-  // 工厂：绑定到 ActionBar 文本
   "stone_heart_factory": {
     "type": "panel",
     "factory": {
