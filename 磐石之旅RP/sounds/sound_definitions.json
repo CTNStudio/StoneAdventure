@@ -150,6 +150,24 @@
           "volume": 1.0
         }
       ]
+    },
+    "stonecraft.stone_heart_broken": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/stone_heart_broken",
+          "volume": 10.0
+        }
+      ]
+    },
+    "stonecraft.stone_heart_hurt": {
+      "category": "neutral",
+      "sounds": [
+        {
+          "name": "sounds/stone_heart_hurt",
+          "volume": 6.0
+        }
+      ]
     }
   }
 }

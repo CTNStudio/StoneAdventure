@@ -204,15 +204,15 @@ world.beforeEvents.entityHurt.subscribe(event => {
     return;
   }
 
-  if (damage < 0.5) {
-    showStoneHeartFeedback(player);
-    return;
-  }
-
   const queuedDamage = pendingDamage.get(player.id) ?? 0;
   const stoneHeart = Math.max(0, getStoneHeart(player) - queuedDamage);
 
   if (stoneHeart <= 0) {
+    return;
+  }
+
+  if (damage < 0.5) {
+    showStoneHeartFeedback(player, false);
     return;
   }
 
@@ -226,7 +226,7 @@ world.beforeEvents.entityHurt.subscribe(event => {
     tick + stoneHeartInvulnerabilityTicks
   );
 
-  showStoneHeartFeedback(player);
+  showStoneHeartFeedback(player, stoneHeart - stoneHeartDamage <= 0);
 
   event.damage = Math.max(0, remainingDamage);
 });

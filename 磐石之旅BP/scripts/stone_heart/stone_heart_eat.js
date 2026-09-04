@@ -1,4 +1,4 @@
-import { world } from "@minecraft/server";
+import { world, system } from "@minecraft/server";
 import { increaseStoneHeartMax } from "./stone_heart_core.js";
 
 world.afterEvents.itemCompleteUse.subscribe((event) => {
@@ -9,4 +9,10 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
         case "stonecraft:stone_apple": increaseStoneHeartMax(player, 4); break;
         default: break;
     }
+    system.run(() => {
+        player.playSound("random.levelup", {
+            volume: 0.6,
+            pitch: 1.4
+        });
+    });
 });
