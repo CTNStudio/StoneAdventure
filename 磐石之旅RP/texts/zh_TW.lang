@@ -168,6 +168,7 @@ stonecraft.item.blindness_potion=失明藥水
 stonecraft.item.longer_blindness_potion=失明藥水
 stonecraft.item.potion_of_growth=萌芽藥水
 stonecraft.item.potion_of_corruption=腐化藥水
+stonecraft.item.stone_heart=石心
 
 item.spawn_egg.entity.stonecraft:stone_guard.name=石頭守衛刷怪蛋
 item.spawn_egg.entity.stonecraft:elder_stone_guard.name=遠古石頭守衛刷怪蛋

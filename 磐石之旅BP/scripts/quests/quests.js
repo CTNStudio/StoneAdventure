@@ -598,72 +598,6 @@ export const CHAPTERS = [
                 iconPath: "textures/items/tools/swords/lv5"
             },
             {
-                id: "lv5stone_armors",
-                title: { translate: "sc.quest.lv5stone_armors.title" },
-                description: {
-                    rawtext: [
-                        { translate: "sc.quest.lv5stone_armors.body" },
-                        { text: "\n\n" },
-                        { translate: "sc.quest.lv5stone_armors.body1" }
-                    ]
-                },
-                condition: {
-                    allItems: [
-                        {
-                            itemId: "stonecraft:lv5stone_helmet",
-                            amount: 1,
-                            name: { translate: "stonecraft.item.helmet.lv5" }
-                        },
-                        {
-                            itemId: "stonecraft:lv5stone_chestplate",
-                            amount: 1,
-                            name: { translate: "stonecraft.item.chestplate.lv5" }
-                        },
-                        {
-                            itemId: "stonecraft:lv5stone_leggings",
-                            amount: 1,
-                            name: { translate: "stonecraft.item.leggings.lv5" }
-                        },
-                        {
-                            itemId: "stonecraft:lv5stone_boots",
-                            amount: 1,
-                            name: { translate: "stonecraft.item.boots.lv5" }
-                        }
-                    ]
-                },
-                award: {
-                    exp: 1000,
-                    items: [
-                        {
-                            itemId: "stonecraft:stone_star",
-                            amount: 1,
-                            name: { translate: "stonecraft.item.stone_star" }
-                        },
-                        {
-                            itemId: "minecraft:iron_ingot",
-                            amount: 64,
-                            name: { translate: "item.iron_ingot.name" }
-                        },
-                        {
-                            itemId: "stonecraft:stone_coin",
-                            amount: 128,
-                            name: { translate: "stonecraft.item.stone_coin" }
-                        },
-                        {
-                            itemId: "minecraft:diamond",
-                            amount: 32,
-                            name: { translate: "item.diamond.name" }
-                        },
-                        {
-                            itemId: "minecraft:netherite_ingot",
-                            amount: 4,
-                            name: { translate: "item.netherite_ingot.name" }
-                        }
-                    ]
-                },
-                iconPath: "textures/items/armors/chestplates/lv5"
-            },
-            {
                 id: "stone_hodgepodge",
                 title: { translate: "sc.quest.stone_hodgepodge.title" },
                 description: {
@@ -1804,7 +1738,74 @@ export const CHAPTERS = [
                     ]
                 },
                 iconPath: "textures/items/foods/stone_bread"
-            }
+            },
+            {
+                id: "lv5stone_armors_ach",
+                title: { translate: "sc.quest.lv5stone_armors.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.lv5stone_armors.body" },
+                        { text: "\n" },
+                    ]
+                },
+                autoComplete: true,
+                manualReward: true,
+                condition: {
+                    allItems: [
+                        {
+                            itemId: "stonecraft:lv5stone_helmet",
+                            amount: 1,
+                            name: { translate: "stonecraft.item.helmet.lv5" }
+                        },
+                        {
+                            itemId: "stonecraft:lv5stone_chestplate",
+                            amount: 1,
+                            name: { translate: "stonecraft.item.chestplate.lv5" }
+                        },
+                        {
+                            itemId: "stonecraft:lv5stone_leggings",
+                            amount: 1,
+                            name: { translate: "stonecraft.item.leggings.lv5" }
+                        },
+                        {
+                            itemId: "stonecraft:lv5stone_boots",
+                            amount: 1,
+                            name: { translate: "stonecraft.item.boots.lv5" }
+                        }
+                    ]
+                },
+                award: {
+                    exp: 1000,
+                    items: [
+                        {
+                            itemId: "stonecraft:stone_star",
+                            amount: 1,
+                            name: { translate: "stonecraft.item.stone_star" }
+                        },
+                        {
+                            itemId: "minecraft:iron_ingot",
+                            amount: 64,
+                            name: { translate: "item.iron_ingot.name" }
+                        },
+                        {
+                            itemId: "stonecraft:stone_coin",
+                            amount: 128,
+                            name: { translate: "stonecraft.item.stone_coin" }
+                        },
+                        {
+                            itemId: "minecraft:diamond",
+                            amount: 32,
+                            name: { translate: "item.diamond.name" }
+                        },
+                        {
+                            itemId: "minecraft:netherite_ingot",
+                            amount: 4,
+                            name: { translate: "item.netherite_ingot.name" }
+                        }
+                    ]
+                },
+                iconPath: "textures/items/armors/chestplates/lv5"
+            },
         ]
     }
 ];

@@ -6,13 +6,14 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
     const itemId = event.itemStack.typeId;
 
     switch (itemId) {
-        case "stonecraft:stone_apple": increaseStoneHeartMax(player, 4); break;
+        case "stonecraft:stone_heart": increaseStoneHeartMax(player, 4); 
+            system.run(() => {
+                player.playSound("random.levelup", {
+                    volume: 0.6,
+                    pitch: 1.4
+                });
+            });
+        break;
         default: break;
     }
-    system.run(() => {
-        player.playSound("random.levelup", {
-            volume: 0.6,
-            pitch: 1.4
-        });
-    });
 });

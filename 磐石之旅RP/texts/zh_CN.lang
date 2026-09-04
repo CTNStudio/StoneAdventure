@@ -169,6 +169,7 @@ stonecraft.item.blindness_potion=失明药水
 stonecraft.item.longer_blindness_potion=失明药水
 stonecraft.item.potion_of_growth=萌芽药水
 stonecraft.item.potion_of_corruption=腐化药水
+stonecraft.item.stone_heart=石心
 
 item.spawn_egg.entity.stonecraft:stone_guard.name=石头守卫刷怪蛋
 item.spawn_egg.entity.stonecraft:elder_stone_guard.name=远古石头守卫刷怪蛋
@@ -380,7 +381,6 @@ sc.quest.lv5stone_sword.title=五级压缩石剑
 sc.quest.lv5stone_sword.body=在工作台中合成五级压缩石剑
 sc.quest.lv5stone_armors.title=五级压缩石套
 sc.quest.lv5stone_armors.body=凑齐五级压缩石头
-sc.quest.lv5stone_armors.body1=§o艰难但是值得§r
 sc.quest.lv5stone_sword.body1=§o我好像很强§r
 sc.quest.stone_hodgepodge.title=石物大杂烩
 sc.quest.stone_hodgepodge.body=在石头工作台中合成石物大杂烩！

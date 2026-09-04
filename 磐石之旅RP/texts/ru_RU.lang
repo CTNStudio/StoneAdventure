@@ -169,6 +169,7 @@ stonecraft.item.blindness_potion=Зелье слепоты
 stonecraft.item.longer_blindness_potion=Зелье слепоты
 stonecraft.item.potion_of_growth=Зелье прорастания
 stonecraft.item.potion_of_corruption=Зелье разложения
+stonecraft.item.stone_heart=Каменное сердце
 
 item.spawn_egg.entity.stonecraft:stone_guard.name=Яйцо призыва стража камня
 item.spawn_egg.entity.stonecraft:elder_stone_guard.name=Яйцо призыва древнего стража камня

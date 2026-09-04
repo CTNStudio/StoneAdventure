@@ -169,6 +169,7 @@ stonecraft.item.blindness_potion=Blindness Potion
 stonecraft.item.longer_blindness_potion=Blindness Potion
 stonecraft.item.potion_of_growth=Potion of Growth
 stonecraft.item.potion_of_corruption=Potion of Corruption
+stonecraft.item.stone_heart=Stone Heart
 
 item.spawn_egg.entity.stonecraft:stone_guard.name=Spawn Stone Guard
 item.spawn_egg.entity.stonecraft:elder_stone_guard.name=Spawn Elder Stone Guard
