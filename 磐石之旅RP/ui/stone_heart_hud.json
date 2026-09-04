@@ -7,11 +7,10 @@
 
     "type": "panel",
     "size": [106, 17],
-    "offset": [100, -10],
+    "offset": [145, -2],
     "layer": 200,
-    "anchor_from": "bottom_left",
-    "anchor_to": "bottom_left",
-
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom_middle",
     "bindings": [
       {
         "binding_name": "((('%.5s' * $atext) = $key) and #show_survival_ui)",

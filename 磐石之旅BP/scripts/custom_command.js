@@ -56,7 +56,7 @@ system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
             name: "sa:show_stone_heart",
             description: "显示石心",
             permissionLevel: CommandPermissionLevel.Any,
-            cheatsRequired: true,
+            cheatsRequired: false,
         },
         (origin) => {
             const players = world.getAllPlayers();
