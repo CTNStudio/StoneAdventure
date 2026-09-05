@@ -181,6 +181,7 @@ item.spawn_egg.entity.stonecraft:ancient_stone_totem.name=Яйцо призыв�
 item.spawn_egg.entity.stonecraft:stone_fissuring_husk.name=Яйцо призыва раскалывающейся каменной оболочки
 item.spawn_egg.entity.stonecraft:wandering_collector.name=Яйцо призыва странствующего коллекционера
 item.spawn_egg.entity.stonecraft:snatcher.name=Яйцо призыва похитителя
+item.spawn_egg.entity.stonecraft:spire_remnant.name=Яйцо призыва остатка шпиля
 
 item.spawn_egg.entity.stonecraft:mossy_stone_guard.name=Яйцо призыва мшистого стража камня
 item.spawn_egg.entity.stonecraft:mossy_stone_shooter.name=Яйцо призыва мшистого каменного стрелка
@@ -227,7 +228,7 @@ entity.stonecraft:molten_stone_vagabond.name=Расплавленный каме
 entity.stonecraft:molten_stone_fissuring_husk.name=Расплавленная раскалывающаяся каменная оболочка
 
 entity.stonecraft:ancient_stone_totem.name=Древний каменный тотем
-entity.stonecraft:ancient_stone_totem_2.name=Древний каменный тотем — фаза 2
+entity.stonecraft:spire_remnant.name=Остаток шпиля
 
 entity.stone_vendor.name=Каменный странствующий торговец
 entity.wandering_collector.name=Странствующий коллекционер

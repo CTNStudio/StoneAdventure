@@ -1,0 +1,21 @@
+{
+    "format_version": "1.26.40",
+    "minecraft:structure_set": {
+        "description": {
+            "identifier": "stonecraft:stone_battle_tower_structure_sets"
+        },
+        "placement": {
+            "type": "minecraft:random_spread",
+            "salt": 62385678,
+            "separation": 10,
+            "spacing": 30,
+            "spread_type": "linear"
+        },
+        "structures": [
+            {
+                "structure": "stonecraft:stone_battle_tower",
+                "weight": 5
+            }
+        ]
+    }
+}

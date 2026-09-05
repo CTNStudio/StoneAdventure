@@ -1,0 +1,33 @@
+{
+    "format_version": "1.26.40",
+    "minecraft:jigsaw": {
+        "description": {
+            "identifier": "stonecraft:stone_battle_tower"
+        },
+        "step": "surface_structures",
+        "heightmap_projection": "world_surface",
+        "liquid_settings": "ignore_waterlogging",
+        "start_height": {
+            "type": "constant",
+            "value": {
+                "absolute": 0
+            }
+        },
+        "terrain_adaptation": "beard_thin",
+        "max_depth": 8,
+        "start_pool": "stonecraft:pool_stone_battle_tower",
+        "biome_filters": [
+            {
+                "any_of": [
+                    { "test": "has_biome_tag", "value": "plains" },
+                    { "test": "has_biome_tag", "value": "sunflower_plains" },
+                    { "test": "has_biome_tag", "value": "meadow" },
+                    { "test": "has_biome_tag", "value": "savanna" },
+                    { "test": "has_biome_tag", "value": "desert" },
+                    { "test": "has_biome_tag", "value": "ice_plains" }
+                ]
+            }
+        ],
+        "max_distance_from_center": 128
+    }
+}

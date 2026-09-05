@@ -11,7 +11,7 @@
       "minecraft:display_name": {
         "value": "stonecraft.item.stone_heart"
       },
-      "minecraft:icon": "stonecraft.stone_apple",
+      "minecraft:icon": "stonecraft.stone_heart",
       "minecraft:use_animation": "eat",
       "minecraft:use_modifiers": {
         "use_duration": 1.4,

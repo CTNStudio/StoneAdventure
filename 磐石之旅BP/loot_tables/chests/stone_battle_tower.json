@@ -7,7 +7,7 @@
       },
       "entries": [
         {
-            "weight": 5,
+            "weight": 3,
             "type": "item",
             "name": "stonecraft:stone_coin",
             "functions": [
@@ -21,21 +21,7 @@
             ]
         },
         {
-            "weight": 1,
-            "type": "item",
-            "name": "iron_ingot",
-            "functions": [
-                {
-                    "function": "set_count",
-                    "count": {
-                        "min": 3,
-                        "max": 6
-                    }
-                }
-            ]
-        },
-        {
-            "weight": 1,
+            "weight": 2,
             "type": "item",
             "name": "web",
             "functions": [
@@ -49,7 +35,7 @@
             ]
         },
         {
-            "weight": 1,
+            "weight": 3,
             "type": "item",
             "name": "stonecraft:lv1stone",
             "functions": [
@@ -63,7 +49,35 @@
             ]
         },
         {
-            "weight": 1,
+            "weight": 3,
+            "type": "item",
+            "name": "minecraft:bread",
+            "functions": [
+                {
+                    "function": "set_count",
+                    "count": {
+                        "min": 1,
+                        "max": 3
+                    }
+                }
+            ]
+        },
+        {
+            "weight": 2,
+            "type": "item",
+            "name": "minecraft:copper_ingot",
+            "functions": [
+                {
+                    "function": "set_count",
+                    "count": {
+                        "min": 2,
+                        "max": 4
+                    }
+                }
+            ]
+        },
+        {
+            "weight": 2,
             "type": "item",
             "name": "stonecraft:lv2stone",
             "functions": [
@@ -91,9 +105,9 @@
             ]
         },
         {
-            "weight": 1,
+            "weight": 2,
             "type": "item",
-            "name": "stonecraft:stone_bread",
+            "name": "minecraft:experience_bottle",
             "functions": [
                 {
                     "function": "set_count",
@@ -105,56 +119,23 @@
             ]
         },
         {
+            "weight": 4,
+            "type": "item",
+            "name": "minecraft:rotten_flesh",
+            "functions": [
+                {
+                    "function": "set_count",
+                    "count": {
+                        "min": 2,
+                        "max": 8
+                    }
+                }
+            ]
+        },
+        {
             "weight": 1,
             "type": "item",
             "name": "minecraft:golden_apple",
-            "functions": [
-                {
-                    "function": "set_count",
-                    "count": {
-                        "min": 0,
-                        "max": 1
-                    }
-                }
-            ]
-        },
-        {
-            "weight": 1,
-            "type": "item",
-            "name": "minecraft:potion",
-            "functions": [
-                {
-                    "function": "set_count",
-                    "count": {
-                        "min": 0,
-                        "max": 1
-                    }
-                }
-                ,
-                {
-                    "function": "set_data",
-                    "data": 36
-                }
-            ]
-        },
-        {
-            "weight": 1,
-            "type": "item",
-            "name": "stonecraft:blindness_potion",
-            "functions": [
-                {
-                    "function": "set_count",
-                    "count": {
-                        "min": 0,
-                        "max": 1
-                    }
-                }
-            ]
-        },
-        {
-            "weight": 1,
-            "type": "item",
-            "name": "minecraft:enchanted_golden_apple",
             "functions": [
                 {
                     "function": "set_count",

@@ -25,7 +25,7 @@
           "max_size": 1
         },
         "minecraft:biome_filter": {
-          "test": "has_biome_tag", "operator": "==", "value": "overworld"
+          "test": "has_biome_tag", "operator": "==", "value": "animal"
         }
       }
     ]

@@ -180,6 +180,7 @@ item.spawn_egg.entity.stonecraft:ancient_stone_totem.name=石之圖騰刷怪蛋
 item.spawn_egg.entity.stonecraft:stone_fissuring_husk.name=迸裂石殼刷怪蛋
 item.spawn_egg.entity.stonecraft:wandering_collector.name=流浪收藏家刷怪蛋
 item.spawn_egg.entity.stonecraft:snatcher.name=掠寶者刷怪蛋
+item.spawn_egg.entity.stonecraft:spire_remnant.name=高塔餘裔刷怪蛋
 
 item.spawn_egg.entity.stonecraft:mossy_stone_guard.name=苔石守衛刷怪蛋
 item.spawn_egg.entity.stonecraft:mossy_stone_shooter.name=苔石射手刷怪蛋
@@ -226,7 +227,7 @@ entity.stonecraft:molten_stone_vagabond.name=熔鑄石頭浪人
 entity.stonecraft:molten_stone_fissuring_husk.name=熔鑄迸裂石殼
 
 entity.stonecraft:ancient_stone_totem.name=石之圖騰
-entity.stonecraft:ancient_stone_totem_2.name=石之圖騰-二階段
+entity.stonecraft:spire_remnant.name=高塔餘裔
 
 entity.stone_vendor.name=石頭行商
 entity.wandering_collector.name=流浪收藏家

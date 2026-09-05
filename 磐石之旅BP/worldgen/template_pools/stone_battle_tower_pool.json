@@ -1,0 +1,19 @@
+{
+  "format_version": "1.21.20",
+  "minecraft:template_pool": {
+    "description": {
+      "identifier": "stonecraft:pool_stone_battle_tower"
+    },
+    "elements": [
+      {
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "projection": "rigid",
+          "processors": "stonecraft:stone_battle_tower_processor",
+          "location": "mysturcture:stone_battle_tower"
+        },
+        "weight": 1
+      }
+    ]
+  }
+}

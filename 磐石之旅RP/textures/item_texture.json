@@ -117,7 +117,10 @@
     "stonecraft.expansion_slab": {
       "textures": "textures/items/treasures/essences/expansion_slab"
     },
-    
+    "stonecraft.stone_heart": {
+      "textures": "textures/items/foods/stone_heart"
+    },
+
     "stonecraft.helmet.lv0": {
       "textures": "textures/items/armors/helmets/lv0"
     },

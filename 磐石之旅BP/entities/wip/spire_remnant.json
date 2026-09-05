@@ -1,0 +1,217 @@
+{
+  "format_version": "1.20.70",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "stonecraft:spire_remnant",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "component_groups": {
+      "stonecraft:phase_one": {
+        "minecraft:movement": {
+          "value": 0.23
+        },
+        "minecraft:attack": {
+          "damage": 6
+        }
+      },
+      "stonecraft:phase_two": {
+        "minecraft:movement": {
+          "value": 0.35
+        },
+        "minecraft:attack": {
+          "damage": 10
+        },
+        "minecraft:damage_sensor": {
+          "triggers": [
+            {
+              "damage_multiplier": 0.6
+            }
+          ]
+        }
+      },
+      "stonecraft:easy_attack": {
+        "minecraft:attack": {
+          "damage": 6
+        }
+      },
+      "stonecraft:normal_attack": {
+        "minecraft:attack": {
+          "damage": 8
+        }
+      },
+      "stonecraft:hard_attack": {
+        "minecraft:attack": {
+          "damage": 10
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": ["monster", "boss", "stone_boss", "undead", "mob"]
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/spire_remnant.json"
+      },
+      "minecraft:experience_reward": {
+        "on_death": "query.last_hit_by_player ? 200 : 0"
+      },
+      "minecraft:boss": {
+        "should_darken_sky": true,
+        "name": "§8高塔余裔§r",
+        "hud_range": 16
+      },
+      "minecraft:health": {
+        "value": 150,
+        "max": 150
+      },
+      "minecraft:collision_box": {
+        "height": 1.8,
+        "width": 0.6
+      },
+      "minecraft:scale": {
+        "value": 1.2
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": false
+      },
+      "minecraft:knockback_resistance": {
+        "value": 100
+      },
+      "minecraft:area_attack": {
+        "cause": "entity_attack",
+        "damage_cooldown": 5.0,
+        "damage_per_tick": 5,
+        "damage_range": 2.5,
+        "entity_filter": {
+          "test": "is_family",
+          "subject": "other",
+          "value": "player"
+        }
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1,
+        "entity_types": [
+          {
+            "filters": {
+              "all_of": [
+                { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone_boss" },
+                { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone" }
+              ]
+            },
+            "max_dist": 16
+          }
+        ]
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "priority": 2,
+        "within_radius": 6,
+        "must_reach": false,
+        "reselect_targets": true,
+        "must_see_forget_duration": 17.0,
+        "entity_types": [
+          {
+            "filters": {
+              "any_of": [
+                { "test": "is_family", "subject": "other", "value": "player" },
+                { "test": "is_family", "subject": "other", "value": "snowgolem" },
+                { "test": "is_family", "subject": "other", "value": "irongolem" },
+                { "test": "is_family", "subject": "other", "value": "warden" }
+              ]
+            },
+            "max_dist": 16.0,
+            "must_see": true
+          }
+        ],
+        "must_see": true
+      },
+      "minecraft:behavior.melee_attack": {
+        "priority": 3,
+        "melee_fov": 90.0,
+        "reach_multiplier": 1.0,
+        "speed_multiplier": 1.0,
+        "track_target": false,
+        "require_complete_path": true
+      },
+      "minecraft:behavior.move_indoors": {
+        "priority": 4
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 6,
+        "speed_multiplier": 1.0
+      },
+      "minecraft:behavior.look_at_player": {
+        "look_distance": 8,
+        "probability": 0.02,
+        "priority": 12
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 11
+      },
+      "minecraft:jump.static": {},
+      "minecraft:movement.basic": {},
+      "minecraft:physics": {},
+      "minecraft:breathable": {
+        "breathes_solids": true,
+        "breathes_water": true
+      },
+      "minecraft:underwater_movement": {
+        "value": 0
+      },
+      "minecraft:navigation.generic": {
+        "is_amphibious": false,
+        "can_path_over_water": false,
+        "can_swim": false,
+        "avoid_water": true,
+        "avoid_sun": false,
+        "can_walk": true,
+        "can_break_doors": true,
+        "can_pass_doors": true
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "sequence": [
+          {
+            "add": {
+              "component_groups": ["stonecraft:phase_one"]
+            }
+          },
+          {
+            "filters": { "test": "is_difficulty", "value": "easy" },
+            "add": {
+              "component_groups": ["stonecraft:easy_attack"]
+            }
+          },
+          {
+            "filters": { "test": "is_difficulty", "value": "normal" },
+            "add": {
+              "component_groups": ["stonecraft:normal_attack"]
+            }
+          },
+          {
+            "filters": { "test": "is_difficulty", "value": "hard" },
+            "add": {
+              "component_groups": ["stonecraft:hard_attack"]
+            }
+          }
+        ]
+      },
+      "stonecraft:enter_phase_two": {
+        "remove": {
+          "component_groups": [
+            "stonecraft:phase_one",
+            "stonecraft:easy_attack",
+            "stonecraft:normal_attack",
+            "stonecraft:hard_attack"
+          ]
+        },
+        "add": {
+          "component_groups": ["stonecraft:phase_two"]
+        }
+      }
+    }
+  }
+}

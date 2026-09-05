@@ -181,6 +181,7 @@ item.spawn_egg.entity.stonecraft:ancient_stone_totem.name=Spawn Stone Totem
 item.spawn_egg.entity.stonecraft:stone_fissuring_husk.name=Spawn Stone Fissuring Husk
 item.spawn_egg.entity.stonecraft:wandering_collector.name=Spawn Wandering Collector
 item.spawn_egg.entity.stonecraft:snatcher.name=Spawn Snatcher
+item.spawn_egg.entity.stonecraft:spire_remnant.name=Spawn Spire Remnant
 
 item.spawn_egg.entity.stonecraft:mossy_stone_guard.name=Spawn Mossy Stone Guard
 item.spawn_egg.entity.stonecraft:mossy_stone_shooter.name=Spawn Mossy Stone Archer
@@ -227,7 +228,7 @@ entity.stonecraft:molten_stone_vagabond.name=Molten Stone Vagabond
 entity.stonecraft:molten_stone_fissuring_husk.name=Molten Stone Fissuring Husk
 
 entity.stonecraft:ancient_stone_totem.name=Stone Totem
-entity.stonecraft:ancient_stone_totem_2.name=Stone Totem - Phase 2
+entity.stonecraft:spire_remnant.name=Spire Remnant
 
 entity.stone_vendor.name=Stone Wandering Trader
 entity.wandering_collector.name=Wandering Collector
