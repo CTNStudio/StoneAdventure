@@ -387,7 +387,8 @@
         "textures/items/spawn_eggs/spawn_egg_sandstone_guard",//17
         "textures/items/spawn_eggs/spawn_egg_sandstone_shooter",//18
         "textures/items/spawn_eggs/spawn_egg_wandering_collector",//19
-        "textures/items/spawn_eggs/spawn_egg_snatcher"//20
+        "textures/items/spawn_eggs/spawn_egg_snatcher",//20
+        "textures/items/spawn_eggs/spawn_egg_spire_remnant"//20
       ]
     },
     "stonecraft.stone_encyclopedia": {

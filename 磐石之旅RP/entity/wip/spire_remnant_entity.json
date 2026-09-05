@@ -78,6 +78,10 @@
           "variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;"
         ]
       },
+      "spawn_egg": {
+        "texture": "stonecraft.spawn_eggs",
+        "texture_index": 21
+      },
       "textures": {
         "default": "textures/entity/spire_remnant"
       }
