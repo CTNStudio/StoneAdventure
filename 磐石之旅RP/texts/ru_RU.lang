@@ -311,6 +311,31 @@ quest.completed_go_claim=Достижение выполнено, забери �
 
 stonecraft.tag.stone_food=Каменная еда
 
+stonecraft.settings.title=Настройки
+stonecraft.settings.body=Настройки Каменного приключения
+stonecraft.settings.stone_heart=Настройки отображения Каменного сердца
+stonecraft.settings.display_mode=Режим отображения Каменного сердца
+stonecraft.settings.mode.chat=Режим чата
+stonecraft.settings.mode.ui=Режим UI
+stonecraft.settings.changed=Режим переключён
+
+stonecraft.stone_heart.status=：%1/%2
+stonecraft.attribute.wither=§0Иссушение§r
+stonecraft.attribute.blindness=Слепота
+stonecraft.attribute.regeneration=§aРегенерация§r
+stonecraft.attribute.cleansing=§bОчищение§r
+stonecraft.attribute.stun=§8Оглушение§r
+stonecraft.attribute.battle_fury=§cБоевая ярость§r
+stonecraft.attribute.concuss=§8Контузия§r
+stonecraft.attribute.resistance=§7Сопротивление§r
+stonecraft.attribute.health_boost=§aУвеличение здоровья§r
+stonecraft.attribute.night_vision=§9Ночное зрение§r
+stonecraft.attribute.fire_resistance=Огнеупорность
+stonecraft.attribute.bleeding=§cКровотечение§r
+
+stonecraft.attributes.none=Нет атрибутов брони
+stonecraft.stone_heart.info=: %s/%s
+
 sc.menu.achievements=Достижения
 sc.achievements.title=Достижения
 sc.achievements.description=Иди вперёд, следуй за сомнениями в своём сердце и открой неизведанную истину.

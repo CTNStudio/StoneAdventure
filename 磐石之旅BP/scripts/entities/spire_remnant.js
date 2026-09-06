@@ -12,7 +12,7 @@ world.afterEvents.entityHurt.subscribe((event) => {
             target.triggerEvent("stonecraft:enter_phase_two");
             phaseTwoEntities.add(target.id);
             target.addEffect("resistance", 999999, { amplifier: 0, showParticles: true });
-            target.runCommand("say §5石柱余裔进入狂暴阶段");
+            target.runCommand("say §5高塔余裔进入狂暴阶段");
         }
     }
 

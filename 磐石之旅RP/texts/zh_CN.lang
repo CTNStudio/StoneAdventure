@@ -335,7 +335,22 @@ stonecraft.settings.mode.chat=聊天栏模式
 stonecraft.settings.mode.ui=ui模式
 stonecraft.settings.changed=切换模式
 
-stonecraft.stone_heart.status=石心：%1/%2
+stonecraft.stone_heart.status=：%1/%2
+stonecraft.attribute.wither=§0凋零§r
+stonecraft.attribute.blindness=失明
+stonecraft.attribute.regeneration=§a再生§r
+stonecraft.attribute.cleansing=§b净化§r
+stonecraft.attribute.stun=§8震击§r
+stonecraft.attribute.battle_fury=§c战意§r
+stonecraft.attribute.concuss=§8昏眩§r
+stonecraft.attribute.resistance=§7抗性§r
+stonecraft.attribute.health_boost=§a生机§r
+stonecraft.attribute.night_vision=§9夜视§r
+stonecraft.attribute.fire_resistance=抗火
+stonecraft.attribute.bleeding=§c失血§r
+
+stonecraft.attributes.none=无护甲属性
+stonecraft.stone_heart.info=: %s/%s
 
 stonecraft.item.stone_encyclopedia=磐石大典
 stonecraft.item.stone_encyclopedia.body=深藏于地下的故事

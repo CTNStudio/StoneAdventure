@@ -327,6 +327,31 @@ sc.quest.stone_food_ach.body=Eat any Stone Food item.
 sc.quest.stone_food_collector_ach.title=Stoned Feaster
 sc.quest.stone_food_collector_ach.body=Eat every type of Stone Food.
 
+stonecraft.settings.title=Settings
+stonecraft.settings.body=Stone Adventure Settings
+stonecraft.settings.stone_heart=Stone Heart Display Settings
+stonecraft.settings.display_mode=Stone Heart Display Mode
+stonecraft.settings.mode.chat=Chat Mode
+stonecraft.settings.mode.ui=UI Mode
+stonecraft.settings.changed=Mode Switched
+
+stonecraft.stone_heart.status=：%1/%2
+stonecraft.attribute.wither=§0Wither§r
+stonecraft.attribute.blindness=Blindness
+stonecraft.attribute.regeneration=§aRegeneration§r
+stonecraft.attribute.cleansing=§bCleansing§r
+stonecraft.attribute.stun=§8Stun§r
+stonecraft.attribute.battle_fury=§cBattle Fury§r
+stonecraft.attribute.concuss=§8Concuss§r
+stonecraft.attribute.resistance=§7Resistance§r
+stonecraft.attribute.health_boost=§aHealth Boost§r
+stonecraft.attribute.night_vision=§9Night Vision§r
+stonecraft.attribute.fire_resistance=Fire Resistance
+stonecraft.attribute.bleeding=§cBleeding§r
+
+stonecraft.attributes.none=No Armor Attributes
+stonecraft.stone_heart.info=: %s/%s
+
 stonecraft.item.stone_encyclopedia=Stone Encyclopedia
 stonecraft.item.stone_encyclopedia.body=Stories buried underground
 sc.menu.tasks=Quests

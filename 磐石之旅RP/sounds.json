@@ -405,6 +405,23 @@
         },
         "pitch": [0.8, 1.2],
         "volume": 1.0
+      },
+      "stonecraft:spire_remnant": {
+        "events": {
+          "ambient": "stonecraft.stone.step",
+          "death": "stonecraft.stone.death",
+          "hurt": {
+            "sound": "stonecraft.stone.hurt",
+            "volume": 1.0
+          },
+          "step": {
+            "pitch": 1.0,
+            "sound": "stonecraft.stone.step",
+            "volume": 1.0
+          }
+        },
+        "pitch": [0.8, 1.2],
+        "volume": 1.0
       }
     }
   }

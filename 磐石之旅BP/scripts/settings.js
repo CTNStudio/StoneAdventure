@@ -30,11 +30,14 @@ export function showSettingsMenu(player, backCallback) {
         .button({ translate: "gui.back" });
 
     form.show(player).then(response => {
-        if (response.canceled || response.selection === 1) {
+        if (response.canceled) return;
+        if (response.selection === 1) {
             if (backCallback) backCallback(player);
             return;
         }
-        showStoneHeartSettings(player, () => showSettingsMenu(player, backCallback));
+        if (response.selection === 0) {
+            showStoneHeartSettings(player, () => showSettingsMenu(player, backCallback));
+        }
     });
 }
 
@@ -50,10 +53,8 @@ function showStoneHeartSettings(player, backCallback) {
         );
 
     form.show(player).then(response => {
-        if (response.canceled) {
-            if (backCallback) backCallback(player);
-            return;
-        }
+        if (response.canceled) return;
+        if (backCallback) backCallback(player);
 
         const selectedIndex = response.formValues?.[0];
         const selectedMode = selectedIndex === 1 ? displayModes.ui : displayModes.chat;

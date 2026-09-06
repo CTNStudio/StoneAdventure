@@ -4,11 +4,12 @@ import { CHAPTERS } from "./quests.js";
 import { showAchievements, getUseCount, resetUseCount, getUseItemCount, resetUseItemCounts } from "./achievements.js";
 import { showSettingsMenu } from "../settings.js";
 import { displayMessage } from "../messageManager.js";
+import { getStoneHeart, getStoneHeartMax } from "../stone_heart/stone_heart_core.js";
+import { ATTRIBUTE_DEFS, getOrZero } from "../forge/forge_utils.js";
 
 const NAMESPACE = "stonecraft";
 const QUEST_BOOK_ID = `${NAMESPACE}:stone_encyclopedia`;
 const kill_prefix = "kill_progress_"; // 动态属性键前缀
-const reward_claimed_ = "reward_claimed_";
 
 export function isRewardClaimed(player, questId) {
     return player.getDynamicProperty(`${NAMESPACE}:reward_claimed_${questId}`) ?? false;
@@ -473,6 +474,34 @@ export function showMainMenu(player) { //主页面
     form.button({ translate: "sc.menu.achievements" }, "textures/ui/quest/achievements");
     form.button({ translate: "sc.menu.credits" }, "textures/ui/quest/credits");
     form.button({ translate: "stonecraft.settings.button" }, "textures/ui/settings");
+    form.divider();
+    const attrParts = [];
+    for (const def of ATTRIBUTE_DEFS) {
+        const level = getOrZero(player, def.playerKey, 0);
+        if (level > 0) {
+            attrParts.push({
+                rawtext: [
+                    { translate: `stonecraft.attribute.${def.id}` },
+                    { text: ` Lv.${level}` }
+                ]
+            });
+        }
+    }
+    const attrMessage = attrParts.length > 0
+        ? { rawtext: attrParts.reduce((acc, part, i) => {
+              if (i > 0) acc.push({ text: ", " });
+              acc.push(part);
+              return acc;
+          }, []) }
+        : { translate: "stonecraft.attributes.none" };
+
+    form.label(attrMessage);
+    const stoneHeart = getStoneHeart(player);
+    const stoneHeartMax = getStoneHeartMax(player);
+    form.label({
+        translate: "stonecraft.stone_heart.info",
+        with: { rawtext: [{ text: stoneHeart.toString() }, { text: stoneHeartMax.toString() }] }
+    });
     form.show(player).then((response) => {
         if (response.canceled) return;
         switch (response.selection) {
