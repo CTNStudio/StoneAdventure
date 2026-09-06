@@ -23,7 +23,7 @@
                     { "test": "has_biome_tag", "value": "sunflower_plains" },
                     { "test": "has_biome_tag", "value": "meadow" },
                     { "test": "has_biome_tag", "value": "savanna" },
-                    { "test": "has_biome_tag", "value": "desert" },
+                    { "test": "has_biome_tag", "value": "forest" },
                     { "test": "has_biome_tag", "value": "ice_plains" }
                 ]
             }

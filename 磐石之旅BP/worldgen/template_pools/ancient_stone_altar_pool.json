@@ -2,7 +2,7 @@
   "format_version": "1.21.20",
   "minecraft:template_pool": {
     "description": {
-      "identifier": "stonecraft:pool_ancient_stone_altar_2"
+      "identifier": "stonecraft:pool_ancient_stone_altar"
     },
     "elements": [
       {
@@ -10,7 +10,7 @@
           "element_type": "minecraft:single_pool_element",
           "projection": "rigid",
           "processors": "stonecraft:ancient_stone_altar_processor",
-          "location": "mysturcture:ancient_stone_altar_2"
+          "location": "mysturcture:ancient_stone_altar"
         },
         "weight": 1
       }

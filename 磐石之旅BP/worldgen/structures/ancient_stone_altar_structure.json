@@ -14,7 +14,7 @@
             }
         },
         "max_depth": 15,
-        "start_pool": "stonecraft:pool_ancient_stone_altar_main",
+        "start_pool": "stonecraft:pool_ancient_stone_altar",
         "biome_filters": [
             {
                 "test": "has_biome_tag",

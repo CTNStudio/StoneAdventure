@@ -21,6 +21,10 @@ function formatStoneHeartValue(value) {
 }
 
 function notifyStoneHeartChanged(player, stoneHeart, stoneHeartMax) {
+  if (stoneHeartMax <= 0) {
+    return;
+  }
+
   const displayMode = getDisplayMode(player);
   if (displayMode === displayModes.ui) {
     return;

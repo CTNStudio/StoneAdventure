@@ -9,7 +9,6 @@ system.runInterval(() => {
 
     const max = getStoneHeartMax(player);
     if (max <= 0) {
-      player.onScreenDisplay.setActionBar('!.');
       continue;
     }
 
