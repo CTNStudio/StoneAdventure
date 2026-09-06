@@ -2,14 +2,15 @@
   "format_version": "1.21.20",
   "minecraft:template_pool": {
     "description": {
-      "identifier": "stonecraft:pool_stones_acrifice_land"
+      "identifier": "stonecraft:pool_stone_sacrifice_land"
     },
     "elements": [
       {
         "element": {
           "element_type": "minecraft:single_pool_element",
           "projection": "rigid",
-          "location": "mysturcture:stones_acrifice_land"
+          "processors": "stonecraft:stone_sacrifice_land_processor",
+          "location": "mysturcture:stone_sacrifice_land"
         },
         "weight": 1
       }

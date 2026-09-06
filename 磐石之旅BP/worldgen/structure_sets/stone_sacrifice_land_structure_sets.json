@@ -13,7 +13,7 @@
         },
         "structures": [
             {
-                "structure": "stonecraft:stones_acrifice_land",
+                "structure": "stonecraft:stone_sacrifice_land",
                 "weight": 1
             }
         ]

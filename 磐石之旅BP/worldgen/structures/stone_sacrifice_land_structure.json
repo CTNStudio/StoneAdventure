@@ -2,7 +2,7 @@
   "format_version": "1.26.40",
   "minecraft:jigsaw": {
     "description": {
-      "identifier": "stonecraft:stones_acrifice_land"
+      "identifier": "stonecraft:stone_sacrifice_land"
     },
     "step": "underground_structures",
     "heightmap_projection": "none",
@@ -18,7 +18,7 @@
     },
     "terrain_adaptation": "bury",
     "max_depth": 8,
-    "start_pool": "stonecraft:pool_stones_acrifice_land",
+    "start_pool": "stonecraft:pool_stone_sacrifice_land",
     "biome_filters": [
       {
         "any_of": [
