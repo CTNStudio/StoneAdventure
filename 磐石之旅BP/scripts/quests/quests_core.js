@@ -2,6 +2,8 @@ import { world, ItemStack, Player } from "@minecraft/server";
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { CHAPTERS } from "./quests.js";
 import { showAchievements, getUseCount, resetUseCount, getUseItemCount, resetUseItemCounts } from "./achievements.js";
+import { showSettingsMenu } from "../settings.js";
+import { displayMessage } from "../messageManager.js";
 
 const NAMESPACE = "stonecraft";
 const QUEST_BOOK_ID = `${NAMESPACE}:stone_encyclopedia`;
@@ -470,6 +472,7 @@ export function showMainMenu(player) { //主页面
     form.button({ translate: "sc.menu.bestiary" }, "textures/ui/quest/biogeography");
     form.button({ translate: "sc.menu.achievements" }, "textures/ui/quest/achievements");
     form.button({ translate: "sc.menu.credits" }, "textures/ui/quest/credits");
+    form.button({ translate: "stonecraft.settings.button" }, "textures/ui/settings");
     form.show(player).then((response) => {
         if (response.canceled) return;
         switch (response.selection) {
@@ -477,6 +480,7 @@ export function showMainMenu(player) { //主页面
             case 1: showBestiary(player); break;
             case 2: showAchievements(player); break;
             case 3: showCredits(player); break;
+            case 4: showSettingsMenu(player, showMainMenu); break;
         }
     });
 }
@@ -567,7 +571,7 @@ function showQuestDetail(player, quest, returnCallback) {
 
 function tryCompleteQuest(player, quest, returnCallback) {
     if (isQuestCompleted(player, quest)) {
-        player.sendMessage({ translate: "quest.already_completed" });
+        displayMessage(player, { translate: "quest.already_completed" });
         if (returnCallback) {
             returnCallback(player);
         } else {
@@ -579,7 +583,7 @@ function tryCompleteQuest(player, quest, returnCallback) {
     const result = checkQuestConditionWithQuest(player, quest);
 
     if (!result.success) {
-        player.sendMessage({ rawtext: result.messages });
+        displayMessage(player, { rawtext: result.messages });
         showQuestDetail(player, quest, returnCallback);
         return;
     }
@@ -709,13 +713,13 @@ function showQuestDetailWithBack(player, quest, backCallback) {
 
 function tryCompleteQuestWithBack(player, quest, backCallback) {
     if (isQuestCompleted(player, quest)) {
-        player.sendMessage({ translate: "quest.already_completed" });
+        displayMessage(player, { translate: "quest.already_completed" });
         if (backCallback) backCallback(player);
         return;
     }
     const result = checkQuestConditionWithQuest(player, quest);
     if (!result.success) {
-        player.sendMessage({ rawtext: result.messages });
+        displayMessage(player, { rawtext: result.messages });
         showQuestDetailWithBack(player, quest, backCallback);
         return;
     }
@@ -761,7 +765,7 @@ export function notifyAchievementComplete(player, quest) {
             { text: "」" }
         ]
     };
-    player.sendMessage(message);
+    displayMessage(player, message);
 }
 
 export { giveItem };

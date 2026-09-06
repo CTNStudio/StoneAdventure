@@ -1,5 +1,6 @@
 import { world, system } from '@minecraft/server';
 import { showStoneHeartFeedback } from './stone_heart_feedback.js';
+import { displayModes, getDisplayMode } from '../settings.js';
 
 const regenDelay = 100;
 const regenSpeed = 0.5;
@@ -15,6 +16,31 @@ function getNumberProperty(player, id) {
   return typeof value === 'number' ? value : 0;
 }
 
+function formatStoneHeartValue(value) {
+  return (Math.round(value * 2) / 2).toString();
+}
+
+function notifyStoneHeartChanged(player, stoneHeart, stoneHeartMax) {
+  const displayMode = getDisplayMode(player);
+  if (displayMode === displayModes.ui) {
+    return;
+  }
+
+  const message = {
+    translate: 'stonecraft.stone_heart.status',
+    with: {
+      rawtext: [
+        { text: formatStoneHeartValue(stoneHeart) },
+        { text: formatStoneHeartValue(stoneHeartMax) }
+      ]
+    }
+  };
+
+  if (displayMode === displayModes.chat) {
+    player.sendMessage(message);
+  }
+}
+
 export function getStoneHeartMax(player) {
   return Math.max(0, getNumberProperty(player, 'stone_heartMax'));
 }
@@ -28,8 +54,12 @@ export function getStoneHeart(player) {
 
 export function setStoneHeart(player, amount) {
     const stoneHeartMax = getStoneHeartMax(player);
+    const oldStoneHeart = getStoneHeart(player);
     const stoneHeart = Math.min(stoneHeartMax, Math.max(0, amount));
     player.setDynamicProperty('stone_heart', stoneHeart);
+    if (stoneHeart !== oldStoneHeart) {
+      notifyStoneHeartChanged(player, stoneHeart, stoneHeartMax);
+    }
     return stoneHeart;
 }
 
@@ -44,6 +74,9 @@ export function setStoneHeartMax(player, amount) {
         'stone_heartMax': stoneHeartMax,
         'stone_heart': stoneHeart
     });
+    if (stoneHeart !== oldStoneHeart || stoneHeartMax !== oldStoneHeartMax) {
+      notifyStoneHeartChanged(player, stoneHeart, stoneHeartMax);
+    }
     return stoneHeartMax;
 }
 

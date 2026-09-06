@@ -1,4 +1,5 @@
 import { world, Player, system } from "@minecraft/server";
+import { displayMessage } from "./messageManager.js";
 //食物效果
 const NEGATIVE_EFFECTS = [
     "slowness", "mining_fatigue", "instant_damage", "nausea", "blindness",
@@ -98,16 +99,16 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
             break;
         case "stonecraft:ersatz_blood_vial":
             giveNegativeEffect(player, 'bad');
-            const ersatz_blood_vial_message = {
+            const ersatzBloodVialMessage = {
                 translate: "stonecraft.drink_ersatz_blood_vial"
             };
-            player.onScreenDisplay.setActionBar(ersatz_blood_vial_message);
+            displayMessage(player, ersatzBloodVialMessage);
             break;
         case "stonecraft:blood_bottle":
-            const blood_bottle_message = {
+            const bloodBottleMessage = {
                translate: "stonecraft.drink_blood"
             };
-            player.onScreenDisplay.setActionBar(blood_bottle_message);
+            displayMessage(player, bloodBottleMessage);
             break;
         default: break;
     }

@@ -1,2 +1,12 @@
 pack.name=Stone Adventure
 pack.description=Are you still bothered by the pile of cobblestone in the chest while mining? This mod can solve this problem! | 1.0.1
+stonecraft.settings.title=Display Settings
+stonecraft.settings.button=Settings
+stonecraft.settings.body=Choose a setting to adjust
+stonecraft.settings.stone_heart=Stone Heart Display
+stonecraft.settings.slider=Display mode (0: Chat, 1: UI)
+stonecraft.settings.current=Current display mode: %1
+stonecraft.settings.mode.chat=Chat
+stonecraft.settings.mode.ui=UI
+stonecraft.settings.changed=Display mode changed to: %1
+stonecraft.stone_heart.status=Stone Heart: %1/%2

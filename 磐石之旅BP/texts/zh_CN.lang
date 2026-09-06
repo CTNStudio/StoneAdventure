@@ -1,2 +1,12 @@
 pack.name=磐石之旅
 pack.description=让你背包里的石头不再浪费！ | 1.0.1
+stonecraft.settings.title=显示设置
+stonecraft.settings.button=设置
+stonecraft.settings.body=选择要调整的设置
+stonecraft.settings.stone_heart=石心显示设置
+stonecraft.settings.slider=显示模式（0：聊天栏，1：UI）
+stonecraft.settings.current=当前显示模式：%1
+stonecraft.settings.mode.chat=聊天栏显示
+stonecraft.settings.mode.ui=UI 显示
+stonecraft.settings.changed=显示模式已切换为：%1
+stonecraft.stone_heart.status=石心：%1/%2

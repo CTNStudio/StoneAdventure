@@ -3159,13 +3159,6 @@
     ],
     "controls": [
       {
-        "stone_heart_factory@stone_heart.stone_heart_factory": {
-          "size": [ "100%", "100%" ],
-          "anchor_from": "top_left",
-          "anchor_to": "top_left"
-        }
-      },
-      {
         "layout_customization_reset": {
           "type": "image",
           "size": [ "200%", "200%" ],
@@ -3411,7 +3404,7 @@
           "factory": {
             "name": "hud_actionbar_text_factory",
             "control_ids": {
-              "hud_actionbar_text": "hud_actionbar_text@hud.hud_actionbar_text"
+              "hud_actionbar_text": "stone_heart_actionbar_panel@stone_heart.stone_heart_actionbar_panel"
             }
           }
         }

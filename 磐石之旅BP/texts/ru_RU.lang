@@ -1,2 +1,12 @@
 pack.name=Каменное приключение
 pack.description=Пусть камни в твоём инвентаре больше не пропадают! | 1.0.1
+stonecraft.settings.title=Настройки отображения
+stonecraft.settings.button=Настройки
+stonecraft.settings.body=Выберите настройку
+stonecraft.settings.stone_heart=Отображение каменного сердца
+stonecraft.settings.slider=Режим отображения (0: чат, 1: интерфейс)
+stonecraft.settings.current=Текущий режим: %1
+stonecraft.settings.mode.chat=Чат
+stonecraft.settings.mode.ui=Интерфейс
+stonecraft.settings.changed=Режим отображения изменён на: %1
+stonecraft.stone_heart.status=Каменное сердце: %1/%2

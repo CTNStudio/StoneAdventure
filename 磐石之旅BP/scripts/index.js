@@ -1,4 +1,5 @@
 import "./quests/quests_core.js";
+import { displayMessage } from "./messageManager.js";
 import "./food.js";
 import "./durability.js";
 import "./entities_effect.js";
@@ -35,5 +36,5 @@ world.afterEvents.playerSpawn.subscribe((eventData) => {
             { text: player.name }
         ]
     };
-    player.sendMessage(rawMessage);
+    displayMessage(player, rawMessage);
 });
