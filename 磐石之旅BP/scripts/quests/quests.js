@@ -793,6 +793,40 @@ export const CHAPTERS = [
         iconPath: "textures/items/sacrifice/blood_bottle",
         quests: [
             {
+                id: "stone_heart",
+                title: { translate: "sc.quest.stone_heart.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.stone_heart.body" },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.stone_heart.body1" }
+                    ]
+                },
+                condition: {
+                    item: {
+                        itemId: "stonecraft:stone_heart",
+                        amount: 1,
+                        name: { translate: "stonecraft.item.stone_heart" }
+                    }
+                },
+                award: { 
+                    exp: 150,
+                    items: [
+                        {
+                            itemId: "stonecraft:stone_coin",
+                            amount: 32,
+                            name: { translate: "stonecraft.item.stone_coin" }
+                        },
+                        {
+                            itemId: "stonecraft:stone_bread",
+                            amount: 32,
+                            name: { translate: "stonecraft.item.stone_bread" }
+                        }
+                    ]
+                },
+                iconPath: "textures/items/foods/stone_heart"
+            },
+            {
                 id: "sacrificial_blade",
                 title: { translate: "sc.quest.sacrificial_blade.title" },
                 description: {
@@ -1077,40 +1111,6 @@ export const CHAPTERS = [
                     ]
                 },
                 iconPath: "textures/ui/quest/entities/stone_vendor"
-            },
-            {
-                id: "wandering_collector",
-                title: { translate: "sc.quest.wandering_collector.title" },
-                description: {
-                    rawtext: [
-                        { translate: "sc.quest.wandering_collector.body"  },
-                        { text: "\n\n" },
-                        { translate: "sc.quest.wandering_collector.body1" },
-                        { text: "\n\n" },
-                        { translate: "sc.quest.wandering_collector.body2" },
-                        { text: "\n\n" }
-                    ]
-                },
-                condition: {
-                    killEntity: {
-                        entityType: "stonecraft:wandering_collector",
-                        amount: 1,
-                        name: { translate: "entity.stonecraft:wandering_collector.name" }
-                    }
-                },
-                award: {
-                     exp: 5,
-                     items: [
-                        {
-                            itemId: "stonecraft:stone_coin", 
-                            amount: 4, 
-                            name: { 
-                                translate: "stonecraft.item.stone_coin" 
-                            }
-                        }
-                    ]
-                },
-                iconPath: "textures/ui/quest/entities/wandering_collector"
             },
             {
                 id: "stone_vagabond",
@@ -1497,6 +1497,70 @@ export const CHAPTERS = [
                 iconPath: "textures/ui/quest/entities/sandstone_shooter"
             },
             {
+                id: "wandering_collector",
+                title: { translate: "sc.quest.wandering_collector.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.wandering_collector.body"  },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.wandering_collector.body1" },
+                        { text: "\n" }
+                    ]
+                },
+                condition: {
+                    killEntity: {
+                        entityType: "stonecraft:wandering_collector",
+                        amount: 1,
+                        name: { translate: "entity.stonecraft:wandering_collector.name" }
+                    }
+                },
+                award: {
+                     exp: 10,
+                     items: [
+                        {
+                            itemId: "stonecraft:stone_coin", 
+                            amount: 6, 
+                            name: { 
+                                translate: "stonecraft.item.stone_coin" 
+                            }
+                        }
+                    ]
+                },
+                iconPath: "textures/ui/quest/entities/wandering_collector"
+            },
+            {
+                id: "snatcher",
+                title: { translate: "sc.quest.snatcher.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.snatcher.body"  },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.snatcher.body1" },
+                        { text: "\n" }
+                    ]
+                },
+                condition: {
+                    killEntity: {
+                        entityType: "stonecraft:snatcher",
+                        amount: 1,
+                        name: { translate: "entity.stonecraft:snatcher.name" }
+                    }
+                },
+                award: {
+                     exp: 30,
+                     items: [
+                        {
+                            itemId: "stonecraft:stone_coin", 
+                            amount: 8, 
+                            name: { 
+                                translate: "stonecraft.item.stone_coin" 
+                            }
+                        }
+                    ]
+                },
+                iconPath: "textures/ui/quest/entities/snatcher"
+            },
+            {
                 id: "ancient_stone_totem",
                 title: { translate: "sc.quest.ancient_stone_totem.title" },
                 description: {
@@ -1517,18 +1581,76 @@ export const CHAPTERS = [
                     }
                 },
                 award: {
+                     exp: 100,
+                     items: [
+                        {
+                            itemId: "stonecraft:stone_coin", 
+                            amount: 64, 
+                            name: { 
+                                translate: "stonecraft.item.stone_coin" 
+                            }
+                        },
+                        {
+                            itemId: "stonecraft:stone_star", 
+                            amount: 1, 
+                            name: { 
+                                translate: "stonecraft.item.stone_star" 
+                            }
+                        },
+                        {
+                            itemId: "minecraft:netherite_ingot", 
+                            amount: 3, 
+                            name: { 
+                                translate: "item.netherite_ingot.name" 
+                            }
+                        },
+                    ]
+                },
+                iconPath: "textures/ui/quest/entities/ancient_stone_totem"
+            },
+            {
+                id: "spire_remnant",
+                title: { translate: "sc.quest.spire_remnant.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.spire_remnant.body"  },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.spire_remnant.body1" },
+                        { text: "\n" },
+                        { translate: "sc.quest.spire_remnant.body2" },
+                        { text: "\n" }
+                    ]
+                },
+                condition: {
+                    killEntity: {
+                        entityType: "stonecraft:spire_remnant",
+                        amount: 1,
+                        name: { translate: "entity.stonecraft:spire_remnant.name" }
+                    }
+                },
+                award: {
                      exp: 40,
                      items: [
                         {
                             itemId: "stonecraft:stone_coin", 
-                            amount: 12, 
+                            amount: 32, 
                             name: { 
                                 translate: "stonecraft.item.stone_coin" 
                             }
-                        }
+                        },
+                        {
+                            itemId: "minecraft:iron_ingot",
+                            amount: 16,
+                            name: { translate: "item.iron_ingot.name" }
+                        },
+                        {
+                            itemId: "minecraft:diamond",
+                            amount: 8,
+                            name: { translate: "item.diamond.name" }
+                        },
                     ]
                 },
-                iconPath: "textures/ui/quest/entities/ancient_stone_totem"
+                iconPath: "textures/ui/quest/entities/spire_remnant"
             }
         ]
     },
@@ -1592,13 +1714,13 @@ export const CHAPTERS = [
                     }
                 },
                 award: {
-                     exp: 20,
+                     exp: 50,
                      items: [
                         {
-                            itemId: "stonecraft:stone_coin",
-                            amount: 5,
+                            itemId: "stonecraft:lv3stone",
+                            amount: 3,
                             name: {
-                                translate: "stonecraft.item.stone_coin"
+                                translate: "tile.stonecraft:lv3stone.name"
                             }
                         }
                     ]
@@ -1624,18 +1746,50 @@ export const CHAPTERS = [
                     }
                 },
                 award: {
-                     exp: 20,
+                     exp: 50,
                      items: [
                         {
-                            itemId: "stonecraft:stone_coin",
-                            amount: 5,
+                            itemId: "stonecraft:lv3stone",
+                            amount: 4,
                             name: {
-                                translate: "stonecraft.item.stone_coin"
+                                translate: "tile.stonecraft:lv3stone.name"
                             }
                         }
                     ]
                 },
                 iconPath: "textures/ui/quest/entities/stone_shooter"
+            },
+            {
+                id: "spire_remnant_ach",
+                title: { translate: "sc.quest.spire_remnant_ach.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.spire_remnant_ach.body"  },
+                        { text: "\n" }
+                    ]
+                },
+                autoComplete: true,
+                manualReward: true,
+                condition: {
+                    killEntity: {
+                        entityType: "stonecraft:spire_remnant",
+                        amount: 10,
+                        name: { translate: "entity.stonecraft:spire_remnant.name" }
+                    }
+                },
+                award: {
+                     exp: 50,
+                     items: [
+                        {
+                            itemId: "stonecraft:stone_heart",
+                            amount: 1,
+                            name: {
+                                translate: "stonecraft.item.stone_heart"
+                            }
+                        }
+                    ]
+                },
+                iconPath: "textures/ui/quest/entities/spire_remnant"
             },
             {
                 id: "stone_food_ach",
@@ -1665,6 +1819,40 @@ export const CHAPTERS = [
                             amount: 5,
                             name: {
                                 translate: "stonecraft.item.stone_coin"
+                            }
+                        }
+                    ]
+                },
+                iconPath: "textures/items/foods/stone_bread"
+            },
+            {
+                id: "stone_baguette_ach",
+                title: { translate: "sc.quest.stone_baguette_ach.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.stone_baguette_ach.body"  },
+                        { text: "\n" }
+                    ]
+                },
+                autoComplete: true,
+                manualReward: true,
+                condition: {
+                    useItem: {
+                        itemId: "stonecraft:stone_bread",
+                        amount: 100,
+                        name: {
+                            translate: "stonecraft.item.stone_bread"
+                        }
+                    }
+                },
+                award: {
+                     exp: 100,
+                     items: [
+                        {
+                            itemId: "stonecraft:stone_bread",
+                            amount: 64,
+                            name: {
+                                translate: "stonecraft.item.stone_bread"
                             }
                         }
                     ]
@@ -1702,37 +1890,14 @@ export const CHAPTERS = [
                         displayName: { translate: "stonecraft.item.stone_coin" }
                     }
                 },
-                award: { exp: 100 },
-                iconPath: "textures/items/foods/stone_bread"
-            },
-            {
-                id: "stone_baguette_ach",
-                title: { translate: "sc.quest.stone_baguette_ach.title" },
-                description: {
-                    rawtext: [
-                        { translate: "sc.quest.stone_baguette_ach.body"  },
-                        { text: "\n" }
-                    ]
-                },
-                autoComplete: true,
-                manualReward: true,
-                condition: {
-                    useItem: {
-                        itemId: "stonecraft:stone_bread",
-                        amount: 100,
-                        name: {
-                            translate: "stonecraft.item.stone_bread"
-                        }
-                    }
-                },
                 award: {
-                     exp: 20,
-                     items: [
+                    exp: 200,
+                    items: [
                         {
-                            itemId: "stonecraft:stone_coin",
-                            amount: 5,
+                            itemId: "stonecraft:stone_bread",
+                            amount: 128,
                             name: {
-                                translate: "stonecraft.item.stone_coin"
+                                translate: "stonecraft.item.stone_bread"
                             }
                         }
                     ]

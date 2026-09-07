@@ -326,6 +326,8 @@ sc.quest.stone_food_ach.title=Stone Foodie
 sc.quest.stone_food_ach.body=Eat any Stone Food item.
 sc.quest.stone_food_collector_ach.title=Stoned Feaster
 sc.quest.stone_food_collector_ach.body=Eat every type of Stone Food.
+sc.quest.spire_remnant_ach.title=Such a Dark Heart
+sc.quest.spire_remnant_ach.body=Tasty... yeah right.
 
 stonecraft.settings.title=Settings
 stonecraft.settings.body=Stone Adventure Settings
@@ -479,6 +481,10 @@ sc.quest.blood_offering_vial.body1=§oNo one answered. Sacrius swayed in the win
 sc.quest.stone_summoner_activated.title=Activated Blood Sacrifice Pillar
 sc.quest.stone_summoner_activated.body=Pour the Blood Offering Vial into the Blood Sacrifice Pillar at the center of the Ancient Stone Altar, then mine it.
 sc.quest.stone_summoner_activated.body1=§o"Falsus Magus has deceived us! This is no herald of salvation — it is the prologue of calamity!"§r
+sc.quest.stone_heart.title=Stone Heart
+sc.quest.stone_heart.body=Defeat the Spire Remnant to obtain a Stone Heart. Consume it to gain 4 points of Stone Heart health, which can absorb damage.
+sc.quest.stone_heart.body1=§oThe shadow of calamity fell upon the spire. At last, the King understood — he was as foolish as his father. How could that towering and sturdy tower hold back the coming of doom? Like his father did back then, he raised his blade and paid for his sins with his life.§r
+
 
 sc.quest.stoneguard.title=Stone Guard
 sc.quest.stoneguard.body=§oHard exterior, silent danger§r
@@ -538,6 +544,17 @@ sc.quest.ancient_stone_totem.title=§o§l§p[Boss]§rStone Totem§r
 sc.quest.ancient_stone_totem.body=§oSource of ancient calamity§r
 sc.quest.ancient_stone_totem.body1=A special and powerful boss, summoned by two Level 5 Compressed Stones and an Activated Blood Sacrifice Pillar.
 sc.quest.ancient_stone_totem.body2=It has two states. State 1 can only be damaged by any pickaxe. State 2 will cycle through four forms. Be well prepared.
+sc.quest.spire_remnant.title=§o§l§p[boss]§rSpire Remnant
+sc.quest.spire_remnant.body=§oThe Lament of a Fallen Civilization§r
+sc.quest.spire_remnant.body1=A mini-boss that spawns at spires. Defeat it to obtain a Stone Heart.
+sc.quest.spire_remnant.body2=It has two phases. When its health drops below a certain threshold, it becomes enraged and gains increased movement speed.
+sc.quest.wandering_collector.title=Wandering Collector
+sc.quest.wandering_collector.body=§oSurely you had a reason to kill him, right?§r
+sc.quest.wandering_collector.body1=A collector that roams the land, rumored to have some connection to Wandering Traders — though no one knows why he doesn't have llamas. He has two trade tables. Those who trade with emeralds will fight back.
+sc.quest.snatcher.title=Snatcher
+sc.quest.snatcher.body=§oMercenary looters scattered across the world.§r
+sc.quest.snatcher.body1=Snatchers spawn in Snatcher Camps. Though they belong to the Pillager faction, they may be treated as "outsiders" due to their low status. They attack with iron swords.
+
 
 stonecraft.expansion_slab=§r§iUniversal§r
 stonecraft.weapon_only=§r§iWeapon Only§r

@@ -51,6 +51,7 @@ const entityToQuests = new Map();
 
 const BOSS_ENTITIES = [
     "stonecraft:ancient_stone_totem",
+    "stonecraft:spire_remnant"
     // 后续可以增加boss（会有的对吧）
 ];
 

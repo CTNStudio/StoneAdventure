@@ -351,6 +351,8 @@ sc.quest.stone_food_ach.title=Камнеед
 sc.quest.stone_food_ach.body=Съешь любой предмет каменной еды.
 sc.quest.stone_food_collector_ach.title=Камнеед-гурман
 sc.quest.stone_food_collector_ach.body=Съешь все виды каменной еды.
+sc.quest.spire_remnant_ach.title=Вот это тёмное сердце
+sc.quest.spire_remnant_ach.body=Вкусно... ага, конечно.
 
 stonecraft.item.stone_encyclopedia=Каменная энциклопедия
 stonecraft.item.stone_encyclopedia.body=Истории, погребённые под землёй
@@ -467,6 +469,9 @@ sc.quest.blood_offering_vial.body1=§oНикто не ответил. Сакри
 sc.quest.stone_summoner_activated.title=Активированный кровавый жертвенный столб
 sc.quest.stone_summoner_activated.body=Влей сосуд для кровавого подношения в кровавый жертвенный столб в центре древнего каменного алтаря, затем добудь его.
 sc.quest.stone_summoner_activated.body1=§o«Фальсус Магус обманул нас! Это не предвестник спасения — это пролог бедствия!»§r
+sc.quest.stone_heart.title=Каменное сердце
+sc.quest.stone_heart.body=Победите Остаток шпиля, чтобы получить Каменное сердце. Съев его, вы получите 4 единицы каменного здоровья, которые могут поглощать урон.
+sc.quest.stone_heart.body1=§oТень бедствия нависла над шпилем. Король наконец осознал — он был так же глуп, как и его отец. Как могла эта величественная и прочная башня остановить наступление рока? Как и отец когда-то, он поднял клинок и искупил вину своей жизнью.§r
 
 sc.quest.stoneguard.title=Страж камня
 sc.quest.stoneguard.body=§oТвёрдая оболочка, безмолвная опасность§r
@@ -526,7 +531,16 @@ sc.quest.ancient_stone_totem.title=§o§l§p[boss]§rДревний каменн
 sc.quest.ancient_stone_totem.body=§oИсточник древних бедствий
 sc.quest.ancient_stone_totem.body1=Особый и могущественный босс, призываемый двумя прессованными камнями уровня 5 и активированным кровавым жертвенным столбом.
 sc.quest.ancient_stone_totem.body2=Состоит из двух фаз. В первой фазе урон может наноситься только любой киркой. Во второй фазе он будет циклически переключаться между четырьмя формами. Будь хорошо подготовлен.
-
+sc.quest.spire_remnant.title=§o§l§p[boss]§rОстаток шпиля
+sc.quest.spire_remnant.body=§oПлач павшей цивилизации§r
+sc.quest.spire_remnant.body1=Маленький босс, спаунящийся у шпилей. Победа дарует Каменное сердце.
+sc.quest.spire_remnant.body2=Состоит из двух фаз. Когда здоровье падает ниже определённого порога, он приходит в ярость и ускоряется.
+sc.quest.wandering_collector.title=Странствующий коллекционер
+sc.quest.wandering_collector.body=§oНаверное, у тебя была причина его убить, да?§r
+sc.quest.wandering_collector.body1=Коллекционер, странствующий по землям. Говорят, он как-то связан со странствующими торговцами — только почему у него нет лам? У него две торговые таблицы. Те, кто торгует за изумруды, дадут сдачи.
+sc.quest.snatcher.title=Похититель
+sc.quest.snatcher.body=§oКорыстные мародёры, разбросанные по всему миру.§r
+sc.quest.snatcher.body1=Похитители спаунятся в лагерях похитителей. Хотя они и принадлежат к фракции разбойников, из-за низкого статуса их часто считают «лишними». Атакуют железными мечами.
 
 stonecraft.expansion_slab=§r§iУниверсальный§r
 stonecraft.weapon_only=§r§iТолько оружие§r

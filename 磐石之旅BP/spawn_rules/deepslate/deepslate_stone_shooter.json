@@ -2,7 +2,7 @@
   "format_version": "1.8.0",
   "minecraft:spawn_rules": {
     "description": {
-      "identifier": "stonecraft:deepslatestone_shooter",
+      "identifier": "stonecraft:deepslate_stone_shooter",
       "population_control": "monster"
     },
     "conditions": [

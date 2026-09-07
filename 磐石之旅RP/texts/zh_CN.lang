@@ -326,6 +326,8 @@ sc.quest.stone_food_ach.title=食石食
 sc.quest.stone_food_ach.body=吃掉任意一个石头食物
 sc.quest.stone_food_collector_ach.title=史诗食世石
 sc.quest.stone_food_collector_ach.body=吃掉所有种类的石头食物
+sc.quest.spire_remnant_ach.title=真是黑心
+sc.quest.spire_remnant_ach.body=豪赤……个鬼
 
 stonecraft.settings.title=设置
 stonecraft.settings.body=磐石之旅设置
@@ -467,6 +469,9 @@ sc.quest.blood_offering_vial.body1=§o无人应答。萨克里乌斯在风中飘
 sc.quest.stone_summoner_activated.title=激活的血祭石柱
 sc.quest.stone_summoner_activated.body=将血祭之瓶灌入古石祭坛中心的血祭石柱中，并挖掘下来
 sc.quest.stone_summoner_activated.body1=§o“法尔苏斯蒙骗了我们！这绝非救世的先兆，而是灾厄的序章！”§r
+sc.quest.stone_heart.title=石心
+sc.quest.stone_heart.body=击败高塔余裔获得石心，食用后给予自身4点石心生命，可以用来抵挡伤害
+sc.quest.stone_heart.body1=§o灾厄之影覆于高塔之上，王终是醒悟了——他同父亲一般愚昧。那巍峨而坚固的塔楼，又怎能阻挡劫数的降临？如父亲当年那般，他举起利刃，以命赎罪。§r
 
 sc.quest.stoneguard.title=石头守卫
 sc.quest.stoneguard.body=§o坚硬的外表，无声的危险§r
@@ -523,9 +528,19 @@ sc.quest.stone_block.title=石块
 sc.quest.stone_block.body=§o小小的也可爱，你和蠹虫除外。§r
 sc.quest.stone_block.body1=可能是摩擦力太大而动力不足？石块会走走停停地靠近你并发起攻击。
 sc.quest.ancient_stone_totem.title=§o§l§p[boss]§r石之图腾§r
-sc.quest.ancient_stone_totem.body=§o旧日灾祸之源
+sc.quest.ancient_stone_totem.body=§o旧日灾祸之源§r
 sc.quest.ancient_stone_totem.body1=特殊而强大的boss，由两个五级压缩石头和一个激活的血祭石柱召唤
 sc.quest.ancient_stone_totem.body2=分两个阶段，一阶段只能通过任意镐子造成伤害，二阶段会在四个形态中轮流转换。请做好充足准备。
+sc.quest.spire_remnant.title=§o§l§p[boss]§r高塔余裔
+sc.quest.spire_remnant.body=§o旧文明的余泣§r
+sc.quest.spire_remnant.body1=生成于高塔的小boss，击败后获得石心
+sc.quest.spire_remnant.body2=分两个阶段，当血量低于一定比例后，将变得愤怒，并提高移速
+sc.quest.wandering_collector.title=流浪收藏家
+sc.quest.wandering_collector.body=§o你杀了他一定有什么原因罢§r
+sc.quest.wandering_collector.body1=游荡在大地的收藏家，听说与流浪商人有着些许关系，只是不知道他为何没带羊驼。拥有两种交易表。使用绿宝石交易的会反击。
+sc.quest.snatcher.title=掠宝者
+sc.quest.snatcher.body=§o唯利是图的掠夺者，分散在世界各地。§r
+sc.quest.snatcher.body1=掠宝者会在掠宝者营地生成，虽然属于掠夺者，但可能因为地位低下，始终被当作“编外”人员。会手持铁剑发起攻击。
 
 
 stonecraft.expansion_slab=§r§i通用§r

@@ -325,6 +325,8 @@ sc.quest.stone_food_ach.title=食石食
 sc.quest.stone_food_ach.body=吃掉任意一個石頭食物
 sc.quest.stone_food_collector_ach.title=史詩食世石
 sc.quest.stone_food_collector_ach.body=吃掉所有種類的石頭食物
+sc.quest.spire_remnant_ach.title=真是黑心
+sc.quest.spire_remnant_ach.body=豪赤……個鬼
 
 stonecraft.settings.title=設定
 stonecraft.settings.body=磐石之旅設定
@@ -477,6 +479,10 @@ sc.quest.blood_offering_vial.body1=§o無人應答。薩克里烏斯在風中飄
 sc.quest.stone_summoner_activated.title=激活的血祭石柱
 sc.quest.stone_summoner_activated.body=將血祭之瓶灌入古石祭壇中心的血祭石柱中，並挖掘下來
 sc.quest.stone_summoner_activated.body1=§o「法爾蘇斯·馬古斯蒙騙了我們！這絕非救世的先兆，而是災厄的序章！」§r
+sc.quest.stone_heart.title=石心
+sc.quest.stone_heart.body=擊敗高塔餘裔獲得石心，食用後給予自身4點石心生命，可以用來抵擋傷害
+sc.quest.stone_heart.body1=§o災厄之影覆於高塔之上，王終是醒悟了——他同父親一般愚昧。那巍峨而堅固的塔樓，又怎能阻擋劫數的降臨？如父親當年那般，他舉起利刃，以命贖罪。§r
+
 
 sc.quest.stoneguard.title=石頭守衛
 sc.quest.stoneguard.body=§o堅硬的外表，無聲的危險§r
@@ -536,6 +542,17 @@ sc.quest.ancient_stone_totem.title=§o§l§p[boss]§r石之圖騰§r
 sc.quest.ancient_stone_totem.body=§o舊日災禍之源
 sc.quest.ancient_stone_totem.body1=特殊而強大的Boss，由兩個五級壓縮石頭和一個激活的血祭石柱召喚
 sc.quest.ancient_stone_totem.body2=分兩個階段，第一階段只能透過任意鎬子造成傷害，第二階段會在四個形態中輪流轉換。請做好充足準備。
+sc.quest.spire_remnant.title=§o§l§p[boss]§r高塔餘裔
+sc.quest.spire_remnant.body=§o舊文明的餘泣§r
+sc.quest.spire_remnant.body1=生成於高塔的小Boss，擊敗後獲得石心
+sc.quest.spire_remnant.body2=分兩個階段，當血量低於一定比例後，將變得憤怒，並提高移速
+sc.quest.wandering_collector.title=流浪收藏家
+sc.quest.wandering_collector.body=§o你殺了他一定有什麼原因罷§r
+sc.quest.wandering_collector.body1=遊蕩在大地的收藏家，聽說與流浪商人有著些許關係，只是不知道他為何沒帶羊駝。擁有兩種交易表。使用綠寶石交易的會反擊。
+sc.quest.snatcher.title=掠寶者
+sc.quest.snatcher.body=§o唯利是圖的掠奪者，分散在世界各地。§r
+sc.quest.snatcher.body1=掠寶者會在掠寶者營地生成，雖然屬於掠奪者，但可能因為地位低下，始終被當作「編外」人員。會手持鐵劍發起攻擊。
+
 
 stonecraft.expansion_slab=§r§i通用§r
 stonecraft.weapon_only=§r§i僅武器§r
