@@ -11,17 +11,25 @@
       "stonecraft:phase_one": {
         "minecraft:movement": {
           "value": 0.23
-        },
-        "minecraft:attack": {
-          "damage": 6
         }
       },
       "stonecraft:phase_two": {
+        "minecraft:area_attack": {
+          "cause": "entity_attack",
+          "damage_cooldown": 4.0,
+          "damage_per_tick": 6,
+          "damage_range": 5.0,
+          "entity_filter": {
+            "test": "is_family",
+            "subject": "other",
+            "value": "player"
+          }
+        },
         "minecraft:movement": {
           "value": 0.35
         },
         "minecraft:attack": {
-          "damage": 10
+          "damage": 12
         },
         "minecraft:damage_sensor": {
           "triggers": [
@@ -59,7 +67,7 @@
       },
       "minecraft:boss": {
         "should_darken_sky": true,
-        "name": "§8高塔余裔§r",
+        "name": "高塔余裔",
         "hud_range": 16
       },
       "minecraft:health": {

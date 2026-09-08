@@ -75,7 +75,7 @@
         },
         "minecraft:boss": {
           "should_darken_sky": true,
-          "name": "§8石之图腾-棘沼§r",
+          "name": "§8石之图腾-§q棘沼§r",
           "hud_range": 250
         },
         "minecraft:spawn_entity": {
@@ -223,7 +223,7 @@
         },
         "minecraft:boss": {
           "should_darken_sky": true,
-          "name": "§8石之图腾-战狂§r",
+          "name": "§8石之图腾-§c战狂§r",
           "hud_range": 250
         },
         "minecraft:timer": {
@@ -334,7 +334,7 @@
         },
         "minecraft:boss": {
           "should_darken_sky": true,
-          "name": "§8石之图腾-荒芜§r",
+          "name": "§8石之图腾-§p荒芜§r",
           "hud_range": 250
         },
         "minecraft:spawn_entity": {
@@ -439,7 +439,7 @@
         },
         "minecraft:boss": {
           "should_darken_sky": true,
-          "name": "§8石之图腾-终末§r",
+          "name": "§8石之图腾-§5终末§r",
           "hud_range": 250
         },
         "minecraft:spawn_entity": {
