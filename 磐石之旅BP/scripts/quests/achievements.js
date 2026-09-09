@@ -1,6 +1,7 @@
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { world, Player, system} from "@minecraft/server";
-import { giveQuestAward, showMainMenu, isQuestCompleted, markQuestCompleted, checkQuestConditionWithQuest, buildQuestBody, checkAutoAchievement, isRewardClaimed, setRewardClaimed, notifyAchievementComplete} from "./quests_core.js";
+import { giveQuestAward, isQuestCompleted, markQuestCompleted, checkQuestConditionWithQuest, buildQuestBody, checkAutoAchievement, isRewardClaimed, setRewardClaimed, notifyAchievementComplete} from "./quests_core.js";
+import { showMainMenu } from "./quests_ui.js";
 import { CHAPTERS } from "./quests.js";
 
 const useItemToQuests = new Map();

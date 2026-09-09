@@ -1,15 +1,21 @@
 import { world, ItemStack, Player } from "@minecraft/server";
-import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { CHAPTERS } from "./quests.js";
-import { showAchievements, getUseCount, resetUseCount, getUseItemCount, resetUseItemCounts } from "./achievements.js";
-import { showSettingsMenu } from "../settings.js";
+import { getUseCount, getUseItemCount, resetUseCount, resetUseItemCounts } from "./achievements.js";
 import { displayMessage } from "../messageManager.js";
-import { getStoneHeart, getStoneHeartMax } from "../stone_heart/stone_heart_core.js";
-import { ATTRIBUTE_DEFS, getOrZero } from "../forge/forge_utils.js";
+
+// 导入 UI 函数
+import {
+    showQuestBook,
+    showMainMenu
+} from "./quests_ui.js";
+export {
+    showQuestBook,
+    showMainMenu
+};
 
 const NAMESPACE = "stonecraft";
 const QUEST_BOOK_ID = `${NAMESPACE}:stone_encyclopedia`;
-const kill_prefix = "kill_progress_"; // 动态属性键前缀
+const kill_prefix = "kill_progress_";
 
 export function isRewardClaimed(player, questId) {
     return player.getDynamicProperty(`${NAMESPACE}:reward_claimed_${questId}`) ?? false;
@@ -19,29 +25,17 @@ export function setRewardClaimed(player, questId, claimed = true) {
     player.setDynamicProperty(`${NAMESPACE}:reward_claimed_${questId}`, claimed);
 }
 
-/**
- * 增加某个任务的击杀计数
- * @param {Player} player
- * @param {string} questId
- * @param {number} increment
- */
 export function addKillCount(player, questId, increment = 1) {
     const key = `${NAMESPACE}:${kill_prefix}${questId}`;
     const current = player.getDynamicProperty(key) ?? 0;
     player.setDynamicProperty(key, current + increment);
 }
 
-/**
- * 获取某个任务的当前击杀计数
- */
 export function getKillCount(player, questId) {
     const key = `${NAMESPACE}:${kill_prefix}${questId}`;
     return player.getDynamicProperty(key) ?? 0;
 }
 
-/**
- * 重置击杀计数（任务完成时调用）
- */
 export function resetKillCount(player, questId) {
     const key = `${NAMESPACE}:${kill_prefix}${questId}`;
     player.setDynamicProperty(key, 0);
@@ -52,7 +46,6 @@ const entityToQuests = new Map();
 const BOSS_ENTITIES = [
     "stonecraft:ancient_stone_totem",
     "stonecraft:spire_remnant"
-    // 后续可以增加boss（会有的对吧）
 ];
 
 function initKillQuestMap() {
@@ -78,17 +71,13 @@ function getPlayerContainer(player) {
 
 function hasEnoughItems(player, itemId, requiredAmount) {
     const container = getPlayerContainer(player);
-    if (!container) {
-        return false;
-    }
+    if (!container) return false;
     let count = 0;
     for (let i = 0; i < container.size; i++) {
         const item = container.getItem(i);
         if (item?.typeId === itemId) {
             count += item.amount;
-            if (count >= requiredAmount) {
-                return true;
-            }
+            if (count >= requiredAmount) return true;
         }
     }
     return false;
@@ -246,7 +235,7 @@ function takeItems(player, itemId, amount) {
     return false;
 }
 
-function giveItem(player, itemStack) {
+export function giveItem(player, itemStack) {
     const container = getPlayerContainer(player);
     if (!container) {
         player.dimension.spawnItem(itemStack, player.location);
@@ -295,10 +284,8 @@ export function giveQuestAward(player, quest) {
         }
     }
     if (quest.manualReward) {
-        // 手动领取奖励：标记已领取，不播放音效和消息
         setRewardClaimed(player, quest.id, true);
     } else {
-        // 自动发放奖励：播放音效和完成消息
         player.playSound("random.levelup");
         const prefix = { translate: "quest.finished" };
         let titleMessage;
@@ -362,7 +349,7 @@ export function buildQuestBody(quest, player) {
             if (i > 0) body.rawtext.push({ translate: "quest.or" });
             body.rawtext.push({
                 translate: "quest.item_with_tag",
-                with: { rawtext: [tagItem.name] }  // 只有一个参数，仍用 rawtext 包裹
+                with: { rawtext: [tagItem.name] }
             });
         }
     } else if (condition.killEntity) {
@@ -411,8 +398,7 @@ export function buildQuestBody(quest, player) {
             body.rawtext.push(name);
             body.rawtext.push({ text: ` ${required} 个${progress}\n` });
         }
-    }
-    else {
+    } else {
         body.rawtext.push({ translate: "quest.condition.none" });
     }
 
@@ -445,190 +431,41 @@ export function buildQuestBody(quest, player) {
     return body;
 }
 
-
-// UI 函数
-function showCredits(player) { //制作名单
-    const form = new ActionFormData()
-        .title({ translate: "sc.credits.title" })
-        .label({ translate: "sc.credits.body" })
-        .divider()
-        .label({ translate: "sc.credits.body2" })
-        .button({ translate: "gui.back" });
-
-    form.show(player).then((response) => {
-        if (!response.canceled) {
-            showMainMenu(player);
-        }
-    });
-}
-
-export function showQuestBook(player) {
-    showMainMenu(player);
-}
-
-export function showMainMenu(player) { //主页面
-    const form = new ActionFormData()
-        .title({ translate: "stonecraft.item.stone_encyclopedia" })
-        .body({ translate: "stonecraft.item.stone_encyclopedia.body" });
-    form.button({ translate: "sc.menu.tasks" }, "textures/ui/quest/tasks");
-    form.button({ translate: "sc.menu.bestiary" }, "textures/ui/quest/biogeography");
-    form.button({ translate: "sc.menu.achievements" }, "textures/ui/quest/achievements");
-    form.button({ translate: "sc.menu.credits" }, "textures/ui/quest/credits");
-    form.button({ translate: "stonecraft.settings.button" }, "textures/ui/settings");
-    form.divider();
-    const attrParts = [];
-    for (const def of ATTRIBUTE_DEFS) {
-        const level = getOrZero(player, def.playerKey, 0);
-        if (level > 0) {
-            attrParts.push({
-                rawtext: [
-                    { translate: `stonecraft.attribute.${def.id}` },
-                    { text: ` Lv.${level}` }
-                ]
-            });
-        }
-    }
-    const attrMessage = attrParts.length > 0
-        ? { rawtext: attrParts.reduce((acc, part, i) => {
-              if (i > 0) acc.push({ text: ", " });
-              acc.push(part);
-              return acc;
-          }, []) }
-        : { translate: "stonecraft.attributes.none" };
-
-    form.label(attrMessage);
-    const stoneHeart = getStoneHeart(player);
-    const stoneHeartMax = getStoneHeartMax(player);
-    form.label({
-        translate: "stonecraft.stone_heart.info",
-        with: { rawtext: [{ text: stoneHeart.toString() }, { text: stoneHeartMax.toString() }] }
-    });
-    form.show(player).then((response) => {
-        if (response.canceled) return;
-        switch (response.selection) {
-            case 0: showTaskChapters(player); break;
-            case 1: showBestiary(player); break;
-            case 2: showAchievements(player); break;
-            case 3: showCredits(player); break;
-            case 4: showSettingsMenu(player, showMainMenu); break;
-        }
-    });
-}
-
-function showTaskChapters(player) { //任务
-    const form = new ActionFormData();
-    form.title({ translate: "sc.menu.tasks" });
-    form.body({ translate: "sc.menu.tasks.body" });
-    const taskChapters = CHAPTERS.filter(ch => 
-        !["sc_biogeography", "sc_achievements"].includes(ch.id)
-    ); //筛选不为生物志和成就的表单
-    for (const chapter of taskChapters) {
-        form.button(chapter.title, chapter.iconPath);
-    }
-    form.button({ translate: "gui.back" });
-    form.show(player).then((response) => {
-        if (response.canceled) return;
-        const total = taskChapters.length;
-        if (response.selection === total) {
-            showMainMenu(player);
-            return;
-        }
-        const selectedChapter = taskChapters[response.selection];
-        showChapterQuests(player, selectedChapter, () => showTaskChapters(player));
-    });
-}
-
-function showChapterQuests(player, chapter, backCallback) {
-    const form = new ActionFormData();
-    form.title(chapter.title);
-    if (chapter.description) form.body(chapter.description);
-    for (const quest of chapter.quests) {
-        let buttonText = quest.title;
-        if (isQuestCompleted(player, quest)) {
-            buttonText = { rawtext: [quest.title, { text: " \xA72\u2714" }] };
-        }
-        form.button(buttonText, quest.iconPath);
-    }
-    form.button({ translate: "gui.back" });
-    form.show(player).then((response) => {
-        if (response.canceled) return;
-        const total = chapter.quests.length;
-        if (response.selection === total) {
-            if (backCallback) backCallback(player);
-            return;
-        }
-        const selectedQuest = chapter.quests[response.selection];
-        const returnToChapter = () => showChapterQuests(player, chapter, backCallback);
-        showQuestDetail(player, selectedQuest, returnToChapter);
-    });
-}
-
-function showQuestDetail(player, quest, returnCallback) {
-    const isCompleted = isQuestCompleted(player, quest);
-    const body = buildQuestBody(quest, player);
-    const form = new MessageFormData()
-        .title(quest.title)
-        .body(body)
-        .button1({ translate: "gui.back" });
-
-    if (isCompleted) {
-        form.button2({ translate: "quest.done" });
-    } else {
-        form.button2({ translate: "quest.check" });
-    }
-
-    form.show(player).then((response) => {
-        if (response.canceled || response.selection === undefined) return;
-        if (response.selection === 0) {
-            if (returnCallback) {
-                returnCallback(player);
-            } else {
-                showQuestBook(player);
-            }
-        } else if (response.selection === 1) {
-            if (isCompleted) {
-                if (returnCallback) {
-                    returnCallback(player);
-                } else {
-                    showQuestBook(player);
-                }
-            } else {
-                tryCompleteQuest(player, quest, returnCallback);
-            }
-        }
-    });
-}
-
-function tryCompleteQuest(player, quest, returnCallback) {
-    if (isQuestCompleted(player, quest)) {
-        displayMessage(player, { translate: "quest.already_completed" });
-        if (returnCallback) {
-            returnCallback(player);
-        } else {
-            showQuestBook(player);
-        }
-        return;
-    }
+//自动完成
+export function checkAutoAchievement(player, quest) {
+    if (!player || !quest) return false;
+    if (quest.autoComplete !== true) return false;
+    if (isQuestCompleted(player, quest)) return false;
 
     const result = checkQuestConditionWithQuest(player, quest);
-
-    if (!result.success) {
-        displayMessage(player, { rawtext: result.messages });
-        showQuestDetail(player, quest, returnCallback);
-        return;
-    }
-
+    if (!result.success) return false;
     markQuestCompleted(player, quest);
-    giveQuestAward(player, quest);
-
-    if (returnCallback) {
-        returnCallback(player);
-    } else {
-        showQuestBook(player);
-    }
+    notifyAchievementComplete(player, quest);
+    return true;
 }
 
-// 事件监听
+export function notifyAchievementComplete(player, quest) {
+    if (!player || !quest) return;
+    player.playSound("random.levelup");
+    const prefix = { translate: "quest.completed_go_claim" };
+    let titleMessage;
+    if (typeof quest.title === "string") {
+        titleMessage = { text: quest.title };
+    } else {
+        titleMessage = quest.title;
+    }
+    const message = {
+        rawtext: [
+            prefix,
+            { text: "「" },
+            titleMessage,
+            { text: "」" }
+        ]
+    };
+    displayMessage(player, message);
+}
+
+//事件监听
 world.afterEvents.entityDie.subscribe((event) => {
     const { deadEntity, damageSource } = event;
     const player = damageSource.damagingEntity;
@@ -660,142 +497,3 @@ world.afterEvents.itemUse.subscribe((event) => {
         showQuestBook(event.source);
     }
 });
-
-// 生物志分类
-function showBestiary(player) {
-    const bestiaryChapter = CHAPTERS.find(ch => ch.id === "sc_biogeography");
-    const allQuests = bestiaryChapter.quests;
-    const bossQuests = allQuests.filter(q => 
-        q.condition.killEntity && BOSS_ENTITIES.includes(q.condition.killEntity.entityType)
-    );
-    const normalQuests = allQuests.filter(q => 
-        q.condition.killEntity && !BOSS_ENTITIES.includes(q.condition.killEntity.entityType)
-    );
-
-    const form = new ActionFormData()
-        .title({ translate: "sc.menu.bestiary" })
-        .body({ translate: "sc.menu.bestiary.body" })
-        .button({ translate: "sc.bestiary.normal" })
-        .button({ translate: "sc.bestiary.boss" })
-        .button({ translate: "gui.back" });
-    form.show(player).then((response) => {
-        if (response.canceled) return;
-        if (response.selection === 0) {
-            showQuestList(player, normalQuests, { translate: "sc.bestiary.normal" }, showBestiary);
-        } else if (response.selection === 1) {
-            showQuestList(player, bossQuests, { translate: "sc.bestiary.boss" }, showBestiary);
-        } else if (response.selection === 2) {
-            showMainMenu(player);
-        }
-    });
-}
-
-function showQuestList(player, quests, title, backCallback) {
-    const form = new ActionFormData().title(title);
-    for (const quest of quests) {
-        let buttonText = quest.title;
-        if (isQuestCompleted(player, quest)) {
-            buttonText = { rawtext: [quest.title, { text: " \xA72\u2714" }] };
-        }
-        form.button(buttonText, quest.iconPath);
-    }
-    form.button({ translate: "gui.back" });
-    form.show(player).then((response) => {
-        if (response.canceled) return;
-        const total = quests.length;
-        if (response.selection === total) {
-            if (backCallback) backCallback(player);
-            return;
-        }
-        const selectedQuest = quests[response.selection];
-        showQuestDetailWithBack(player, selectedQuest, () => showQuestList(player, quests, title, backCallback));
-    });
-}
-
-function showQuestDetailWithBack(player, quest, backCallback) {
-    const isCompleted = isQuestCompleted(player, quest);
-    const body = buildQuestBody(quest, player);
-    const form = new MessageFormData()
-        .title(quest.title)
-        .body(body)
-        .button1({ translate: "gui.back" });
-    if (isCompleted) {
-        form.button2({ translate: "quest.done" });
-    } else {
-        form.button2({ translate: "quest.check" });
-    }
-    form.show(player).then((response) => {
-        if (response.canceled || response.selection === undefined) {
-            if (backCallback) backCallback(player);
-            return;
-        }
-        if (response.selection === 0) {
-            if (backCallback) backCallback(player);
-        } else if (response.selection === 1) {
-            if (isCompleted) {
-                if (backCallback) backCallback(player);
-            } else {
-                tryCompleteQuestWithBack(player, quest, backCallback);
-            }
-        }
-    });
-}
-
-function tryCompleteQuestWithBack(player, quest, backCallback) {
-    if (isQuestCompleted(player, quest)) {
-        displayMessage(player, { translate: "quest.already_completed" });
-        if (backCallback) backCallback(player);
-        return;
-    }
-    const result = checkQuestConditionWithQuest(player, quest);
-    if (!result.success) {
-        displayMessage(player, { rawtext: result.messages });
-        showQuestDetailWithBack(player, quest, backCallback);
-        return;
-    }
-    markQuestCompleted(player, quest);
-    giveQuestAward(player, quest);
-    if (backCallback) backCallback(player);
-}
-
-export function checkAutoAchievement(player, quest) {
-    if (!player || !quest) return false;
-    if (quest.autoComplete !== true) {
-        return false;
-    }
-    if (isQuestCompleted(player, quest)) {
-        return false;
-    }
-
-    const result = checkQuestConditionWithQuest(player, quest);
-    if (!result.success) {
-        return false;
-    }
-    markQuestCompleted(player, quest);
-    notifyAchievementComplete(player, quest);
-    return true;
-}
-export function notifyAchievementComplete(player, quest) {
-    if (!player || !quest) return;
-    // 播放提示音效
-    player.playSound("random.levelup");
-    // 发送完成消息
-    const prefix = { translate: "quest.completed_go_claim" };
-    let titleMessage;
-    if (typeof quest.title === "string") {
-        titleMessage = { text: quest.title };
-    } else {
-        titleMessage = quest.title;
-    }
-    const message = {
-        rawtext: [
-            prefix,
-            { text: "「" },
-            titleMessage,
-            { text: "」" }
-        ]
-    };
-    displayMessage(player, message);
-}
-
-export { giveItem };

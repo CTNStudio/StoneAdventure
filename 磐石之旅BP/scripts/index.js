@@ -1,4 +1,5 @@
 import "./quests/quests_core.js";
+import "./quests/quests_ui.js";
 import { displayMessage } from "./messageManager.js";
 import "./food.js";
 import "./durability.js";
