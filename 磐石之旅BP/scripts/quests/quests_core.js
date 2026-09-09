@@ -2,7 +2,8 @@ import { world, ItemStack, Player } from "@minecraft/server";
 import { CHAPTERS } from "./quests.js";
 import { getUseCount, getUseItemCount, resetUseCount, resetUseItemCounts } from "./achievements.js";
 import { displayMessage } from "../messageManager.js";
-import { checkWeeklyProgress, getWeeklyQuests } from "./weekly_routine.js";
+import { checkWeeklyProgress, getWeeklyQuests, addWeeklyKillCount } from "./weekly_routine.js";
+import { addStonePoint } from "../stone_point.js";
 
 // 导入 UI 函数
 import {
@@ -284,8 +285,8 @@ export function giveQuestAward(player, quest) {
             giveItem(player, itemStack);
         }
     }
-    if (award.point) {
-        
+    if (award.stonePoint && typeof award.stonePoint === 'number') {
+        addStonePoint(player, award.stonePoint);
     }
     if (quest.manualReward) {
         setRewardClaimed(player, quest.id, true);
@@ -428,6 +429,12 @@ export function buildQuestBody(quest, player) {
             with: { rawtext: [{ text: award.level.toString() }] }
         });
     }
+    if (award.stonePoint && typeof award.stonePoint === 'number') {
+        body.rawtext.push({
+            translate: "quest.stone_point",
+            with: { rawtext: [{ text: award.stonePoint.toString() }] }
+        });
+    }
     if ((!award.items || award.items.length === 0) && !award.exp && !award.level) {
         body.rawtext.push({ translate: "quest.award.none" });
     }
@@ -486,6 +493,7 @@ world.afterEvents.entityDie.subscribe((event) => {
     const weeklyQuests = getWeeklyQuests();
     for (const quest of weeklyQuests) {
         if (quest.condition.killEntity && quest.condition.killEntity.entityType === entityType) {
+            addWeeklyKillCount(player, quest.id, 1);  // ← 新增
             checkWeeklyProgress(player, quest);
         }
     }

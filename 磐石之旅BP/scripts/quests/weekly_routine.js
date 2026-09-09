@@ -2,9 +2,43 @@ import { world, system, Player } from "@minecraft/server";
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { weekly_pool } from "./quests.js";
 import { displayMessage } from "../messageManager.js";
-import { checkQuestConditionWithQuest, isQuestCompleted, markQuestCompleted, buildQuestBody,  giveQuestAward, notifyAchievementComplete } from "./quests_core.js";
+import { buildQuestBody,  giveQuestAward, notifyAchievementComplete } from "./quests_core.js";
 import { showMainMenu } from "./quests_ui.js";
+const NAMESPACE = "stonecraft";
+const weekly_week_key = `${NAMESPACE}:weekly_week`;
+const weekly_quests_key = `${NAMESPACE}:weekly_quests`;
+const weekly_completed_prefix = `${NAMESPACE}:weekly_completed_`;
+const weekly_claimed_prefix = `${NAMESPACE}:weekly_claimed_`;
+const weekly_kill_prefix = `${NAMESPACE}:weekly_kill_`;
+const weekly_use_prefix = `${NAMESPACE}:weekly_use_`;
 
+export function addWeeklyKillCount(player, questId, increment = 1) {
+    const key = `${weekly_kill_prefix}${questId}`;
+    const current = player.getDynamicProperty(key) ?? 0;
+    player.setDynamicProperty(key, current + increment);
+}
+
+export function getWeeklyKillCount(player, questId) {
+    const key = `${weekly_kill_prefix}${questId}`;
+    return player.getDynamicProperty(key) ?? 0;
+}
+
+export function addWeeklyUseCount(player, questId, increment = 1) {
+    const key = `${weekly_use_prefix}${questId}`;
+    const current = player.getDynamicProperty(key) ?? 0;
+    player.setDynamicProperty(key, current + increment);
+}
+
+export function getWeeklyUseCount(player, questId) {
+    const key = `${weekly_use_prefix}${questId}`;
+    return player.getDynamicProperty(key) ?? 0;
+}
+
+// 重置周常进度（在刷新时调用）
+function resetWeeklyProgress(player, questId) {
+    player.setDynamicProperty(`${weekly_kill_prefix}${questId}`, 0);
+    player.setDynamicProperty(`${weekly_use_prefix}${questId}`, 0);
+}
 // 显示周常菜单
 export function showWeeklyMenu(player) {
     const weeklyQuests = getWeeklyQuests();
@@ -89,11 +123,7 @@ function showWeeklyQuestDetail(player, quest) {
     });
 }
 
-const NAMESPACE = "stonecraft";
-const weekly_week_key = `${NAMESPACE}:weekly_week`;
-const weekly_quests_key = `${NAMESPACE}:weekly_quests`;
-const weekly_completed_prefix = `${NAMESPACE}:weekly_completed_`;
-const weekly_claimed_prefix = `${NAMESPACE}:weekly_claimed_`;
+
 
 // 获取当前游戏周（从第0周开始，每7天算一周）
 function getCurrentWeek() {
@@ -120,22 +150,21 @@ export function refreshWeeklyIfNeeded() {
     const currentWeek = getCurrentWeek();
     const storedWeek = world.getDynamicProperty(weekly_week_key);
     if (storedWeek !== undefined && storedWeek === currentWeek) {
-        return; // 无需刷新
+        return;
     }
 
-    // 周数变化，重新抽取
     const newQuests = pickWeeklyQuests();
     world.setDynamicProperty(weekly_week_key, currentWeek);
     world.setDynamicProperty(weekly_quests_key, JSON.stringify(newQuests));
 
-    // 重置所有玩家的完成/领取状态
     for (const player of world.getAllPlayers()) {
         for (const questId of newQuests) {
             player.setDynamicProperty(`${weekly_completed_prefix}${questId}`, false);
             player.setDynamicProperty(`${weekly_claimed_prefix}${questId}`, false);
+            resetWeeklyProgress(player, questId);  // ← 新增重置进度
         }
     }
-     world.sendMessage({ translate: "quest.reset" });
+    world.sendMessage({ translate: "quest.reset" });
 }
 
 // 获取本周三个任务对象
@@ -176,13 +205,25 @@ export function checkWeeklyProgress(player, quest) {
     if (isWeeklyCompleted(player, quest.id)) return false;
     if (isWeeklyClaimed(player, quest.id)) return false;
 
-    const result = checkQuestConditionWithQuest(player, quest);
-    if (!result.success) return false;
+    const condition = quest.condition;
+    let satisfied = false;
 
-    // 条件满足，标记完成
+    if (condition.killEntity) {
+        const count = getWeeklyKillCount(player, quest.id);
+        satisfied = count >= (condition.killEntity.amount || 1);
+    } else if (condition.useItem) {
+        const count = getWeeklyUseCount(player, quest.id);
+        satisfied = count >= (condition.useItem.amount || 1);
+    } else if (condition.useTag) {
+        const count = getWeeklyUseCount(player, quest.id); // 复用使用计数
+        satisfied = count >= (condition.useTag.amount || 1);
+    }
+    // 可以根据需要添加更多条件类型（如 item 等，但周常目前只有这些）
+
+    if (!satisfied) return false;
+
     setWeeklyCompleted(player, quest.id);
-    // 发送通知（使用成就完成通知）
-    notifyAchievementComplete(player, quest); // 复用成就通知
+    notifyAchievementComplete(player, quest);
     return true;
 }
 

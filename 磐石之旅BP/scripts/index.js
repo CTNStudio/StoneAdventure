@@ -9,6 +9,7 @@ import "./custom_crop.js";
 import "./custom_command.js";
 import "./items_lore.js";
 import "./doll.js";
+import "./stone_point.js";
 import "./summon_boss/boss_structure_spawner.js";
 import "./summon_boss/blood_offering_vial.js";
 import "./summon_boss/sacrificial_blade.js";

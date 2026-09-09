@@ -13,6 +13,7 @@ import {
 } from "./quests_core.js";
 import { CHAPTERS } from "./quests.js";
 import { showWeeklyMenu } from "./weekly_routine.js";
+import { getStonePoint } from "../stone_point.js";
 
 const BOSS_ENTITIES = [
     "stonecraft:ancient_stone_totem",
@@ -70,7 +71,11 @@ export function showMainMenu(player) {
               return acc;
           }, []) }
         : { translate: "stonecraft.attributes.none" };
-
+    const stonePoint = getStonePoint(player);
+    form.label({
+        translate: "stonecraft.stone_point.info",
+        with: { rawtext: [{ text: stonePoint.toString() }] }
+    });
     form.label(attrMessage);
     const stoneHeart = getStoneHeart(player);
     const stoneHeartMax = getStoneHeartMax(player);

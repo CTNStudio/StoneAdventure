@@ -276,8 +276,9 @@ quest.not_enough.entity=你需要杀死 %1 才能完成这个任务
 quest.condition=§e完成条件§r：
 quest.award=§e完成奖励§r：
 quest.item=%1 个 %2;
-quest.xp=%1 点经验
-quest.level=%1 级经验
+quest.xp=%1 点经验;
+quest.level=%1 级经验;
+quest.stone_point=%1 点石源
 quest.quests=完成 %1 个特定任务
 quest.entity=杀死 %1
 quest.reward.none=无奖励
@@ -362,6 +363,7 @@ stonecraft.attribute.bleeding=§c失血§r
 
 stonecraft.attributes.none=无护甲属性
 stonecraft.stone_heart.info=: %s/%s
+stonecraft.stone_point.info=石源: %s
 
 stonecraft.item.stone_encyclopedia=磐石大典
 stonecraft.item.stone_encyclopedia.body=深藏于地下的故事
