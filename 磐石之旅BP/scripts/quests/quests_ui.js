@@ -14,6 +14,7 @@ import {
 import { CHAPTERS } from "./quests.js";
 import { showWeeklyMenu } from "./weekly_routine.js";
 import { getStonePoint } from "../stone_point.js";
+import { showShopMenu } from "../shop/shop.js";
 
 const BOSS_ENTITIES = [
     "stonecraft:ancient_stone_totem",
@@ -49,6 +50,7 @@ export function showMainMenu(player) {
     form.button({ translate: "sc.menu.bestiary" }, "textures/ui/quest/biogeography");
     form.button({ translate: "sc.menu.weekly" }, "textures/ui/quest/weekly_routine");
     form.button({ translate: "sc.menu.achievements" }, "textures/ui/quest/achievements");
+    form.button({ translate: "sc.menu.shop" }, "textures/ui/quest/shop");
     form.button({ translate: "sc.menu.credits" }, "textures/ui/quest/credits");
     form.button({ translate: "stonecraft.settings.button" }, "textures/ui/quest/settings");
     form.divider();
@@ -90,8 +92,9 @@ export function showMainMenu(player) {
             case 1: showBestiary(player); break;
             case 2: showWeeklyMenu(player); break;
             case 3: showAchievements(player); break;
-            case 4: showCredits(player); break;
-            case 5: showSettingsMenu(player, showMainMenu); break;
+            case 4: showShopMenu(player); break; 
+            case 5: showCredits(player); break;
+            case 6: showSettingsMenu(player, showMainMenu); break;
         }
     });
 }
