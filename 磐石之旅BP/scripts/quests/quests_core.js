@@ -2,6 +2,7 @@ import { world, ItemStack, Player } from "@minecraft/server";
 import { CHAPTERS } from "./quests.js";
 import { getUseCount, getUseItemCount, resetUseCount, resetUseItemCounts } from "./achievements.js";
 import { displayMessage } from "../messageManager.js";
+import { checkWeeklyProgress, getWeeklyQuests } from "./weekly_routine.js";
 
 // 导入 UI 函数
 import {
@@ -283,6 +284,9 @@ export function giveQuestAward(player, quest) {
             giveItem(player, itemStack);
         }
     }
+    if (award.point) {
+        
+    }
     if (quest.manualReward) {
         setRewardClaimed(player, quest.id, true);
     } else {
@@ -477,6 +481,13 @@ world.afterEvents.entityDie.subscribe((event) => {
         if (isQuestCompleted(player, quest)) continue;
         addKillCount(player, quest.id, 1);
         checkAutoAchievement(player, quest);
+    }
+    // 检查周常任务
+    const weeklyQuests = getWeeklyQuests();
+    for (const quest of weeklyQuests) {
+        if (quest.condition.killEntity && quest.condition.killEntity.entityType === entityType) {
+            checkWeeklyProgress(player, quest);
+        }
     }
 });
 

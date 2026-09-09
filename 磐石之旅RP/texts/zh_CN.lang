@@ -309,6 +309,15 @@ quest.reward_claimed_success=奖励已领取！
 quest.reward_already_claimed=奖励已领取
 quest.completed_go_claim=成就已完成，前往领取奖励:
 
+sc.menu.weekly=周常
+sc.weekly.body=完成每周日常，领取独特奖励
+quest.completed=§6已完成§r
+quest.not_completed=未完成
+quest.not_completed_yet=§7暂未完成§r
+quest.reward_claimed_success=§6请领取奖励§r
+quest.reward_already_claimed=§6奖励已领取§r
+quest.reset=§6周常已刷新！§r
+
 stonecraft.tag.stone_food=石头食物
 
 sc.menu.achievements=成就

@@ -3,6 +3,7 @@ import { world, Player, system} from "@minecraft/server";
 import { giveQuestAward, isQuestCompleted, markQuestCompleted, checkQuestConditionWithQuest, buildQuestBody, checkAutoAchievement, isRewardClaimed, setRewardClaimed, notifyAchievementComplete} from "./quests_core.js";
 import { showMainMenu } from "./quests_ui.js";
 import { CHAPTERS } from "./quests.js";
+import { checkWeeklyProgress, getWeeklyQuests } from "./weekly_routine.js";
 
 const useItemToQuests = new Map();
 const USE_ITEM_PREFIX = "use_item_progress_"; // 用于分物品计数
@@ -221,7 +222,6 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
     const itemId = itemStack.typeId;
     const itemTags = itemStack.getTags?.() ?? [];
 
-    // 原有 useItem 处理
     const itemQuests = useItemToQuests.get(itemId);
     if (itemQuests) {
         for (const quest of itemQuests) {
@@ -239,8 +239,6 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
             checkAutoAchievement(source, quest);
         }
     }
-
-    // 新增 useEachItem 处理
     const eachQuests = useEachItemToQuests.get(itemId);
     if (eachQuests) {
         for (const quest of eachQuests) {
@@ -250,6 +248,17 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
             // 检查是否所有物品都已达标
             checkAutoAchievementEach(source, quest);
         }
+    }
+    // 周常任务检查
+    const weeklyQuests = getWeeklyQuests();
+    for (const quest of weeklyQuests) {
+        if (quest.condition.useItem && quest.condition.useItem.itemId === itemId) {
+            checkWeeklyProgress(source, quest);
+        }
+        if (quest.condition.useTag && itemTags.includes(quest.condition.useTag.tag)) {
+            checkWeeklyProgress(source, quest);
+        }
+        // useEachItem 暂不处理，如有需要可类似实现
     }
 });
 world.afterEvents.playerInventoryItemChange.subscribe((event) => {

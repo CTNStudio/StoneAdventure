@@ -12,6 +12,7 @@ import {
     checkQuestConditionWithQuest,
 } from "./quests_core.js";
 import { CHAPTERS } from "./quests.js";
+import { showWeeklyMenu } from "./weekly_routine.js";
 
 const BOSS_ENTITIES = [
     "stonecraft:ancient_stone_totem",
@@ -45,9 +46,10 @@ export function showMainMenu(player) {
         .body({ translate: "stonecraft.item.stone_encyclopedia.body" });
     form.button({ translate: "sc.menu.tasks" }, "textures/ui/quest/tasks");
     form.button({ translate: "sc.menu.bestiary" }, "textures/ui/quest/biogeography");
+    form.button({ translate: "sc.menu.weekly" }, "textures/ui/quest/weekly_routine");
     form.button({ translate: "sc.menu.achievements" }, "textures/ui/quest/achievements");
     form.button({ translate: "sc.menu.credits" }, "textures/ui/quest/credits");
-    form.button({ translate: "stonecraft.settings.button" }, "textures/ui/settings");
+    form.button({ translate: "stonecraft.settings.button" }, "textures/ui/quest/settings");
     form.divider();
     const attrParts = [];
     for (const def of ATTRIBUTE_DEFS) {
@@ -81,9 +83,10 @@ export function showMainMenu(player) {
         switch (response.selection) {
             case 0: showTaskChapters(player); break;
             case 1: showBestiary(player); break;
-            case 2: showAchievements(player); break;
-            case 3: showCredits(player); break;
-            case 4: showSettingsMenu(player, showMainMenu); break;
+            case 2: showWeeklyMenu(player); break;
+            case 3: showAchievements(player); break;
+            case 4: showCredits(player); break;
+            case 5: showSettingsMenu(player, showMainMenu); break;
         }
     });
 }
