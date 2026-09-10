@@ -35,7 +35,7 @@ system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
     );
     customCommandRegistry.registerCommand(
         {
-            name: "sa:clear_stone_heart",
+            name: "sa:clearstoneheart",
             description: "清除石心",
             permissionLevel: CommandPermissionLevel.Any,
             cheatsRequired: true,
@@ -53,7 +53,7 @@ system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
     );
     customCommandRegistry.registerCommand(
         {
-            name: "sa:show_stone_heart",
+            name: "sa:showstoneheart",
             description: "显示石心",
             permissionLevel: CommandPermissionLevel.Any,
             cheatsRequired: false,
@@ -75,7 +75,7 @@ system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
     );
     customCommandRegistry.registerCommand(
         {
-            name: "sa:add_stone_point",
+            name: "sa:addstonepoint",
             description: "增加100石源",
             permissionLevel: CommandPermissionLevel.Any,
             cheatsRequired: true,
