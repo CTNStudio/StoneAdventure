@@ -154,7 +154,7 @@
       "min_distance": null,
       "sounds": [
         {
-          "name": "sounds//sacrificial_blood_infusion",
+          "name": "sounds/sacrificial_blood_infusion",
           "volume": 0.0
         }
       ]

@@ -1,4 +1,4 @@
-import { world, system } from "@minecraft/server";
+import { world, system, ItemStack} from "@minecraft/server";
 const STOP_SOUND_BALLS = [
     "stonecraft:thrown_stone_nugget",
 ];
@@ -38,7 +38,6 @@ const ballEffects = {
 const removedProjectiles = new Set();
 
 function safeRemoveProjectile(entity) {
-
     if (!entity) return;
 
     const id = entity.id;
@@ -47,15 +46,22 @@ function safeRemoveProjectile(entity) {
 
     removedProjectiles.add(id);
 
-
     try {
-
         if (entity.isValid) {
+            const typeId = entity.typeId;
+            const dimension = entity.dimension;
+            const location = entity.location;
+
+            if (typeId === "stonecraft:thrown_stone_nugget" && Math.random() < 0.1) {
+                dimension.spawnItem(
+                    new ItemStack("stonecraft:stone_nugget", 1),
+                    location
+                );
+            }
+
             entity.remove();
         }
-
     } catch (e) {}
-
 
     system.runTimeout(() => {
         removedProjectiles.delete(id);
