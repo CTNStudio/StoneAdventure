@@ -319,6 +319,11 @@ quest.reward_claimed_success=§6请领取奖励§r
 quest.reward_already_claimed=§6奖励已领取§r
 quest.reset=§6周常已刷新！§r
 
+sc.tide.sleep_blocked=§c你感到烦躁，无法入睡§r
+sc.tide.tide_begins=§c§l石潮爆发！大量石头生物正在涌来！§r
+sc.tide.tide_ends=§a石潮平息了...§r
+sc.tide.totem_died=§c§l时空的裂隙已然形成，石潮将有概率在晚上出现§r
+
 stonecraft.tag.stone_food=石头食物
 
 sc.menu.achievements=成就

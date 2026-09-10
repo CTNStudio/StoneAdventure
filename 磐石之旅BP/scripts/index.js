@@ -11,6 +11,7 @@ import "./items_lore.js";
 import "./doll.js";
 import "./stone_point.js";
 import "./shop/shop.js";
+import "./stone_tide/stone_tide.js";
 import "./summon_boss/boss_structure_spawner.js";
 import "./summon_boss/blood_offering_vial.js";
 import "./summon_boss/sacrificial_blade.js";
