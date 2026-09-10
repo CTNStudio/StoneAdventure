@@ -8,7 +8,8 @@
           "name": "sounds/stone_step",
           "volume": 1.0
         }
-      ]
+      ],
+      "subtitle": "stonecraft.stone.step"
     },
     "stonecraft.stone.hurt": {
       "category": "neutral",
@@ -17,7 +18,8 @@
           "name": "sounds/stone_hurt",
           "volume": 2.0
         }
-      ]
+      ],
+      "subtitle": "stonecraft.stone.hurt"
     },
     "stonecraft.stone.death": {
       "category": "neutral",
@@ -26,7 +28,8 @@
           "name": "sounds/stone_death",
           "volume": 2.0
         }
-      ]
+      ],
+      "subtitle": "stonecraft.stone.death"
     },
     "stonecraft.molten.step": {
       "category": "neutral",
@@ -44,7 +47,8 @@
           "name": "sounds/molten/molten_hurt",
           "volume": 2.0
         }
-      ]
+      ],
+      "subtitle": "stonecraft.molten.hurt"
     },
     "stonecraft.molten.death": {
       "category": "neutral",
@@ -53,7 +57,8 @@
           "name": "sounds/molten/molten_death",
           "volume": 2.0
         }
-      ]
+      ],
+      "subtitle": "stonecraft.molten.death"
     },
     "stonecraft.sandstone.step": {
       "category": "neutral",
@@ -61,7 +66,8 @@
         { "name": "sounds/sandstone/step/sandstone_step1", "volume": 1.0 },
         { "name": "sounds/sandstone/step/sandstone_step2", "volume": 1.0 },
         { "name": "sounds/sandstone/step/sandstone_step3", "volume": 1.0 }
-      ]
+      ],
+      "subtitle": "stonecraft.sandstone.step"
     },
     "stonecraft.sandstone.hurt": {
       "category": "neutral",
@@ -69,7 +75,8 @@
         { "name": "sounds/sandstone/hurt/sandstone_hurt1", "volume": 1.0 },
         { "name": "sounds/sandstone/hurt/sandstone_hurt2", "volume": 1.0 },
         { "name": "sounds/sandstone/hurt/sandstone_hurt3", "volume": 1.0 }
-      ]
+      ],
+      "subtitle": "stonecraft.sandstone.hurt"
     },
     "stonecraft.sandstone.death": {
       "category": "neutral",
@@ -77,7 +84,8 @@
         { "name": "sounds/sandstone/death/sandstone_death1", "volume": 1.0 },
         { "name": "sounds/sandstone/death/sandstone_death2", "volume": 1.0 },
         { "name": "sounds/sandstone/death/sandstone_death3", "volume": 1.0 }
-      ]
+      ],
+      "subtitle": "stonecraft.sandstone.death"
     },
     "stonecraft.mossy.step": {
       "category": "neutral",
@@ -86,7 +94,8 @@
           "name": "sounds/mossy/mossy_step",
           "volume": 1.0
         }
-      ]
+      ],
+      "subtitle": "stonecraft.mossy.step"
     },
     "stonecraft.mossy.hurt": {
       "category": "neutral",
@@ -95,7 +104,8 @@
           "name": "sounds/mossy/mossy_hurt",
           "volume": 2.0
         }
-      ]
+      ],
+      "subtitle": "stonecraft.mossy.hurt"
     },
     "stonecraft.mossy.death": {
       "category": "neutral",
@@ -104,7 +114,8 @@
           "name": "sounds/mossy/mossy_death",
           "volume": 2.0
         }
-      ]
+      ],
+      "subtitle": "stonecraft.mossy.death"
     },
     "stonecraft.totem.death": {
       "category": "neutral",
@@ -113,7 +124,8 @@
           "name": "sounds/totem_death",
           "volume": 2.0
         }
-      ]
+      ],
+      "subtitle": "stonecraft.totem.death"
     },
     "stonecraft.stone.transform": {
       "category": "neutral",
@@ -122,7 +134,8 @@
           "name": "sounds/stone_transform",
           "volume": 6.0
         }
-      ]
+      ],
+      "subtitle": "stonecraft.stone.transform"
     },
     "stonecraft.sacrificial_blood_infusion": {
       "category": "neutral",
@@ -131,7 +144,8 @@
           "name": "sounds/sacrificial_blood_infusion",
           "volume": 1.0
         }
-      ]
+      ],
+      "subtitle": "stonecraft.sacrificial_blood_infusion"
     },
     "mob.ball.hurt": {
       "__use_legacy_max_distance": "true",
@@ -139,7 +153,10 @@
       "max_distance": null,
       "min_distance": null,
       "sounds": [
-        "sounds/empty"
+        {
+          "name": "sounds//sacrificial_blood_infusion",
+          "volume": 0.0
+        }
       ]
     },
     "stonecraft.poured_into_the_bottle": {
@@ -149,7 +166,8 @@
           "name": "sounds/poured_into_the_bottle",
           "volume": 1.0
         }
-      ]
+      ],
+      "subtitle": "stonecraft.poured_into_the_bottle"
     },
     "stonecraft.stone_heart_broken": {
       "category": "neutral",
@@ -158,7 +176,8 @@
           "name": "sounds/stone_heart_broken",
           "volume": 10.0
         }
-      ]
+      ],
+      "subtitle": "stonecraft.stone_heart_broken"
     },
     "stonecraft.stone_heart_hurt": {
       "category": "neutral",
@@ -167,7 +186,8 @@
           "name": "sounds/stone_heart_hurt",
           "volume": 6.0
         }
-      ]
+      ],
+      "subtitle": "stonecraft.stone_heart_hurt"
     }
   }
 }

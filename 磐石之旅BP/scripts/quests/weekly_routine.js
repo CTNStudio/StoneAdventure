@@ -1,6 +1,6 @@
 import { world, system, Player } from "@minecraft/server";
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
-import { weekly_pool } from "./quests.js";
+import { weekly_pool } from "./weekly_routine_config.js";
 import { displayMessage } from "../messageManager.js";
 import { buildQuestBody,  giveQuestAward, notifyAchievementComplete } from "./quests_core.js";
 import { showMainMenu } from "./quests_ui.js";

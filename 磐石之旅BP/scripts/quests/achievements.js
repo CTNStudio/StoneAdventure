@@ -299,4 +299,3 @@ export function resetUseItemCount(player, questId, itemId) {
     const key = `stonecraft:${USE_ITEM_PREFIX}${questId}_${itemId}`;
     player.setDynamicProperty(key, 0);
 }
-

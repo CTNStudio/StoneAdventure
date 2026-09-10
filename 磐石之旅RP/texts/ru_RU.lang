@@ -309,6 +309,51 @@ quest.reward_claimed_success=Награда получена!
 quest.reward_already_claimed=Награда уже получена
 quest.completed_go_claim=Достижение выполнено, забери награду:
 
+sc.menu.shop=Магазин
+shop.require.stone_point=Каменный источник %s
+shop.reward.stone_point=Каменный источник +%s
+sc.shop.stone_point=Каменный источник×%s
+sc.shop.item_count=%s %s
+sc.shop.separator= §7 + §r
+sc.shop.arrow=  §7→§r
+shop.title=Магазин
+shop.body=Диалог с неизвестным в обмен на драгоценные вещи
+shop.buy=Купить
+shop.cannot_afford=Недостаточно средств
+shop.purchase_success=Покупка успешна
+shop.purchase_failed=Покупка не удалась
+shop.trade.coin_to_point.name=Обменять на каменный источник
+shop.trade.expansion_slab.name=Купить плиту расширения
+shop.trade.inlaid_essence_bead.name=Купить вставленную эссенциальную бусину
+
+sc.menu.weekly=Еженедельно
+sc.weekly.body=Выполняйте еженедельные задания и получайте уникальные награды
+quest.completed=(§6Завершено§r)
+quest.not_completed=(Не завершено)
+quest.not_completed_yet=§7Пока не завершено§r
+quest.already_completed=§6Завершено§r
+quest.reward_claimed_success=§6Пожалуйста, получите награду§r
+quest.reward_already_claimed=§6Награда уже получена§r
+quest.reset=§6Еженедельное обновление!§r
+
+sc.weekly.use_bread.title=Съесть каменный хлеб
+sc.weekly.use_bread.body=Съешьте 30 каменных хлебов
+sc.weekly.collect_coin.title=Получить каменные монеты
+sc.weekly.collect_coin.body=Получите стак каменных монет
+sc.weekly.kill_totem.title=Убить каменный тотем
+sc.weekly.kill_totem.body=Убейте один каменный тотем
+sc.weekly.kill_guard.title=Убить стража камня
+sc.weekly.kill_guard.body=Убейте одного стража камня
+sc.weekly.kill_shooter.title=Убить каменного стрелка
+sc.weekly.kill_shooter.body=Убейте одного каменного стрелка
+sc.weekly.dig_stone.title=Добыть камень
+sc.weekly.dig_stone.body=Получите стак булыжника
+
+sc.tide.sleep_blocked=§cВы чувствуете беспокойство и не можете уснуть§r
+sc.tide.tide_begins=§c§lКаменный прилив начался! Орда каменных существ надвигается!§r
+sc.tide.tide_ends=§aКаменный прилив утих...§r
+sc.tide.totem_died=§c§lРазлом в пространстве и времени образован. Каменный прилив может появляться ночью§r
+
 stonecraft.tag.stone_food=Каменная еда
 
 stonecraft.settings.title=Настройки

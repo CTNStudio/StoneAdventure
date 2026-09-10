@@ -1,7 +1,7 @@
 import { showQuestBook, giveItem } from "./quests/quests_core.js";
 import { world, system, ItemStack, CommandPermissionLevel, CustomCommandParamType, CustomCommandStatus } from "@minecraft/server";
 import { setStoneHeartMax, getStoneHeart, getStoneHeartMax } from "./stone_heart/stone_heart_core.js";
-
+import { addStonePoint }  from "./stone_point.js";
 system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
     customCommandRegistry.registerCommand(
         {
@@ -70,6 +70,22 @@ system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
             }
             if (executor) {
                 executor.sendMessage("§a已显示所有玩家的石心（持有/上限）。");
+            }
+        }
+    );
+    customCommandRegistry.registerCommand(
+        {
+            name: "sa:add_stone_point",
+            description: "增加100石源",
+            permissionLevel: CommandPermissionLevel.Any,
+            cheatsRequired: true,
+        },
+        (origin) => {
+            const players =  origin.sourceEntity;
+            const executor = origin.sourceEntity;
+            addStonePoint(players, 100);
+            if (executor) {
+                executor.sendMessage("§a已为玩家增加石源。");
             }
         }
     );

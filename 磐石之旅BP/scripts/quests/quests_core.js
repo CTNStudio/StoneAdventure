@@ -71,18 +71,27 @@ function getPlayerContainer(player) {
     return inventory?.container;
 }
 
-function hasEnoughItems(player, itemId, requiredAmount) {
+function hasEnoughItems(player, requirements) {
     const container = getPlayerContainer(player);
-    if (!container) return false;
-    let count = 0;
-    for (let i = 0; i < container.size; i++) {
-        const item = container.getItem(i);
-        if (item?.typeId === itemId) {
-            count += item.amount;
-            if (count >= requiredAmount) return true;
+    for (const req of requirements) {
+        if (req.type === "stonePoint") {
+            // 检查石源点是否足够
+            if (getStonePoint(player) < req.amount) return false;
+        } else {
+            // 物品需求
+            if (!container) return false;
+            let count = 0;
+            for (let i = 0; i < container.size; i++) {
+                const item = container.getItem(i);
+                if (item?.typeId === req.itemId) {
+                    count += item.amount;
+                    if (count >= req.amount) break;
+                }
+            }
+            if (count < req.amount) return false;
         }
     }
-    return false;
+    return true;
 }
 
 function hasItemWithTag(player, tag) {

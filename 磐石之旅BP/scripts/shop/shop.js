@@ -1,7 +1,8 @@
-import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
+import { ActionFormData } from "@minecraft/server-ui";
+import { ItemStack, system } from "@minecraft/server";
+import { giveItem } from "../quests/quests_core.js";
 import { SHOP_TRADES } from "./shop_config.js";
-import { addStonePoint } from "../stone_point.js";
-import { displayMessage } from "../messageManager.js";
+import { addStonePoint, getStonePoint, removeStonePoint } from "../stone_point.js";
 import { showMainMenu } from "../quests/quests_ui.js";
 
 function getPlayerContainer(player) {
@@ -11,44 +12,91 @@ function getPlayerContainer(player) {
 
 function hasEnoughItems(player, requirements) {
     const container = getPlayerContainer(player);
-    if (!container) return false;
     for (const req of requirements) {
-        let count = 0;
-        for (let i = 0; i < container.size; i++) {
-            const item = container.getItem(i);
-            if (item?.typeId === req.itemId) {
-                count += item.amount;
-                if (count >= req.amount) break;
+        if (req.type === "stonePoint") {
+            if (getStonePoint(player) < req.amount) return false;
+        } else {
+            if (!container) return false;
+            let count = 0;
+            for (let i = 0; i < container.size; i++) {
+                const item = container.getItem(i);
+                if (item?.typeId === req.itemId) {
+                    count += item.amount;
+                    if (count >= req.amount) break;
+                }
             }
+            if (count < req.amount) return false;
         }
-        if (count < req.amount) return false;
     }
     return true;
 }
 
 function takeItemsFromPlayer(player, requirements) {
     const container = getPlayerContainer(player);
-    if (!container) return false;
     for (const req of requirements) {
-        let remaining = req.amount;
-        for (let i = 0; i < container.size; i++) {
-            const item = container.getItem(i);
-            if (item?.typeId === req.itemId) {
-                if (item.amount > remaining) {
-                    item.amount -= remaining;
-                    container.setItem(i, item);
-                    remaining = 0;
-                    break;
-                } else {
-                    remaining -= item.amount;
-                    container.setItem(i, undefined);
-                    if (remaining === 0) break;
+        if (req.type === "stonePoint") {
+            if (getStonePoint(player) < req.amount) return false;
+            removeStonePoint(player, req.amount);
+        } else {
+            if (!container) return false;
+            let remaining = req.amount;
+            for (let i = 0; i < container.size; i++) {
+                const item = container.getItem(i);
+                if (item?.typeId === req.itemId) {
+                    if (item.amount > remaining) {
+                        item.amount -= remaining;
+                        container.setItem(i, item);
+                        remaining = 0;
+                        break;
+                    } else {
+                        remaining -= item.amount;
+                        container.setItem(i, undefined);
+                        if (remaining === 0) break;
+                    }
                 }
             }
+            if (remaining > 0) return false;
         }
-        if (remaining > 0) return false;
     }
     return true;
+}
+
+function formatEntry(entry) {
+    if (entry.type === "stonePoint") {
+        return {
+            translate: "sc.shop.stone_point",
+            with: { rawtext: [{ text: entry.amount.toString() }] }
+        };
+    }
+    const name = entry.name || { text: entry.itemId };
+    return {
+        translate: "sc.shop.item_count",
+        with: { rawtext: [{ text: entry.amount.toString() }, name] }
+    };
+}
+
+function buildButtonText(trade) {
+    const raw = [trade.name, { text: "  §7" }];
+    for (let i = 0; i < trade.requirements.length; i++) {
+        if (i > 0) raw.push({ translate: "sc.shop.separator" });
+        raw.push(formatEntry(trade.requirements[i]));
+    }
+    raw.push({ translate: "sc.shop.arrow" });
+    for (let i = 0; i < trade.rewards.length; i++) {
+        if (i > 0) raw.push({ translate: "sc.shop.separator" });
+        raw.push(formatEntry(trade.rewards[i]));
+    }
+    return { rawtext: raw };
+}
+
+function grantRewards(player, trade) {
+    for (const reward of trade.rewards) {
+        if (reward.type === "stonePoint") {
+            addStonePoint(player, reward.amount);
+        } else {
+            giveItem(player, new ItemStack(reward.itemId, reward.amount));
+        }
+    }
 }
 
 export function showShopMenu(player) {
@@ -57,7 +105,7 @@ export function showShopMenu(player) {
         .body({ translate: "shop.body" });
 
     for (const trade of SHOP_TRADES) {
-        form.button(trade.name, trade.iconPath);
+        form.button(buildButtonText(trade), trade.iconPath);
     }
     form.button({ translate: "gui.back" });
 
@@ -68,70 +116,22 @@ export function showShopMenu(player) {
             showMainMenu(player);
             return;
         }
-        const selectedTrade = SHOP_TRADES[response.selection];
-        showTradeDetail(player, selectedTrade);
-    });
-}
 
-function showTradeDetail(player, trade) {
-    const body = { rawtext: [] };
-    if (trade.description) {
-        body.rawtext.push(trade.description);
-        body.rawtext.push({ text: "\n\n" });
-    }
-    body.rawtext.push({ translate: "shop.requirements" });
-    for (const req of trade.requirements) {
-        const itemName = req.name || { text: req.itemId };
-        body.rawtext.push({ text: "\n" });
-        body.rawtext.push({
-            translate: "shop.item_count",
-            with: { rawtext: [{ text: req.amount.toString() }, itemName] }
-        });
-    }
-    body.rawtext.push({ text: "\n\n" });
-    body.rawtext.push({ translate: "shop.rewards" });
-    for (const reward of trade.rewards) {
-        if (reward.type === "stonePoint") {
-            body.rawtext.push({ text: "\n" });
-            body.rawtext.push({
-                translate: "shop.reward.stone_point",
-                with: { rawtext: [{ text: reward.amount.toString() }] }
-            });
+        const trade = SHOP_TRADES[response.selection];
+
+        if (!hasEnoughItems(player, trade.requirements)) {
+            player.sendMessage({ translate: "shop.cannot_afford" });
+            player.playSound("game.player.attack.nodamage", { volume: 1, pitch: 1 });
+        } else if (takeItemsFromPlayer(player, trade.requirements)) {
+            grantRewards(player, trade);
+            player.sendMessage({ translate: "shop.purchase_success" });
+            player.playSound("random.levelup", { volume: 1, pitch: 1 });
+        } else {
+            player.sendMessage({ translate: "shop.purchase_failed" });
+            player.playSound("game.player.attack.nodamage", { volume: 1, pitch: 1 });
         }
-    }
 
-    const canAfford = hasEnoughItems(player, trade.requirements);
-    const form = new MessageFormData()
-        .title(trade.name)
-        .body(body)
-        .button1({ translate: "gui.back" });
-
-    if (canAfford) {
-        form.button2({ translate: "shop.buy" });
-    } else {
-        form.button2({ translate: "shop.cannot_afford" });
-    }
-
-    form.show(player).then((response) => {
-        if (response.canceled || response.selection === undefined) {
-            showShopMenu(player);
-            return;
-        }
-        if (response.selection === 0) {
-            showShopMenu(player);
-        } else if (response.selection === 1 && canAfford) {
-            if (takeItemsFromPlayer(player, trade.requirements)) {
-                for (const reward of trade.rewards) {
-                    if (reward.type === "stonePoint") {
-                        addStonePoint(player, reward.amount);
-                    }
-                }
-                displayMessage(player, { translate: "shop.purchase_success" });
-                showShopMenu(player);
-            } else {
-                displayMessage(player, { translate: "shop.purchase_failed" });
-                showTradeDetail(player, trade);
-            }
-        }
+        // 延迟一 tick 后刷新商店界面，避免 UI 冲突
+        system.run(() => showShopMenu(player));
     });
 }
