@@ -400,6 +400,7 @@ stonecraft.attribute.bleeding=§c失血§r
 stonecraft.attributes.none=无护甲属性
 stonecraft.stone_heart.info=: %s/%s
 stonecraft.stone_point.info=石源: %s
+stonecraft.stone_will.info=石韧：%s（减伤 %s%%）
 
 stonecraft.item.stone_encyclopedia=磐石大典
 stonecraft.item.stone_encyclopedia.body=深藏于地下的故事

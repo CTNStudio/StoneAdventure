@@ -76,17 +76,20 @@ system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
     customCommandRegistry.registerCommand(
         {
             name: "sa:addstonepoint",
-            description: "增加100石源",
+            description: "增加石源",
             permissionLevel: CommandPermissionLevel.Any,
+            mandatoryParameters: [
+                { name: "amount", type: CustomCommandParamType.Integer }
+            ],
             cheatsRequired: true,
         },
-        (origin) => {
-            const players =  origin.sourceEntity;
-            const executor = origin.sourceEntity;
-            addStonePoint(players, 100);
-            if (executor) {
-                executor.sendMessage("§a已为玩家增加石源。");
-            }
+        (origin, amount) => {
+            const player = origin.sourceEntity;
+            addStonePoint(player, amount);
+            return {
+                status: CustomCommandStatus.Success,
+                message: `增加 ${amount} 点石源`,
+            };
         }
     );
 });
