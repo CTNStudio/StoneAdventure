@@ -2,7 +2,7 @@
     "format_version": "1.26.40",
     "minecraft:structure_set": {
         "description": {
-            "identifier": "stonecraft:stone_fortress_structure_sets"
+            "identifier": "stonecraft:stone_sacrifice_land_structure_sets"
         },
         "placement": {
             "type": "minecraft:random_spread",

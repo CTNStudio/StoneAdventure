@@ -329,6 +329,7 @@ shop.trade.inlaid_essence_bead.name=购买镶髓石珠
 
 sc.menu.weekly=周常
 sc.weekly.body=完成每周日常，领取独特奖励
+sc.weekly.completed=§6周常任务完成！§r§7快去领取奖励§r
 quest.completed=(§6已完成§r)
 quest.not_completed=(未完成)
 quest.not_completed_yet=§7暂未完成§r

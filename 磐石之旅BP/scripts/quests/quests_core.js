@@ -3,7 +3,7 @@ import { CHAPTERS } from "./quests.js";
 import { getUseCount, getUseItemCount, resetUseCount, resetUseItemCounts } from "./achievements.js";
 import { displayMessage } from "../messageManager.js";
 import { checkWeeklyProgress, getWeeklyQuests, addWeeklyKillCount } from "./weekly_routine.js";
-import { addStonePoint } from "../stone_point.js";
+import { addStonePoint, getStonePoint } from "../stone_point.js";
 
 // 导入 UI 函数
 import {
@@ -71,7 +71,16 @@ function getPlayerContainer(player) {
     return inventory?.container;
 }
 
+/**
+ * 检查玩家是否满足一组需求。
+ * @param {Player} player
+ * @param {Array<{type?: string, itemId?: string, amount: number}>} requirements
+ *        每项形如 { itemId, amount } 或 { type: "stonePoint", amount }
+ * @returns {boolean}
+ */
 function hasEnoughItems(player, requirements) {
+    if (!Array.isArray(requirements)) return false;
+
     const container = getPlayerContainer(player);
     for (const req of requirements) {
         if (req.type === "stonePoint") {
@@ -83,7 +92,8 @@ function hasEnoughItems(player, requirements) {
             let count = 0;
             for (let i = 0; i < container.size; i++) {
                 const item = container.getItem(i);
-                if (item?.typeId === req.itemId) {
+                // 用 item && 避免 undefined === undefined 的假匹配
+                if (item && item.typeId === req.itemId) {
                     count += item.amount;
                     if (count >= req.amount) break;
                 }
@@ -111,7 +121,10 @@ export function checkQuestConditionWithQuest(player, quest) {
     const messages = [];
 
     if (condition.item) {
-        if (!hasEnoughItems(player, condition.item.itemId, condition.item.amount)) {
+        if (!hasEnoughItems(player, [{
+            itemId: condition.item.itemId,
+            amount: condition.item.amount
+        }])) {
             messages.push({
                 translate: "quest.not_enough.item",
                 with: { rawtext: [{ text: condition.item.amount.toString() }, condition.item.name] }
@@ -123,7 +136,10 @@ export function checkQuestConditionWithQuest(player, quest) {
         let hasAny = false;
         const itemNames = [];
         for (const item of condition.anyItem) {
-            if (hasEnoughItems(player, item.itemId, item.amount)) {
+            if (hasEnoughItems(player, [{
+                itemId: item.itemId,
+                amount: item.amount
+            }])) {
                 hasAny = true;
                 break;
             }
@@ -144,7 +160,10 @@ export function checkQuestConditionWithQuest(player, quest) {
 
     if (condition.allItems && Array.isArray(condition.allItems)) {
         for (const item of condition.allItems) {
-            if (!hasEnoughItems(player, item.itemId, item.amount)) {
+            if (!hasEnoughItems(player, [{
+                itemId: item.itemId,
+                amount: item.amount
+            }])) {
                 messages.push({
                     translate: "quest.not_enough.item",
                     with: { rawtext: [{ text: item.amount.toString() }, item.name] }
@@ -231,7 +250,7 @@ function takeItems(player, itemId, amount) {
     let remaining = amount;
     for (let i = 0; i < container.size; i++) {
         const item = container.getItem(i);
-        if (item?.typeId === itemId) {
+        if (item && item.typeId === itemId) {
             if (item.amount > remaining) {
                 item.amount -= remaining;
                 container.setItem(i, item);

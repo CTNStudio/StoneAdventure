@@ -2,7 +2,7 @@ import { world, system, Player } from "@minecraft/server";
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { weekly_pool } from "./weekly_routine_config.js";
 import { displayMessage } from "../messageManager.js";
-import { buildQuestBody,  giveQuestAward, notifyAchievementComplete } from "./quests_core.js";
+import { buildQuestBody,  giveQuestAward, checkQuestConditionWithQuest } from "./quests_core.js";
 import { showMainMenu } from "./quests_ui.js";
 const NAMESPACE = "stonecraft";
 const weekly_week_key = `${NAMESPACE}:weekly_week`;
@@ -122,7 +122,27 @@ function showWeeklyQuestDetail(player, quest) {
         }
     });
 }
+function notifyWeeklyComplete(player, quest) {
+    if (!player || !quest) return;
+    player.playSound("random.levelup");
+    let titleMessage;
+    if (typeof quest.title === "string") {
+        titleMessage = { text: quest.title };
+    } else {
+        titleMessage = quest.title;
+    }
 
+    // 周常专属提示
+    const message = {
+        rawtext: [
+            { translate: "sc.weekly.completed" },
+            { text: "「" },
+            titleMessage,
+            { text: "」" }
+        ]
+    };
+    displayMessage(player, message);
+}
 
 
 // 获取当前游戏周（从第0周开始，每7天算一周）
@@ -162,6 +182,13 @@ export function refreshWeeklyIfNeeded() {
             player.setDynamicProperty(`${weekly_completed_prefix}${questId}`, false);
             player.setDynamicProperty(`${weekly_claimed_prefix}${questId}`, false);
             resetWeeklyProgress(player, questId);  // ← 新增重置进度
+        }
+    }
+    for (const player of world.getAllPlayers()) {
+        for (const quest of getWeeklyQuests()) {
+            if (quest.condition.item || quest.condition.anyItem || quest.condition.allItems) {
+                checkWeeklyProgress(player, quest);
+            }
         }
     }
     world.sendMessage({ translate: "quest.reset" });
@@ -215,15 +242,17 @@ export function checkWeeklyProgress(player, quest) {
         const count = getWeeklyUseCount(player, quest.id);
         satisfied = count >= (condition.useItem.amount || 1);
     } else if (condition.useTag) {
-        const count = getWeeklyUseCount(player, quest.id); // 复用使用计数
+        const count = getWeeklyUseCount(player, quest.id);
         satisfied = count >= (condition.useTag.amount || 1);
+    } else if (condition.item || condition.anyItem || condition.allItems) {
+        const result = checkQuestConditionWithQuest(player, quest);
+        satisfied = result.success;
     }
-    // 可以根据需要添加更多条件类型（如 item 等，但周常目前只有这些）
 
     if (!satisfied) return false;
 
     setWeeklyCompleted(player, quest.id);
-    notifyAchievementComplete(player, quest);
+    notifyWeeklyComplete(player, quest);
     return true;
 }
 
@@ -231,6 +260,11 @@ export function checkWeeklyProgress(player, quest) {
 world.afterEvents.playerSpawn.subscribe(({ player }) => {
     system.run(() => {
         refreshWeeklyIfNeeded();
+        for (const quest of getWeeklyQuests()) {
+            if (quest.condition.item || quest.condition.anyItem || quest.condition.allItems) {
+                checkWeeklyProgress(player, quest);
+            }
+        }
     });
 });
 
@@ -238,3 +272,13 @@ world.afterEvents.playerSpawn.subscribe(({ player }) => {
 system.runInterval(() => {
     refreshWeeklyIfNeeded();
 }, 20);
+world.afterEvents.playerInventoryItemChange.subscribe(({ player }) => {
+    if (!player) return;
+    system.runTimeout(() => {
+        for (const quest of getWeeklyQuests()) {
+            if (quest.condition.item || quest.condition.anyItem || quest.condition.allItems) {
+                checkWeeklyProgress(player, quest);
+            }
+        }
+    }, 2);
+});
