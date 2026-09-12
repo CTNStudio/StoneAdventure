@@ -13,6 +13,18 @@ export const SHOP_TRADES = [
         iconPath: "textures/items/treasures/stone_coin"
     },
     {
+        id: "stone_coin",
+        name: { translate: "shop.trade.stone_coin.name" },
+        description: { translate: "shop.trade.stone_coin.desc" },
+        requirements: [
+            { type: "stonePoint", amount: 10, name: { translate: "sc.stone_point" } }
+        ],
+        rewards: [
+            { itemId: "stonecraft:stone_coin", amount: 64, name: { translate: "stonecraft.item.stone_coin" } }
+        ],
+        iconPath: "textures/items/treasures/stone_coin"
+    },
+    {
         id: "expansion_slab",
         name: { translate: "shop.trade.expansion_slab.name" },
         description: { translate: "shop.trade.expansion_slab.desc" },

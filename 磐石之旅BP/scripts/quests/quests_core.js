@@ -510,20 +510,19 @@ world.afterEvents.entityDie.subscribe((event) => {
     const player = damageSource.damagingEntity;
     if (!(player instanceof Player)) return;
     const entityType = deadEntity.typeId;
+    const weeklyQuests = getWeeklyQuests();
+    for (const quest of weeklyQuests) {
+        if (quest.condition.killEntity && quest.condition.killEntity.entityType === entityType) {
+            addWeeklyKillCount(player, quest.id, 1);
+            checkWeeklyProgress(player, quest);
+        }
+    }
     const quests = entityToQuests.get(entityType);
     if (!quests) return;
     for (const quest of quests) {
         if (isQuestCompleted(player, quest)) continue;
         addKillCount(player, quest.id, 1);
         checkAutoAchievement(player, quest);
-    }
-    // 检查周常任务
-    const weeklyQuests = getWeeklyQuests();
-    for (const quest of weeklyQuests) {
-        if (quest.condition.killEntity && quest.condition.killEntity.entityType === entityType) {
-            addWeeklyKillCount(player, quest.id, 1);  // ← 新增
-            checkWeeklyProgress(player, quest);
-        }
     }
 });
 

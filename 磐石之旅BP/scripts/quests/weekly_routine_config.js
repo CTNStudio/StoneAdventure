@@ -31,7 +31,7 @@ export const weekly_pool = [
         id: "weekly_use_bread",
         title: { translate: "sc.weekly.use_bread.title" },
         description: { translate: "sc.weekly.use_bread.body" },
-        condition: { useItem: { itemId: "stonecraft:stone_bread", amount: 30, name: { translate: "stonecraft.item.stone_bread" } } },
+        condition: { useItem: { itemId: "stonecraft:stone_bread", amount: 25, name: { translate: "stonecraft.item.stone_bread" } } },
         award: { stonePoint: 5, exp: 50, items: [ { itemId: "stonecraft:stone_bread", amount: 16, name: { translate: "stonecraft.item.stone_bread" } } ] },
         iconPath: "textures/items/foods/stone_bread",
         autoComplete: true,
@@ -44,16 +44,6 @@ export const weekly_pool = [
         condition: { item: { itemId: "stonecraft:stone_coin", amount: 64, name: { translate: "stonecraft.item.stone_coin" } } },
         award: { stonePoint: 5, exp: 60, items: [ { itemId: "stonecraft:lv3stone", amount: 2, name: { translate: "tile.stonecraft:lv3stone.name" } } ] },
         iconPath: "textures/items/treasures/stone_coin",
-        autoComplete: true,
-        manualReward: true
-    },
-    {
-        id: "weekly_kill_totem",
-        title: { translate: "sc.weekly.kill_totem.title" },
-        description: { translate: "sc.weekly.kill_totem.body" },
-        condition: { killEntity: { entityType: "stonecraft:ancient_stone_totem", amount: 1, name: { translate: "entity.stonecraft:ancient_stone_totem.name" } } },
-        award: { stonePoint: 100, exp: 100, items: [ { itemId: "stonecraft:stone_star", amount: 1, name: { translate: "stonecraft.item.stone_star" } } ] },
-        iconPath: "textures/ui/quest/entities/ancient_stone_totem",
         autoComplete: true,
         manualReward: true
     },

@@ -28,8 +28,8 @@
                 {
                     "function": "set_count",
                     "count": {
-                        "min":8,
-                        "max": 16
+                        "min":2,
+                        "max": 8
                     }
                 }
             ]

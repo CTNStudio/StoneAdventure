@@ -1683,6 +1683,7 @@ export const CHAPTERS = [
                 },
                 award: {
                      exp: 20,
+                     stonePoint: 1,
                      items: [
                         {
                             itemId: "stonecraft:stone_coin",
@@ -1715,6 +1716,7 @@ export const CHAPTERS = [
                 },
                 award: {
                      exp: 50,
+                     stonePoint: 5,
                      items: [
                         {
                             itemId: "stonecraft:lv3stone",
@@ -1747,6 +1749,7 @@ export const CHAPTERS = [
                 },
                 award: {
                      exp: 50,
+                     stonePoint: 5,
                      items: [
                         {
                             itemId: "stonecraft:lv3stone",
@@ -1779,6 +1782,7 @@ export const CHAPTERS = [
                 },
                 award: {
                      exp: 50,
+                     stonePoint: 50,
                      items: [
                         {
                             itemId: "stonecraft:stone_heart",
@@ -1813,6 +1817,7 @@ export const CHAPTERS = [
                 },
                 award: {
                      exp: 20,
+                     stonePoint: 1,
                      items: [
                         {
                             itemId: "stonecraft:stone_coin",
@@ -1847,6 +1852,7 @@ export const CHAPTERS = [
                 },
                 award: {
                      exp: 100,
+                     stonePoint: 10,
                      items: [
                         {
                             itemId: "stonecraft:stone_bread",
@@ -1892,6 +1898,7 @@ export const CHAPTERS = [
                 },
                 award: {
                     exp: 200,
+                    stonePoint: 200,
                     items: [
                         {
                             itemId: "stonecraft:stone_bread",
@@ -1941,6 +1948,7 @@ export const CHAPTERS = [
                 },
                 award: {
                     exp: 1000,
+                    stonePoint: 500,
                     items: [
                         {
                             itemId: "stonecraft:stone_star",

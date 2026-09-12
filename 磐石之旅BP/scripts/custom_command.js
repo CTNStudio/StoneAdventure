@@ -2,6 +2,7 @@ import { showQuestBook, giveItem } from "./quests/quests_core.js";
 import { world, system, ItemStack, CommandPermissionLevel, CustomCommandParamType, CustomCommandStatus } from "@minecraft/server";
 import { setStoneHeartMax, getStoneHeart, getStoneHeartMax } from "./stone_heart/stone_heart_core.js";
 import { addStonePoint }  from "./stone_point.js";
+import { forceRefreshWeekly, getWeeklyQuests } from "./quests/weekly_routine.js";
 system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
     customCommandRegistry.registerCommand(
         {
@@ -89,6 +90,21 @@ system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
             return {
                 status: CustomCommandStatus.Success,
                 message: `增加 ${amount} 点石源`,
+            };
+        }
+    );
+    customCommandRegistry.registerCommand(
+        {
+            name: "sa:refreshweekly",
+            description: "手动刷新周常任务",
+            permissionLevel: CommandPermissionLevel.Any,
+            cheatsRequired: true,
+        },
+        (origin) => {
+            forceRefreshWeekly();
+            return {
+                status: CustomCommandStatus.Success,
+                message: "周常任务已刷新",
             };
         }
     );

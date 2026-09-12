@@ -9,8 +9,8 @@ const weekly_week_key = `${NAMESPACE}:weekly_week`;
 const weekly_quests_key = `${NAMESPACE}:weekly_quests`;
 const weekly_completed_prefix = `${NAMESPACE}:weekly_completed_`;
 const weekly_claimed_prefix = `${NAMESPACE}:weekly_claimed_`;
-const weekly_kill_prefix = `${NAMESPACE}:weekly_kill_`;
-const weekly_use_prefix = `${NAMESPACE}:weekly_use_`;
+const weekly_kill_prefix = `${NAMESPACE}:kill_progress_`;
+const weekly_use_prefix = `${NAMESPACE}:use_progress_`;
 
 export function addWeeklyKillCount(player, questId, increment = 1) {
     const key = `${weekly_kill_prefix}${questId}`;
@@ -124,7 +124,9 @@ function showWeeklyQuestDetail(player, quest) {
 }
 function notifyWeeklyComplete(player, quest) {
     if (!player || !quest) return;
-    player.playSound("random.levelup");
+    system.run(() => {
+        player.playSound("random.levelup");
+    });
     let titleMessage;
     if (typeof quest.title === "string") {
         titleMessage = { text: quest.title };
@@ -165,15 +167,11 @@ function pickWeeklyQuests() {
     return shuffled.slice(0, 3).map(q => q.id);
 }
 
-// 刷新周常（当游戏周变化时调用）
-export function refreshWeeklyIfNeeded() {
+// 执行刷新的内部函数
+function doRefreshWeekly() {
     const currentWeek = getCurrentWeek();
-    const storedWeek = world.getDynamicProperty(weekly_week_key);
-    if (storedWeek !== undefined && storedWeek === currentWeek) {
-        return;
-    }
-
     const newQuests = pickWeeklyQuests();
+
     world.setDynamicProperty(weekly_week_key, currentWeek);
     world.setDynamicProperty(weekly_quests_key, JSON.stringify(newQuests));
 
@@ -181,7 +179,7 @@ export function refreshWeeklyIfNeeded() {
         for (const questId of newQuests) {
             player.setDynamicProperty(`${weekly_completed_prefix}${questId}`, false);
             player.setDynamicProperty(`${weekly_claimed_prefix}${questId}`, false);
-            resetWeeklyProgress(player, questId);  // ← 新增重置进度
+            resetWeeklyProgress(player, questId);
         }
     }
     for (const player of world.getAllPlayers()) {
@@ -192,6 +190,23 @@ export function refreshWeeklyIfNeeded() {
         }
     }
     world.sendMessage({ translate: "quest.reset" });
+    return newQuests;
+}
+
+// 按需刷新（周数变化时才刷新）
+export function refreshWeeklyIfNeeded() {
+    const currentWeek = getCurrentWeek();
+    const storedWeek = world.getDynamicProperty(weekly_week_key);
+    if (storedWeek !== undefined && storedWeek === currentWeek) {
+        return false;
+    }
+    doRefreshWeekly();
+    return true;
+}
+
+// 强制刷新（不管周数是否变化）
+export function forceRefreshWeekly() {
+    return doRefreshWeekly();
 }
 
 // 获取本周三个任务对象

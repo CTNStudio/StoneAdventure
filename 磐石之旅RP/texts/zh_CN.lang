@@ -326,6 +326,7 @@ shop.purchase_failed=购买失败
 shop.trade.coin_to_point.name=兑换石源
 shop.trade.expansion_slab.name=购买扩容石板
 shop.trade.inlaid_essence_bead.name=购买镶髓石珠
+shop.trade.stone_coin.name=购买石币
 
 sc.menu.weekly=周常
 sc.weekly.body=完成每周日常，领取独特奖励
@@ -342,8 +343,6 @@ sc.weekly.use_bread.title=食用石头面包
 sc.weekly.use_bread.body=食用30个石头面包
 sc.weekly.collect_coin.title=获取石币
 sc.weekly.collect_coin.body=获取一组石币
-sc.weekly.kill_totem.title=击杀石之图腾
-sc.weekly.kill_totem.body=击杀一个石之图腾
 sc.weekly.kill_guard.title=击杀石头守卫
 sc.weekly.kill_guard.body=击杀一个石头守卫
 sc.weekly.kill_shooter.title=击杀石头射手
