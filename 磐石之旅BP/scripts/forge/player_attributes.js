@@ -14,7 +14,6 @@ import {
   TIMED_EFFECT_CONFIG,
   applyTimedSustainedEffects,
   isPlayerValid,
-  scheduleTimedRefresh,
 } from "./armor_timed_effects.js";
 
 function getEquipmentItem(
@@ -36,38 +35,11 @@ function getEquipmentItem(
   }
 }
 
-function applySustainedEffects(
-  player
-) {
+function applySustainedEffects(player) {
   try {
-    applyTimedSustainedEffects(
-      player
-    );
-
-    for (
-      const config of Object.values(
-        TIMED_EFFECT_CONFIG
-      )
-    ) {
-      const level =
-        getOrZero(
-          player,
-          config.playerKey,
-          0
-        );
-
-      if (level > 0) {
-        scheduleTimedRefresh(
-          player,
-          config
-        );
-      }
-    }
+    applyTimedSustainedEffects(player);
   } catch (error) {
-    console.error(
-      "[Stonecraft] applySustainedEffects failed:",
-      error
-    );
+    console.error("[Stonecraft] applySustainedEffects failed:", error);
   }
 }
 
