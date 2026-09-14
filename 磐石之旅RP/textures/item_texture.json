@@ -102,6 +102,9 @@
     "stonecraft.stone_nugget": {
       "textures": "textures/items/materials/stone_nugget"
     },
+    "stonecraft.stone_ball": {
+      "textures": "textures/items/materials/stone_ball"
+    },
     "stonecraft.stone_essence_crystal": {
       "textures": "textures/items/treasures/essences/stone_essence_crystal"
     },

@@ -6,6 +6,7 @@ import "./durability.js";
 import "./entities_effect.js";
 import "./items/stone_nugget.js";
 import "./items/tools_use.js";
+import "./items/gun_test.js";
 import "./custom_crop.js";
 import "./custom_command.js";
 import "./items_lore.js";

@@ -1,0 +1,22 @@
+{
+  "format_version": "1.20.40",
+  "minecraft:item": {
+    "description": {
+      "identifier": "stonecraft:stone_ball",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:max_stack_size": 64,
+      "minecraft:projectile": {
+        "projectile_entity": "stonecraft:projectile_stone_ball",
+        "minimum_critical_power": 1.0
+      },
+      "minecraft:display_name": {
+        "value": "stonecraft.item.stone_ball"
+      },
+      "minecraft:icon": "stonecraft.stone_ball"
+    }
+  }
+}
