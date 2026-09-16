@@ -2,7 +2,7 @@ import { world, system, Player } from "@minecraft/server";
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { weekly_pool } from "./weekly_routine_config.js";
 import { displayMessage } from "../messageManager.js";
-import { buildQuestBody,  giveQuestAward, checkQuestConditionWithQuest } from "./quests_core.js";
+import { buildQuestBody,  giveQuestAward, checkQuestConditionWithQuest, resetHitCount, getHitCount } from "./quests_core.js";
 import { showMainMenu } from "./quests_ui.js";
 const NAMESPACE = "stonecraft";
 const weekly_week_key = `${NAMESPACE}:weekly_week`;
@@ -38,6 +38,7 @@ export function getWeeklyUseCount(player, questId) {
 function resetWeeklyProgress(player, questId) {
     player.setDynamicProperty(`${weekly_kill_prefix}${questId}`, 0);
     player.setDynamicProperty(`${weekly_use_prefix}${questId}`, 0);
+    resetHitCount(player, questId);
 }
 // 显示周常菜单
 export function showWeeklyMenu(player) {
@@ -262,6 +263,9 @@ export function checkWeeklyProgress(player, quest) {
     } else if (condition.item || condition.anyItem || condition.allItems) {
         const result = checkQuestConditionWithQuest(player, quest);
         satisfied = result.success;
+    } else if (condition.hitEntityWithItem) {
+        const count = getHitCount(player, quest.id);
+        satisfied = count >= (condition.hitEntityWithItem.amount || 1);
     }
 
     if (!satisfied) return false;

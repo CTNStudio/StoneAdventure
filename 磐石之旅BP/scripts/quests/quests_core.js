@@ -18,6 +18,23 @@ export {
 const NAMESPACE = "stonecraft";
 const QUEST_BOOK_ID = `${NAMESPACE}:stone_encyclopedia`;
 const kill_prefix = "kill_progress_";
+const hit_prefix = "hit_progress_";
+
+export function addHitCount(player, questId, increment = 1) {
+    const key = `${NAMESPACE}:${hit_prefix}${questId}`;
+    const current = player.getDynamicProperty(key) ?? 0;
+    player.setDynamicProperty(key, current + increment);
+}
+
+export function getHitCount(player, questId) {
+    const key = `${NAMESPACE}:${hit_prefix}${questId}`;
+    return player.getDynamicProperty(key) ?? 0;
+}
+
+export function resetHitCount(player, questId) {
+    const key = `${NAMESPACE}:${hit_prefix}${questId}`;
+    player.setDynamicProperty(key, 0);
+}
 
 export function isRewardClaimed(player, questId) {
     return player.getDynamicProperty(`${NAMESPACE}:reward_claimed_${questId}`) ?? false;
@@ -241,6 +258,16 @@ export function checkQuestConditionWithQuest(player, quest) {
             }
         }
     }
+    if (condition.hitEntityWithItem) {
+        const required = condition.hitEntityWithItem.amount || 1;
+        const current = getHitCount(player, quest.id);
+        if (current < required) {
+            messages.push({
+                translate: "quest.not_enough.hit",
+                with: { rawtext: [{ text: required.toString() }, condition.hitEntityWithItem.name] }
+            });
+        }
+    }
     return { success: messages.length === 0, messages };
 }
 
@@ -297,6 +324,7 @@ export function markQuestCompleted(player, quest) {
     if (player.hasTag(killTag)) player.removeTag(killTag);
     resetKillCount(player, quest.id);
     resetUseCount(player, quest.id);
+    resetHitCount(player, quest.id);
 }
 
 export function giveQuestAward(player, quest) {
@@ -431,7 +459,20 @@ export function buildQuestBody(quest, player) {
             body.rawtext.push(name);
             body.rawtext.push({ text: ` ${required} 个${progress}\n` });
         }
-    } else {
+    } else if (condition.hitEntityWithItem) {
+        const required = condition.hitEntityWithItem.amount || 1;
+        const current = getHitCount(player, quest.id);
+        body.rawtext.push({
+            translate: "quest.hit",
+            with: {
+                rawtext: [
+                    condition.hitEntityWithItem.name,
+                    { text: ` §7${current}/${required}` }
+                ]
+            }
+        });
+    }
+    else {
         body.rawtext.push({ translate: "quest.condition.none" });
     }
 
@@ -542,4 +583,23 @@ world.afterEvents.itemUse.subscribe((event) => {
     if (event.itemStack.typeId === QUEST_BOOK_ID) {
         showQuestBook(event.source);
     }
+});
+world.afterEvents.projectileHitEntity.subscribe((event) => {
+    const projectile = event.projectile;
+    const source = event.source;
+    if (!(source instanceof Player)) return;
+
+    const itemId = projectile.typeId;
+
+    // 周常任务
+    const weeklyQuests = getWeeklyQuests();
+    for (const quest of weeklyQuests) {
+        const cond = quest.condition.hitEntityWithItem;
+        if (cond && cond.itemId === itemId) {
+            addHitCount(source, quest.id, 1);
+            checkWeeklyProgress(source, quest);
+        }
+    }
+
+    // 如需支持普通任务，可继续在此用 entityToQuests 类似方式处理
 });
