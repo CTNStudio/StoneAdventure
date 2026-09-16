@@ -3,16 +3,17 @@ import {
   system,
   world,
 } from "@minecraft/server";
-
+import {
+  serializeItemStack,
+  deserializeItemStack,
+} from "./item_serializer.js";
 import {
   ATTRIBUTE_DEFS,
-  createItem,
   extractTagSuffix,
   giveItem,
   getMainHandItem,
   getOrZero,
   setMainHandItem,
-  setOrClearDynamicProperty,
 } from "./forge_utils.js";
 
 const BLOCK_ID = "stonecraft:stone_smithing_table";
@@ -41,7 +42,6 @@ const EQUIP_SUFFIXES = [
 
 const BLOCK_CACHE = new Map();
 
-// ========== 工具函数 ==========
 function getBlockCacheKey(block) {
   try {
     const location = block.location;
@@ -169,11 +169,9 @@ function findBeadInfo(item) {
       continue;
     }
 
-    // 原有逻辑：检查是否纯装备标签（如 sword）
     const isEquipTag = EQUIP_SUFFIXES.includes(body);
     if (isEquipTag) continue;
 
-    // 原有逻辑：匹配 <属性ID>_<装备类型>
     for (const suffix of EQUIP_SUFFIXES) {
       const hit = `_${suffix}`;
       if (body.endsWith(hit)) {
@@ -185,12 +183,11 @@ function findBeadInfo(item) {
       }
     }
 
-    // 原有逻辑：纯属性 ID（全通用）
     const directMatch = ATTRIBUTE_DEFS.find((def) => def.id === body);
     if (directMatch) {
       return {
         attributeId: body,
-        equipType: "",            // 空字符串 = 全通用
+        equipType: "",
         tag,
       };
     }
@@ -255,91 +252,6 @@ function getMaxSlots(item) {
   return 3 + Math.min(getExpansionTimes(item), 3) * 2;
 }
 
-function isPrimitiveDynamicValue(value) {
-  return typeof value === "string" || typeof value === "number" || typeof value === "boolean";
-}
-
-function readDynamicMap(target) {
-  const out = {};
-  try {
-    const ids = target?.getDynamicPropertyIds?.() ?? [];
-    for (const id of ids) {
-      const value = target.getDynamicProperty(id);
-      if (isPrimitiveDynamicValue(value)) {
-        out[id] = value;
-      }
-    }
-    return out;
-  } catch {
-    // fallback
-  }
-  for (const def of ATTRIBUTE_DEFS) {
-    out[def.key] = getOrZero(target, def.key, 0);
-  }
-  out[PROP_EXPANSION_TIMES] = getOrZero(target, PROP_EXPANSION_TIMES, 0);
-  return out;
-}
-
-function serializeItem(item) {
-  if (!item) return "";
-  const data = {
-    typeId: item.typeId,
-    amount: 1,
-    lore: [],
-    dynamic: readDynamicMap(item),
-  };
-  try {
-    data.lore = item.getLore?.() ?? [];
-  } catch {
-    data.lore = [];
-  }
-  return JSON.stringify(data);
-}
-
-function tryParseJson(value) {
-  try {
-    return JSON.parse(value);
-  } catch {
-    return null;
-  }
-}
-
-function applyStoredDataToItem(item, data) {
-  if (!item || !data || typeof data !== "object") return;
-  try {
-    if (Array.isArray(data.lore) && data.lore.length > 0) {
-      item.setLore(data.lore);
-    }
-  } catch {
-    /* ignore */
-  }
-  try {
-    const dynamic = data.dynamic ?? {};
-    for (const [key, value] of Object.entries(dynamic)) {
-      if (!isPrimitiveDynamicValue(value)) continue;
-      try {
-        item.setDynamicProperty(key, value);
-      } catch {
-        /* ignore */
-      }
-    }
-  } catch {
-    /* ignore */
-  }
-}
-
-function deserializeItem(dataText) {
-  if (!dataText) return undefined;
-  const data = tryParseJson(dataText);
-  if (!data || typeof data !== "object") return undefined;
-  if (!data.typeId || typeof data.typeId !== "string") return undefined;
-  const item = createItem(data.typeId, 1);
-  if (!item) return undefined;
-  applyStoredDataToItem(item, data);
-  rebuildLore(item);
-  return item;
-}
-
 function normalizeStoredValue(value) {
   if (typeof value === "string") return value;
   if (typeof value === "number" || typeof value === "boolean") return String(value);
@@ -352,9 +264,8 @@ function getStoredType(block) {
   if (blockSupportsDynamicProperties(block)) {
     try {
       const value = normalizeStoredValue(block.getDynamicProperty(PROP_STORED_TYPE));
-      if (isStoredTypeValid(value)) return value;
+      if (value && isStoredTypeValid(value)) return value;
     } catch {
-      /* ignore */
     }
   }
   return cached && isStoredTypeValid(cached.type) ? cached.type : "";
@@ -369,9 +280,9 @@ function getStoredData(block) {
   const cached = BLOCK_CACHE.get(blockKey);
   if (blockSupportsDynamicProperties(block)) {
     try {
-      return normalizeStoredValue(block.getDynamicProperty(PROP_STORED_DATA));
+      const value = normalizeStoredValue(block.getDynamicProperty(PROP_STORED_DATA));
+      if (value) return value;
     } catch {
-      return cached?.data ?? "";
     }
   }
   return cached?.data ?? "";
@@ -390,9 +301,9 @@ function getStoredItemId(block) {
   const cached = BLOCK_CACHE.get(blockKey);
   if (blockSupportsDynamicProperties(block)) {
     try {
-      return normalizeStoredValue(block.getDynamicProperty(PROP_STORED_ITEM_ID));
+      const value = normalizeStoredValue(block.getDynamicProperty(PROP_STORED_ITEM_ID));
+      if (value) return value;
     } catch {
-      return cached?.itemId ?? "";
     }
   }
   return cached?.itemId ?? "";
@@ -437,7 +348,6 @@ function consumeHeldItem(player, heldItem) {
     try {
       setMainHandItem(player, undefined);
     } catch {
-      /* ignore */
     }
   }
 }
@@ -461,24 +371,8 @@ function inferStoredType(item) {
 
 function storeItemInBlock(block, item, type) {
   const blockKey = getBlockCacheKey(block);
-  const dataText = serializeItem(item);
+  const dataText = serializeItemStack(item);
   const typeId = item?.typeId ?? "";
-  const supportsDynamic = blockSupportsDynamicProperties(block);
-
-  let typeOk = true, idOk = true, dataOk = true;
-  if (supportsDynamic) {
-    typeOk = setStoredType(block, type);
-    idOk = setStoredItemId(block, typeId);
-    dataOk = setStoredData(block, dataText);
-  }
-  if (supportsDynamic && (!typeOk || !idOk || !dataOk)) {
-    console.warn("[Stonecraft] Forge table dynamic property write failed, using cache fallback: " + JSON.stringify({
-      type, typeId, dataLength: dataText.length, typeOk, idOk, dataOk,
-      blockLocation: block.location, blockType: block.typeId,
-    }));
-  }
-
-  BLOCK_CACHE.set(blockKey, { type, itemId: typeId, data: dataText });
 
   const okState = setBlockFilled(block, true);
   if (!okState) {
@@ -488,58 +382,64 @@ function storeItemInBlock(block, item, type) {
     clearBlockStorage(block);
     return false;
   }
+
+  const supportsDynamic = blockSupportsDynamicProperties(block);
+  let typeOk = true, idOk = true, dataOk = true;
+  if (supportsDynamic) {
+    typeOk = setStoredType(block, type);
+    idOk = setStoredItemId(block, typeId);
+    dataOk = setStoredData(block, dataText);
+  }
+
+  BLOCK_CACHE.set(blockKey, { type, itemId: typeId, data: dataText });
+
+  if (supportsDynamic && (!typeOk || !idOk || !dataOk)) {
+    console.warn("[Stonecraft] Forge table dynamic property write failed, using cache fallback: " + JSON.stringify({
+      type, typeId, dataLength: dataText.length, typeOk, idOk, dataOk,
+      blockLocation: block.location, blockType: block.typeId,
+    }));
+  }
+
   return true;
 }
 
 function clearBlockStorage(block) {
   const blockKey = getBlockCacheKey(block);
   BLOCK_CACHE.delete(blockKey);
+
+  try { setBlockFilled(block, false); } catch {}
+
   if (blockSupportsDynamicProperties(block)) {
     try { setStoredType(block, ""); } catch {}
     try { setStoredItemId(block, ""); } catch {}
     try { setStoredData(block, ""); } catch {}
   }
-  try { setBlockFilled(block, false); } catch {}
 }
 
 function loadItemFromBlock(block) {
   const blockKey = getBlockCacheKey(block);
   const cached = BLOCK_CACHE.get(blockKey);
   const dataText = getStoredData(block);
-  const data = dataText ? tryParseJson(dataText) : null;
 
   if (dataText) {
-    const item = deserializeItem(dataText);
-    if (item) return item;
-  }
-
-  const typeId = getStoredItemId(block) || (data?.typeId ?? "");
-  if (typeId) {
-    const item = createItem(typeId, 1);
+    const item = deserializeItemStack(dataText);
     if (item) {
-      applyStoredDataToItem(item, data);
       rebuildLore(item);
       return item;
     }
   }
 
-  if (cached) {
-    try {
-      const item = createItem(cached.itemId, 1);
-      if (item) {
-        const cachedData = cached.data ? tryParseJson(cached.data) : null;
-        applyStoredDataToItem(item, cachedData);
-        rebuildLore(item);
-        return item;
-      }
-    } catch {
-      /* ignore */
+  if (cached?.data) {
+    const item = deserializeItemStack(cached.data);
+    if (item) {
+      rebuildLore(item);
+      return item;
     }
   }
 
   try {
     console.warn("[Stonecraft] loadItemFromBlock failed", JSON.stringify({
-      storedData: dataText, storedItemId: typeId, cachedItem: cached?.itemId,
+      storedData: dataText, cachedItem: cached?.itemId,
       blockLocation: block.location, blockType: block.typeId,
     }));
   } catch {
@@ -558,7 +458,6 @@ function refundAll(player, items) {
   }
 }
 
-// ========== 核心 Lore 重建函数 ==========
 function rebuildLore(item) {
   if (!item) return;
   const lore = [];
@@ -577,11 +476,9 @@ function rebuildLore(item) {
   try {
     item.setLore(lore);
   } catch {
-    /* ignore */
   }
 }
 
-// ========== 锻造操作函数 ==========
 export function applyBeadToWeapon(player, weapon, beadItem) {
   const beadInfo = findBeadInfo(beadItem);
   if (!beadInfo) {
@@ -598,7 +495,6 @@ export function applyBeadToWeapon(player, weapon, beadItem) {
     return { ok: false, reason: "stonecraft.error.invalid_material" };
   }
 
-  // ========== 统一类型匹配检查 ==========
   if (beadInfo.equipType) {
     if (beadInfo.equipType === "__WEAPON__") {
       if (!WEAPON_SUFFIXES.includes(weaponType)) {
@@ -609,7 +505,6 @@ export function applyBeadToWeapon(player, weapon, beadItem) {
         return { ok: false, reason: "stonecraft.error.type_mismatch" };
       }
     } else {
-      // 指定了具体装备类型（如 "sword"）
       if (beadInfo.equipType !== weaponType) {
         return { ok: false, reason: "stonecraft.error.type_mismatch" };
       }
@@ -686,7 +581,6 @@ function onPlaceWeapon(player, block, item) {
     sendFeedback(player, "stonecraft.error.store_failed");
     return;
   }
-  // 播放放入武器音效（独立于锻造成功音效）
   playPlaceWeaponSound(player);
   sendFeedback(player, "stonecraft.forge.weapon_stored");
 }
