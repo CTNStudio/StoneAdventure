@@ -41,6 +41,7 @@
             "knockback": true
           }
         },
+        "isolated_physics": false,
         "gravity": 0.03,
         "power": 1.5
       },
