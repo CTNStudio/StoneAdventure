@@ -83,6 +83,24 @@ function initKillQuestMap() {
 }
 initKillQuestMap();
 
+const hitItemToQuests = new Map();
+
+function initHitItemQuestMap() {
+    hitItemToQuests.clear();
+    for (const chapter of CHAPTERS) {
+        for (const quest of chapter.quests) {
+            const cond = quest.condition.hitEntityWithItem;
+            if (cond) {
+                if (!hitItemToQuests.has(cond.itemId)) {
+                    hitItemToQuests.set(cond.itemId, []);
+                }
+                hitItemToQuests.get(cond.itemId).push(quest);
+            }
+        }
+    }
+}
+initHitItemQuestMap();
+
 function getPlayerContainer(player) {
     const inventory = player.getComponent("minecraft:inventory");
     return inventory?.container;
@@ -264,7 +282,11 @@ export function checkQuestConditionWithQuest(player, quest) {
         if (current < required) {
             messages.push({
                 translate: "quest.not_enough.hit",
-                with: { rawtext: [{ text: required.toString() }, condition.hitEntityWithItem.name] }
+                with: { rawtext: [
+                    { text: required.toString() },
+                    condition.hitEntityWithItem.name,
+                    { text: ` §7(${current}/${required})` }
+                ] }
             });
         }
     }
@@ -591,6 +613,16 @@ world.afterEvents.projectileHitEntity.subscribe((event) => {
 
     const itemId = projectile.typeId;
 
+    // 成就 / 普通任务
+    const quests = hitItemToQuests.get(itemId);
+    if (quests) {
+        for (const quest of quests) {
+            if (isQuestCompleted(source, quest)) continue;
+            addHitCount(source, quest.id, 1);
+            checkAutoAchievement(source, quest);
+        }
+    }
+
     // 周常任务
     const weeklyQuests = getWeeklyQuests();
     for (const quest of weeklyQuests) {
@@ -600,6 +632,4 @@ world.afterEvents.projectileHitEntity.subscribe((event) => {
             checkWeeklyProgress(source, quest);
         }
     }
-
-    // 如需支持普通任务，可继续在此用 entityToQuests 类似方式处理
 });

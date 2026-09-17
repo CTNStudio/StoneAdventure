@@ -630,6 +630,62 @@ export const CHAPTERS = [
                     ]
                 },
                 iconPath: "textures/items/foods/stone_hodgepodge"
+            },
+            {
+                id: "lv5_stone_armor",
+                title: { translate: "sc.quest.lv5_stone_armor.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.lv5_stone_armor.body" },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.lv5_stone_armor.body1" }
+                    ]
+                },
+                condition: {
+                    anyItem: [
+                        {
+                            itemId: "stonecraft:lv5stone_helmet",
+                            amount: 1,
+                            name: { translate: "stonecraft.item.helmet.lv5" }
+                        },
+                        {
+                            itemId: "stonecraft:lv5stone_chestplate",
+                            amount: 1,
+                            name: { translate: "stonecraft.item.chestplate.lv5" }
+                        },
+                        {
+                            itemId: "stonecraft:lv5stone_leggings",
+                            amount: 1,
+                            name: { translate: "stonecraft.item.leggings.lv5" }
+                        },
+                        {
+                            itemId: "stonecraft:lv5stone_boots",
+                            amount: 1,
+                            name: { translate: "stonecraft.item.boots.lv5" }
+                        }
+                    ]
+                },
+                award: {
+                    exp: 150,
+                    items: [
+                        {
+                            itemId: "minecraft:diamond",
+                            amount: 5,
+                            name: { translate: "item.diamond.name" }
+                        },
+                        {
+                            itemId: "stonecraft:stone_coin",
+                            amount: 64,
+                            name: { translate: "stonecraft.item.stone_coin" }
+                        },
+                        {
+                            itemId: "stonecraft:lv5stone",
+                            amount: 1,
+                            name: {tramslate: "tile.stonecraft:lv5stone.name" }
+                        }
+                    ]
+                },
+                iconPath: "textures/items/armors/chestplates/lv5"
             }
         ]
     },
@@ -1794,6 +1850,37 @@ export const CHAPTERS = [
                     ]
                 },
                 iconPath: "textures/ui/quest/entities/spire_remnant"
+            },
+            {
+                id: "hit_with_arrow_ach",
+                title: { translate: "sc.ach.hit_with_arrow.title" },
+                description: { translate: "sc.ach.hit_with_arrow.body" },
+                condition: {
+                    hitEntityWithItem: {
+                        itemId: "stonecraft:stone_arrow",
+                        amount: 640,
+                        name: { translate: "stonecraft.item.stone_arrow" }
+                    }
+                },
+                award: {
+                    stonePoint: 50,
+                    exp: 500,
+                    items: [
+                        { 
+                            itemId: "stonecraft:stone_coin", 
+                            amount: 100, 
+                            name: { translate: "stonecraft.item.stone_coin" } 
+                        },
+                        {
+                            itemId: "stonecraft:stone_arrow",
+                            amount: 64,
+                            name: { translate: "stonecraft.item.stone_arrow" }
+                        }
+                    ]
+                },
+                iconPath: "textures/items/stone_arrow",
+                autoComplete: true,
+                manualReward: true
             },
             {
                 id: "stone_food_ach",

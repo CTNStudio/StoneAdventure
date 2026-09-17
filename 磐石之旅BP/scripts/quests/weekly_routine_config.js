@@ -59,9 +59,19 @@ export const weekly_pool = [
         id: "weekly_use_bread",
         title: { translate: "sc.weekly.use_bread.title" },
         description: { translate: "sc.weekly.use_bread.body" },
-        condition: { useItem: { itemId: "stonecraft:stone_bread", amount: 25, name: { translate: "stonecraft.item.stone_bread" } } },
+        condition: { useItem: { itemId: "stonecraft:stone_bread", amount: 16, name: { translate: "stonecraft.item.stone_bread" } } },
         award: { stonePoint: 5, exp: 50, items: [ { itemId: "stonecraft:stone_bread", amount: 16, name: { translate: "stonecraft.item.stone_bread" } } ] },
         iconPath: "textures/items/foods/stone_bread",
+        autoComplete: true,
+        manualReward: true
+    },
+    {
+        id: "weekly_use_stonickers",
+        title: { translate: "sc.weekly.use_stonickers.title" },
+        description: { translate: "sc.weekly.use_stonickers.body" },
+        condition: { useItem: { itemId: "stonecraft:stonickers", amount: 8, name: { translate: "stonecraft.item.stonickers" } } },
+        award: { stonePoint: 5, exp: 50, items: [ { itemId: "stonecraft:stone_bread", amount: 16, name: { translate: "stonecraft.item.stonickers" } } ] },
+        iconPath: "textures/items/foods/stonickers/stonickers",
         autoComplete: true,
         manualReward: true
     },
