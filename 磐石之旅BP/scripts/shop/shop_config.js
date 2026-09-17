@@ -47,5 +47,17 @@ export const SHOP_TRADES = [
             { itemId: "stonecraft:inlaid_essence_bead", amount: 1, name: { translate: "stonecraft.item.inlaid_essence_bead" } }
         ],
         iconPath: "textures/items/treasures/essences/inlaid_essence_bead"
+    },
+    {
+        id: "stone_star",
+        name: { translate: "shop.trade.stone_star.name" },
+        description: { translate: "shop.trade.stone_star.desc" },
+        requirements: [
+            { type: "stonePoint", amount: 64, name: { translate: "sc.stone_point" } }
+        ],
+        rewards: [
+            { itemId: "stonecraft:stone_star", amount: 1, name: { translate: "stonecraft.item.stone_star" } }
+        ],
+        iconPath: "textures/items/treasures/stone_star"
     }
 ];

@@ -327,6 +327,7 @@ shop.trade.coin_to_point.name=兑换石源
 shop.trade.expansion_slab.name=购买扩容石板
 shop.trade.inlaid_essence_bead.name=购买镶髓石珠
 shop.trade.stone_coin.name=购买石币
+shop.trade.stone_star.name=购买石之星
 
 sc.menu.weekly=周常
 sc.weekly.body=完成每周日常，领取独特奖励
