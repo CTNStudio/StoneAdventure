@@ -63,6 +63,10 @@ const ITEM_LORE_CONFIG = {
         { translate: 'stonecraft.potion_of_corruption1' },
         { translate: 'stonecraft.potion_of_corruption2' }
     ],
+    'stonecraft:inlaid_essence_bead_fire_resistance': [
+        { translate: 'stonecraft.armor_only' },
+        { translate: 'stonecraft.fire_resistance_lore' }
+    ],
 };
 
 function isLoreEqual(currentLore, expectedLore) {

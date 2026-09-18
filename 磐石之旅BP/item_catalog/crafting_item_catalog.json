@@ -95,7 +95,8 @@
                      "stonecraft:inlaid_essence_bead_resistance",
                      "stonecraft:inlaid_essence_bead_health_boost",
                      "stonecraft:inlaid_essence_bead_night_vision",
-                     "stonecraft:inlaid_essence_bead_bleeding"
+                     "stonecraft:inlaid_essence_bead_bleeding",
+                     "stonecraft:inlaid_essence_bead_fire_resistance"
                   ]
                }
             ]

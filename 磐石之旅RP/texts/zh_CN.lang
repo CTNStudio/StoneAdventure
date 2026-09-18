@@ -46,6 +46,7 @@ stonecraft.item.stone_essence_crystal.resistance=镶髓石珠·§7抗性§r
 stonecraft.item.stone_essence_crystal.health_boost=镶髓石珠·§a生机§r
 stonecraft.item.stone_essence_crystal.night_vision=镶髓石珠·§9夜视§r
 stonecraft.item.stone_essence_crystal.bleeding=镶髓石珠·§c失血§r
+stonecraft.item.stone_essence_crystal.fire_resistance镶髓石珠·§6抗火§r
 
 tile.stonecraft:lv1stone.name=一级压缩圆石
 tile.stonecraft:lv2stone.name=二级压缩圆石
@@ -409,6 +410,7 @@ stonecraft.attribute.health_boost=§a生机§r
 stonecraft.attribute.night_vision=§9夜视§r
 stonecraft.attribute.fire_resistance=抗火
 stonecraft.attribute.bleeding=§c失血§r
+stonecraft.attribute.fire_resistance=§6抗火§r
 
 stonecraft.attributes.none=无护甲属性
 stonecraft.stone_heart.info=: %s/%s
@@ -629,6 +631,8 @@ stonecraft.potion_of_growth1=§r§8生命恢复 (0:20)§r
 stonecraft.potion_of_growth2=§r§8伤害吸收 II (0:20)§r
 stonecraft.potion_of_corruption1=§r§c凋零 (0:20)§r
 stonecraft.potion_of_corruption2=§r§c中毒 II (0:20)§r
+tonecraft.fire_resistance_lore=§r§f装备获得§6抗火§r
+
 
 stonecraft.stone.step=石头生物低吟
 stonecraft.stone.hurt=石头生物受伤

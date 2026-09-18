@@ -9,7 +9,7 @@ import "./items/tools_use.js";
 import "./items/gun_test.js";
 import "./custom_crop.js";
 import "./custom_command.js";
-import "./items_lore.js";
+import "./items/items_lore.js";
 import "./doll.js";
 import "./stone_point.js";
 import "./shop/shop.js";
