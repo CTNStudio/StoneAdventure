@@ -67,6 +67,10 @@ const ITEM_LORE_CONFIG = {
         { translate: 'stonecraft.armor_only' },
         { translate: 'stonecraft.fire_resistance_lore' }
     ],
+    'stonecraft:inlaid_essence_bead_dash': [
+        { translate: 'stonecraft.spear_only' },
+        { translate: 'stonecraft.dash_lore' }
+    ],
 };
 
 function isLoreEqual(currentLore, expectedLore) {

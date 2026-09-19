@@ -26,11 +26,14 @@ import './stone_heart/stone_heart_display.js';
 import { initForgeCore } from "./forge/forge_core.js";
 import { initPlayerAttributes } from "./forge/player_attributes.js";
 import { initWeaponEffects } from "./forge/weapon_effects.js";
+import { initSpearEffects } from "./forge/special_weapon_effects.js";
 import { world } from "@minecraft/server";
 //我嘞个超长导入啊
+
 initForgeCore();
 initPlayerAttributes();
 initWeaponEffects();
+initSpearEffects();
 
 world.afterEvents.playerSpawn.subscribe((eventData) => {
     if (!eventData.initialSpawn) return;

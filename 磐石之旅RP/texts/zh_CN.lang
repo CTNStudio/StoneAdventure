@@ -37,7 +37,7 @@ stonecraft.item.expansion_slab=扩容石板
 stonecraft.item.inlaid_essence_bead=镶髓石珠
 stonecraft.item.stone_essence_crystal.blindness=镶髓石珠·§5失明§r
 stonecraft.item.stone_essence_crystal.regeneration=镶髓石珠·§a再生§r
-stonecraft.item.stone_essence_crystal.wither=镶髓石珠·§0凋零§r
+stonecraft.item.stone_essence_crystal.wither=镶髓石珠·§j凋零§r
 stonecraft.item.stone_essence_crystal.cleansing=镶髓石珠·§b净化§r
 stonecraft.item.stone_essence_crystal.stun=镶髓石珠·§8震击§r
 stonecraft.item.stone_essence_crystal.battle_fury=镶髓石珠·§c战意§r
@@ -46,7 +46,8 @@ stonecraft.item.stone_essence_crystal.resistance=镶髓石珠·§7抗性§r
 stonecraft.item.stone_essence_crystal.health_boost=镶髓石珠·§a生机§r
 stonecraft.item.stone_essence_crystal.night_vision=镶髓石珠·§9夜视§r
 stonecraft.item.stone_essence_crystal.bleeding=镶髓石珠·§c失血§r
-stonecraft.item.stone_essence_crystal.fire_resistance镶髓石珠·§6抗火§r
+stonecraft.item.stone_essence_crystal.fire_resistance=镶髓石珠·§6抗火§r
+stonecraft.item.stone_essence_crystal.dash=镶髓石珠·§b迅突§r
 
 tile.stonecraft:lv1stone.name=一级压缩圆石
 tile.stonecraft:lv2stone.name=二级压缩圆石
@@ -398,7 +399,7 @@ stonecraft.settings.mode.ui=ui模式
 stonecraft.settings.changed=切换模式
 
 stonecraft.stone_heart.status=：%1/%2
-stonecraft.attribute.wither=§0凋零§r
+stonecraft.attribute.wither=§j凋零§r
 stonecraft.attribute.blindness=失明
 stonecraft.attribute.regeneration=§a再生§r
 stonecraft.attribute.cleansing=§b净化§r
@@ -408,9 +409,9 @@ stonecraft.attribute.concuss=§8昏眩§r
 stonecraft.attribute.resistance=§7抗性§r
 stonecraft.attribute.health_boost=§a生机§r
 stonecraft.attribute.night_vision=§9夜视§r
-stonecraft.attribute.fire_resistance=抗火
 stonecraft.attribute.bleeding=§c失血§r
 stonecraft.attribute.fire_resistance=§6抗火§r
+stonecraft.attribute.dash=§b迅突§r
 
 stonecraft.attributes.none=无护甲属性
 stonecraft.stone_heart.info=: %s/%s
@@ -612,6 +613,7 @@ stonecraft.expansion_slab=§r§i通用§r
 stonecraft.weapon_only=§r§i仅武器§r
 stonecraft.armor_only=§r§i仅护甲§r
 stonecraft.hammer_only=§r§i仅锤子§r
+stonecraft.spear_only=§r§i仅长矛§r
 
 stonecraft.expansion_slab_lore=§r§f扩展武器/护甲空位§r
 stonecraft.battle_fury_lore=§r§f命中获得§c力量§r
@@ -623,7 +625,7 @@ stonecraft.night_vision_lore=§r§f装备获得§9夜视§r
 stonecraft.regeneration_lore=§r§f命中获得§a生命恢复§r
 stonecraft.resistance_lore=§r§f装备获得§7抗性提升§r
 stonecraft.stun_lore=§r§f命中使敌人§8缓慢§r
-stonecraft.wither_lore=§r§f命中使敌人§0凋零§r
+stonecraft.wither_lore=§r§f命中使敌人§j凋零§r
 stonecraft.bleeding_lore=§r§f命中使敌人§c失血§r
 stonecraft.blindness_potion=§r§c失明 (0:20)§r
 stonecraft.longer_blindness_potion=§r§c失明 (0:40)§r
@@ -631,8 +633,8 @@ stonecraft.potion_of_growth1=§r§8生命恢复 (0:20)§r
 stonecraft.potion_of_growth2=§r§8伤害吸收 II (0:20)§r
 stonecraft.potion_of_corruption1=§r§c凋零 (0:20)§r
 stonecraft.potion_of_corruption2=§r§c中毒 II (0:20)§r
-tonecraft.fire_resistance_lore=§r§f装备获得§6抗火§r
-
+stonecraft.fire_resistance_lore=§r§f装备获得§6抗火§r
+stonecraft.dash_lore=§r§f举矛获得§b迅突§r
 
 stonecraft.stone.step=石头生物低吟
 stonecraft.stone.hurt=石头生物受伤

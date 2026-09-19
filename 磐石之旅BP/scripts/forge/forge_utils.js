@@ -102,6 +102,14 @@ export const ATTRIBUTE_DEFS = [
     loreText: "§c失血",
     beadTagPrefix: "inlaid_essence_bead",
     materialTagPrefix: "forge",
+  },
+  {
+    id: "dash",
+    key: "stonecraft:dash_level",
+    playerKey: "stonecraft:dash",
+    loreText: "§b迅突",
+    beadTagPrefix: "inlaid_essence_bead",
+    materialTagPrefix: "forge",
   }
 ];
 

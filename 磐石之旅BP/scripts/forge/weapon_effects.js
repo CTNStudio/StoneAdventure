@@ -73,6 +73,7 @@ function clampLevel(level) {
 
 const bleedingTimers = new Map();
 
+
 export function addBleedingEffect(target, level) {
     if (!target || !target.isValid) return;
 

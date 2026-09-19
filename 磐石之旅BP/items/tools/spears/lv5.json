@@ -100,7 +100,6 @@
                     "stonecraft:custom_weapon",
                     "minecraft:netherite_tier",
                     "minecraft:weapon",
-                    "forge_weapon",
                     "forge_spear"
                 ]
             },
