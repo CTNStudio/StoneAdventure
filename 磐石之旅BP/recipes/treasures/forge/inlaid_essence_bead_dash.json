@@ -1,0 +1,41 @@
+
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:inlaid_essence_bead_dash"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+        "SSS", 
+        "COC", 
+        "CCC"
+        ],
+      "key": {
+        "S": {
+          "item": "stonecraft:lv3stone_spear"
+        },
+        "O": {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        "C": {
+            "item": "stonecraft:stone_carrot"
+        }
+      },
+      "unlock": [
+        {
+          "item": "stonecraft:lv3stone_spear"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead_dash"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead_dash",
+        "count": 1
+      }
+    }
+}

@@ -1,0 +1,38 @@
+
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:inlaid_essence_bead_fire_resistance"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+        "MMM", 
+        "MOM", 
+        "MMM"
+        ],
+      "key": {
+        "M": {
+          "item": "minecraft:magma_cream"
+        },
+        "O": {
+          "item": "stonecraft:inlaid_essence_bead"
+        }
+      },
+      "unlock": [
+        {
+          "item": "minecraft:magma_cream"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead_fire_resistance"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead_fire_resistance",
+        "count": 1
+      }
+    }
+}
