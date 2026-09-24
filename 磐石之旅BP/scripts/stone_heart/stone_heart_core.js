@@ -1,6 +1,7 @@
 import { world, system } from '@minecraft/server';
 import { showStoneHeartFeedback } from './stone_heart_feedback.js';
 import { displayModes, getDisplayMode } from '../settings.js';
+import { tryBulwarkBlock } from '../forge/armor_timed_effects.js';
 
 const regenDelay = 100;
 const regenSpeed = 0.5;
@@ -220,6 +221,12 @@ world.beforeEvents.entityHurt.subscribe(event => {
   const cause = event.damageSource.cause;
 
   if (cause === 'selfDestruct') {
+    return;
+  }
+
+  if (tryBulwarkBlock(player, event.damage)) {
+    event.damage = 0;
+    resetRegen(player);
     return;
   }
 

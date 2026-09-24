@@ -110,6 +110,14 @@ export const ATTRIBUTE_DEFS = [
     loreText: "§b迅突",
     beadTagPrefix: "inlaid_essence_bead",
     materialTagPrefix: "forge",
+  },
+  {
+    id: "bulwark",
+    key: "stonecraft:bulwark_level",
+    playerKey: "stonecraft:bulwark",
+    loreText: "§8坚壁",
+    beadTagPrefix: "inlaid_essence_bead",
+    materialTagPrefix: "forge",
   }
 ];
 
