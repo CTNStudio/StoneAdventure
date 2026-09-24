@@ -433,7 +433,7 @@ export const CHAPTERS = [
                         {
                             itemId: "minecraft:soul_sand",
                             amount: 4,
-                            name: { translate: "tile.minecraft:soul_sand.name" }
+                            name: { translate: "tile.soul_sand.name" }
                         }
                     ]
                 },

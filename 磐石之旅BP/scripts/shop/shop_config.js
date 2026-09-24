@@ -29,7 +29,7 @@ export const SHOP_TRADES = [
         name: { translate: "shop.trade.expansion_slab.name" },
         description: { translate: "shop.trade.expansion_slab.desc" },
         requirements: [
-            { type: "stonePoint", amount: 64, name: { translate: "sc.stone_point" } }
+            { type: "stonePoint", amount: 128, name: { translate: "sc.stone_point" } }
         ],
         rewards: [
             { itemId: "stonecraft:expansion_slab", amount: 1, name: { translate: "stonecraft.item.expansion_slab" } }
@@ -41,7 +41,7 @@ export const SHOP_TRADES = [
         name: { translate: "shop.trade.inlaid_essence_bead.name" },
         description: { translate: "shop.trade.inlaid_essence_bead.desc" },
         requirements: [
-            { type: "stonePoint", amount: 32, name: { translate: "sc.stone_point" } }
+            { type: "stonePoint", amount: 64, name: { translate: "sc.stone_point" } }
         ],
         rewards: [
             { itemId: "stonecraft:inlaid_essence_bead", amount: 1, name: { translate: "stonecraft.item.inlaid_essence_bead" } }
@@ -53,7 +53,7 @@ export const SHOP_TRADES = [
         name: { translate: "shop.trade.stone_star.name" },
         description: { translate: "shop.trade.stone_star.desc" },
         requirements: [
-            { type: "stonePoint", amount: 64, name: { translate: "sc.stone_point" } }
+            { type: "stonePoint", amount: 128, name: { translate: "sc.stone_point" } }
         ],
         rewards: [
             { itemId: "stonecraft:stone_star", amount: 1, name: { translate: "stonecraft.item.stone_star" } }
