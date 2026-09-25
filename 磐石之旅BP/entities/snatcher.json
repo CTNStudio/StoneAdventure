@@ -197,6 +197,7 @@
           "snatcher",
           "monster",
           "illager",
+          "pilager",
           "mob"
         ]
       },

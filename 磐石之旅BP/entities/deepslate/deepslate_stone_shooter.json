@@ -270,21 +270,45 @@
         }
       },
       "minecraft:behavior.nearest_attackable_target": {
-        "priority": 2,
-        "must_see": true,
-        "within_radius": 15.0,
-        "must_see_forget_duration": 17.0,
+        "priority": 3,
+        "within_radius": 10,
+        "must_reach": false,
         "reselect_targets": true,
+        "must_see_forget_duration": 17.0,
         "entity_types": [
           {
             "filters": {
-              "test": "is_family",
-              "subject": "other",
-              "value": "player"
+              "any_of": [
+                { "test": "is_family", "subject": "other", "value": "player" },
+                { "test": "is_family", "subject": "other", "value": "snowgolem" },
+                { "test": "is_family", "subject": "other", "value": "irongolem" },
+                { "test": "is_family", "subject": "other", "value": "warden" },
+                { "test": "is_family", "subject": "other", "value": "wandering_trader"}
+              ]
             },
-            "max_dist": 16
+            "max_dist": 48.0,
+            "must_see": true
+          },
+          {
+            "filters": {
+              "AND": [
+                {
+                  "test": "is_family",
+                  "subject": 1,
+                  "operator": 0,
+                  "value": "villager"
+                },
+                {
+                  "test": "has_component",
+                  "subject": 1,
+                  "operator": 1,
+                  "value": "minecraft:is_baby"
+                }
+              ]
+            }
           }
-        ]
+        ],
+        "must_see": true
       },
       "minecraft:behavior.equip_item": {
         "priority": 3

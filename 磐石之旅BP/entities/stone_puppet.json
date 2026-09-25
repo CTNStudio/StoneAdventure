@@ -104,14 +104,33 @@
           {
             "filters": {
               "any_of": [
-                { "test": "is_family", "subject": "other", "value": "player"},
+                { "test": "is_family", "subject": "other", "value": "player" },
                 { "test": "is_family", "subject": "other", "value": "snowgolem" },
                 { "test": "is_family", "subject": "other", "value": "irongolem" },
-                { "test": "is_family", "subject": "other", "value": "warden" }
+                { "test": "is_family", "subject": "other", "value": "warden" },
+                { "test": "is_family", "subject": "other", "value": "wandering_trader"}
               ]
             },
             "max_dist": 48.0,
             "must_see": true
+          },
+          {
+            "filters": {
+              "AND": [
+                {
+                  "test": "is_family",
+                  "subject": 1,
+                  "operator": 0,
+                  "value": "villager"
+                },
+                {
+                  "test": "has_component",
+                  "subject": 1,
+                  "operator": 1,
+                  "value": "minecraft:is_baby"
+                }
+              ]
+            }
           }
         ],
         "must_see": true

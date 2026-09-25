@@ -354,6 +354,7 @@
       "minecraft:type_family": {
         "family": [
           "wandering_trader",
+          "villager",
           "mob"
         ]
       }
