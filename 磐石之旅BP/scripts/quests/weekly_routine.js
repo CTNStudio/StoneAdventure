@@ -1,9 +1,10 @@
-import { world, system, Player } from "@minecraft/server";
+import { world, system, Player, ItemStack } from "@minecraft/server";
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
-import { weekly_pool } from "./weekly_routine_config.js";
+import { weekly_pool, WEEKLY_COMPLETION_BONUS } from "./weekly_routine_config.js";
 import { displayMessage } from "../messageManager.js";
-import { buildQuestBody,  giveQuestAward, checkQuestConditionWithQuest, resetHitCount, getHitCount } from "./quests_core.js";
+import { buildQuestBody,  giveQuestAward, checkQuestConditionWithQuest, resetHitCount, getHitCount, giveItem } from "./quests_core.js";
 import { showMainMenu } from "./quests_ui.js";
+import { addStonePoint } from "../stone_point.js";
 const NAMESPACE = "stonecraft";
 const weekly_week_key = `${NAMESPACE}:weekly_week`;
 const weekly_quests_key = `${NAMESPACE}:weekly_quests`;
@@ -11,6 +12,46 @@ const weekly_completed_prefix = `${NAMESPACE}:weekly_completed_`;
 const weekly_claimed_prefix = `${NAMESPACE}:weekly_claimed_`;
 const weekly_kill_prefix = `${NAMESPACE}:kill_progress_`;
 const weekly_use_prefix = `${NAMESPACE}:use_progress_`;
+const weekly_bonus_claimed_key = `${NAMESPACE}:weekly_bonus_claimed`;
+
+function grantCompletionBonus(player) {
+    const bonus = WEEKLY_COMPLETION_BONUS;
+    if (bonus.exp) player.addExperience(bonus.exp);
+    if (bonus.level) player.addLevels(bonus.level);
+    if (bonus.stonePoint) addStonePoint(player, bonus.stonePoint);
+    if (bonus.items) {
+        for (const item of bonus.items) {
+            giveItem(player, new ItemStack(item.itemId, item.amount));
+        }
+    }
+}
+
+function isCompletionBonusClaimed(player) {
+    return player.getDynamicProperty(weekly_bonus_claimed_key) ?? false;
+}
+
+function setCompletionBonusClaimed(player) {
+    player.setDynamicProperty(weekly_bonus_claimed_key, true);
+}
+
+// 检查是否已完成本周全部周常，若完成则发放额外奖励
+function checkCompletionBonus(player) {
+    if (isCompletionBonusClaimed(player)) return;
+
+    const quests = getWeeklyQuests();
+    if (quests.length === 0) return;
+
+    for (const quest of quests) {
+        if (!isWeeklyCompleted(player, quest.id)) return;
+    }
+
+    // 全部完成，发放
+    grantCompletionBonus(player);
+    setCompletionBonusClaimed(player);
+
+    player.playSound("random.levelup");
+    displayMessage(player, { translate: "sc.weekly.bonus_claimed" });
+}
 
 export function addWeeklyKillCount(player, questId, increment = 1) {
     const key = `${weekly_kill_prefix}${questId}`;
@@ -190,6 +231,16 @@ function doRefreshWeekly() {
             }
         }
     }
+    for (const player of world.getAllPlayers()) {
+        // 重置额外奖励标记
+        player.setDynamicProperty(weekly_bonus_claimed_key, false);
+
+        for (const questId of newQuests) {
+            player.setDynamicProperty(`${weekly_completed_prefix}${questId}`, false);
+            player.setDynamicProperty(`${weekly_claimed_prefix}${questId}`, false);
+            resetWeeklyProgress(player, questId);
+        }
+    }
     world.sendMessage({ translate: "quest.reset" });
     return newQuests;
 }
@@ -272,6 +323,7 @@ export function checkWeeklyProgress(player, quest) {
 
     setWeeklyCompleted(player, quest.id);
     notifyWeeklyComplete(player, quest);
+    checkCompletionBonus(player);
     return true;
 }
 

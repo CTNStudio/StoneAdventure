@@ -342,6 +342,7 @@ quest.already_completed=§6已完成§r
 quest.reward_claimed_success=§6已领取奖励§r
 quest.reward_already_claimed=§6奖励已领取§r
 quest.reset=§6周常已刷新！§r
+sc.weekly.bonus_claimed=§6§l本周周常全部完成！额外奖励已发放！
 quest.hit=用 %s 射中生物
 quest.not_enough.hit=还需要用 %2$s 射中生物 %1$s 次 %3$s
 
@@ -362,7 +363,7 @@ sc.weekly.kill_molten_stone_guard.body=击杀10个熔铸石头守卫
 sc.weekly.hit_with_arrow.title=射手
 sc.weekly.hit_with_arrow.body=使用石箭射中任意生物32次
 sc.weekly.use_stonickers.title=横扫饥饿
-sc.weekly.use_stonickers.body=食用8次石力架
+sc.weekly.use_stonickers.body=食用4次石力架
 
 sc.tide.sleep_blocked=§c你感到烦躁，无法入睡§r
 sc.tide.tide_begins=§c§l石潮爆发！大量石头生物正在涌来！§r
