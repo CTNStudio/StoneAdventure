@@ -140,7 +140,7 @@
 
 - [隐藏之年](https://klpbbs.com/thread-85797-1-1.html)（点击图片跳转）  
   [![隐藏之年](https://i.imgs.ovh/2026/08/30/b0945ded341c2a14c61186fa3b0c0886.png)](https://klpbbs.com/thread-85797-1-1.html)
-- [另一个链接](https://klpbbs.com/thread-172833-1-1.html)  
+- [Bee的夜视](https://klpbbs.com/thread-172833-1-1.html)  
   [![链接](https://i.imgs.ovh/2026/08/30/907eafacab5e473cacd7fe7abfd5cc07.png)](https://klpbbs.com/thread-172833-1-1.html)
 - [石头工艺JE移植版](https://klpbbs.com/thread-164580-1-2.html)  
   [![JE移植](https://s41.ax1x.com/2026/08/30/pnP45VI.png)](https://klpbbs.com/thread-164580-1-2.html)
