@@ -118,11 +118,11 @@ export function addBleedingEffect(target, level) {
 
         let damage;
 
-        // 你的伤害计算
+        // 伤害计算
         if (level < 2) {
             damage = level;
         } else {
-            damage = 3 + health.effectiveMax * 0.01;
+            damage = 3 + health.effectiveMax * 0.01 * level;
         }
 
         damage = Math.max(1, Math.floor(damage));
