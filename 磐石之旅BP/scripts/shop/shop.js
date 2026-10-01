@@ -4,61 +4,32 @@ import { giveItem } from "../quests/quests_core.js";
 import { SHOP_TRADES } from "./shop_config.js";
 import { addStonePoint, getStonePoint, removeStonePoint } from "../stone_point.js";
 import { showMainMenu } from "../quests/quests_ui.js";
-
-function getPlayerContainer(player) {
-    const inventory = player.getComponent("minecraft:inventory");
-    return inventory?.container;
-}
+import InventoryUtil from "../utils/InventoryUtil.js";
 
 function hasEnoughItems(player, requirements) {
-    const container = getPlayerContainer(player);
     for (const req of requirements) {
         if (req.type === "stonePoint") {
             if (getStonePoint(player) < req.amount) return false;
-        } else {
-            if (!container) return false;
-            let count = 0;
-            for (let i = 0; i < container.size; i++) {
-                const item = container.getItem(i);
-                if (item?.typeId === req.itemId) {
-                    count += item.amount;
-                    if (count >= req.amount) break;
-                }
-            }
-            if (count < req.amount) return false;
         }
     }
-    return true;
+    const container = InventoryUtil.getContainer(player);
+    const itemReqs = requirements.filter(r => r.type !== "stonePoint");
+    return InventoryUtil.hasEnoughItems(player, itemReqs);
 }
 
 function takeItemsFromPlayer(player, requirements) {
-    const container = getPlayerContainer(player);
     for (const req of requirements) {
         if (req.type === "stonePoint") {
             if (getStonePoint(player) < req.amount) return false;
-            removeStonePoint(player, req.amount);
-        } else {
-            if (!container) return false;
-            let remaining = req.amount;
-            for (let i = 0; i < container.size; i++) {
-                const item = container.getItem(i);
-                if (item?.typeId === req.itemId) {
-                    if (item.amount > remaining) {
-                        item.amount -= remaining;
-                        container.setItem(i, item);
-                        remaining = 0;
-                        break;
-                    } else {
-                        remaining -= item.amount;
-                        container.setItem(i, undefined);
-                        if (remaining === 0) break;
-                    }
-                }
-            }
-            if (remaining > 0) return false;
         }
     }
-    return true;
+    for (const req of requirements) {
+        if (req.type === "stonePoint") {
+            removeStonePoint(player, req.amount);
+        }
+    }
+    const itemReqs = requirements.filter(r => r.type !== "stonePoint");
+    return InventoryUtil.takeItems(player, itemReqs);
 }
 
 function formatEntry(entry) {

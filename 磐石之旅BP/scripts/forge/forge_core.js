@@ -1,20 +1,21 @@
 import {
-  BlockPermutation,
-  system,
-  world,
+    BlockPermutation,
+    system,
+    world,
 } from "@minecraft/server";
 import {
-  serializeItemStack,
-  deserializeItemStack,
+    serializeItemStack,
+    deserializeItemStack,
 } from "./item_serializer.js";
 import {
-  ATTRIBUTE_DEFS,
-  extractTagSuffix,
-  giveItem,
-  getMainHandItem,
-  getOrZero,
-  setMainHandItem,
+    ATTRIBUTE_DEFS,
+    extractTagSuffix,
+    giveItem,
+    getMainHandItem,
+    getOrZero,
+    setMainHandItem,
 } from "./forge_utils.js";
+import InventoryUtil from "../utils/InventoryUtil.js";
 
 const BLOCK_ID = "stonecraft:stone_smithing_table";
 const STATE_FILLED = "stonecraft:filled_item";

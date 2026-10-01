@@ -1,5 +1,4 @@
 //武器，护甲攻击特效模块
-//在玩家攻击实体时，根据玩家动态属性中缓存的总属性等级，向目标施加对应的状态效果。
 import {
   system,
   world,
@@ -60,7 +59,7 @@ const EFFECT_HANDLERS = {
     });
   },
   bleeding: (attacker, target, level) => {
-    addBleedingEffect(target, level)
+    addBleedingEffect(target, level);
   },
   accumulate: () => {},
 };
@@ -90,7 +89,6 @@ export function addBleedingEffect(target, level) {
 
   const durationTicks = (3 + level) * 20;
 
-  // 已有失血：延长结束时间、更新等级，不重置计时器
   if (existing) {
     existing.level = level;
     existing.endTick = tick + durationTicks;
@@ -186,7 +184,7 @@ function applyItemDynamicEffects(attacker, target) {
     if (!handler) continue;
 
     try {
-      handler(attacker, target, level); // 传入 attacker 和 target
+      handler(attacker, target, level);
       applied = true;
     } catch (error) {
       console.error("[Stonecraft] item dynamic effect failed:", error);
@@ -199,11 +197,9 @@ function applyItemDynamicEffects(attacker, target) {
 const ACCUMULATE_MULTIPLIERS = [1.2, 1.5, 2.0];
 const ACCUMULATE_WINDOW_TICKS = 60;
 
-const accumulateWindows = new Map(); // targetId -> { attackerId, attackerRef, targetRef, damage, level, deadline }
-
-const accumulateGraceUntil = new Map(); // targetId -> 空窗期结束 tick
-
-const accumulateLastHit = new Map(); // targetId -> 上次有效命中 tick
+const accumulateWindows = new Map();
+const accumulateGraceUntil = new Map();
+const accumulateLastHit = new Map();
 
 export function processAccumulateHit(attacker, target, damage, cause) {
   if (cause !== "entityAttack") return false;
@@ -211,7 +207,6 @@ export function processAccumulateHit(attacker, target, damage, cause) {
   const tick = system.currentTick;
   const graceUntil = accumulateGraceUntil.get(target.id) ?? -1;
 
-  // 空窗期：放行（积爆自己的爆发伤害，或刚好落在窗口内的其他伤害）
   if (tick < graceUntil) return false;
 
   const weapon = getMainHandItem(attacker);
@@ -220,7 +215,6 @@ export function processAccumulateHit(attacker, target, damage, cause) {
   const level = clampLevel(getOrZero(weapon, "stonecraft:accumulate_level", 0));
   if (level <= 0) return false;
 
-  // 无敌帧检查：10 tick 内的重复攻击拦截但不累加
   const lastHit = accumulateLastHit.get(target.id) ?? -Infinity;
   if (tick - lastHit < 10) {
     return true;
@@ -268,7 +262,6 @@ function tickAccumulateWindows() {
       continue;
     }
 
-    // 未到结算时间：持续播放积攒音效
     if (tick < record.deadline) {
       if (tick - record.lastFizzTick >= 10) {
         record.lastFizzTick = tick;
@@ -282,7 +275,6 @@ function tickAccumulateWindows() {
       continue;
     }
 
-    // 结算
     accumulateWindows.delete(targetId);
 
     const health = target.getComponent("minecraft:health");
@@ -294,7 +286,6 @@ function tickAccumulateWindows() {
     accumulateGraceUntil.set(targetId, tick + 10);
     accumulateLastHit.set(targetId, tick);
 
-    // 结算视听
     try {
       target.dimension.playSound("mob.wither.break_block", target.location, {
         volume: 1.0,
@@ -333,7 +324,7 @@ function applyLegacyUcStoneSwordEffects(attacker, target) {
     if (!handler) continue;
 
     try {
-      handler(attacker, target, level); // 传入 attacker 和 target
+      handler(attacker, target, level);
       applied = true;
     } catch (error) {
       console.error("[Stonecraft] legacy weapon effect failed:", error);
@@ -375,6 +366,7 @@ export function initWeaponEffects() {
       }
     });
   }
+
   hitEvent.subscribe((event) => {
     try {
       const attacker = event.damagingEntity ?? event.damager ?? event.entity;
@@ -393,7 +385,7 @@ export function initWeaponEffects() {
         if (!handler) continue;
 
         try {
-          handler(attacker, target, level); // 传入 attacker 和 target
+          handler(attacker, target, level);
           appliedAny = true;
         } catch (error) {
           console.error("[Stonecraft] effect handler failed:", error);
@@ -414,5 +406,6 @@ export function initWeaponEffects() {
       console.error("[Stonecraft] entityHitEntity failed:", error);
     }
   });
+
   system.runInterval(tickAccumulateWindows, 1);
 }

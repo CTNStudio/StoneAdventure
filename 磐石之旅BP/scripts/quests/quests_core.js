@@ -4,8 +4,8 @@ import { getUseCount, getUseItemCount, resetUseCount, resetUseItemCounts } from 
 import { displayMessage } from "../messageManager.js";
 import { checkWeeklyProgress, getWeeklyQuests, addWeeklyKillCount } from "./weekly_routine.js";
 import { addStonePoint, getStonePoint } from "../stone_point.js";
+import InventoryUtil from "../utils/InventoryUtil.js";
 
-// 导入 UI 函数
 import {
     showQuestBook,
     showMainMenu
@@ -102,41 +102,27 @@ function initHitItemQuestMap() {
 initHitItemQuestMap();
 
 function getPlayerContainer(player) {
-    const inventory = player.getComponent("minecraft:inventory");
-    return inventory?.container;
+    return InventoryUtil.getContainer(player);
 }
 
 /**
- * 检查玩家是否满足一组需求。
- * @param {Player} player
- * @param {Array<{type?: string, itemId?: string, amount: number}>} requirements
- *        每项形如 { itemId, amount } 或 { type: "stonePoint", amount }
+ * @desc 检查玩家是否满足一组需求（支持物品与石源点）
+ * @param player - 玩家
+ * @param requirements - 需求数组
  * @returns {boolean}
  */
 function hasEnoughItems(player, requirements) {
     if (!Array.isArray(requirements)) return false;
 
-    const container = getPlayerContainer(player);
+    const itemRequirements = [];
     for (const req of requirements) {
         if (req.type === "stonePoint") {
-            // 检查石源点是否足够
             if (getStonePoint(player) < req.amount) return false;
         } else {
-            // 物品需求
-            if (!container) return false;
-            let count = 0;
-            for (let i = 0; i < container.size; i++) {
-                const item = container.getItem(i);
-                // 用 item && 避免 undefined === undefined 的假匹配
-                if (item && item.typeId === req.itemId) {
-                    count += item.amount;
-                    if (count >= req.amount) break;
-                }
-            }
-            if (count < req.amount) return false;
+            itemRequirements.push(req);
         }
     }
-    return true;
+    return InventoryUtil.hasEnoughItems(player, itemRequirements);
 }
 
 function hasItemWithTag(player, tag) {
@@ -253,7 +239,7 @@ export function checkQuestConditionWithQuest(player, quest) {
     }
     if (condition.useTag) {
         const required = condition.useTag.amount || 1;
-        const current = getUseCount(player, quest.id); // 复用使用计数
+        const current = getUseCount(player, quest.id);
         if (current < required) {
             messages.push({
                 translate: "quest.not_enough.use_tag",
@@ -315,15 +301,7 @@ function takeItems(player, itemId, amount) {
 }
 
 export function giveItem(player, itemStack) {
-    const container = getPlayerContainer(player);
-    if (!container) {
-        player.dimension.spawnItem(itemStack, player.location);
-        return;
-    }
-    const remainder = container.addItem(itemStack);
-    if (remainder && remainder.amount > 0) {
-        player.dimension.spawnItem(remainder, player.location);
-    }
+    return InventoryUtil.giveItem(player, itemStack);
 }
 
 export function isQuestCompleted(player, quest) {
@@ -613,7 +591,6 @@ world.afterEvents.projectileHitEntity.subscribe((event) => {
 
     const itemId = projectile.typeId;
 
-    // 成就 / 普通任务
     const quests = hitItemToQuests.get(itemId);
     if (quests) {
         for (const quest of quests) {
@@ -623,7 +600,6 @@ world.afterEvents.projectileHitEntity.subscribe((event) => {
         }
     }
 
-    // 周常任务
     const weeklyQuests = getWeeklyQuests();
     for (const quest of weeklyQuests) {
         const cond = quest.condition.hitEntityWithItem;
