@@ -62,6 +62,7 @@ const EFFECT_HANDLERS = {
   bleeding: (attacker, target, level) => {
     addBleedingEffect(target, level)
   },
+  accumulate: () => {},
 };
 
 function clampLevel(level) {
@@ -71,115 +72,104 @@ function clampLevel(level) {
   return level;
 }
 
-const bleedingTimers = new Map();
-
+const bleedingStates = new Map();
 
 export function addBleedingEffect(target, level) {
-    if (!target || !target.isValid) return;
+  if (!target || !target.isValid) return;
 
-    // 如果目标已经存在流血，先清除旧流血
-    const existingTimer = bleedingTimers.get(target.id);
+  const healthComp = target.getComponent("minecraft:health");
+  if (!healthComp) return;
 
-    if (existingTimer !== undefined) {
-        system.clearRun(existingTimer);
-        bleedingTimers.delete(target.id);
+  const tick = system.currentTick;
+  const existing = bleedingStates.get(target.id);
+
+  // 无敌帧：10 tick 内的重复攻击忽略
+  if (existing && tick - existing.lastHitTick < 10) {
+    return;
+  }
+
+  const durationTicks = (3 + level) * 20;
+
+  // 已有失血：延长结束时间、更新等级，不重置计时器
+  if (existing) {
+    existing.level = level;
+    existing.endTick = tick + durationTicks;
+    existing.lastHitTick = tick;
+    return;
+  }
+
+  const state = {
+    level,
+    endTick: tick + durationTicks,
+    lastHitTick: tick,
+    intervalId: undefined,
+  };
+
+  const intervalId = system.runInterval(() => {
+    const now = system.currentTick;
+    const s = bleedingStates.get(target.id);
+
+    if (!s || now >= s.endTick) {
+      system.clearRun(intervalId);
+      bleedingStates.delete(target.id);
+      return;
     }
 
-    const healthComp = target.getComponent("minecraft:health");
-    if (!healthComp) return;
+    if (!target || !target.isValid) {
+      system.clearRun(intervalId);
+      bleedingStates.delete(target.id);
+      return;
+    }
 
-    const duration = 3 + level;
-    let elapsed = 0;
+    const health = target.getComponent("minecraft:health");
+    if (!health || health.currentValue <= 0) {
+      system.clearRun(intervalId);
+      bleedingStates.delete(target.id);
+      return;
+    }
 
-    const intervalId = system.runInterval(() => {
-        elapsed += 1;
+    let damage;
+    if (s.level < 2) {
+      damage = s.level;
+    } else {
+      damage = 3 + health.effectiveMax * 0.01 * s.level;
+    }
+    damage = Math.max(1, Math.floor(damage));
 
-        // 目标已经失效
-        if (!target || !target.isValid) {
-            system.clearRun(intervalId);
-            bleedingTimers.delete(target.id);
-            return;
-        }
+    const pos = target.location;
+    const dim = target.dimension;
+    const particleCount = 8 + Math.floor(Math.random() * 5);
+    for (let i = 0; i < particleCount; i++) {
+      const offset = {
+        x: (Math.random() - 0.5) * 0.8,
+        y: (Math.random() - 0.5) * 0.6 + 0.5,
+        z: (Math.random() - 0.5) * 0.8,
+      };
+      dim.spawnParticle("minecraft:redstone_wire_dust_particle", {
+        x: pos.x + offset.x,
+        y: pos.y + offset.y,
+        z: pos.z + offset.z,
+      });
+    }
 
-        const health = target.getComponent("minecraft:health");
+    const newHealth = Math.max(0, health.currentValue - damage);
+    try {
+      health.setCurrentValue(newHealth);
+    } catch (e) {
+      console.error("[Stonecraft] bleeding damage failed:", e);
+      system.clearRun(intervalId);
+      bleedingStates.delete(target.id);
+      return;
+    }
 
-        if (!health) {
-            system.clearRun(intervalId);
-            bleedingTimers.delete(target.id);
-            return;
-        }
+    if (newHealth <= 0) {
+      system.clearRun(intervalId);
+      bleedingStates.delete(target.id);
+    }
+  }, 20);
 
-        // 持续时间结束
-        if (elapsed > duration) {
-            system.clearRun(intervalId);
-            bleedingTimers.delete(target.id);
-            return;
-        }
-
-        let damage;
-
-        // 伤害计算
-        if (level < 2) {
-            damage = level;
-        } else {
-            damage = 3 + health.effectiveMax * 0.01 * level;
-        }
-
-        damage = Math.max(1, Math.floor(damage));
-
-        const currentHealth = health.currentValue;
-
-        const pos = target.location;
-        const dim = target.dimension;
-        const particleCount = 8 + Math.floor(Math.random() * 5);
-        for (let i = 0; i < particleCount; i++) {
-          const offset = {
-            x: (Math.random() - 0.5) * 0.8,
-            y: (Math.random() - 0.5) * 0.6 + 0.5, // 集中在躯干高度
-            z: (Math.random() - 0.5) * 0.8
-          };
-          dim.spawnParticle("minecraft:redstone_wire_dust_particle", {
-            x: pos.x + offset.x,
-            y: pos.y + offset.y,
-            z: pos.z + offset.z
-          });
-        }
-
-        // 已经死亡
-        if (currentHealth <= 0) {
-            system.clearRun(intervalId);
-            bleedingTimers.delete(target.id);
-            return;
-        }
-
-        // 直接扣除生命值
-        const newHealth = Math.max(
-            0,
-            currentHealth - damage
-        );
-
-        try {
-            health.setCurrentValue(newHealth);
-        } catch (error) {
-            console.error(
-                "[Stonecraft] bleeding damage failed:",
-                error
-            );
-
-            system.clearRun(intervalId);
-            bleedingTimers.delete(target.id);
-            return;
-        }
-
-        // 目标死亡
-        if (newHealth <= 0) {
-            system.clearRun(intervalId);
-            bleedingTimers.delete(target.id);
-        }
-
-    }, 20);
-
-    bleedingTimers.set(target.id, intervalId);
+  state.intervalId = intervalId;
+  bleedingStates.set(target.id, state);
 }
 
 function applyItemDynamicEffects(attacker, target) {
@@ -204,6 +194,129 @@ function applyItemDynamicEffects(attacker, target) {
   }
 
   return applied;
+}
+
+const ACCUMULATE_MULTIPLIERS = [1.2, 1.5, 2.0];
+const ACCUMULATE_WINDOW_TICKS = 60;
+
+const accumulateWindows = new Map(); // targetId -> { attackerId, attackerRef, targetRef, damage, level, deadline }
+
+const accumulateGraceUntil = new Map(); // targetId -> 空窗期结束 tick
+
+const accumulateLastHit = new Map(); // targetId -> 上次有效命中 tick
+
+export function processAccumulateHit(attacker, target, damage, cause) {
+  if (cause !== "entityAttack") return false;
+
+  const tick = system.currentTick;
+  const graceUntil = accumulateGraceUntil.get(target.id) ?? -1;
+
+  // 空窗期：放行（积爆自己的爆发伤害，或刚好落在窗口内的其他伤害）
+  if (tick < graceUntil) return false;
+
+  const weapon = getMainHandItem(attacker);
+  if (!weapon) return false;
+
+  const level = clampLevel(getOrZero(weapon, "stonecraft:accumulate_level", 0));
+  if (level <= 0) return false;
+
+  // 无敌帧检查：10 tick 内的重复攻击拦截但不累加
+  const lastHit = accumulateLastHit.get(target.id) ?? -Infinity;
+  if (tick - lastHit < 10) {
+    return true;
+  }
+  accumulateLastHit.set(target.id, tick);
+
+  const existing = accumulateWindows.get(target.id);
+  if (existing && existing.attackerId === attacker.id) {
+    existing.damage += damage;
+    existing.level = level;
+    return true;
+  }
+  if (existing) {
+    accumulateWindows.delete(target.id);
+  }
+
+  accumulateWindows.set(target.id, {
+    attackerId: attacker.id,
+    attackerRef: attacker,
+    targetRef: target,
+    damage,
+    level,
+    deadline: tick + ACCUMULATE_WINDOW_TICKS,
+    lastFizzTick: tick - 10,
+  });
+
+  return true;
+}
+
+function tickAccumulateWindows() {
+  const tick = system.currentTick;
+
+  for (const [id, lastTick] of accumulateLastHit) {
+    if (tick - lastTick > 100) {
+      accumulateLastHit.delete(id);
+    }
+  }
+
+  if (accumulateWindows.size === 0) return;
+
+  for (const [targetId, record] of accumulateWindows) {
+    const target = record.targetRef;
+    if (!target || !target.isValid) {
+      accumulateWindows.delete(targetId);
+      continue;
+    }
+
+    // 未到结算时间：持续播放积攒音效
+    if (tick < record.deadline) {
+      if (tick - record.lastFizzTick >= 10) {
+        record.lastFizzTick = tick;
+        try {
+          target.dimension.playSound("random.fizz", target.location, {
+            volume: 0.6,
+            pitch: 0.8 + Math.random() * 0.4,
+          });
+        } catch {}
+      }
+      continue;
+    }
+
+    // 结算
+    accumulateWindows.delete(targetId);
+
+    const health = target.getComponent("minecraft:health");
+    if (!health || health.currentValue <= 0) continue;
+
+    const multiplier = ACCUMULATE_MULTIPLIERS[Math.min(record.level, 3)] ?? 1;
+    const finalDamage = record.damage * multiplier;
+
+    accumulateGraceUntil.set(targetId, tick + 10);
+    accumulateLastHit.set(targetId, tick);
+
+    // 结算视听
+    try {
+      target.dimension.playSound("mob.wither.break_block", target.location, {
+        volume: 1.0,
+        pitch: 1.0 + Math.random() * 0.2,
+      });
+      target.dimension.spawnParticle("minecraft:critical_hit_emitter", {
+        x: target.location.x,
+        y: target.location.y + 1.0,
+        z: target.location.z,
+      });
+    } catch {}
+
+    try {
+      const attacker = record.attackerRef;
+      target.applyDamage(finalDamage, {
+        cause: "entityAttack",
+        damagingEntity: attacker && attacker.isValid ? attacker : undefined,
+      });
+    } catch (e) {
+      console.warn("[Stonecraft] accumulate burst failed", e);
+    }
+  }
 }
 
 function applyLegacyUcStoneSwordEffects(attacker, target) {
@@ -234,6 +347,34 @@ export function initWeaponEffects() {
   const hitEvent = world.afterEvents.entityHitEntity;
   if (!hitEvent) return;
 
+  const beforeHurt = world.beforeEvents.entityHurt;
+  if (beforeHurt?.subscribe) {
+    beforeHurt.subscribe((event) => {
+      try {
+        const target = event.hurtEntity;
+        if (!target || target.typeId === "minecraft:player") return;
+
+        const source = event.damageSource;
+        if (!source?.damagingEntity || source.damagingEntity.typeId !== "minecraft:player") return;
+
+        const cause = source.cause;
+        if (cause !== "entityAttack") return;
+
+        const cancelled = processAccumulateHit(
+          source.damagingEntity,
+          target,
+          event.damage,
+          cause
+        );
+
+        if (cancelled) {
+          event.cancel = true;
+        }
+      } catch (e) {
+        console.warn("[Stonecraft] accumulate beforeHurt failed", e);
+      }
+    });
+  }
   hitEvent.subscribe((event) => {
     try {
       const attacker = event.damagingEntity ?? event.damager ?? event.entity;
@@ -273,4 +414,5 @@ export function initWeaponEffects() {
       console.error("[Stonecraft] entityHitEntity failed:", error);
     }
   });
+  system.runInterval(tickAccumulateWindows, 1);
 }

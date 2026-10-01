@@ -1,0 +1,44 @@
+
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:inlaid_essence_bead_accumulate"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+        "GDG", 
+        "DOD", 
+        "GDG"
+        ],
+      "key": {
+        "G": {
+          "item": "minecraft:gunpowder"
+        },
+        "O": {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        "D": {
+          "item": "minecraft:dragon_breath"
+        }
+      },
+      "unlock": [
+        {
+          "item": "minecraft:gunpowder"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "minecraft:dragon_breath"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead_accumulate"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead_accumulate",
+        "count": 1
+      }
+    }
+}

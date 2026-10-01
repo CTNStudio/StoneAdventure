@@ -1,0 +1,44 @@
+
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:inlaid_essence_bead_bulwark"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+        "BCB", 
+        "COC", 
+        "BCB"
+        ],
+      "key": {
+        "B": {
+          "item": "minecraft:obsidian"
+        },
+        "O": {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        "C": {
+          "item": "minecraft:crying_obsidian"
+        }
+      },
+      "unlock": [
+        {
+          "item": "minecraft:obsidian"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "minecraft:crying_obsidian"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead_bulwark"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead_bulwark",
+        "count": 1
+      }
+    }
+}

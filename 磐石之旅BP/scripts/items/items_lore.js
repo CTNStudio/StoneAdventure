@@ -46,7 +46,7 @@ const ITEM_LORE_CONFIG = {
         { translate: 'stonecraft.wither_lore' }
     ],
     'stonecraft:inlaid_essence_bead_bleeding': [
-        { translate: 'stonecraft.weapon_only' },
+        { translate: 'stonecraft.sword_only' },
         { translate: 'stonecraft.bleeding_lore' }
     ],
     'stonecraft:blindness_potion': [
@@ -74,6 +74,10 @@ const ITEM_LORE_CONFIG = {
     'stonecraft:inlaid_essence_bead_bulwark': [
         { translate: 'stonecraft.armor_only' },
         { translate: 'stonecraft.bulwark_lore' }
+    ],
+    'stonecraft:inlaid_essence_bead_accumulate': [
+        { translate: 'stonecraft.sword_only' },
+        { translate: 'stonecraft.accumulate_lore' }
     ],
 };
 

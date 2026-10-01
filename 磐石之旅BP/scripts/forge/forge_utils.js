@@ -118,6 +118,14 @@ export const ATTRIBUTE_DEFS = [
     loreText: "§8坚壁",
     beadTagPrefix: "inlaid_essence_bead",
     materialTagPrefix: "forge",
+  },
+  {
+    id: "accumulate",
+    key: "stonecraft:accumulate_level",
+    playerKey: "stonecraft:accumulate",
+    loreText: "§d积爆",
+    beadTagPrefix: "inlaid_essence_bead",
+    materialTagPrefix: "forge",
   }
 ];
 
