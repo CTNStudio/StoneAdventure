@@ -50,6 +50,7 @@ stonecraft.item.stone_essence_crystal.bleeding=Inlaid Essence Bead·§cBleeding�
 stonecraft.item.stone_essence_crystal.fire_resistance=Inlaid Essence Bead·§6Fire Resistance§r
 stonecraft.item.stone_essence_crystal.dash=Inlaid Essence Bead·§bDash§r
 stonecraft.item.stone_essence_crystal.bulwark=Inlaid Essence Bead·§8Bulwark§r
+stonecraft.item.stone_essence_crystal.combo=Inlaid Essence Bead·§6Combo§r
 
 tile.stonecraft:lv1stone.name=Compressed Cobblestone Level 1
 tile.stonecraft:lv2stone.name=Compressed Cobblestone Level 2
@@ -630,6 +631,7 @@ stonecraft.weapon_only=§r§iWeapon Only§r
 stonecraft.armor_only=§r§iArmor Only§r
 stonecraft.hammer_only=§r§iHammer Only§r
 stonecraft.spear_only=§r§iSpear Only§r
+stonecraft.sword_only=§r§iSword Only§r
 
 stonecraft.expansion_slab_lore=§r§fExpands weapon/armor slots§r
 stonecraft.battle_fury_lore=§r§fOn hit gain §cStrength§r
@@ -652,6 +654,7 @@ stonecraft.potion_of_corruption2=§r§cPoison II (0:20)§r
 stonecraft.fire_resistance_lore=§r§fWhen equipped gain §6Fire Resistance§r
 stonecraft.dash_lore=§r§fOn spear hit gain §bDash§r
 stonecraft.bulwark_lore=§r§fWhen equipped chance to §8negate damage§r
+stonecraft.combo_lore=§r§fConsecutive hits increase damage; resets on a miss, 5s without a hit, or weapon switch§r
 
 stonecraft.stone.step=Stone creature murmurs
 stonecraft.stone.hurt=Stone creature hurts

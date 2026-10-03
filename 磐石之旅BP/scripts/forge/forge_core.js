@@ -469,7 +469,6 @@ function rebuildLore(item) {
       lore.push(`${def.loreText} §7Lv.${level}`);
     }
   }
-
   const used = countUsedSlots(item);
   const max = getMaxSlots(item);
   lore.push(`§6空位: §7${used}/${max}`);

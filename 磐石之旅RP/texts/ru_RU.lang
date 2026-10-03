@@ -49,6 +49,7 @@ stonecraft.item.stone_essence_crystal.bleeding=Вставленная эссен
 stonecraft.item.stone_essence_crystal.fire_resistance=Вставленная эссенциальная бусина·§6Огнеупорность§r
 stonecraft.item.stone_essence_crystal.dash=Вставленная эссенциальная бусина·§bРывок§r
 stonecraft.item.stone_essence_crystal.bulwark=Вставленная эссенциальная бусина·§8Оплот§r
+stonecraft.item.stone_essence_crystal.combo=Вставленная эссенциальная бусина·§6Серия§r
 
 tile.stonecraft:lv1stone.name=Прессованный булыжник, уровень 1
 tile.stonecraft:lv2stone.name=Прессованный булыжник, уровень 2
@@ -628,6 +629,7 @@ stonecraft.weapon_only=§r§iТолько оружие§r
 stonecraft.armor_only=§r§iТолько броня§r
 stonecraft.hammer_only=§r§iТолько молот§r
 stonecraft.spear_only=§r§iТолько копьё§r
+stonecraft.sword_only=§r§iТолько меч§r
 
 stonecraft.expansion_slab_lore=§r§fРасширяет слоты оружия/брони§r
 stonecraft.battle_fury_lore=§r§fПри попадании даёт §cСила§r
@@ -650,6 +652,7 @@ stonecraft.potion_of_corruption2=§r§cОтравление II (0:20)§r
 stonecraft.fire_resistance_lore=§r§fВ экипировке даёт §6Огнеупорность§r
 stonecraft.dash_lore=§r§fПри попадании копьём даёт §bРывок§r
 stonecraft.bulwark_lore=§r§fВ экипировке с шансом §8отменяет урон§r
+stonecraft.combo_lore=§r§fСерия попаданий увеличивает урон; сбрасывается при промахе, через 5 секунд без попадания или при смене оружия§r
 
 stonecraft.stone.step=Каменное существо бормочет
 stonecraft.stone.hurt=Каменное существо получает урон

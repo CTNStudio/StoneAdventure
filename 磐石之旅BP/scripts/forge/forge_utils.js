@@ -126,6 +126,14 @@ export const ATTRIBUTE_DEFS = [
         loreText: "§d积爆",
         beadTagPrefix: "inlaid_essence_bead",
         materialTagPrefix: "forge",
+    },
+    {
+        id: "combo",
+        key: "stonecraft:combo_level",
+        playerKey: "stonecraft:combo",
+        loreText: "§6连锋",
+        beadTagPrefix: "inlaid_essence_bead",
+        materialTagPrefix: "forge",
     }
 ];
 

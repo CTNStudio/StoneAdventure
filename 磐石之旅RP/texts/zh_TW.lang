@@ -50,6 +50,7 @@ stonecraft.item.stone_essence_crystal.bleeding=鑲髓石珠·§c失血§r
 stonecraft.item.stone_essence_crystal.fire_resistance=鑲髓石珠·§6抗火§r
 stonecraft.item.stone_essence_crystal.dash=鑲髓石珠·§b迅突§r
 stonecraft.item.stone_essence_crystal.bulwark=鑲髓石珠·§8堅壁§r
+stonecraft.item.stone_essence_crystal.combo=鑲髓石珠·§6連鋒§r
 
 tile.stonecraft:lv1stone.name=一級壓縮圓石
 tile.stonecraft:lv2stone.name=二級壓縮圓石
@@ -629,6 +630,7 @@ stonecraft.weapon_only=§r§i僅武器§r
 stonecraft.armor_only=§r§i僅護甲§r
 stonecraft.hammer_only=§r§i僅錘子§r
 stonecraft.spear_only=§r§i僅長矛§r
+stonecraft.sword_only=§r§i僅劍§r
 
 stonecraft.expansion_slab_lore=§r§f擴展武器/護甲空位§r
 stonecraft.battle_fury_lore=§r§f命中獲得§c力量§r
@@ -651,6 +653,7 @@ stonecraft.potion_of_corruption2=§r§c中毒 II (0:20)§r
 stonecraft.fire_resistance_lore=§r§f裝備獲得§6抗火§r
 stonecraft.dash_lore=§r§f舉矛獲得§b迅突§r
 stonecraft.bulwark_lore=§r§f裝備概率§8免除傷害§r
+stonecraft.combo_lore=§r§f連續命中遞增傷害，揮空/五秒未命中/換武器則重置§r
 
 stonecraft.stone.step=石頭生物低吟
 stonecraft.stone.hurt=石頭生物受傷

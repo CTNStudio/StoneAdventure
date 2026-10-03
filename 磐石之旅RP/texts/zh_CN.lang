@@ -50,6 +50,7 @@ stonecraft.item.stone_essence_crystal.fire_resistance=镶髓石珠·§6抗火§r
 stonecraft.item.stone_essence_crystal.dash=镶髓石珠·§b迅突§r
 stonecraft.item.stone_essence_crystal.bulwark=镶髓石珠·§8坚壁§r
 stonecraft.item.stone_essence_crystal.accumulate=镶髓石珠·§d积爆§r
+stonecraft.item.stone_essence_crystal.combo=镶髓石珠·§6连锋§r
 
 tile.stonecraft:lv1stone.name=一级压缩圆石
 tile.stonecraft:lv2stone.name=二级压缩圆石
@@ -643,6 +644,7 @@ stonecraft.fire_resistance_lore=§r§f装备获得§6抗火§r
 stonecraft.dash_lore=§r§f举矛获得§b迅突§r
 stonecraft.bulwark_lore=§r§f装备概率§8免除伤害§r
 stonecraft.accumulate_lore=§r§f命中§d积累伤害并在三秒后以更高伤害释放§r
+stonecraft.combo_lore=§r§f连续命中§6递增伤害s§r
 
 stonecraft.stone.step=石头生物低吟
 stonecraft.stone.hurt=石头生物受伤

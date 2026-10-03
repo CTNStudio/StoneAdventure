@@ -13,7 +13,7 @@
         ],
       "key": {
         "G": {
-          "item": "stonecraft:lv5stone"
+          "item": "stonecraft:lv3stone"
         },
         "E": {
           "item": "stonecraft:stone_essence_crystal"
@@ -24,7 +24,7 @@
           "item": "stonecraft:stone_essence_crystal"
         },
         {
-          "item": "stonecraft:lv5stone"
+          "item": "stonecraft:lv3stone"
         },
         {
           "item": "stonecraft:inlaid_essence_bead"

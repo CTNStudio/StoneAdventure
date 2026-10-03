@@ -1,43 +1,42 @@
-
 {
     "format_version": "1.20.60",
     "minecraft:recipe_shaped": {
       "description": {
-        "identifier": "stonecraft:expansion_slab"
+        "identifier": "stonecraft:inlaid_essence_bead_combo"
       },
       "tags": ["crafting_table"],
       "pattern": [
-        "DSD", 
-        "SIS", 
-        "DSD"
-        ],
+        "GSG",
+        "SOS",
+        "GSG"
+      ],
       "key": {
-        "D": {
-          "item": "minecraft:diamond"
+        "G": {
+          "item": "minecraft:gunpowder"
         },
         "S": {
-          "item": "stonecraft:lv5stone"
+          "item": "minecraft:iron_sword"
         },
-        "I": {
+        "O": {
           "item": "stonecraft:inlaid_essence_bead"
         }
       },
       "unlock": [
         {
-          "item": "minecraft:diamond"
+          "item": "minecraft:gunpowder"
         },
         {
-          "item": "stonecraft:lv5stone"
+          "item": "minecraft:iron_sword"
         },
         {
           "item": "stonecraft:inlaid_essence_bead"
         },
         {
-          "item": "stonecraft:expansion_slab"
+          "item": "stonecraft:inlaid_essence_bead_combo"
         }
       ],
       "result": {
-        "item": "stonecraft:expansion_slab",
+        "item": "stonecraft:inlaid_essence_bead_combo",
         "count": 1
       }
     }
