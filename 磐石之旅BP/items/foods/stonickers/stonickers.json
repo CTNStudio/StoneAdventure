@@ -15,7 +15,7 @@
       "minecraft:icon": "stonecraft.stonickers",
       "minecraft:use_animation": "eat",
       "minecraft:use_modifiers": {
-        "use_duration": 1.4
+        "use_duration": 0.8
       },
       "minecraft:food": {
         "nutrition": 10,

@@ -15,7 +15,7 @@
       "minecraft:icon": "stonecraft.stone_cooked_cod",
       "minecraft:use_animation": "eat",
       "minecraft:use_modifiers": {
-        "use_duration": 1.4,
+        "use_duration": 1.6,
         "movement_modifier": 0.35
       },
       "minecraft:food": {
