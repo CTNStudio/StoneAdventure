@@ -11,7 +11,7 @@
       },
       "spawn_egg": {
         "texture": "stonecraft.spawn_eggs",
-        "texture_index": 21
+        "texture_index": 22
       },
       "materials": {
         "default": "skeleton"
