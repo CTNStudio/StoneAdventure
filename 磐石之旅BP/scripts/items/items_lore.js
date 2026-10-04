@@ -83,6 +83,10 @@ const ITEM_LORE_CONFIG = {
         { translate: 'stonecraft.sword_only' },
         { translate: 'stonecraft.combo_lore' }
     ],
+    'stonecraft:inlaid_essence_bead_speed': [
+        { translate: 'stonecraft.boots_only' },
+        { translate: 'stonecraft.speed_lore' }
+    ],
 };
 
 function isLoreEqual(currentLore, expectedLore) {

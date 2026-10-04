@@ -13,9 +13,6 @@
         "default": "skeleton"
       },
       "animations": {
-        "look_at_target_default": "animation.humanoid.look_at_target.default",
-        "look_at_target_gliding": "animation.humanoid.look_at_target.gliding",
-        "look_at_target_swimming": "animation.humanoid.look_at_target.swimming",
         "move": "animation.humanoid.move",
         "riding.arms": "animation.humanoid.riding.arms",
         "riding.legs": "animation.humanoid.riding.legs",
@@ -32,9 +29,6 @@
         "swimming": "animation.humanoid.swimming"
       },
       "animation_controllers": [
-        {
-          "look_at_target": "controller.animation.humanoid.look_at_target"
-        },
         {
           "move": "controller.animation.humanoid.move"
         },

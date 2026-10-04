@@ -51,6 +51,7 @@ stonecraft.item.stone_essence_crystal.dash=镶髓石珠·§b迅突§r
 stonecraft.item.stone_essence_crystal.bulwark=镶髓石珠·§8坚壁§r
 stonecraft.item.stone_essence_crystal.accumulate=镶髓石珠·§d积爆§r
 stonecraft.item.stone_essence_crystal.combo=镶髓石珠·§6连锋§r
+stonecraft.item.stone_essence_crystal.speed=镶髓石珠·§b迅捷§r
 
 tile.stonecraft:lv1stone.name=一级压缩圆石
 tile.stonecraft:lv2stone.name=二级压缩圆石
@@ -418,6 +419,7 @@ stonecraft.attribute.fire_resistance=§6抗火§r
 stonecraft.attribute.dash=§b迅突§r
 stonecraft.attribute.bulwark=§8坚壁§r
 stonecraft.attribute.accumulate=§d积爆§r
+stonecraft.attribute.speed=§b迅捷§r
 
 stonecraft.attributes.none=无护甲属性
 stonecraft.stone_heart.info=: %s/%s
@@ -623,6 +625,7 @@ stonecraft.spear_only=§r§9仅长矛§r
 stonecraft.sword_only=§r§9仅剑§r
 stonecraft.helmets_only=§r§9仅头盔§r
 stonecraft.leggings_only=§r§9仅护腿§r
+stonecraft.boots_only=§r§9仅靴子§r
 
 stonecraft.expansion_slab_lore=§r§f扩展武器/护甲空位§r
 stonecraft.battle_fury_lore=§r§f命中获得§c力量§r
@@ -647,6 +650,7 @@ stonecraft.dash_lore=§r§f举矛获得§b迅突§r
 stonecraft.bulwark_lore=§r§f装备概率§8免除伤害§r
 stonecraft.accumulate_lore=§r§f命中§d积累伤害并在三秒后以更高伤害释放§r
 stonecraft.combo_lore=§r§f连续命中§6递增伤害s§r
+stonecraft.speed_lore=§r§f装备获得§b迅捷§r
 
 stonecraft.stone.step=石头生物低吟
 stonecraft.stone.hurt=石头生物受伤

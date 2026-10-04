@@ -546,6 +546,7 @@
         "height": 2.0,
         "width": 1.0
       },
+      "minecraft:body_rotation_blocked": {},
       "minecraft:physics": {
         "has_gravity": true,
         "has_collision": true,

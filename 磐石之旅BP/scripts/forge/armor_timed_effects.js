@@ -92,6 +92,16 @@ export const TIMED_EFFECT_CONFIG = {
     remove: () => {},
     getCurrent: () => ({ amplifier: 0 }),
   },
+  speed: {
+    id: "speed",
+    effectId: "speed",
+    playerKey: "stonecraft:speed",
+    armorOnly: true,
+    reapplyOnExpire: false,
+    getRefreshInterval: (level) => 400 + 200 * level,
+    getDuration:        (level) => 400 * level + 1 ,
+    getAmplifier: (level) => Math.max(level - 1, 0),
+  },
 };
 
 // 注册护甲自定义特效

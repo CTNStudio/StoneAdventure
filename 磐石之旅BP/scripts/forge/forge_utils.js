@@ -134,6 +134,14 @@ export const ATTRIBUTE_DEFS = [
         loreText: "§6连锋",
         beadTagPrefix: "inlaid_essence_bead",
         materialTagPrefix: "forge",
+    },
+    {
+        id: "speed",
+        key: "stonecraft:speed_level",
+        playerKey: "stonecraft:speed",
+        loreText: "§b迅疾",
+        beadTagPrefix: "inlaid_essence_bead",
+        materialTagPrefix: "forge",
     }
 ];
 

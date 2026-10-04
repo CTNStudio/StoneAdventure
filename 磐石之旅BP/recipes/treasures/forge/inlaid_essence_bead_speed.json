@@ -1,0 +1,44 @@
+
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:inlaid_essence_bead_speed"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+        "SSS", 
+        "ROR", 
+        "RRR"
+        ],
+      "key": {
+        "R": {
+          "item": "minecraft:rabbit"
+        },
+        "S": {
+          "item": "minecraft:sugar"
+        },
+        "O": {
+          "item": "stonecraft:inlaid_essence_bead"
+        }
+      },
+      "unlock": [
+        {
+          "item": "minecraft:rabbit"
+        },
+        {
+          "item": "minecraft:sugar"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead_speed"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead_speed",
+        "count": 1
+      }
+    }
+}
