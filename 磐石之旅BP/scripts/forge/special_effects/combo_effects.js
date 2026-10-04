@@ -1,15 +1,3 @@
-//武器特效：连锋（Combo）
-//连续命中实体 → 伤害按百分比递增 → 挥空 / 5 秒无命中 / 换武器则重置。
-//
-//挥空判定仿照「积爆」的 10 tick 窗口算法：
-//  · 记录上一次挥剑 tick 与上一次命中 tick
-//  · 每次挥剑：若距上次挥剑已 ≥ 10 tick，检查「上一次挥剑之后有没有新的命中」
-//      没有命中（lastHit < lastSwing）→ 上一刀挥空 → 立刻断连
-//  · 命中事件（entityHitEntity）会把 lastHit 更新到命中时刻，从而兑现上一刀
-//  · 不处理挥剑冷却：不做挥剑去抖/合并，10 tick 窗口本身就是判定基准
-//这样连续挥剑每次都会独立判定，命中延迟、同一 tick 命中都不会误判。
-//
-//状态全部存放在玩家动态属性上，不使用内存 Map / NBT / 记分板。
 import {
   system,
   world,
@@ -18,34 +6,38 @@ import {
 import {
   getMainHandItem,
   getOrZero,
-} from "./forge_utils.js";
+} from "../forge_utils.js";
 
-const COMBO_LEVEL_KEY = "stonecraft:combo_level";       //武器上的连锋等级
-const COMBO_PLAYER_KEY = "stonecraft:combo";            //玩家身上的连锋等级缓存
-const COMBO_COUNT_KEY = "stonecraft:combo_count";       //当前层数
-const COMBO_LAST_HIT_KEY = "stonecraft:combo_last_hit"; //上次命中的 tick（命中事件更新）
-const COMBO_LAST_SWING_KEY = "stonecraft:combo_last_swing"; //上次挥剑的 tick（Attack 挥臂更新）
-const COMBO_PARTICLE_KEY = "stonecraft:combo_particle_hit"; //上次暴击粒子的 tick
+const COMBO_LEVEL_KEY = "stonecraft:combo_level";
+const COMBO_PLAYER_KEY = "stonecraft:combo";
+const COMBO_COUNT_KEY = "stonecraft:combo_count";
+const COMBO_LAST_HIT_KEY = "stonecraft:combo_last_hit";
+const COMBO_LAST_SWING_KEY = "stonecraft:combo_last_swing";
+const COMBO_PARTICLE_KEY = "stonecraft:combo_particle_hit";
 
 //每层百分比加成：Lv1 +8% / Lv2 +10% / Lv3 +12%
-//满层（10 层）分别提供 +72% / +90% / +108%
+//满层（25 层）分别提供 +180% / +225% / +270%
 const COMBO_RATE_PER_LEVEL = {
   1: 0.08,
   2: 0.10,
   3: 0.12,
 };
 
-const COMBO_MAX_STACK = 10;          //层数上限（增幅上限）
+const COMBO_MAX_STACK = 25;
 const COMBO_HARD_LIMIT = 32767;
-const COMBO_TIMEOUT_TICKS = 100;     //5 秒内无新命中则重置
+const COMBO_TIMEOUT_TICKS = 100;
 const COMBO_SWING_WINDOW_TICKS = 10;
-const COMBO_PARTICLE_STACK = 5;      //5 层开始出现暴击粒子
+const COMBO_PARTICLE_STACK = 10;
 const COMBO_PARTICLE_COOLDOWN_TICKS = 10;
+const COMBO_QUEUE_LIMIT = 64;
 
 const TICK_NONE = -1000000;
 
 //仅用于 afterEvent 粒子反馈：记录本次命中是否由连锋处理
 const comboFrames = new Map();
+
+//playerId -> number[]，待结算的挥剑 tick 队列
+const comboPendingSwings = new Map();
 
 function isPlayer(entity) {
   return !!entity && entity.typeId === "minecraft:player";
@@ -102,11 +94,18 @@ function getComboLevel(player) {
   return Math.min(Math.floor(value), 3);
 }
 
+function getEffectiveComboLevel(player) {
+  const cached = getComboLevel(player);
+  if (cached > 0) return cached;
+  const item = getMainHandItemSafe(player);
+  if (!item) return 0;
+  return Math.min(getOrZero(item, COMBO_LEVEL_KEY, 0), 3);
+}
+
 function getRate(level) {
   return COMBO_RATE_PER_LEVEL[level] ?? 0;
 }
 
-//把层数同步到武器物品上（换武器后每把武器保留各自的连锋层数）
 function syncCountToItem(item, count) {
   if (!item) return;
   try {
@@ -118,7 +117,6 @@ function syncCountToItem(item, count) {
   } catch {}
 }
 
-//重置连锋（层数为隐性机制，不产生任何 UI / Lore 反馈）
 function resetCombo(player, reason) {
   const current = getCountProp(player);
   setCountProp(player, 0);
@@ -129,12 +127,6 @@ function resetCombo(player, reason) {
   return current > 0;
 }
 
-/**
- * beforeEvent 拦截伤害事件：
- * 读取当前连锋层数 → 按百分比重新计算伤害 → 返回修改后的伤害。
- * 递增后的伤害会写回 event.damage，因此会计入积爆等其他系统的积累。
- * 返回 number：释放的最终伤害。
- */
 export function processComboDamage(attacker, target, eventDamage) {
   if (!isPlayer(attacker)) return eventDamage;
   if (!Number.isFinite(eventDamage) || eventDamage <= 0) return eventDamage;
@@ -142,18 +134,16 @@ export function processComboDamage(attacker, target, eventDamage) {
   const item = getMainHandItemSafe(attacker);
   if (!item) return eventDamage;
 
-  const level = getComboLevel(attacker) || Math.min(getOrZero(item, COMBO_LEVEL_KEY, 0), 3);
+  const level = getEffectiveComboLevel(attacker);
   if (level <= 0) return eventDamage;
 
   const tick = system.currentTick;
 
-  //距离上次命中超过 5 秒则从 1 层重新开始
   const lastHitTick = getTickProp(attacker, COMBO_LAST_HIT_KEY);
   const timedOut = tick - lastHitTick > COMBO_TIMEOUT_TICKS;
 
   const previousCount = timedOut ? 0 : getCountProp(attacker);
 
-  //起始为 1 层，之后每命中一次 +1，最多 10 层
   let count = previousCount <= 0 ? 1 : previousCount + 1;
   if (count > COMBO_MAX_STACK) count = COMBO_MAX_STACK;
 
@@ -169,7 +159,6 @@ export function processComboDamage(attacker, target, eventDamage) {
   return Number.isFinite(newDamage) && newDamage > 0 ? newDamage : eventDamage;
 }
 
-//afterEvent：5 层起命中时生成暴击粒子，生成间隔与无敌帧一致（10 tick）
 function handleComboHitEffects(attacker, target) {
   if (!isPlayer(attacker)) return;
 
@@ -193,7 +182,6 @@ function handleComboHitEffects(attacker, target) {
   } catch {}
 }
 
-//挥剑：积爆式 10 tick 结算
 //swingSource 为 EntitySwingSource：Attack=攻击挥臂，其余来源（挖矿/放置/交互等）不计入
 function isAttackSwing(swingSource) {
   if (swingSource === undefined || swingSource === null) return true;
@@ -207,27 +195,60 @@ function markSwing(player, itemStack, swingSource) {
   const item = itemStack ?? getMainHandItemSafe(player);
   if (!item) return;
 
-  const level = getComboLevel(player) || Math.min(getOrZero(item, COMBO_LEVEL_KEY, 0), 3);
+  const level = getEffectiveComboLevel(player);
   if (level <= 0) return;
 
   const tick = system.currentTick;
-  const lastSwingTick = getTickProp(player, COMBO_LAST_SWING_KEY);
-  const lastHitTick = getTickProp(player, COMBO_LAST_HIT_KEY);
+  writeProp(player, COMBO_LAST_SWING_KEY, tick);
 
-  let verdict = "in_window";
+  let swings = comboPendingSwings.get(player.id);
+  if (!swings) {
+    swings = [];
+    comboPendingSwings.set(player.id, swings);
+  }
+  swings.push(tick);
 
-  //距上次挥剑 ≥ 10 tick：结算上一刀
-  if (lastSwingTick > TICK_NONE && tick - lastSwingTick >= COMBO_SWING_WINDOW_TICKS) {
-    //上一刀挥出之后没有新的命中事件 → 挥空 → 断连
-    if (lastHitTick < lastSwingTick) {
-      verdict = "miss";
-      resetCombo(player, "miss");
-    } else {
-      verdict = "hit";
+  if (swings.length > COMBO_QUEUE_LIMIT) {
+    swings.splice(0, swings.length - COMBO_QUEUE_LIMIT);
+  }
+}
+
+function tickPendingSwings() {
+  if (comboPendingSwings.size === 0) return;
+
+  const tick = system.currentTick;
+  const players = world.getAllPlayers();
+  const playerById = new Map();
+  for (const p of players) playerById.set(p.id, p);
+
+  for (const [playerId, swings] of comboPendingSwings) {
+    const player = playerById.get(playerId);
+    if (!player || !player.isValid) {
+      comboPendingSwings.delete(playerId);
+      continue;
+    }
+
+    const level = getEffectiveComboLevel(player);
+    if (level <= 0) {
+      comboPendingSwings.delete(playerId);
+      continue;
+    }
+
+    while (swings.length > 0 && tick - swings[0] >= COMBO_SWING_WINDOW_TICKS) {
+      const swingTick = swings.shift();
+      const lastHitTick = getTickProp(player, COMBO_LAST_HIT_KEY);
+
+      if (lastHitTick < swingTick) {
+        resetCombo(player, "miss");
+        swings.length = 0;
+        break;
+      }
+    }
+
+    if (swings.length === 0) {
+      comboPendingSwings.delete(playerId);
     }
   }
-
-  writeProp(player, COMBO_LAST_SWING_KEY, tick);
 }
 
 function tickComboStates() {
@@ -235,21 +256,18 @@ function tickComboStates() {
 
   for (const player of world.getAllPlayers()) {
     try {
-      const level = getComboLevel(player);
+      const level = getEffectiveComboLevel(player);
 
-      //手上没有连锋武器：清掉残留层数
       if (level <= 0) {
         if (getCountProp(player) > 0) resetCombo(player, "no_weapon");
         continue;
       }
 
-      //超时判定：5 秒内无任何命中 → 重置
       const lastHitTick = getTickProp(player, COMBO_LAST_HIT_KEY);
       if (lastHitTick > TICK_NONE && tick - lastHitTick > COMBO_TIMEOUT_TICKS) {
         if (resetCombo(player, "timeout")) continue;
       }
 
-      //兜底：武器已被移除 / 卸下时清掉层数
       if (
         getCountProp(player) > 0 &&
         lastHitTick > TICK_NONE &&
@@ -265,7 +283,6 @@ function tickComboStates() {
     }
   }
 
-  //清理离场玩家的粒子反馈缓存
   if (comboFrames.size > 0) {
     const alive = new Set();
     for (const player of world.getAllPlayers()) alive.add(player.id);
@@ -299,7 +316,6 @@ export function initComboEffects() {
           newDamage > 0 &&
           newDamage !== event.damage
         ) {
-          //连锋递增后的伤害直接释放，并计入积爆等其他系统的积累
           event.damage = newDamage;
         }
       } catch (e) {
@@ -312,8 +328,8 @@ export function initComboEffects() {
   if (hitEvent?.subscribe) {
     hitEvent.subscribe((event) => {
       try {
-        const attacker = event.damagingEntity ?? event.damager ?? event.entity;
-        const target = event.hitEntity ?? event.entityHitEntity;
+        const attacker = event.damagingEntity;
+        const target = event.hitEntity;
         if (!attacker || attacker.typeId !== "minecraft:player") return;
 
         //命中信号：兑现上一次挥剑（无敌帧命中也算命中，只判定是否命中、不判定是否造成伤害）
@@ -332,7 +348,6 @@ export function initComboEffects() {
     });
   }
 
-  //左键攻击的挥臂事件：仅 Attack 来源计为挥剑
   const swingStart = world.afterEvents?.playerSwingStart;
   if (swingStart?.subscribe) {
     swingStart.subscribe((event) => {
@@ -353,6 +368,7 @@ export function initComboEffects() {
         const player = event.player;
         if (!player) return;
         comboFrames.delete(player.id);
+        comboPendingSwings.delete(player.id);
         setCountProp(player, 0);
         writeProp(player, COMBO_LAST_HIT_KEY, undefined);
         writeProp(player, COMBO_LAST_SWING_KEY, undefined);
@@ -362,4 +378,5 @@ export function initComboEffects() {
   }
 
   system.runInterval(tickComboStates, 2);
+  system.runInterval(tickPendingSwings, 1);
 }

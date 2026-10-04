@@ -26,7 +26,7 @@ const ITEM_LORE_CONFIG = {
         { translate: 'stonecraft.health_boost_lore' }
     ],
     'stonecraft:inlaid_essence_bead_night_vision': [
-        { translate: 'stonecraft.armor_only' },
+        { translate: 'stonecraft.helmets_only' },
         { translate: 'stonecraft.night_vision_lore' }
     ],
     'stonecraft:inlaid_essence_bead_regeneration': [
@@ -64,7 +64,7 @@ const ITEM_LORE_CONFIG = {
         { translate: 'stonecraft.potion_of_corruption2' }
     ],
     'stonecraft:inlaid_essence_bead_fire_resistance': [
-        { translate: 'stonecraft.armor_only' },
+        { translate: 'stonecraft.leggings_only' },
         { translate: 'stonecraft.fire_resistance_lore' }
     ],
     'stonecraft:inlaid_essence_bead_dash': [

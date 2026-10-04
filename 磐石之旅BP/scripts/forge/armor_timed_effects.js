@@ -41,26 +41,6 @@ export function isPlayerValid(player) {
   }
 }
 
-// 特效配置表
-
-// 每一项支持两种形态：
-
-// A. 原版状态效果（不提供 apply/remove 时自动走原版）
-//    { effectId, playerKey, getAmplifier, durationTicks, ... }
-//
-// B. 自定义函数
-//    {
-//      id,                  必填，唯一标识（用于动态属性 key）
-//      playerKey,           必填，玩家动态属性名
-//      armorOnly,           默认 true
-//      refreshIntervalTicks,默认 60 * 20
-//      durationTicks,       默认 120 * 20
-//      getAmplifier,        (level) => number，可选
-//      apply,               (player, level, amplifier) => void，必填
-//      remove,              (player, level) => void，必填
-//      getCurrent,          (player) => { amplifier } | undefined，可选
-//    }
-
 export const TIMED_EFFECT_CONFIG = {
   resistance: {
     id: "resistance",
@@ -85,8 +65,9 @@ export const TIMED_EFFECT_CONFIG = {
     effectId: "night_vision",
     playerKey: "stonecraft:night_vision",
     armorOnly: true,
-    refreshIntervalTicks: 60 * 20,
-    durationTicks:        120 * 20,
+    reapplyOnExpire: false,
+    getRefreshInterval: (level) => 400 + 200 * level,   // CD ticks
+    getDuration:        (level) => 400 * level + 1 ,          // 持续时间 ticks
     getAmplifier: () => 0,
   },
   fire_resistance: {
@@ -94,8 +75,9 @@ export const TIMED_EFFECT_CONFIG = {
     effectId: "fire_resistance",
     playerKey: "stonecraft:fire_resistance",
     armorOnly: true,
-    refreshIntervalTicks: 60 * 20,
-    durationTicks:        120 * 20,
+    reapplyOnExpire: false,
+    getRefreshInterval: (level) => 400 + 200 * level,
+    getDuration:        (level) => 400 * level + 1 ,
     getAmplifier: () => 0,
   },
   bulwark: {
@@ -136,7 +118,8 @@ function isCustom(cfg) {
 }
 
 function applyVanilla(player, cfg, level, amplifier) {
-  player.addEffect(cfg.effectId, cfg.durationTicks, {
+  const duration = cfg.getDuration ? cfg.getDuration(level) : cfg.durationTicks;
+  player.addEffect(cfg.effectId, duration, {
     amplifier,
     showParticles: false,
   });
@@ -193,12 +176,20 @@ export function applyTimedSustainedEffects(player) {
       ? (typeof cfg.getCurrent === "function" ? cfg.getCurrent(player) : undefined)
       : getVanillaCurrent(player, cfg);
 
+        const nextApply = getNextApply(player, id);
+    const reapplyOnExpire = cfg.reapplyOnExpire ?? true;
+
     if (!current) {
-      needApply = true;
+      // 效果不存在：根据配置决定是否无视 CD 立即重刷
+      if (reapplyOnExpire || tick >= nextApply) {
+        needApply = true;
+      }
     } else if (current.amplifier !== amplifier) {
+      // 等级变化时立即重刷（无视CD，保证换装即时生效）
       needApply = true;
       mustRemove = true;
-    } else if (tick >= getNextApply(player, id)) {
+    } else if (tick >= nextApply) {
+      // 效果仍在，CD到期则刷新
       needApply = true;
     }
 
@@ -214,7 +205,10 @@ export function applyTimedSustainedEffects(player) {
       else applyVanilla(player, cfg, level, amplifier);
 
       markManaged(player, id);
-      setNextApply(player, id, tick + cfg.refreshIntervalTicks);
+      const refresh = cfg.getRefreshInterval
+        ? cfg.getRefreshInterval(level)
+        : cfg.refreshIntervalTicks;
+      setNextApply(player, id, tick + refresh);
     } catch (e) {
       console.warn(`[Stonecraft] apply effect ${id} failed`, e);
     }

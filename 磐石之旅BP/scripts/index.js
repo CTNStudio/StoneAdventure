@@ -26,8 +26,8 @@ import './stone_heart/stone_heart_display.js';
 import { initForgeCore } from "./forge/forge_core.js";
 import { initPlayerAttributes } from "./forge/player_attributes.js";
 import { initWeaponEffects } from "./forge/weapon_effects.js";
-import { initSpearEffects } from "./forge/spear_effects.js";
-import { initComboEffects } from "./forge/combo_effects.js";
+import { initSpearEffects } from "./forge/special_effects/spear_effects.js";
+import { initComboEffects } from "./forge/special_effects/combo_effects.js";
 import { world } from "@minecraft/server";
 //我嘞个超长导入啊
 

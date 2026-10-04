@@ -615,12 +615,14 @@ sc.quest.snatcher.body=§o唯利是图的掠夺者，分散在世界各地。§r
 sc.quest.snatcher.body1=掠宝者会在掠宝者营地生成，虽然属于掠夺者，但可能因为地位低下，始终被当作“编外”人员。会手持铁剑发起攻击。
 
 
-stonecraft.expansion_slab=§r§i通用§r
-stonecraft.weapon_only=§r§i仅武器§r
-stonecraft.armor_only=§r§i仅护甲§r
-stonecraft.hammer_only=§r§i仅锤子§r
-stonecraft.spear_only=§r§i仅长矛§r
-stonecraft.sword_only=§r§i仅剑§r
+stonecraft.expansion_slab=§r§9通用§r
+stonecraft.weapon_only=§r§9仅武器§r
+stonecraft.armor_only=§r§9仅护甲§r
+stonecraft.hammer_only=§r§9仅锤子§r
+stonecraft.spear_only=§r§9仅长矛§r
+stonecraft.sword_only=§r§9仅剑§r
+stonecraft.helmets_only=§r§9仅头盔§r
+stonecraft.leggings_only=§r§9仅护腿§r
 
 stonecraft.expansion_slab_lore=§r§f扩展武器/护甲空位§r
 stonecraft.battle_fury_lore=§r§f命中获得§c力量§r
