@@ -188,6 +188,7 @@ item.spawn_egg.entity.stonecraft:stone_fissuring_husk.name=迸裂石壳刷怪蛋
 item.spawn_egg.entity.stonecraft:wandering_collector.name=流浪收藏家刷怪蛋
 item.spawn_egg.entity.stonecraft:snatcher.name=掠宝者刷怪蛋
 item.spawn_egg.entity.stonecraft:spire_remnant.name=高塔余裔刷怪蛋
+item.spawn_egg.entity.stonecraft:sculk_statue.name=幽匿石像刷怪蛋
 
 item.spawn_egg.entity.stonecraft:mossy_stone_guard.name=苔石守卫刷怪蛋
 item.spawn_egg.entity.stonecraft:mossy_stone_shooter.name=苔石射手刷怪蛋
@@ -216,6 +217,7 @@ entity.stonecraft:stone_fissuring_husk.name=迸裂石壳
 entity.stonecraft:stone_block.name=石块
 entity.stonecraft:wandering_collector.name=流浪收藏家
 entity.stonecraft:snatcher.name=掠宝者
+entity.stonecraft:sculk_statue.name=幽匿石像
 
 entity.stonecraft:deepslate_stone_guard.name=深板岩守卫
 entity.stonecraft:deepslate_stone_shooter.name=深板岩射手
