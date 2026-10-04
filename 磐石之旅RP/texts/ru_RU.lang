@@ -419,7 +419,7 @@ stonecraft.attribute.dash=§bРывок§r
 stonecraft.attribute.bulwark=§8Оплот§r
 
 stonecraft.attributes.none=Нет атрибутов брони
-stonecraft.stone_heart.info=: %s/%s
+stonecraft.stone_heart.info=: %s/%s
 stonecraft.stone_point.info=Каменный источник: %s
 
 stonecraft.item.stone_encyclopedia=Каменная энциклопедия

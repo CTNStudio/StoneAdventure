@@ -420,7 +420,7 @@ stonecraft.attribute.dash=§bDash§r
 stonecraft.attribute.bulwark=§8Bulwark§r
 
 stonecraft.attributes.none=No Armor Attributes
-stonecraft.stone_heart.info=: %s/%s
+stonecraft.stone_heart.info=: %s/%s
 stonecraft.stone_point.info=Stone Source: %s
 
 stonecraft.item.stone_encyclopedia=Stone Encyclopedia

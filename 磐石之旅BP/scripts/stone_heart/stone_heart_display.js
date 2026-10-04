@@ -17,6 +17,6 @@ system.runInterval(() => {
       Math.min(1, Math.max(0, current / max)) * 50
     ) * 2;
 
-    player.onScreenDisplay.setActionBar(`!.${healthPercent}%`);
+    player.onScreenDisplay.setActionBar(`!.${healthPercent}%`);
   }
 }, 2);
