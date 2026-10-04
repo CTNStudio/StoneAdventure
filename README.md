@@ -3,8 +3,8 @@
 ![logo](https://i.imgs.ovh/2026/08/30/554c6f20aa88cd0a182c07706d298c49.png)
 > 「如是我见，窥磐石低语」
 
-图标由 @我叫大队长CTN
-设计，本作品属 CTN工作室 作品。
+图标由 [@星零大队长](https://www.mcmod.cn/author/29211.html)
+设计，本作品属 [星屹工作室（CTN STUDIO）](https://www.ctnstudios.top/) 作品。
 **磐石之旅最新正式版： V1.2.0 (1.26.40+)**
 
 ---
