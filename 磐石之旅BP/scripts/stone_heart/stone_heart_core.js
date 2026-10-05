@@ -257,6 +257,7 @@ world.beforeEvents.entityHurt.subscribe(event => {
 
   if (damage < 0.5) {
     showStoneHeartFeedback(player, false);
+    event.damage = 0;
     return;
   }
 
