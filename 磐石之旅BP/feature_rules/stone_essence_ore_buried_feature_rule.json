@@ -33,7 +33,7 @@
       },
       "y": {
         "distribution": "gaussian",
-        "extent": [-60, -24]
+        "extent": [-60, 0]
       },
       "z": {
         "distribution": "uniform",

@@ -5,7 +5,7 @@
       "identifier": "stonecraft:stone_essence_ore_feature"
     },
     "count": 6,
-    "discard_chance_on_air_exposure": 0.5,
+    "discard_chance_on_air_exposure": 0.25,
     "replace_rules": [
       {
         "places_block": "stonecraft:stone_essence_ore",

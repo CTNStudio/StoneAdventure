@@ -348,7 +348,7 @@ quest.reward_claimed_success=§6已领取奖励§r
 quest.reward_already_claimed=§6奖励已领取§r
 quest.reset=§6周常已刷新！§r
 sc.weekly.bonus_claimed=§6§l本周周常全部完成！额外奖励已发放！
-quest.hit=用 %s 射中生物
+quest.hit=用 %s 射中生物 %s 次
 quest.not_enough.hit=还需要用 %2$s 射中生物 %1$s 次 %3$s
 
 sc.weekly.use_bread.title=食用石头面包
