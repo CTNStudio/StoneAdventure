@@ -1233,6 +1233,70 @@ export const CHAPTERS = [
                 iconPath: "textures/ui/quest/entities/stone_fissuring_husk"
             },
             {
+                id: "sculk_statue",
+                title: { translate: "sc.quest.sculk_statue.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.sculk_statue.body"  },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.sculk_statue.body1" },
+                        { text: "\n" }
+                    ]
+                },
+                condition: {
+                    killEntity: {
+                        entityType: "stonecraft:sculk_statue",
+                        amount: 1,
+                        name: { translate: "entity.stonecraft:sculk_statue.name" }
+                    }
+                },
+                award: {
+                     exp: 50,
+                     items: [
+                        {
+                            itemId: "stonecraft:stone_coin", 
+                            amount: 16, 
+                            name: { 
+                                translate: "stonecraft.item.stone_coin" 
+                            }
+                        }
+                    ]
+                },
+                iconPath: "textures/ui/quest/entities/sculk_statue"
+            },
+            {
+                id: "stone_puppet",
+                title: { translate: "sc.quest.stone_puppet.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.stone_puppet.body"  },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.stone_puppet.body1" },
+                        { text: "\n" }
+                    ]
+                },
+                condition: {
+                    killEntity: {
+                        entityType: "stonecraft:stone_puppet",
+                        amount: 1,
+                        name: { translate: "entity.stonecraft:stone_puppet.name" }
+                    }
+                },
+                award: {
+                     exp: 20,
+                     items: [
+                        {
+                            itemId: "stonecraft:stone_coin", 
+                            amount: 4, 
+                            name: { 
+                                translate: "stonecraft.item.stone_coin" 
+                            }
+                        }
+                    ]
+                },
+                iconPath: "textures/ui/quest/entities/stone_puppet"
+            },
+            {
                 id: "stone_block",
                 title: { translate: "sc.quest.stone_block.title" },
                 description: {

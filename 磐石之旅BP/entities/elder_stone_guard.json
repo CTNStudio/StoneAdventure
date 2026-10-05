@@ -8,9 +8,6 @@
       "is_experimental": false
     },
     "component_groups": {
-      "combat_mode": {
-        "minecraft:behavior.move_towards_target": {}
-      },
       "stonecraft:transformation_sensor": {
         "minecraft:environment_sensor": {
           "triggers": [
@@ -518,29 +515,7 @@
             "stonecraft:mossy_timer"
           ]
         }
-      },
-      "minecraft:knockback": {
-        "add": {
-          "component_groups": ["combat_mode"]
-        }
-      },
-      "minecraft:on_target_acquired": {
-        "add": {
-          "component_groups": ["combat_mode"]
-        }
-      },
-      "minecraft:on_target_lost": {
-        "remove": {
-          "component_groups": ["combat_mode"]
-        }
-      },
-      "on:death": {},
-      "on:hurt": {},
-      "on:hurt_by_player": {},
-      "on:ignite": {},
-      "on:target_acquired": {},
-      "on:target_escape": {},
-      "on:wake_with_owner": {}
+      }
     }
   }
 }

@@ -394,35 +394,6 @@
         "priority": 11
       },
       "minecraft:annotation.open_door": {}
-    },
-    "component_groups": {
-      "combat_mode": {
-        "minecraft:behavior.move_towards_target": {}
-      }
-    },
-    "events": {
-      "minecraft:knockback": {
-        "add": {
-          "component_groups": ["combat_mode"]
-        }
-      },
-      "minecraft:on_target_acquired": {
-        "add": {
-          "component_groups": ["combat_mode"]
-        }
-      },
-      "minecraft:on_target_lost": {
-        "remove": {
-          "component_groups": ["combat_mode"]
-        }
-      },
-      "on:death": {},
-      "on:hurt": {},
-      "on:hurt_by_player": {},
-      "on:ignite": {},
-      "on:target_acquired": {},
-      "on:target_escape": {},
-      "on:wake_with_owner": {}
     }
   }
 }

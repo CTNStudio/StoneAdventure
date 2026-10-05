@@ -617,6 +617,12 @@ sc.quest.wandering_collector.body1=游荡在大地的收藏家，听说与流浪
 sc.quest.snatcher.title=掠宝者
 sc.quest.snatcher.body=§o唯利是图的掠夺者，分散在世界各地。§r
 sc.quest.snatcher.body1=掠宝者会在掠宝者营地生成，虽然属于掠夺者，但可能因为地位低下，始终被当作“编外”人员。会手持铁剑发起攻击。
+sc.quest.sculk_statue.title=幽匿石像
+sc.quest.sculk_statue.body=§o隐匿于深暗之域的石像，等待着猎物的接近§r
+sc.quest.sculk_statue.body1=幽匿石像会在深暗之域生成，本身没有攻击能力，但是会在玩家接近时召唤石头傀儡
+sc.quest.stone_puppet.title=石头傀儡
+sc.quest.stone_puppet.body=§o无意识的石头造物§r
+sc.quest.stone_puppet.body1=石头傀儡会被召唤生成，同时本身会召唤出一个石头守卫协助作战
 
 
 stonecraft.expansion_slab=§r§9通用§r

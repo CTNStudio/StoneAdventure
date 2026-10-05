@@ -52,6 +52,9 @@
       "minecraft:experience_reward": {
         "on_death": "query.last_hit_by_player ? 30 : 0"
       },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/sculk_statue.json"
+      },
       "minecraft:behavior.nearest_attackable_target": {
         "priority": 3,
         "within_radius": 10,
