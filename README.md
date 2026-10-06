@@ -5,7 +5,7 @@
 
 图标由 [@星零大队长](https://www.mcmod.cn/author/29211.html)
 设计，本作品属 [星屹工作室（CTN STUDIO）](https://www.ctnstudios.top/) 作品。
-**磐石之旅最新正式版： V1.2.0 (1.26.40+)**
+**磐石之旅最新正式版： V1.2.1 (1.26.40+)**
 
 ---
 

@@ -1,0 +1,194 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "stonecraft:sculk_statue",
+      "is_spawnable": true,
+      "is_summonable": true
+    },
+    "components": {
+      "minecraft:health": {
+        "value": 20,
+        "max": 20
+      },
+      "minecraft:collision_box": {
+        "width": 0.6,
+        "height": 1.8
+      },
+      "minecraft:movement": {
+        "value": 0
+      },
+      "minecraft:knockback_resistance": {
+        "value": 100
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": false
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1,
+        "entity_types": [
+          {
+            "filters": {
+                "all_of": [
+                  { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone_boss" },
+                  { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone" }
+                ]
+            },
+            "max_dist": 64
+          }
+        ]
+      },
+      "minecraft:breathable": {
+        "breathes_solids": true,
+        "breathes_water": true
+      },
+      "minecraft:despawn": {
+        "filters": {
+          "test": "is_difficulty",
+          "value": "peaceful"
+        }
+      },
+      "minecraft:experience_reward": {
+        "on_death": "query.last_hit_by_player ? 30 : 0"
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/sculk_statue.json"
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "priority": 3,
+        "within_radius": 10,
+        "must_reach": false,
+        "reselect_targets": true,
+        "must_see_forget_duration": 17.0,
+        "entity_types": [
+          {
+            "filters": {
+              "any_of": [
+                { "test": "is_family", "subject": "other", "value": "player" },
+                { "test": "is_family", "subject": "other", "value": "snowgolem" },
+                { "test": "is_family", "subject": "other", "value": "irongolem" },
+                { "test": "is_family", "subject": "other", "value": "warden" },
+                { "test": "is_family", "subject": "other", "value": "wandering_trader"}
+              ]
+            },
+            "max_dist": 48.0,
+            "must_see": true
+          },
+          {
+            "filters": {
+              "AND": [
+                {
+                  "test": "is_family",
+                  "subject": 1,
+                  "operator": 0,
+                  "value": "villager"
+                },
+                {
+                  "test": "has_component",
+                  "subject": 1,
+                  "operator": 1,
+                  "value": "minecraft:is_baby"
+                }
+              ]
+            }
+          }
+        ],
+        "must_see": true
+      },
+      "minecraft:movement.basic": {},
+      "minecraft:body_rotation_blocked": {},
+      "minecraft:physics": {},
+      "minecraft:type_family": {
+        "family": ["monster", "stone", "undead", "mob"]
+      },
+      "minecraft:underwater_movement": {
+        "value": 0
+      },
+      "minecraft:navigation.generic": {
+        "is_amphibious": false,
+        "can_path_over_water": false,
+        "can_swim": false,
+        "avoid_water": true,
+        "avoid_sun": false,
+        "can_walk": true,
+        "can_break_doors": true,
+        "can_pass_doors": true
+      },
+      "minecraft:target_nearby_sensor": {
+        "inside_range": 16.0,
+        "outside_range": 18.0,
+        "must_see": true,
+        "on_inside_range": {
+            "event": "stonecraft:spawn_entities_event",
+            "target": "self"
+        },
+        "on_outside_range": {
+            "event": "stonecraft:remove_spawn_entities_event",
+            "target": "self"
+        },
+        "on_vision_lost_inside_range": {
+            "event": "stonecraft:remove_spawn_entities_event",
+            "target": "self"
+        }
+        },
+        "minecraft:on_target_escape": {
+          "event": "stonecraft:remove_spawn_entities_event",
+          "target": "self"
+        }
+    },
+    "component_groups": {
+        "stonecraft:spawn_entities": {
+            "minecraft:spawn_entity": {
+                "entities": [
+                {
+                    "min_wait_time": 8,
+                    "max_wait_time": 8,
+                    "num_to_spawn": 2,
+                    "single_use": false,
+                    "spawn_event": "minecraft:timer",
+                    "spawn_entity": "stonecraft:stone_puppet"
+                }
+            ]
+            },
+            "minecraft:timer": {
+                "looping": false,
+                "time": 8.0,
+                "time_down_event": {
+                    "event": "stonecraft:show_particles"
+                }
+            }
+        }
+    },
+    "events": {
+        "stonecraft:spawn_entities_event": {
+            "add": {
+            "component_groups": ["stonecraft:spawn_entities"]
+            }
+        },
+        "stonecraft:remove_spawn_entities_event": {
+            "remove": {
+            "component_groups": ["stonecraft:spawn_entities"]
+            }
+        },
+        "stonecraft:show_particles": {
+            "queue_command": {
+                "command": [
+                    "particle minecraft:basic_flame_particle ~0.5 ~0.1 ~0.5",
+                    "particle minecraft:basic_flame_particle ~-0.5 ~0.1 ~0.5",
+                    "particle minecraft:basic_flame_particle ~-0.5 ~0.1 ~-0.5",
+                    "particle minecraft:basic_flame_particle ~0.5 ~0.1 ~-0.5",
+                    "particle minecraft:basic_flame_particle ~0.5 ~1 ~0",
+                    "particle minecraft:basic_flame_particle ~-0.5 ~1 ~0",
+                    "particle minecraft:basic_flame_particle ~0 ~1 ~0.5",
+                    "particle minecraft:basic_flame_particle ~0 ~1 ~-0.5",
+                    "particle minecraft:basic_flame_particle ~0.5 ~1.9 ~0.5",
+                    "particle minecraft:basic_flame_particle ~-0.5 ~1.9 ~0.5",
+                    "particle minecraft:basic_flame_particle ~-0.5 ~1.9 ~-0.5",
+                    "particle minecraft:basic_flame_particle ~0.5 ~1.9 ~-0.5"
+                ]
+            }
+        }
+    }
+  }
+}
