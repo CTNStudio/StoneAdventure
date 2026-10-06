@@ -657,7 +657,7 @@ stonecraft.fire_resistance_lore=§r§f装备获得§6抗火§r
 stonecraft.dash_lore=§r§f举矛获得§b迅突§r
 stonecraft.bulwark_lore=§r§f装备概率§8免除伤害§r
 stonecraft.accumulate_lore=§r§f命中§d积累伤害并在三秒后以更高伤害释放§r
-stonecraft.combo_lore=§r§f连续命中§6递增伤害s§r
+stonecraft.combo_lore=§r§f连续命中§6递增伤害§r
 stonecraft.speed_lore=§r§f装备获得§b迅捷§r
 
 stonecraft.stone.step=石头生物低吟
