@@ -24,11 +24,22 @@
           "min_size": 1,
           "max_size": 3
         },
-        "minecraft:biome_filter": {
-          "test": "has_biome_tag",
-          "operator": "==",
-          "value": "desert"
-        }
+        "minecraft:biome_filter": [
+          {
+            "any_of": [
+              {
+                "test": "has_biome_tag",
+                "operator": "==",
+                "value": "desert"
+              },
+              {
+                "test": "has_biome_tag",
+                "operator": "==",
+                "value": "spawns_mesa_mobs"
+              }
+            ]
+          }
+        ]
       }
     ]
   }

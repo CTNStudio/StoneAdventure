@@ -18,7 +18,11 @@
         },
         "minecraft:spawn_distancefilter": {
           "min": 48,
-          "max": 112
+          "max": 128
+        },
+        "minecraft:density_limit": {
+          "surface": 1,
+          "underground": 1
         },
         "minecraft:herd": {
           "min_size": 1,

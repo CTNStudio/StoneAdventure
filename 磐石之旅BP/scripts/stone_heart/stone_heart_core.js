@@ -224,20 +224,7 @@ world.beforeEvents.entityHurt.subscribe(event => {
     return;
   }
 
-  if (tryBulwarkBlock(player, event.damage)) {
-    event.damage = 0;
-    resetRegen(player);
-    return;
-  }
-
-  const damage = event.damage;
   resetRegen(player);
-
-  const stoneHeartMax = getStoneHeartMax(player);
-
-  if (stoneHeartMax <= 0) {
-    return;
-  }
 
   const tick = system.currentTick;
   const invulnerabilityUntil =
@@ -248,6 +235,22 @@ world.beforeEvents.entityHurt.subscribe(event => {
     return;
   }
 
+  if (tryBulwarkBlock(player, event.damage)) {
+    event.damage = 0;
+    stoneHeartInvulnerabilityUntil.set(
+      player.id,
+      tick + stoneHeartInvulnerabilityTicks
+    );
+    return;
+  }
+
+  const damage = event.damage;
+
+  const stoneHeartMax = getStoneHeartMax(player);
+  if (stoneHeartMax <= 0) {
+    return;
+  }
+
   const queuedDamage = pendingDamage.get(player.id) ?? 0;
   const stoneHeart = Math.max(0, getStoneHeart(player) - queuedDamage);
 
@@ -255,21 +258,22 @@ world.beforeEvents.entityHurt.subscribe(event => {
     return;
   }
 
+  stoneHeartInvulnerabilityUntil.set(
+    player.id,
+    tick + stoneHeartInvulnerabilityTicks
+  );
+
   if (damage < 0.5) {
     showStoneHeartFeedback(player, false);
     event.damage = 0;
     return;
   }
 
+  // 正常石心吸收
   const stoneHeartDamage = Math.min(damage, stoneHeart);
   const remainingDamage = damage - stoneHeartDamage;
 
   queueStoneHeartDamage(player, stoneHeartDamage);
-
-  stoneHeartInvulnerabilityUntil.set(
-    player.id,
-    tick + stoneHeartInvulnerabilityTicks
-  );
 
   showStoneHeartFeedback(player, stoneHeart - stoneHeartDamage <= 0);
 
