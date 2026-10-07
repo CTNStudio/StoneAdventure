@@ -116,10 +116,11 @@
 - 8.30更新：[【磐石之旅】1.0.0更新](https://klpbbs.com/thread-173519-1-1.html)
 - 9.7更新：[【磐石之旅】1.1.0更新](https://klpbbs.com/thread-173651-1-1.html)
 - 9.27更新：[【磐石之旅】1.2.0更新](https://klpbbs.com/thread-174019-1-1.html)
+- 10.7更新：[【磐石之旅】1.2.1更新](https://klpbbs.com/thread-174305-1-1.html)
 
 ---
 
-旧版由我制作，大队长与其它部分CTN工作室成员参与绘制部分贴图。新版主要由我和[方琉璃](https://klpbbs.com/space-uid-855752.html)制作，大队长与其它部分CTN工作室成员参与贴图、代码制作。
+该附加包由NewBee和[方琉璃](https://klpbbs.com/space-uid-855752.html)制作，大队长与其它部分CTN工作室成员参与贴图、代码制作。
 
 ---
 
