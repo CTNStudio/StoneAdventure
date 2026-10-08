@@ -2,7 +2,7 @@ import "./quests/quests_core.js";
 import "./quests/quests_ui.js";
 import { displayMessage } from "./messageManager.js";
 import "./food.js";
-import "./durability.js";
+import "./items/durability.js";
 import "./entities_effect.js";
 import "./items/stone_nugget.js";
 import "./items/tools_use.js";
