@@ -9,10 +9,9 @@ export const STONE_TIDE_CONFIG = {
     spawnRadius: 32,
     // 可生成的生物类型列表
     mobTypes: [
-        "stonecraft:stone_guard",
-        "stonecraft:stone_shooter",
-        "stonecraft:stone_fissuring_husk"
-        // 可继续添加
+        { typeId: "stonecraft:stone_guard",            weight: 6 },
+        { typeId: "stonecraft:stone_shooter",          weight: 3 },
+        { typeId: "stonecraft:stone_fissuring_husk",   weight: 1 }
     ],
     avoidBlockTypes: [
         "minecraft:water",

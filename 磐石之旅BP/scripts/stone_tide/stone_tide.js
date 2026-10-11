@@ -14,6 +14,28 @@ let tideSpawnInterval = null;
 let sleepCheckInterval = null;
 let lastCheckedNightKey = null;
 
+const mobWeightTable = (() => {
+    const list = STONE_TIDE_CONFIG.mobTypes;
+    if (!list || list.length === 0) return [];
+    const table = [];
+    let total = 0;
+    for (const entry of list) {
+        total += Math.max(0, entry.weight ?? 1);
+        table.push({ typeId: entry.typeId, cumulative: total });
+    }
+    return { table, total };
+})();
+
+function pickMobType() {
+    const { table, total } = mobWeightTable;
+    if (!table || total <= 0) return null;
+    const roll = Math.random() * total;
+    for (const entry of table) {
+        if (roll < entry.cumulative) return entry.typeId;
+    }
+    return table[table.length - 1].typeId;
+}
+
 function shouldTriggerTide(day, timeOfDay) {
     if (timeOfDay < NIGHT_START || timeOfDay >= NIGHT_END) return false;
     const dayOfWeek = day % 7;
@@ -48,7 +70,7 @@ function spawnMobsAroundPlayers() {
     const players = world.getAllPlayers();
     if (players.length === 0) return;
     const dimension = world.getDimension("overworld");
-    const { mobTypes, spawnRadius, minSpawnRadius, spawnCountPerPlayer } = STONE_TIDE_CONFIG;
+    const { spawnRadius, minSpawnRadius, spawnCountPerPlayer } = STONE_TIDE_CONFIG;
 
     for (const player of players) {
         if (!player.isValid) continue;
@@ -65,7 +87,8 @@ function spawnMobsAroundPlayers() {
             const y = getSpawnY(dimension, x, z, pos.y);
             if (y === null) continue;  // 找不到合适位置，跳过
 
-            const type = mobTypes[Math.floor(Math.random() * mobTypes.length)];
+            const type = pickMobType();
+            if (!type) continue;
             try {
                 dimension.spawnEntity(type, { x, y, z });
             } catch (_) {}
