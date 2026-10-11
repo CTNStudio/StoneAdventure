@@ -1,0 +1,46 @@
+
+{
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
+      "description": {
+        "identifier": "stonecraft:inlaid_essence_bead_night_vision"
+      },
+      "tags": ["crafting_table"],
+      "pattern": [
+        "BAB", 
+        "BOB", 
+        "BBB"
+        ],
+      "key": {
+        "A": {
+          "item": "minecraft:potion",
+          "data": 5
+        },
+        "B": {
+          "item": "stonecraft:stone_carrot"
+        },
+        "O": {
+          "item": "stonecraft:inlaid_essence_bead"
+        }
+      },
+      "unlock": [
+        {
+          "item": "minecraft:potion",
+          "data": 5
+        },
+        {
+          "item": "stonecraft:stone_carrot"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead"
+        },
+        {
+          "item": "stonecraft:inlaid_essence_bead_night_vision"
+        }
+      ],
+      "result": {
+        "item": "stonecraft:inlaid_essence_bead_night_vision",
+        "count": 1
+      }
+    }
+}
