@@ -5,13 +5,14 @@ const NAMESPACE = "stonecraft";
 const BOSS_KILLED_KEY = `${NAMESPACE}:totem_defeated`;
 const TIDE_ACTIVE_KEY = `${NAMESPACE}:tide_active`;
 
-const WEEKEND_DAYS = [0, 6];    // 0=周日, 6=周六
-const NIGHT_START = 13000;      // 夜晚开始（晚上7点）
-const NIGHT_END = 24000;        // 天亮（早上6点）
+const WEEKEND_DAYS = [0, 6];
+const NIGHT_START = 13000;
+const NIGHT_END = 22813;
 
 let tideActive = false;
 let tideSpawnInterval = null;
 let sleepCheckInterval = null;
+let lastCheckedNightKey = null;
 
 function shouldTriggerTide(day, timeOfDay) {
     if (timeOfDay < NIGHT_START || timeOfDay >= NIGHT_END) return false;
@@ -31,6 +32,17 @@ function getSurfaceHeight(dimension, x, z) {
     } catch (_) {}
     return undefined;
 }
+function getGroundBlockId(dimension, x, y, z) {
+    for (let dy = 1; dy <= 4; dy++) {
+        try {
+            const block = dimension.getBlock({ x, y: y - dy, z });
+            if (block && block.typeId !== "minecraft:air") {
+                return block.typeId;
+            }
+        } catch (_) {}
+    }
+    return "minecraft:air";
+}
 
 function spawnMobsAroundPlayers() {
     const players = world.getAllPlayers();
@@ -49,7 +61,10 @@ function spawnMobsAroundPlayers() {
             const dist = minDist + Math.random() * (maxDist - minDist);
             const x = pos.x + Math.cos(angle) * dist;
             const z = pos.z + Math.sin(angle) * dist;
+
             const y = getSpawnY(dimension, x, z, pos.y);
+            if (y === null) continue;  // 找不到合适位置，跳过
+
             const type = mobTypes[Math.floor(Math.random() * mobTypes.length)];
             try {
                 dimension.spawnEntity(type, { x, y, z });
@@ -75,7 +90,7 @@ function startSleepBlocking() {
                 player.sendMessage({ translate: "sc.tide.sleep_blocked" });
             }
         }
-    }, 20); // 每秒检查一次
+    }, 20);
 }
 
 function stopSleepBlocking() {
@@ -85,7 +100,6 @@ function stopSleepBlocking() {
     }
 }
 
-// ---------- 石潮控制 ----------
 export function startStoneTide() {
     if (tideActive) return;
     tideActive = true;
@@ -106,7 +120,7 @@ export function startStoneTide() {
             } else {
                 stopStoneTide();
             }
-        }, 100); // 5秒间隔
+        }, 100);
     }
 }
 
@@ -122,7 +136,6 @@ export function stopStoneTide() {
     stopSleepBlocking();
 }
 
-//事件监听
 world.afterEvents.entityDie.subscribe(({ deadEntity }) => {
     if (deadEntity.typeId === "stonecraft:ancient_stone_totem") {
         world.setDynamicProperty(BOSS_KILLED_KEY, true);
@@ -130,36 +143,85 @@ world.afterEvents.entityDie.subscribe(({ deadEntity }) => {
     }
 });
 
-// 每 tick 检查触发条件
 system.runInterval(() => {
     const bossKilled = world.getDynamicProperty(BOSS_KILLED_KEY) ?? false;
     if (!bossKilled || tideActive) return;
+
     const day = world.getDay();
     const timeOfDay = world.getTimeOfDay();
+
+    // 白天：重置本夜晚判定标记
+    if (timeOfDay < NIGHT_START || timeOfDay >= NIGHT_END) {
+        lastCheckedNightKey = null;
+        return;
+    }
+    const nightKey = day;
+    if (lastCheckedNightKey === nightKey) return;
+    lastCheckedNightKey = nightKey;
+
     if (shouldTriggerTide(day, timeOfDay)) {
         startStoneTide();
     }
 }, 20);
+
 function getSpawnY(dimension, x, z, playerY) {
-    // 以玩家 y 为起点，向上下各搜索 16 格，找到第一个可站立的方块顶部
-    for (let offset = 0; offset <= 16; offset++) {
-        for (const y of [playerY + offset, playerY - offset]) {
-            try {
-                const block = dimension.getBlock({ x, y, z });
-                const above = dimension.getBlock({ x, y: y + 1, z });
-                const above2 = dimension.getBlock({ x, y: y + 2, z });
-                if (
-                    block && block.typeId !== "minecraft:air" &&
-                    above && above.typeId === "minecraft:air" &&
-                    above2 && above2.typeId === "minecraft:air"
-                ) {
-                    return y + 1;
-                }
-            } catch (_) {}
+    const { avoidBlockTypes } = STONE_TIDE_CONFIG;
+
+    // 获取该 XZ 的最高方块
+    let topBlock;
+    try {
+        topBlock = dimension.getTopmostBlock({ x, z });
+    } catch (_) {
+        return null;
+    }
+    if (!topBlock) return null;
+
+    const surfaceY = topBlock.y;
+    const isUnderground = playerY < surfaceY - 1;
+
+    if (isUnderground) {
+        // 玩家在地下：从玩家所在高度向下搜索可站立位置
+        for (let y = Math.floor(playerY); y >= Math.floor(playerY) - 16; y--) {
+            const ground = tryGetBlock(dimension, x, y - 1, z);
+            if (!ground) continue;
+            if (avoidBlockTypes.includes(ground.typeId)) continue;
+            if (STONE_TIDE_CONFIG.avoidBlockTypes.includes(ground.typeId)) continue;
+            if (isAirOrPassable(dimension, x, y, z) && isAirOrPassable(dimension, x, y + 1, z)) {
+                return y;
+            }
+        }
+        return null;
+    }
+
+    // 玩家在地面或以上：从地表向下搜索第一个"可站立"的地面
+    for (let y = surfaceY; y >= surfaceY - 4; y--) {
+        const ground = tryGetBlock(dimension, x, y, z);
+        if (!ground) continue;
+        if (avoidBlockTypes.includes(ground.typeId)) return null;
+        if (STONE_TIDE_CONFIG.avoidBlockTypes.includes(ground.typeId)) continue;   // 栅栏/作物等，继续向下
+        // 确认上方两格都是可穿过的
+        if (isAirOrPassable(dimension, x, y + 1, z) && isAirOrPassable(dimension, x, y + 2, z)) {
+            return y + 1;
         }
     }
-    return playerY; // 找不到合适位置则退回玩家高度
+    return null;
 }
 
-// 玩家加入时若石潮已激活，阻塞功能已经在循环中覆盖，无需额外操作
+function isAirOrPassable(dimension, x, y, z) {
+    const block = tryGetBlock(dimension, x, y, z);
+    if (!block) return false;
+    const id = block.typeId;
+    if (id === "minecraft:air") return true;
+    // 可以视作"可穿过"的方块（植物、草、花等）
+    return id.includes("grass") || id.includes("flower") || id === "minecraft:short_grass";
+}
+
+function tryGetBlock(dimension, x, y, z) {
+    try {
+        return dimension.getBlock({ x, y, z });
+    } catch (_) {
+        return undefined;
+    }
+}
+
 export { tideActive };
