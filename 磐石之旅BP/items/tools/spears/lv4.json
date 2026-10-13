@@ -9,6 +9,8 @@
             }
         },
         "components": {
+
+          "stonecraft:attack_durability_1": {},
             "minecraft:icon": "stonecraft.spear.lv4",
             "minecraft:display_name": {
                 "value": "stonecraft.item.spear.lv4"

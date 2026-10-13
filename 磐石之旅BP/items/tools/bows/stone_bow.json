@@ -8,6 +8,7 @@
           }
        },
       "components": {
+
        "minecraft:rarity": "common",
        "minecraft:icon": "stonecraft.stone_bow",
        "minecraft:frame_count": 3,

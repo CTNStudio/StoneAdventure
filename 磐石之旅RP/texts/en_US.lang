@@ -51,6 +51,10 @@ stonecraft.item.stone_essence_crystal.fire_resistance=Inlaid Essence Bead·§6Fi
 stonecraft.item.stone_essence_crystal.dash=Inlaid Essence Bead·§bDash§r
 stonecraft.item.stone_essence_crystal.bulwark=Inlaid Essence Bead·§8Bulwark§r
 stonecraft.item.stone_essence_crystal.combo=Inlaid Essence Bead·§6Combo§r
+stonecraft.item.stone_essence_crystal.accumulate=Inlaid Essence Bead·§dAccumulate§r
+stonecraft.item.stone_essence_crystal.speed=Inlaid Essence Bead·§bSpeed§r
+stonecraft.item.stone_essence_crystal.return_blade=Inlaid Essence Bead·§bReturn Blade§r
+stonecraft.item.stone_essence_crystal.coagulate_armor=Inlaid Essence Bead·§7Coagulate Armor§r
 
 tile.stonecraft:lv1stone.name=Compressed Cobblestone Level 1
 tile.stonecraft:lv2stone.name=Compressed Cobblestone Level 2
@@ -655,6 +659,10 @@ stonecraft.fire_resistance_lore=§r§fWhen equipped gain §6Fire Resistance§r
 stonecraft.dash_lore=§r§fOn spear hit gain §bDash§r
 stonecraft.bulwark_lore=§r§fWhen equipped chance to §8negate damage§r
 stonecraft.combo_lore=§r§fConsecutive hits increase damage; resets on a miss, 5s without a hit, or weapon switch§r
+stonecraft.accumulate_lore=§r§fOn hit §daccumulate damage§r and release it with higher damage after 3s§r
+stonecraft.speed_lore=§r§fWhen equipped gain §bSpeed§r
+stonecraft.return_blade_lore=§r§fWhen equipped restores its own §bdurability§r every 5s (amount = level)§r
+stonecraft.coagulate_armor_lore=§r§fWhen equipped restores its own §bdurability§r every 5s (amount = level)§r
 
 stonecraft.stone.step=Stone creature murmurs
 stonecraft.stone.hurt=Stone creature hurts

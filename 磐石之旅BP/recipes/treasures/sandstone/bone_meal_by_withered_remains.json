@@ -19,7 +19,8 @@
         }
       ],
       "result": {
-        "item": "minecraft:bone_meal"
+        "item": "minecraft:bone_meal",
+        "count": 4
       }
     }
   }

@@ -9,6 +9,7 @@
       "identifier": "stonecraft:lv2stone_axe"
     },
     "components": {
+
       "minecraft:icon": "stonecraft.axe.lv2",
       "minecraft:display_name": {
         "value": "stonecraft.item.axe.lv2"

@@ -3,6 +3,7 @@ import "./quests/quests_ui.js";
 import { displayMessage } from "./messageManager.js";
 import "./food.js";
 import "./items/durability.js";
+import { initAttackDurability } from "./items/attack_durability.js";
 import "./entities_effect.js";
 import "./items/stone_nugget.js";
 import "./items/tools_use.js";
@@ -28,6 +29,7 @@ import { initPlayerAttributes } from "./forge/player_attributes.js";
 import { initWeaponEffects } from "./forge/weapon_effects.js";
 import { initSpearEffects } from "./forge/special_effects/spear_effects.js";
 import { initComboEffects } from "./forge/special_effects/combo_effects.js";
+import { initDurabilityEffects } from "./forge/special_effects/durability_effects.js";
 import { world } from "@minecraft/server";
 //我嘞个超长导入啊
 
@@ -37,6 +39,10 @@ initWeaponEffects();
 initSpearEffects();
 //连锋的 beforeEvent 需在积爆之后订阅：此时 event.damage 已是其余系统的结算结果
 initComboEffects();
+//回锋/凝甲：每 5 秒按装备自身等级回复耐久
+initDurabilityEffects();
+//攻击耐久修正：原版攻击实体扣 2 点，统一改为 1 点
+initAttackDurability();
 
 world.afterEvents.playerSpawn.subscribe((eventData) => {
     if (!eventData.initialSpawn) return;

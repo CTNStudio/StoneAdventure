@@ -8,6 +8,7 @@
       "identifier": "stonecraft:lv3stone_hammer"
     },
     "components": {
+
       "minecraft:icon": "stonecraft.hammer.lv3",
       "minecraft:display_name": {
         "value": "stonecraft.item.hammer.lv3"

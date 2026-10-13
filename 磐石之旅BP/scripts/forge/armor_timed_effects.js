@@ -102,6 +102,20 @@ export const TIMED_EFFECT_CONFIG = {
     getDuration:        (level) => 400 * level + 1 ,
     getAmplifier: (level) => Math.max(level - 1, 0),
   },
+  //凝甲：本身不施加任何状态效果，登记在此只是为了让 player_attributes.js
+  //把该属性按「护甲槽」统计（armorOnly 决定扫描哪些槽位）。实际回耐久见 special_effects/durability_effects.js
+  coagulate_armor: {
+    id: "coagulate_armor",
+    effectId: "coagulate_armor",
+    playerKey: "stonecraft:coagulate_armor",
+    armorOnly: true,
+    refreshIntervalTicks: 999999 * 20,
+    durationTicks: 0,
+    getAmplifier: () => 0,
+    apply: () => {},
+    remove: () => {},
+    getCurrent: () => ({ amplifier: 0 }),
+  },
 };
 
 // 注册护甲自定义特效

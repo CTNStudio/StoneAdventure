@@ -9,6 +9,7 @@
       "identifier": "stonecraft:lv2stone_hoe"
     },
     "components": {
+
       "minecraft:icon": "stonecraft.hoe.lv2",
       "minecraft:display_name": {
         "value": "stonecraft.item.hoe.lv2"

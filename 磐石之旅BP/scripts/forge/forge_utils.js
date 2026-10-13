@@ -142,6 +142,24 @@ export const ATTRIBUTE_DEFS = [
         loreText: "§b迅疾",
         beadTagPrefix: "inlaid_essence_bead",
         materialTagPrefix: "forge",
+    },
+    {
+        //回锋：武器通用，装备自身每 5 秒回复耐久
+        id: "return_blade",
+        key: "stonecraft:return_blade_level",
+        playerKey: "stonecraft:return_blade",
+        loreText: "§b回锋",
+        beadTagPrefix: "inlaid_essence_bead",
+        materialTagPrefix: "forge",
+    },
+    {
+        //凝甲：护甲通用，装备自身每 5 秒回复耐久
+        id: "coagulate_armor",
+        key: "stonecraft:coagulate_armor_level",
+        playerKey: "stonecraft:coagulate_armor",
+        loreText: "§7凝甲",
+        beadTagPrefix: "inlaid_essence_bead",
+        materialTagPrefix: "forge",
     }
 ];
 

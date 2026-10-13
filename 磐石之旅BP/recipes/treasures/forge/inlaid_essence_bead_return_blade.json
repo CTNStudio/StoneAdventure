@@ -1,0 +1,37 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:inlaid_essence_bead_return_blade"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+      "EEE",
+      "EOE",
+      "EEE"
+    ],
+    "key": {
+      "E": {
+        "item": "minecraft:experience_bottle"
+      },
+      "O": {
+        "item": "stonecraft:inlaid_essence_bead"
+      }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:experience_bottle"
+      },
+      {
+        "item": "stonecraft:inlaid_essence_bead"
+      },
+      {
+        "item": "stonecraft:inlaid_essence_bead_return_blade"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:inlaid_essence_bead_return_blade",
+      "count": 1
+    }
+  }
+}

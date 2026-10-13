@@ -50,6 +50,10 @@ stonecraft.item.stone_essence_crystal.fire_resistance=Вставленная э�
 stonecraft.item.stone_essence_crystal.dash=Вставленная эссенциальная бусина·§bРывок§r
 stonecraft.item.stone_essence_crystal.bulwark=Вставленная эссенциальная бусина·§8Оплот§r
 stonecraft.item.stone_essence_crystal.combo=Вставленная эссенциальная бусина·§6Серия§r
+stonecraft.item.stone_essence_crystal.accumulate=Вставленная эссенциальная бусина·§dНакопление§r
+stonecraft.item.stone_essence_crystal.speed=Вставленная эссенциальная бусина·§bСкорость§r
+stonecraft.item.stone_essence_crystal.return_blade=Вставленная эссенциальная бусина·§bВозврат клинка§r
+stonecraft.item.stone_essence_crystal.coagulate_armor=Вставленная эссенциальная бусина·§7Сгущение брони§r
 
 tile.stonecraft:lv1stone.name=Прессованный булыжник, уровень 1
 tile.stonecraft:lv2stone.name=Прессованный булыжник, уровень 2
@@ -653,6 +657,10 @@ stonecraft.fire_resistance_lore=§r§fВ экипировке даёт §6Огн
 stonecraft.dash_lore=§r§fПри попадании копьём даёт §bРывок§r
 stonecraft.bulwark_lore=§r§fВ экипировке с шансом §8отменяет урон§r
 stonecraft.combo_lore=§r§fСерия попаданий увеличивает урон; сбрасывается при промахе, через 5 секунд без попадания или при смене оружия§r
+stonecraft.accumulate_lore=§r§fПри попадании §dнакапливает урон§r и через 3 секунды высвобождает его с повышенным уроном§r
+stonecraft.speed_lore=§r§fВ экипировке даёт §bСкорость§r
+stonecraft.return_blade_lore=§r§fВ экипировке каждые 5 секунд восстанавливает свою §bпрочность§r (объём = уровень)§r
+stonecraft.coagulate_armor_lore=§r§fВ экипировке каждые 5 секунд восстанавливает свою §bпрочность§r (объём = уровень)§r
 
 stonecraft.stone.step=Каменное существо бормочет
 stonecraft.stone.hurt=Каменное существо получает урон

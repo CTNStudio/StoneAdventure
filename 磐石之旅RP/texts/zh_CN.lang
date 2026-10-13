@@ -52,6 +52,8 @@ stonecraft.item.stone_essence_crystal.bulwark=镶髓石珠·§8坚壁§r
 stonecraft.item.stone_essence_crystal.accumulate=镶髓石珠·§d积爆§r
 stonecraft.item.stone_essence_crystal.combo=镶髓石珠·§6连锋§r
 stonecraft.item.stone_essence_crystal.speed=镶髓石珠·§b迅捷§r
+stonecraft.item.stone_essence_crystal.return_blade=镶髓石珠·§b回锋§r
+stonecraft.item.stone_essence_crystal.coagulate_armor=镶髓石珠·§7凝甲§r
 
 tile.stonecraft:lv1stone.name=一级压缩圆石
 tile.stonecraft:lv2stone.name=二级压缩圆石
@@ -659,6 +661,8 @@ stonecraft.bulwark_lore=§r§f装备概率§8免除伤害§r
 stonecraft.accumulate_lore=§r§f命中§d积累伤害并在三秒后以更高伤害释放§r
 stonecraft.combo_lore=§r§f连续命中§6递增伤害§r
 stonecraft.speed_lore=§r§f装备获得§b迅捷§r
+stonecraft.return_blade_lore=§r§f装备后每五秒回复自身§b耐久§r，回复量＝等级§r
+stonecraft.coagulate_armor_lore=§r§f装备后每五秒回复自身§b耐久§r，回复量＝等级§r
 
 stonecraft.stone.step=石头生物低吟
 stonecraft.stone.hurt=石头生物受伤

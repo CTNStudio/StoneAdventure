@@ -9,6 +9,7 @@
       "identifier": "stonecraft:lv1stone_pickaxe"
     },
     "components": {
+
       "minecraft:icon": "stonecraft.pickaxe.lv1",
       "minecraft:display_name": {
         "value": "stonecraft.item.pickaxe.lv1"

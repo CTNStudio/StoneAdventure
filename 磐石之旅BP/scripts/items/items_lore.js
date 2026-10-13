@@ -87,6 +87,14 @@ const ITEM_LORE_CONFIG = {
         { translate: 'stonecraft.boots_only' },
         { translate: 'stonecraft.speed_lore' }
     ],
+    'stonecraft:inlaid_essence_bead_return_blade': [
+        { translate: 'stonecraft.weapon_only' },
+        { translate: 'stonecraft.return_blade_lore' }
+    ],
+    'stonecraft:inlaid_essence_bead_coagulate_armor': [
+        { translate: 'stonecraft.armor_only' },
+        { translate: 'stonecraft.coagulate_armor_lore' }
+    ],
 };
 
 function isLoreEqual(currentLore, expectedLore) {

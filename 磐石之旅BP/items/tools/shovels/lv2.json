@@ -9,6 +9,7 @@
       "identifier": "stonecraft:lv2stone_shovel"
     },
     "components": {
+
       "minecraft:icon": "stonecraft.shovel.lv2",
       "minecraft:display_name": {
         "value": "stonecraft.item.shovel.lv2"

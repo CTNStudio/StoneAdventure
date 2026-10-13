@@ -101,7 +101,9 @@
                      "stonecraft:inlaid_essence_bead_bulwark",
                      "stonecraft:inlaid_essence_bead_accumulate",
                      "stonecraft:inlaid_essence_bead_combo",
-                     "stonecraft:inlaid_essence_bead_speed"
+                     "stonecraft:inlaid_essence_bead_speed",
+                     "stonecraft:inlaid_essence_bead_return_blade",
+                     "stonecraft:inlaid_essence_bead_coagulate_armor"
                   ]
                }
             ]
