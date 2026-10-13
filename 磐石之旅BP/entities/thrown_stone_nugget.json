@@ -1,5 +1,5 @@
 {
-  "format_version": "1.26.30",
+  "format_version": "1.26.40",
   "minecraft:entity": {
     "description": {
       "identifier": "stonecraft:thrown_stone_nugget",
@@ -16,6 +16,15 @@
        }
     },
     "components": {
+    "minecraft:type_family": {
+      "family": ["projectile","thrown_stone_nugget"]
+      },
+      "minecraft:tick_world": {
+       "never_despawn": true,
+       "radius": 2
+      },
+      "minecraft:persistent": {
+      },
     "minecraft:damage_sensor": {
          "triggers": {
           "cause": "all",
@@ -27,17 +36,16 @@
         "height": 0.25
       },
       "minecraft:projectile": {
-        "anchor": 1,
+        "anchor": "eye_height",
         "angle_offset": 0.0,
-        "offset": [
-          0,
-          -0.1,
-          0
-        ],
+        "offset": [0, -0.1, 0],
         "on_hit": {
          "impact_damage": {
           "apply_knockback_to_blocking_targets": true,
-            "damage": 1,
+            "damage": {
+              "min": 1,
+              "max": 1
+            },
             "knockback": true
           }
         },
@@ -50,9 +58,11 @@
       "minecraft:pushable_by_block": {},
       "minecraft:pushable_by_entity": {},
       "minecraft:despawn": {
-       "despawn_from_distance": {
-         }
-      },
+      "despawn_from_distance": {
+        "min_distance": 512,
+        "max_distance": 1024
+       }
+    },
  "minecraft:conditional_bandwidth_optimization": {
         "default_values": {
           "max_optimized_distance": 100.0,
@@ -66,7 +76,7 @@
           "queue_command": {
             "command": [
               "stopsound @p random.bow",
-              "playsound use.stone @p ~~~ 1 0.8"
+              "playsound hit.stone @p ~~~ 0.37 0.5"
             ]
           }
         },

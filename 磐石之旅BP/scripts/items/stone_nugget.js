@@ -52,7 +52,7 @@ function safeRemoveProjectile(entity) {
             const dimension = entity.dimension;
             const location = entity.location;
 
-            if (typeId === "stonecraft:thrown_stone_nugget" && Math.random() < 0.1) {
+            if (typeId === "stonecraft:thrown_stone_nugget" && Math.random() < 0.3) { //概率
                 dimension.spawnItem(
                     new ItemStack("stonecraft:stone_nugget", 1),
                     location
@@ -68,13 +68,11 @@ function safeRemoveProjectile(entity) {
     }, 40);
 }
 
-
 function handleBallHit(dimension, location, typeId) {
 
     const data = ballEffects[typeId];
 
     if (!data) return;
-
 
     try {
         dimension.playSound(
@@ -95,25 +93,19 @@ function handleBallHit(dimension, location, typeId) {
     } catch (e) {}
 }
 
-
 function isBall(typeId) {
     return ballEffects[typeId] !== undefined;
 }
 
 world.afterEvents.projectileHitEntity.subscribe((event)=>{
 
-    
     const projectile = event.projectile;
-
 
     if (!projectile || !projectile.isValid) return;
 
-
     const typeId = projectile.typeId;
 
-
     if (!isBall(typeId)) return;
-
 
     handleBallHit(
         event.dimension,
@@ -121,34 +113,23 @@ world.afterEvents.projectileHitEntity.subscribe((event)=>{
         typeId
     );
 
-
     const data = ballEffects[typeId];
 
-
     if (!data.noRemove) {
-
         safeRemoveProjectile(projectile);
-
     }
-
 
 });
 
-
 world.afterEvents.projectileHitBlock.subscribe((event)=>{
-
 
     const projectile = event.projectile;
 
-
     if (!projectile || !projectile.isValid) return;
-
 
     const typeId = projectile.typeId;
 
-
     if (!isBall(typeId)) return;
-
 
     handleBallHit(
         event.dimension,
@@ -156,15 +137,12 @@ world.afterEvents.projectileHitBlock.subscribe((event)=>{
         typeId
     );
 
-
     const data = ballEffects[typeId];
-
 
     if (!data.noRemove) {
 
         safeRemoveProjectile(projectile);
 
     }
-
 
 });
