@@ -62,8 +62,11 @@ tile.stonecraft:lv3stone.name=Compressed Cobblestone Level 3
 tile.stonecraft:lv4stone.name=Compressed Cobblestone Level 4
 tile.stonecraft:lv5stone.name=Compressed Cobblestone Level 5
 tile.stonecraft:stone_convert_table=Stone Convert Table
+tile.stonecraft:stone_convert_table.name=Stone Convert Table
 tile.stonecraft:stone_smithing_table=Stone Smithing Table
+tile.stonecraft:stone_smithing_table.name=Stone Smithing Table
 tile.stonecraft:stone_crafting_table=Ultimate Stone Crafting Table
+tile.stonecraft:stone_crafting_table.name=Stone Crafting Table
 tile.stonecraft:stone_essence_ore.name=Stone Essence Ore
 tile.stonecraft:deepslate_stone_essence_ore.name=Deepslate Stone Essence Ore
 tile.stonecraft:stone_summoner.name=Blood Sacrifice Pillar
@@ -191,6 +194,7 @@ item.spawn_egg.entity.stonecraft:stone_fissuring_husk.name=Spawn Stone Fissuring
 item.spawn_egg.entity.stonecraft:wandering_collector.name=Spawn Wandering Collector
 item.spawn_egg.entity.stonecraft:snatcher.name=Spawn Snatcher
 item.spawn_egg.entity.stonecraft:spire_remnant.name=Spawn Spire Remnant
+item.spawn_egg.entity.stonecraft:sculk_statue.name=Spawn Sculk Statue
 
 item.spawn_egg.entity.stonecraft:mossy_stone_guard.name=Spawn Mossy Stone Guard
 item.spawn_egg.entity.stonecraft:mossy_stone_shooter.name=Spawn Mossy Stone Archer
@@ -219,6 +223,7 @@ entity.stonecraft:stone_fissuring_husk.name=Stone Fissuring Husk
 entity.stonecraft:stone_block.name=Stone Block
 entity.stonecraft:wandering_collector.name=Wandering Collector
 entity.stonecraft:snatcher.name=Snatcher
+entity.stonecraft:sculk_statue.name=Sculk Statue
 
 entity.stonecraft:deepslate_stone_guard.name=Deepslate Stone Guard
 entity.stonecraft:deepslate_stone_shooter.name=Deepslate Stone Archer
@@ -422,6 +427,8 @@ stonecraft.attribute.fire_resistance=Fire Resistance
 stonecraft.attribute.bleeding=§cBleeding§r
 stonecraft.attribute.dash=§bDash§r
 stonecraft.attribute.bulwark=§8Bulwark§r
+stonecraft.attribute.accumulate=§dAccumulate§r
+stonecraft.attribute.speed=§bSpeed§r
 
 stonecraft.attributes.none=No Armor Attributes
 stonecraft.stone_heart.info=: %s/%s
@@ -629,13 +636,22 @@ sc.quest.wandering_collector.body1=A collector that roams the land, rumored to h
 sc.quest.snatcher.title=Snatcher
 sc.quest.snatcher.body=§oMercenary looters scattered across the world.§r
 sc.quest.snatcher.body1=Snatchers spawn in Snatcher Camps. Though they belong to the Pillager faction, they may be treated as "outsiders" due to their low status. They attack with iron swords.
+sc.quest.sculk_statue.title=Sculk Statue
+sc.quest.sculk_statue.body=§oA statue hidden in the Deep Dark, waiting for its prey to draw near§r
+sc.quest.sculk_statue.body1=Sculk Statues spawn in the Deep Dark. They cannot attack on their own, but they summon Stone Golems when a player comes near.
+sc.quest.stone_puppet.title=Stone Golem
+sc.quest.stone_puppet.body=§oA mindless stone creation§r
+sc.quest.stone_puppet.body1=Stone Golems are summoned into being, and each one summons a Stone Guard to fight alongside it.
 
-stonecraft.expansion_slab=§r§iUniversal§r
-stonecraft.weapon_only=§r§iWeapon Only§r
-stonecraft.armor_only=§r§iArmor Only§r
-stonecraft.hammer_only=§r§iHammer Only§r
-stonecraft.spear_only=§r§iSpear Only§r
-stonecraft.sword_only=§r§iSword Only§r
+stonecraft.expansion_slab=§r§l§9Universal§r
+stonecraft.weapon_only=§r§l§9Weapon Only§r
+stonecraft.armor_only=§r§l§9Armor Only§r
+stonecraft.hammer_only=§r§l§9Hammer Only§r
+stonecraft.spear_only=§r§l§9Spear Only§r
+stonecraft.sword_only=§r§l§9Sword Only§r
+stonecraft.boots_only=§r§l§9Boots Only§r
+stonecraft.helmets_only=§r§l§9Helmets Only§r
+stonecraft.leggings_only=§r§l§9Leggings Only§r
 
 stonecraft.expansion_slab_lore=§r§fExpands weapon/armor slots§r
 stonecraft.battle_fury_lore=§r§fOn hit gain §cStrength§r
@@ -662,7 +678,7 @@ stonecraft.combo_lore=§r§fConsecutive hits increase damage; resets on a miss, 
 stonecraft.accumulate_lore=§r§fOn hit §daccumulate damage§r and release it with higher damage after 3s§r
 stonecraft.speed_lore=§r§fWhen equipped gain §bSpeed§r
 stonecraft.return_blade_lore=§r§fWhen equipped restores its own §bdurability§r every 5s (amount = level)§r
-stonecraft.coagulate_armor_lore=§r§fWhen equipped restores its own §bdurability§r every 5s (amount = level)§r
+stonecraft.coagulate_armor_lore=§r§fWhen equipped restores its own §bdurability §r
 
 stonecraft.stone.step=Stone creature murmurs
 stonecraft.stone.hurt=Stone creature hurts

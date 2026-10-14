@@ -190,6 +190,7 @@ item.spawn_egg.entity.stonecraft:stone_fissuring_husk.name=Яйцо призыв
 item.spawn_egg.entity.stonecraft:wandering_collector.name=Яйцо призыва странствующего коллекционера
 item.spawn_egg.entity.stonecraft:snatcher.name=Яйцо призыва похитителя
 item.spawn_egg.entity.stonecraft:spire_remnant.name=Яйцо призыва остатка шпиля
+item.spawn_egg.entity.stonecraft:sculk_statue.name=Яйцо призыва скалк-статуи
 
 item.spawn_egg.entity.stonecraft:mossy_stone_guard.name=Яйцо призыва мшистого стража камня
 item.spawn_egg.entity.stonecraft:mossy_stone_shooter.name=Яйцо призыва мшистого каменного стрелка
@@ -218,6 +219,7 @@ entity.stonecraft:stone_fissuring_husk.name=Раскалывающаяся ка�
 entity.stonecraft:stone_block.name=Каменный блок
 entity.stonecraft:wandering_collector.name=Странствующий коллекционер
 entity.stonecraft:snatcher.name=Похититель
+entity.stonecraft:sculk_statue.name=Скалк-статуя
 
 entity.stonecraft:deepslate_stone_guard.name=Страж из глубинного сланца
 entity.stonecraft:deepslate_stone_shooter.name=Стрелок из глубинного сланца
@@ -421,6 +423,8 @@ stonecraft.attribute.fire_resistance=Огнеупорность
 stonecraft.attribute.bleeding=§cКровотечение§r
 stonecraft.attribute.dash=§bРывок§r
 stonecraft.attribute.bulwark=§8Оплот§r
+stonecraft.attribute.accumulate=§dНакопление§r
+stonecraft.attribute.speed=§bСкорость§r
 
 stonecraft.attributes.none=Нет атрибутов брони
 stonecraft.stone_heart.info=: %s/%s
@@ -627,13 +631,22 @@ sc.quest.wandering_collector.body1=Коллекционер, странству�
 sc.quest.snatcher.title=Похититель
 sc.quest.snatcher.body=§oКорыстные мародёры, разбросанные по всему миру.§r
 sc.quest.snatcher.body1=Похитители спаунятся в лагерях похитителей. Хотя они и принадлежат к фракции разбойников, из-за низкого статуса их часто считают «лишними». Атакуют железными мечами.
+sc.quest.sculk_statue.title=Скалк-статуя
+sc.quest.sculk_statue.body=§oСтатуя, сокрытая в Глубокой тьме, ждёт приближения добычи§r
+sc.quest.sculk_statue.body1=Скалк-статуи появляются в Глубокой тьме. Сами они не атакуют, но при приближении игрока призывают каменных големов.
+sc.quest.stone_puppet.title=Каменный голем
+sc.quest.stone_puppet.body=§oБездумное каменное создание§r
+sc.quest.stone_puppet.body1=Каменные големы призываются на свет и сами призывают стража камня, который сражается вместе с ними.
 
-stonecraft.expansion_slab=§r§iУниверсальный§r
-stonecraft.weapon_only=§r§iТолько оружие§r
-stonecraft.armor_only=§r§iТолько броня§r
-stonecraft.hammer_only=§r§iТолько молот§r
-stonecraft.spear_only=§r§iТолько копьё§r
-stonecraft.sword_only=§r§iТолько меч§r
+stonecraft.expansion_slab=§r§l§9Универсальный§r
+stonecraft.weapon_only=§r§l§9Только оружие§r
+stonecraft.armor_only=§r§l§9Только броня§r
+stonecraft.hammer_only=§r§l§9Только молот§r
+stonecraft.spear_only=§r§l§9Только копьё§r
+stonecraft.sword_only=§r§l§9Только меч§r
+stonecraft.boots_only=§r§l§9Только ботинки§r
+stonecraft.helmets_only=§r§l§9Только шлемы§r
+stonecraft.leggings_only=§r§l§9Только поножи§r
 
 stonecraft.expansion_slab_lore=§r§fРасширяет слоты оружия/брони§r
 stonecraft.battle_fury_lore=§r§fПри попадании даёт §cСила§r
@@ -660,7 +673,7 @@ stonecraft.combo_lore=§r§fСерия попаданий увеличивает
 stonecraft.accumulate_lore=§r§fПри попадании §dнакапливает урон§r и через 3 секунды высвобождает его с повышенным уроном§r
 stonecraft.speed_lore=§r§fВ экипировке даёт §bСкорость§r
 stonecraft.return_blade_lore=§r§fВ экипировке каждые 5 секунд восстанавливает свою §bпрочность§r (объём = уровень)§r
-stonecraft.coagulate_armor_lore=§r§fВ экипировке каждые 5 секунд восстанавливает свою §bпрочность§r (объём = уровень)§r
+stonecraft.coagulate_armor_lore=§r§fВ экипировке восстанавливает свою §bпрочность§r
 
 stonecraft.stone.step=Каменное существо бормочет
 stonecraft.stone.hurt=Каменное существо получает урон

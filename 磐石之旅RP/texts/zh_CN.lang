@@ -627,15 +627,15 @@ sc.quest.stone_puppet.body=§o无意识的石头造物§r
 sc.quest.stone_puppet.body1=石头傀儡会被召唤生成，同时本身会召唤出一个石头守卫协助作战
 
 
-stonecraft.expansion_slab=§r§9通用§r
-stonecraft.weapon_only=§r§9仅武器§r
-stonecraft.armor_only=§r§9仅护甲§r
-stonecraft.hammer_only=§r§9仅锤子§r
-stonecraft.spear_only=§r§9仅长矛§r
-stonecraft.sword_only=§r§9仅剑§r
-stonecraft.helmets_only=§r§9仅头盔§r
-stonecraft.leggings_only=§r§9仅护腿§r
-stonecraft.boots_only=§r§9仅靴子§r
+stonecraft.expansion_slab=§r§l§9通用§r
+stonecraft.weapon_only=§r§l§9仅武器§r
+stonecraft.armor_only=§r§l§9仅护甲§r
+stonecraft.hammer_only=§r§l§9仅锤子§r
+stonecraft.spear_only=§r§l§9仅长矛§r
+stonecraft.sword_only=§r§l§9仅剑§r
+stonecraft.helmets_only=§r§l§9仅头盔§r
+stonecraft.leggings_only=§r§l§9仅护腿§r
+stonecraft.boots_only=§r§l§9仅靴子§r
 
 stonecraft.expansion_slab_lore=§r§f扩展武器/护甲空位§r
 stonecraft.battle_fury_lore=§r§f命中获得§c力量§r
@@ -662,7 +662,7 @@ stonecraft.accumulate_lore=§r§f命中§d积累伤害并在三秒后以更高�
 stonecraft.combo_lore=§r§f连续命中§6递增伤害§r
 stonecraft.speed_lore=§r§f装备获得§b迅捷§r
 stonecraft.return_blade_lore=§r§f装备后每五秒回复自身§b耐久§r，回复量＝等级§r
-stonecraft.coagulate_armor_lore=§r§f装备后每五秒回复自身§b耐久§r，回复量＝等级§r
+stonecraft.coagulate_armor_lore=§r§f装备后回复自身§b耐久§r
 
 stonecraft.stone.step=石头生物低吟
 stonecraft.stone.hurt=石头生物受伤

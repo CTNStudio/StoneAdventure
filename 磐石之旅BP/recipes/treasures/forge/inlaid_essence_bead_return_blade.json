@@ -6,13 +6,16 @@
     },
     "tags": ["crafting_table"],
     "pattern": [
-      "EEE",
+      "ESE",
       "EOE",
       "EEE"
     ],
     "key": {
       "E": {
         "item": "minecraft:experience_bottle"
+      },
+      "S": {
+        "item": "stonecraft:lv3stone_sword"
       },
       "O": {
         "item": "stonecraft:inlaid_essence_bead"
@@ -21,6 +24,9 @@
     "unlock": [
       {
         "item": "minecraft:experience_bottle"
+      },
+      {
+        "item": "stonecraft:lv3stone_sword"
       },
       {
         "item": "stonecraft:inlaid_essence_bead"
