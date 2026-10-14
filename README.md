@@ -5,7 +5,16 @@
 
 图标由 [@星零大队长](https://www.mcmod.cn/author/29211.html)
 设计，本作品属 [星屹工作室（CTN STUDIO）](https://www.ctnstudios.top/) 作品。
-**磐石之旅最新正式版： V1.2.1 (1.26.40+)**
+**磐石之旅最新正式版： V1.2.2 (1.26.40+)**
+
+---
+
+## 下载方式
+
+[Github发布页](https://github.com/CTNStudio/StoneAdventure/releases)
+[苦力怕论坛](https://klpbbs.com/thread-28013-1-1.html)
+[网盘下载](https://files.ctnstudios.top/down.php/6646664c0fb2dff1e3d8ff000674be0a)
+[MCMOD下载](https://www.mcmod.cn/download/30320.html)
 
 ---
 
@@ -117,6 +126,7 @@
 - 9.7更新：[【磐石之旅】1.1.0更新](https://klpbbs.com/thread-173651-1-1.html)
 - 9.27更新：[【磐石之旅】1.2.0更新](https://klpbbs.com/thread-174019-1-1.html)
 - 10.7更新：[【磐石之旅】1.2.1更新](https://klpbbs.com/thread-174305-1-1.html)
+- 10.14更新：[【磐石之旅】1.2.2更新](https://klpbbs.com/thread-174523-1-1.html)
 
 ---
 
@@ -170,13 +180,14 @@
 - KuLou_D：美术
 - 是亚克力：美术
 - Goldencat：美术
-- 哈基尽：程序
+- 流然（new）：JE程序
+- 哈基尽：原JE程序
 - Stone_Nugget：英文本地化
 - Призмарин：俄文本地化
 
 **过往参与成员：**
 
-- 流然：英文本地化
+- 流然（old）：英文本地化
 - 初雪·冰：美术
 - 一护次叶（已退出工作室）：美术
 
