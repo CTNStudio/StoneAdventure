@@ -5,6 +5,7 @@
 
 图标由 [@星零大队长](https://www.mcmod.cn/author/29211.html)
 设计，本作品属 [星屹工作室（CTN STUDIO）](https://www.ctnstudios.top/) 作品。
+
 **磐石之旅最新正式版： V1.2.2 (1.26.40+)**
 
 ---
@@ -12,8 +13,11 @@
 ## 下载方式
 
 [Github发布页](https://github.com/CTNStudio/StoneAdventure/releases)
+
 [苦力怕论坛](https://klpbbs.com/thread-28013-1-1.html)
+
 [网盘下载](https://files.ctnstudios.top/down.php/6646664c0fb2dff1e3d8ff000674be0a)
+
 [MCMOD下载](https://www.mcmod.cn/download/30320.html)
 
 ---
