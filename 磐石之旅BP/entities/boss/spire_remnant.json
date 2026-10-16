@@ -29,7 +29,7 @@
           "value": 0.35
         },
         "minecraft:attack": {
-          "damage": 12
+          "damage": 10
         },
         "minecraft:damage_sensor": {
           "triggers": [

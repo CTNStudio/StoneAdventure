@@ -1,0 +1,23 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.stonecraft.bow_and_arrow": {
+			"initial_state": "default",
+			"states": {
+				"default": {
+					"transitions": [
+						{ "bow_and_arrow": "query.has_target" }
+					],
+					"blend_transition": 0.2
+				},
+				"bow_and_arrow": {
+					"animations": [ "bow_and_arrow" ],
+					"transitions": [
+						{ "default": "!query.has_target" }
+					],
+					"blend_transition": 0.2
+				}
+			}
+		}
+	}
+}

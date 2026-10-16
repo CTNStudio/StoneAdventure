@@ -10,8 +10,6 @@ import {
 
 import { getOrZero } from "../forge_utils.js";
 
-//回锋（武器通用）/ 凝甲（护甲通用）。
-//同一件装备不可能同时具备两者（武器珠只能进武器、护甲珠只能进护甲），取最大值是防御性写法。
 const REPAIR_LEVEL_KEYS = [
   "stonecraft:return_blade_level",
   "stonecraft:coagulate_armor_level",

@@ -1,0 +1,152 @@
+{
+  "format_version": "1.21.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "stonecraft:pale_martyr",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "component_groups": {
+      "stonecraft:pale_martyr_phase_1": {
+        "minecraft:scale": {
+          "value": 0
+        },
+        "minecraft:damage_sensor": {
+          "triggers": [
+            {
+              "cause": "all",
+              "deals_damage": "no"
+            }
+          ]
+        }
+      },
+      "stonecraft:pale_martyr_phase_2": {
+        "minecraft:behavior.melee_attack": {
+          "priority": 2,
+          "melee_fov": 90.0,
+          "speed_multiplier": 1.0,
+          "track_target": false,
+          "require_complete_path": true,
+          "reach_multiplier": 2.0
+        },
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 2,
+          "within_radius": 10,
+          "must_reach": false,
+          "reselect_targets": true,
+          "must_see_forget_duration": 17.0,
+          "entity_types": [
+            {
+              "filters": {
+                "any_of": [
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_family", "subject": "other", "value": "snowgolem" },
+                  { "test": "is_family", "subject": "other", "value": "irongolem" },
+                  { "test": "is_family", "subject": "other", "value": "warden" },
+                  { "test": "is_family", "subject": "other", "value": "wandering_trader" }
+                ]
+              },
+              "max_dist": 48.0,
+              "must_see": true
+            }
+          ]
+        },
+        "minecraft:behavior.random_stroll": {
+          "priority": 6,
+          "speed_multiplier": 1.0
+        },
+        "minecraft:damage_sensor": {
+          "triggers": [
+            {
+              "cause": "all",
+              "deals_damage": "yes"
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "minecraft:attack": {
+        "damage": 8
+      },
+      "minecraft:type_family": {
+        "family": ["monster", "boss", "stone_boss", "mob", "undead"]
+      },
+      "minecraft:boss": {
+        "should_darken_sky": false,
+        "name": "白衣的殉道者",
+        "hud_range": 150
+      },
+      "minecraft:health": {
+        "value": 360,
+        "max": 360
+      },
+      "minecraft:spawn_entity": {
+        "entities": [
+          {
+            "min_wait_time": 1,
+            "max_wait_time": 1,
+            "num_to_spawn": 7,
+            "single_use": true,
+            "spawn_event": "minecraft:entity_spawned",
+            "spawn_entity": "stonecraft:pale_martyr_shard"
+          }
+        ]
+      },
+      "minecraft:experience_reward": {
+        "on_death": "query.last_hit_by_player ? 2000 : 0"
+      },
+      "minecraft:knockback_resistance": {
+        "value": 100.0
+      },
+      "minecraft:scale": {
+        "value": 1.0
+      },
+      "minecraft:collision_box": {
+        "height": 1.8,
+        "width": 0.6
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": false
+      },
+      "minecraft:physics": {
+        "has_gravity": true,
+        "has_collision": true
+      },
+      "minecraft:movement": {
+        "value": 0.3
+      },
+      "minecraft:navigation.generic": {
+        "can_path_over_water": false,
+        "can_pass_doors": true,
+        "can_walk": true,
+        "avoid_water": true,
+        "avoid_damage_blocks": true
+      },
+      "minecraft:movement.basic": {},
+      "minecraft:jump.static": {},
+      "minecraft:behavior.look_at_player": {
+        "priority": 8,
+        "look_distance": 8.0,
+        "probability": 0.02
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "add": {
+          "component_groups": ["stonecraft:pale_martyr_phase_1"]
+        }
+      },
+      "stonecraft:pale_martyr_enter_phase_2": {
+        "remove": {
+          "component_groups": ["stonecraft:pale_martyr_phase_1"]
+        },
+        "add": {
+          "component_groups": ["stonecraft:pale_martyr_phase_2"]
+        }
+      }
+    }
+  }
+}

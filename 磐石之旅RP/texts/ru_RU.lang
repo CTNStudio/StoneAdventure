@@ -425,6 +425,7 @@ stonecraft.attribute.dash=§bРывок§r
 stonecraft.attribute.bulwark=§8Оплот§r
 stonecraft.attribute.accumulate=§dНакопление§r
 stonecraft.attribute.speed=§bСкорость§r
+stonecraft.attribute.coagulate_armor=§7Сгущённая броня§r
 
 stonecraft.attributes.none=Нет атрибутов брони
 stonecraft.stone_heart.info=: %s/%s
@@ -692,3 +693,6 @@ stonecraft.sacrificial_blood_infusion=Кровавое жертвопринош�
 stonecraft.poured_into_the_bottle=Налито в бутылку
 stonecraft.stone_heart_broken=Каменное сердце разбивается
 stonecraft.stone_heart_hurt=Каменное сердце повреждено
+entity.stonecraft:pale_martyr.name=Мученик в белых одеждах
+item.spawn_egg.entity.stonecraft:pale_martyr.name=Яйцо призыва мученика в белых одеждах
+entity.stonecraft:pale_martyr_shard.name=§k白衣§r的殉道者

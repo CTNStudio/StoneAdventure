@@ -424,6 +424,7 @@ stonecraft.attribute.dash=§b迅突§r
 stonecraft.attribute.bulwark=§8坚壁§r
 stonecraft.attribute.accumulate=§d积爆§r
 stonecraft.attribute.speed=§b迅捷§r
+stonecraft.attribute.coagulate_armor=§7凝甲§r
 
 stonecraft.attributes.none=无护甲属性
 stonecraft.stone_heart.info=: %s/%s
@@ -681,3 +682,6 @@ stonecraft.sacrificial_blood_infusion=血祭自身
 stonecraft.poured_into_the_bottle=灌入血瓶
 stonecraft.stone_heart_broken=石心破碎
 stonecraft.stone_heart_hurt=石心损坏
+entity.stonecraft:pale_martyr.name=白衣的殉道者
+item.spawn_egg.entity.stonecraft:pale_martyr.name=白衣的殉道者刷怪蛋
+entity.stonecraft:pale_martyr_shard.name=§k白衣§r的殉道者

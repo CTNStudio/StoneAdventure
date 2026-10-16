@@ -1,0 +1,85 @@
+{
+  "format_version": "1.21.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "stonecraft:pale_martyr_shard",
+      "is_spawnable": false,
+      "is_summonable": true
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": ["monster", "stone_boss", "mob"]
+      },
+      "minecraft:health": {
+        "value": 50,
+        "max": 50
+      },
+      "minecraft:attack": {
+        "damage": 4
+      },
+      "minecraft:behavior.melee_attack": {
+        "priority": 2,
+        "melee_fov": 90.0,
+        "speed_multiplier": 1.0,
+          "track_target": false,
+          "require_complete_path": true,
+          "reach_multiplier": 2.0,
+        "cooldown_time": 0.5
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "priority": 2,
+        "within_radius": 10,
+        "must_reach": false,
+        "reselect_targets": true,
+        "must_see_forget_duration": 17.0,
+        "entity_types": [
+          {
+            "filters": {
+              "any_of": [
+                { "test": "is_family", "subject": "other", "value": "player" },
+                { "test": "is_family", "subject": "other", "value": "snowgolem" },
+                { "test": "is_family", "subject": "other", "value": "irongolem" },
+                { "test": "is_family", "subject": "other", "value": "warden" },
+                { "test": "is_family", "subject": "other", "value": "wandering_trader" }
+              ]
+            },
+            "max_dist": 48.0,
+            "must_see": true
+          }
+        ]
+      },
+      "minecraft:movement": {
+        "value": 0.2
+      },
+      "minecraft:navigation.generic": {
+        "can_path_over_water": false,
+        "can_pass_doors": true,
+        "can_walk": true,
+        "avoid_water": true,
+        "avoid_damage_blocks": true
+      },
+      "minecraft:movement.basic": {},
+      "minecraft:jump.static": {},
+      "minecraft:scale": {
+        "value": 1.0
+      },
+      "minecraft:collision_box": {
+        "height": 1.8,
+        "width": 0.6
+      },
+      "minecraft:physics": {
+        "has_gravity": true,
+        "has_collision": true
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 8,
+        "look_distance": 8.0,
+        "probability": 0.02
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 6,
+        "speed_multiplier": 1.0
+      }
+    }
+  }
+}

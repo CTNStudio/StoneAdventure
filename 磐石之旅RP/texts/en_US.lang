@@ -429,6 +429,7 @@ stonecraft.attribute.dash=§bDash§r
 stonecraft.attribute.bulwark=§8Bulwark§r
 stonecraft.attribute.accumulate=§dAccumulate§r
 stonecraft.attribute.speed=§bSpeed§r
+stonecraft.attribute.coagulate_armor=§7Coagulated Armor§r
 
 stonecraft.attributes.none=No Armor Attributes
 stonecraft.stone_heart.info=: %s/%s
@@ -697,3 +698,6 @@ stonecraft.sacrificial_blood_infusion=Blood sacrifice self
 stonecraft.poured_into_the_bottle=Poured into bottle
 stonecraft.stone_heart_broken=Stone Heart breaks
 stonecraft.stone_heart_hurt=Stone Heart damaged
+entity.stonecraft:pale_martyr.name=The White-Robed Martyr
+item.spawn_egg.entity.stonecraft:pale_martyr.name=Spawn White-Robed Martyr
+entity.stonecraft:pale_martyr_shard.name=§k白衣§r的殉道者
