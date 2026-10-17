@@ -20,7 +20,7 @@
         "use_on": [
           "minecraft:farmland"
         ],
-        "replace_block_item": false
+        "replace_block_item": false //写true会因为没有同id方块导致报错，虽然不影响使用
       },
       "minecraft:icon": "stonecraft.budding_stone"
     }

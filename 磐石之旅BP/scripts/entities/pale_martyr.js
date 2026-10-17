@@ -1,6 +1,6 @@
 import { world, system, MolangVariableMap } from "@minecraft/server";
 
-const ALPHA_ID = "stonecraft:pale_martyr";
+const ENTITY_ID = "stonecraft:pale_martyr";
 const SHARD_ID = "stonecraft:pale_martyr_shard";
 const PHASE2_EVENT = "stonecraft:pale_martyr_enter_phase_2";
 const PHASE2_TAG = "stonecraft:pale_martyr_phase_2";
@@ -13,7 +13,8 @@ const MERGE_STEP = 2;
 const MERGE_PARTICLES = [
   "minecraft:sculk_soul",
   "minecraft:portal_directional",
-  "minecraft:wither_boss_invulnerable",
+  "minecraft:sculk_charge_particle",
+  "sculk_charge_pop_particle"
 ];
 
 const events = new Set();
@@ -120,7 +121,7 @@ let spawnIndex = 0;
 
 world.afterEvents.entitySpawn.subscribe((event) => {
   const entity = event.entity;
-  if (entity.typeId === ALPHA_ID) {
+  if (entity.typeId === ENTITY_ID) {
     events.add(entity);
     spawnIndex = 0;
     return;
@@ -143,7 +144,7 @@ world.afterEvents.entitySpawn.subscribe((event) => {
 
 world.afterEvents.worldLoad.subscribe(() => {
   for (const dimensionId of ["minecraft:overworld", "minecraft:nether", "minecraft:the_end"]) {
-    for (const event of world.getDimension(dimensionId).getEntities({ type: ALPHA_ID })) {
+    for (const event of world.getDimension(dimensionId).getEntities({ type: ENTITY_ID })) {
       events.add(event);
     }
   }
