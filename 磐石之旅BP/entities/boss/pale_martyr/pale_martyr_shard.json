@@ -14,6 +14,27 @@
         "value": 50,
         "max": 50
       },
+      "minecraft:teleport": {
+        "max_random_teleport_time": 3.0,
+        "min_random_teleport_time": 1.0,
+        "random_teleport_cube": [9, 0, 9],
+        "random_teleports": true
+      },
+      "minecraft:knockback_resistance": {
+        "value": 100.0
+      },
+      "minecraft:behavior.sonic_boom": {
+        "duration": 3,
+        "speed_multiplier": 1.2,
+        "attack_damage": 4,
+        "attack_cooldown": 2,
+        "knockback_vertical_strength": 0.5,
+        "knockback_horizontal_strength": 0.5,
+        "knockback_height_cap": 0.5,
+        "attack_sound": "sonic_boom",
+        "charge_sound": "sonic_charge",
+        "priority": 1
+      },
       "minecraft:attack": {
         "damage": 4
       },
@@ -22,9 +43,17 @@
         "melee_fov": 90.0,
         "speed_multiplier": 1.0,
           "track_target": false,
-          "require_complete_path": true,
           "reach_multiplier": 2.0,
         "cooldown_time": 0.5
+      },
+      "minecraft:behavior.charge_attack": {
+        "priority": 4,
+        "max_distance": 10,
+        "min_distance": 1.5,
+        "success_rate": 0.5
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1
       },
       "minecraft:behavior.nearest_attackable_target": {
         "priority": 2,
@@ -49,16 +78,14 @@
         ]
       },
       "minecraft:movement": {
-        "value": 0.2
+        "value": 1
       },
-      "minecraft:navigation.generic": {
-        "can_path_over_water": false,
-        "can_pass_doors": true,
-        "can_walk": true,
-        "avoid_water": true,
-        "avoid_damage_blocks": true
+      "minecraft:navigation.fly": {
+        "can_path_from_air": true,
+        "can_path_over_water": true
       },
-      "minecraft:movement.basic": {},
+      "minecraft:movement.fly": {},
+      "minecraft:can_fly": {},
       "minecraft:jump.static": {},
       "minecraft:scale": {
         "value": 1.0
@@ -68,9 +95,13 @@
         "width": 0.6
       },
       "minecraft:physics": {
-        "has_gravity": true,
-        "has_collision": true
+        "has_gravity": false,
+        "has_collision": false
       },
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:can_climb": {},
       "minecraft:behavior.look_at_player": {
         "priority": 8,
         "look_distance": 8.0,

@@ -1,7 +1,3 @@
-//装备耐久回复：回锋（武器通用）/ 凝甲（护甲通用）
-//带词条的装备每 5 秒回复自身耐久，回复量 = 该装备自身的词条等级（1~3）。
-//每件装备各修各的，互不叠加；修复原语与 doll.js 一致：
-//改 ItemDurabilityComponent.damage 后必须把物品写回槽位才会生效。
 import {
   system,
   world,
@@ -15,7 +11,6 @@ const REPAIR_LEVEL_KEYS = [
   "stonecraft:coagulate_armor_level",
 ];
 
-//5 秒 = 100 tick
 const REPAIR_INTERVAL_TICKS = 100;
 
 //扫描槽位：主手 + 副手 + 四件护甲
@@ -52,7 +47,6 @@ function repairItem(item) {
     return undefined;
   }
   if (!durability) return undefined;
-  //耐久已满：不产生无意义的槽位写入
   if (durability.damage <= 0) return undefined;
 
   try {

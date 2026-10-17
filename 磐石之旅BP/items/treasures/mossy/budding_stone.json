@@ -20,7 +20,7 @@
         "use_on": [
           "minecraft:farmland"
         ],
-        "replace_block_item": true
+        "replace_block_item": false
       },
       "minecraft:icon": "stonecraft.budding_stone"
     }

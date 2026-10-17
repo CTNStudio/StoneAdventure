@@ -22,14 +22,47 @@
         }
       },
       "stonecraft:pale_martyr_phase_2": {
+        "minecraft:timer": {
+          "time": 0.1,
+          "looping": false,
+          "time_down_event": {
+            "event": "stonecraft:phase_2_bl"
+          }
+        },
+        "minecraft:teleport": {
+          "max_random_teleport_time": 3.0,
+          "min_random_teleport_time": 2.0,
+          "random_teleport_cube": [5, 0, 5],
+          "random_teleports": true
+        },
+        "minecraft:behavior.sonic_boom": {
+          "duration": 3,
+          "speed_multiplier": 1.2,
+          "attack_damage": 8,
+          "attack_cooldown": 3,
+          "knockback_vertical_strength": 1.5,
+          "knockback_horizontal_strength": 1.5,
+          "knockback_height_cap": 0.5,
+          "attack_sound": "sonic_boom",
+          "charge_sound": "sonic_charge",
+          "priority": 1
+        },
         "minecraft:behavior.melee_attack": {
           "priority": 2,
           "melee_fov": 90.0,
           "speed_multiplier": 1.0,
           "track_target": false,
-          "require_complete_path": true,
           "reach_multiplier": 2.0
         },
+      "minecraft:behavior.charge_attack": {
+        "priority": 4,
+        "max_distance": 10,
+        "min_distance": 1.5,
+        "success_rate": 0.5
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1
+      },
         "minecraft:behavior.nearest_attackable_target": {
           "priority": 2,
           "within_radius": 10,
@@ -112,20 +145,22 @@
         "is_pushable_by_piston": false
       },
       "minecraft:physics": {
-        "has_gravity": true,
-        "has_collision": true
+        "has_gravity": false,
+        "has_collision": false
       },
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:can_climb": {},
       "minecraft:movement": {
-        "value": 0.3
+        "value": 1.5
       },
-      "minecraft:navigation.generic": {
-        "can_path_over_water": false,
-        "can_pass_doors": true,
-        "can_walk": true,
-        "avoid_water": true,
-        "avoid_damage_blocks": true
+      "minecraft:navigation.fly": {
+        "can_path_from_air": true,
+        "can_path_over_water": true
       },
-      "minecraft:movement.basic": {},
+      "minecraft:movement.fly": {},
+      "minecraft:can_fly": {},
       "minecraft:jump.static": {},
       "minecraft:behavior.look_at_player": {
         "priority": 8,
@@ -145,6 +180,16 @@
         },
         "add": {
           "component_groups": ["stonecraft:pale_martyr_phase_2"]
+        }
+      },
+      "stonecraft:phase_2_bl": {
+        "queue_command": {
+          "command": [
+            "effect @p blindness 2 0 true",
+            "playsound item.trident.thunder @p ~~~ 1 1",
+            "playsound ambient.weather.thunder @p ~~~ 1 1",
+            "playsound shriek.sculk_shrieker @p ~~~ 1 1"
+          ]
         }
       }
     }

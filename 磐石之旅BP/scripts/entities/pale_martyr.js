@@ -8,7 +8,7 @@ const STARTED_TAG = "stonecraft:pale_martyr_started";
 const MAX_HP = 360;
 const MIN_HP = 10;
 const INTERVAL_TICKS = 5;
-const MERGE_TICKS = 34;
+const MERGE_TICKS = 50;
 const MERGE_STEP = 2;
 const MERGE_PARTICLES = [
   "minecraft:sculk_soul",
@@ -16,7 +16,7 @@ const MERGE_PARTICLES = [
   "minecraft:wither_boss_invulnerable",
 ];
 
-const alphas = new Set();
+const events = new Set();
 let lastShardLocation;
 
 function healthOf(entity) {
@@ -28,8 +28,8 @@ function healthOf(entity) {
   }
 }
 
-function setAlphaHp(alpha, value) {
-  const component = alpha.getComponent("minecraft:health");
+function setEntityHp(event, value) {
+  const component = event.getComponent("minecraft:health");
   if (!component) return;
   const next = Math.min(MAX_HP, Math.max(MIN_HP, value));
   if (next !== component.currentValue) component.setCurrentValue(next);
@@ -44,14 +44,14 @@ function spawnMergeParticle(dimension, particle, location, direction) {
   }
 }
 
-function playMergeEffect(alpha) {
+function playMergeEffect(event) {
   let elapsed = 0;
   const runId = system.runInterval(() => {
-    if (!alpha.isValid || elapsed >= MERGE_TICKS) {
+    if (!event.isValid || elapsed >= MERGE_TICKS) {
       system.clearRun(runId);
       return;
     }
-    const center = alpha.location;
+    const center = event.location;
     const progress = elapsed / MERGE_TICKS;
     const radius = 3.2 * (1 - progress) + 0.3;
     for (const particle of MERGE_PARTICLES) {
@@ -59,7 +59,7 @@ function playMergeEffect(alpha) {
         const angle = Math.random() * Math.PI * 2;
         const spread = radius * (0.4 + Math.random() * 0.6);
         spawnMergeParticle(
-          alpha.dimension,
+          event.dimension,
           particle,
           {
             x: center.x + Math.cos(angle) * spread,
@@ -74,31 +74,31 @@ function playMergeEffect(alpha) {
   }, MERGE_STEP);
 }
 
-function enterPhase2(alpha) {
-  if (alpha.hasTag(PHASE2_TAG)) return;
-  const current = healthOf(alpha);
+function enterPhase2(event) {
+  if (event.hasTag(PHASE2_TAG)) return;
+  const current = healthOf(event);
   if (current === undefined || current <= 0) return;
   if (lastShardLocation) {
-    alpha.tryTeleport(lastShardLocation);
+    event.tryTeleport(lastShardLocation);
     lastShardLocation = undefined;
   }
-  alpha.addTag(PHASE2_TAG);
-  alpha.triggerEvent(PHASE2_EVENT);
-  const component = alpha.getComponent("minecraft:health");
+  event.addTag(PHASE2_TAG);
+  event.triggerEvent(PHASE2_EVENT);
+  const component = event.getComponent("minecraft:health");
   if (component) component.resetToMaxValue();
-  playMergeEffect(alpha);
+  playMergeEffect(event);
 }
 
-function tickAlpha(alpha) {
-  if (!alpha.isValid) {
-    alphas.delete(alpha);
+function tickEntity(event) {
+  if (!event.isValid) {
+    events.delete(event);
     return;
   }
-  const current = healthOf(alpha);
+  const current = healthOf(event);
   if (current === undefined || current <= 0) return;
-  if (alpha.hasTag(PHASE2_TAG)) return;
+  if (event.hasTag(PHASE2_TAG)) return;
 
-  const shards = alpha.dimension.getEntities({ type: SHARD_ID });
+  const shards = event.dimension.getEntities({ type: SHARD_ID });
   let remaining = 0;
   for (const shard of shards) {
     const hp = healthOf(shard);
@@ -107,24 +107,48 @@ function tickAlpha(alpha) {
     lastShardLocation = shard.location;
   }
 
-  if (shards.length > 0 && !alpha.hasTag(STARTED_TAG)) alpha.addTag(STARTED_TAG);
-  setAlphaHp(alpha, MIN_HP + remaining);
+  if (shards.length > 0 && !event.hasTag(STARTED_TAG)) event.addTag(STARTED_TAG);
+  setEntityHp(event, MIN_HP + remaining);
 
-  if (alpha.hasTag(STARTED_TAG) && shards.length === 0) enterPhase2(alpha);
+  if (event.hasTag(STARTED_TAG) && shards.length === 0) enterPhase2(event);
 }
 
+const SHARD_COUNT = 7;
+const DISPERSE_POWER = 1.5;
+const DISPERSE_LIFT = 0.15;
+let spawnIndex = 0;
+
 world.afterEvents.entitySpawn.subscribe((event) => {
-  if (event.entity.typeId === ALPHA_ID) alphas.add(event.entity);
+  const entity = event.entity;
+  if (entity.typeId === ALPHA_ID) {
+    events.add(entity);
+    spawnIndex = 0;
+    return;
+  }
+  if (entity.typeId !== SHARD_ID) return;
+  const angle = (spawnIndex++ % SHARD_COUNT) * ((Math.PI * 2) / SHARD_COUNT);
+  const impulse = {
+    x: Math.cos(angle) * DISPERSE_POWER,
+    y: DISPERSE_LIFT,
+    z: Math.sin(angle) * DISPERSE_POWER,
+  };
+  system.runTimeout(() => {
+    try {
+      entity.clearVelocity();
+      entity.applyImpulse(impulse);
+    } catch {
+    }
+  }, 1);
 });
 
 world.afterEvents.worldLoad.subscribe(() => {
   for (const dimensionId of ["minecraft:overworld", "minecraft:nether", "minecraft:the_end"]) {
-    for (const alpha of world.getDimension(dimensionId).getEntities({ type: ALPHA_ID })) {
-      alphas.add(alpha);
+    for (const event of world.getDimension(dimensionId).getEntities({ type: ALPHA_ID })) {
+      events.add(event);
     }
   }
 });
 
 system.runInterval(() => {
-  for (const alpha of alphas) tickAlpha(alpha);
+  for (const event of events) tickEntity(event);
 }, INTERVAL_TICKS);
