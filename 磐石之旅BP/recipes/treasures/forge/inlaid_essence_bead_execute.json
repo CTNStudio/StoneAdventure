@@ -1,0 +1,45 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:inlaid_essence_bead_execute"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "GSG",
+      "SOS",
+      "GSG"
+    ],
+    "key": {
+      "G": {
+        "item": "stonecraft:veiled_stone"
+      },
+      "S": {
+        "item": "minecraft:iron_sword"
+      },
+      "O": {
+        "item": "stonecraft:inlaid_essence_bead"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:veiled_stone"
+      },
+      {
+        "item": "minecraft:iron_sword"
+      },
+      {
+        "item": "stonecraft:inlaid_essence_bead"
+      },
+      {
+        "item": "stonecraft:inlaid_essence_bead_execute"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:inlaid_essence_bead_execute",
+      "count": 1
+    }
+  }
+}

@@ -31,6 +31,7 @@ import { initWeaponEffects } from "./forge/weapon_effects.js";
 import { initSpearEffects } from "./forge/special_effects/spear_effects.js";
 import { initComboEffects } from "./forge/special_effects/combo_effects.js";
 import { initDurabilityEffects } from "./forge/special_effects/durability_effects.js";
+import { initDamageEffects } from "./forge/special_effects/damage_effects.js";
 import { world } from "@minecraft/server";
 //我嘞个超长导入啊
 
@@ -42,6 +43,7 @@ initSpearEffects();
 initComboEffects();
 //回锋/凝甲：每 5 秒按装备自身等级回复耐久
 initDurabilityEffects();
+initDamageEffects();
 //攻击耐久修正：原版攻击实体扣 2 点，统一改为 1 点
 initAttackDurability();
 

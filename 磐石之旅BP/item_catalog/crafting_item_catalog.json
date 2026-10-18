@@ -103,6 +103,9 @@
                      "stonecraft:inlaid_essence_bead_combo",
                      "stonecraft:inlaid_essence_bead_speed",
                      "stonecraft:inlaid_essence_bead_return_blade",
+                     "stonecraft:inlaid_essence_bead_keen",
+                     "stonecraft:inlaid_essence_bead_execute",
+                     "stonecraft:inlaid_essence_bead_sunder",
                      "stonecraft:inlaid_essence_bead_coagulate_armor"
                   ]
                }

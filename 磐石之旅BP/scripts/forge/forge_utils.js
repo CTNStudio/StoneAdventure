@@ -161,7 +161,34 @@ export const ATTRIBUTE_DEFS = [
         beadTagPrefix: "inlaid_essence_bead",
         materialTagPrefix: "forge",
     }
-];
+,
+    {
+        //锐利：武器通用，提升暴击率，暴击造成 1.5 倍伤害
+        id: "keen",
+        key: "stonecraft:keen_level",
+        playerKey: "stonecraft:keen",
+        loreText: "§d锐利",
+        beadTagPrefix: "inlaid_essence_bead",
+        materialTagPrefix: "forge"
+    },
+    {
+        //处决：仅剑，目标低血量时伤害翻倍
+        id: "execute",
+        key: "stonecraft:execute_level",
+        playerKey: "stonecraft:execute",
+        loreText: "§4处决",
+        beadTagPrefix: "inlaid_essence_bead",
+        materialTagPrefix: "forge"
+    },
+    {
+        //破甲：仅斧，命中额外造成无视护甲的固定伤害
+        id: "sunder",
+        key: "stonecraft:sunder_level",
+        playerKey: "stonecraft:sunder",
+        loreText: "§4破甲",
+        beadTagPrefix: "inlaid_essence_bead",
+        materialTagPrefix: "forge"
+    }];
 
 export function extractTagSuffix(tag, prefix) {
     if (typeof tag !== "string") return "";

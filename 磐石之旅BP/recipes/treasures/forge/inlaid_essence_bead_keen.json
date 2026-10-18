@@ -1,0 +1,45 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:inlaid_essence_bead_keen"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "GSG",
+      "SOS",
+      "GSG"
+    ],
+    "key": {
+      "G": {
+        "item": "minecraft:flint"
+      },
+      "S": {
+        "item": "minecraft:iron_sword"
+      },
+      "O": {
+        "item": "stonecraft:inlaid_essence_bead"
+      }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:flint"
+      },
+      {
+        "item": "minecraft:iron_sword"
+      },
+      {
+        "item": "stonecraft:inlaid_essence_bead"
+      },
+      {
+        "item": "stonecraft:inlaid_essence_bead_keen"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:inlaid_essence_bead_keen",
+      "count": 1
+    }
+  }
+}

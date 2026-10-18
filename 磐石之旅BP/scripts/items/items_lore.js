@@ -95,6 +95,18 @@ const ITEM_LORE_CONFIG = {
         { translate: 'stonecraft.armor_only' },
         { translate: 'stonecraft.coagulate_armor_lore' }
     ],
+    'stonecraft:inlaid_essence_bead_keen': [
+        { translate: 'stonecraft.weapon_only' },
+        { translate: 'stonecraft.keen_lore' }
+    ],
+    'stonecraft:inlaid_essence_bead_execute': [
+        { translate: 'stonecraft.sword_only' },
+        { translate: 'stonecraft.execute_lore' }
+    ],
+    'stonecraft:inlaid_essence_bead_sunder': [
+        { translate: 'stonecraft.axe_only' },
+        { translate: 'stonecraft.sunder_lore' }
+    ],
 };
 
 function isLoreEqual(currentLore, expectedLore) {

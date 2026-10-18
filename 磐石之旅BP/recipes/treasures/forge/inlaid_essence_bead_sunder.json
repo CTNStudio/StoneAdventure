@@ -1,0 +1,45 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:inlaid_essence_bead_sunder"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "GSG",
+      "SOS",
+      "GSG"
+    ],
+    "key": {
+      "G": {
+        "item": "minecraft:iron_ingot"
+      },
+      "S": {
+        "item": "minecraft:iron_axe"
+      },
+      "O": {
+        "item": "stonecraft:inlaid_essence_bead"
+      }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:iron_ingot"
+      },
+      {
+        "item": "minecraft:iron_axe"
+      },
+      {
+        "item": "stonecraft:inlaid_essence_bead"
+      },
+      {
+        "item": "stonecraft:inlaid_essence_bead_sunder"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:inlaid_essence_bead_sunder",
+      "count": 1
+    }
+  }
+}

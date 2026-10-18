@@ -138,7 +138,7 @@
           "minecraft:is_tool",
           "minecraft:netherite_tier",
           "stonecraft:custom_tool",
-          "forge_sword"
+          "forge_axe"
         ]
       }
     }
