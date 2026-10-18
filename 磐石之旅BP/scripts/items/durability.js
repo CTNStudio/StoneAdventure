@@ -6,9 +6,6 @@ import {
     EquipmentSlot
 } from "@minecraft/server";
 
-//受本脚本管理的物品标签：工具类与武器类。
-//原版对这些自定义物品挖掘方块不扣耐久（官方原因），因此由本脚本补上这一扣。
-//弓与弹弓刻意不含在内：原版弓挖掘方块本就不消耗耐久，无需补扣。
 const MANAGED_TAGS = [
     "stonecraft:custom_tool",
     "stonecraft:custom_weapon"

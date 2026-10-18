@@ -13,7 +13,6 @@ import {
 //组件 ID：物品 JSON 里以 "stonecraft:attack_durability_1": {} 声明
 export const ATTACK_DURABILITY_COMPONENT = "stonecraft:attack_durability_1";
 
-//攻击实体时的耐久损耗（Java 版口径）
 const ATTACK_DURABILITY_COST = 1;
 
 export function initAttackDurability() {

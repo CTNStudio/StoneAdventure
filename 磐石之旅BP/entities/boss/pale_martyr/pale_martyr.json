@@ -29,10 +29,44 @@
             "event": "stonecraft:phase_2_bl"
           }
         },
+        "minecraft:mob_effect": {
+          "cooldown_time": 8,
+          "effect_range": 20,
+          "effect_time": 5,
+          "entity_filter": {
+            "any_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "player"
+              },
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "snowgolem"
+              },
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "irongolem"
+              },
+              {
+                "test": "is_family",
+                "subject": "other",
+                "value": "warden"
+              }
+            ]
+          },
+          "mob_effect": "darkness"
+        },
         "minecraft:teleport": {
           "max_random_teleport_time": 3.0,
           "min_random_teleport_time": 2.0,
-          "random_teleport_cube": [5, 0, 5],
+          "random_teleport_cube": [
+            5,
+            0,
+            5
+          ],
           "random_teleports": true
         },
         "minecraft:behavior.sonic_boom": {
@@ -54,15 +88,15 @@
           "track_target": false,
           "reach_multiplier": 2.0
         },
-      "minecraft:behavior.charge_attack": {
-        "priority": 4,
-        "max_distance": 10,
-        "min_distance": 1.5,
-        "success_rate": 0.5
-      },
-      "minecraft:behavior.hurt_by_target": {
-        "priority": 1
-      },
+        "minecraft:behavior.charge_attack": {
+          "priority": 4,
+          "max_distance": 10,
+          "min_distance": 1.5,
+          "success_rate": 0.5
+        },
+        "minecraft:behavior.hurt_by_target": {
+          "priority": 1
+        },
         "minecraft:behavior.nearest_attackable_target": {
           "priority": 2,
           "within_radius": 10,
@@ -73,11 +107,31 @@
             {
               "filters": {
                 "any_of": [
-                  { "test": "is_family", "subject": "other", "value": "player" },
-                  { "test": "is_family", "subject": "other", "value": "snowgolem" },
-                  { "test": "is_family", "subject": "other", "value": "irongolem" },
-                  { "test": "is_family", "subject": "other", "value": "warden" },
-                  { "test": "is_family", "subject": "other", "value": "wandering_trader" }
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "player"
+                  },
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "snowgolem"
+                  },
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "irongolem"
+                  },
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "warden"
+                  },
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "wandering_trader"
+                  }
                 ]
               },
               "max_dist": 48.0,
@@ -86,12 +140,12 @@
           ]
         },
         "minecraft:behavior.random_fly": {
-        "priority": 6,
-        "xz_dist": 15,
-        "y_dist": 1,
-        "speed_multiplier": 1,
-        "avoid_damage_blocks": true
-      },
+          "priority": 6,
+          "xz_dist": 15,
+          "y_dist": 1,
+          "speed_multiplier": 1,
+          "avoid_damage_blocks": true
+        },
         "minecraft:damage_sensor": {
           "triggers": [
             {
@@ -104,10 +158,18 @@
     },
     "components": {
       "minecraft:attack": {
-        "damage": 8
+        "damage": 10,
+        "effect_duration": 8,
+        "effect_name": "slowness"
       },
       "minecraft:type_family": {
-        "family": ["monster", "boss", "stone_boss", "mob", "undead"]
+        "family": [
+          "monster",
+          "boss",
+          "stone_boss",
+          "mob",
+          "undead"
+        ]
       },
       "minecraft:boss": {
         "should_darken_sky": false,
@@ -174,21 +236,27 @@
     "events": {
       "minecraft:entity_spawned": {
         "add": {
-          "component_groups": ["stonecraft:pale_martyr_phase_1"]
+          "component_groups": [
+            "stonecraft:pale_martyr_phase_1"
+          ]
         }
       },
       "stonecraft:pale_martyr_enter_phase_2": {
         "remove": {
-          "component_groups": ["stonecraft:pale_martyr_phase_1"]
+          "component_groups": [
+            "stonecraft:pale_martyr_phase_1"
+          ]
         },
         "add": {
-          "component_groups": ["stonecraft:pale_martyr_phase_2"]
+          "component_groups": [
+            "stonecraft:pale_martyr_phase_2"
+          ]
         }
       },
       "stonecraft:phase_2_bl": {
         "queue_command": {
           "command": [
-            "effect @p blindness 2 0 true",
+            "effect @p blindness 3 0 true",
             "playsound item.trident.thunder @p ~~~ 1 1",
             "playsound ambient.weather.thunder @p ~~~ 1 1",
             "playsound shriek.sculk_shrieker @p ~~~ 1 1"
