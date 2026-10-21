@@ -19,8 +19,16 @@ export class AncientStoneTotemStructureSpawner {
         const player = event.player;
         const block = event.block;
 
-        const blockBelow1 = block.below();
-        const blockBelow2 = blockBelow1.below();
+        //位于世界底部时 below() 会抛 LocationOutOfWorldBoundariesError，取不到就说明该处不可能搭成结构
+        let blockBelow1;
+        let blockBelow2;
+        try {
+            blockBelow1 = block.below();
+            blockBelow2 = blockBelow1.below();
+        } catch {
+            return;
+        }
+        if (!blockBelow1 || !blockBelow2) return;
 
         const structureBlocks = [block, blockBelow1, blockBelow2];
 

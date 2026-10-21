@@ -54,6 +54,9 @@ stonecraft.item.stone_essence_crystal.combo=镶髓石珠·§6连锋§r
 stonecraft.item.stone_essence_crystal.speed=镶髓石珠·§b迅捷§r
 stonecraft.item.stone_essence_crystal.return_blade=镶髓石珠·§b回锋§r
 stonecraft.item.stone_essence_crystal.coagulate_armor=镶髓石珠·§7凝甲§r
+stonecraft.item.stone_essence_crystal.keen=镶髓石珠·§d锐利§r
+stonecraft.item.stone_essence_crystal.execute=镶髓石珠·§4处决§r
+stonecraft.item.stone_essence_crystal.sunder=镶髓石珠·§4破甲§r
 
 tile.stonecraft:lv1stone.name=一级压缩圆石
 tile.stonecraft:lv2stone.name=二级压缩圆石
@@ -191,6 +194,7 @@ item.spawn_egg.entity.stonecraft:wandering_collector.name=流浪收藏家刷怪�
 item.spawn_egg.entity.stonecraft:snatcher.name=掠宝者刷怪蛋
 item.spawn_egg.entity.stonecraft:spire_remnant.name=高塔余裔刷怪蛋
 item.spawn_egg.entity.stonecraft:sculk_statue.name=幽匿石像刷怪蛋
+item.spawn_egg.entity.stonecraft:pale_martyr.name=白衣的殉道者刷怪蛋
 
 item.spawn_egg.entity.stonecraft:mossy_stone_guard.name=苔石守卫刷怪蛋
 item.spawn_egg.entity.stonecraft:mossy_stone_shooter.name=苔石射手刷怪蛋
@@ -239,6 +243,8 @@ entity.stonecraft:molten_stone_fissuring_husk.name=熔铸迸裂石壳
 
 entity.stonecraft:ancient_stone_totem.name=石之图腾
 entity.stonecraft:spire_remnant.name=高塔余裔
+entity.stonecraft:pale_martyr.name=白衣的殉道者
+entity.stonecraft:pale_martyr_shard.name=§k白衣§r的殉道者
 
 entity.stone_vendor.name=石头行商
 entity.wandering_collector.name=流浪收藏家
@@ -637,6 +643,7 @@ stonecraft.sword_only=§r§l§9仅剑§r
 stonecraft.helmets_only=§r§l§9仅头盔§r
 stonecraft.leggings_only=§r§l§9仅护腿§r
 stonecraft.boots_only=§r§l§9仅靴子§r
+stonecraft.axe_only=§r§l§9仅斧§r
 
 stonecraft.expansion_slab_lore=§r§f扩展武器/护甲空位§r
 stonecraft.battle_fury_lore=§r§f命中获得§c力量§r
@@ -662,8 +669,11 @@ stonecraft.bulwark_lore=§r§f装备概率§8免除伤害§r
 stonecraft.accumulate_lore=§r§f命中§d积累伤害并在三秒后以更高伤害释放§r
 stonecraft.combo_lore=§r§f连续命中§6递增伤害§r
 stonecraft.speed_lore=§r§f装备获得§b迅捷§r
-stonecraft.return_blade_lore=§r§f装备后每五秒回复自身§b耐久§r，回复量＝等级§r
+stonecraft.return_blade_lore=§r§f装备后每五秒回复自身§b耐久§r§r
 stonecraft.coagulate_armor_lore=§r§f装备后回复自身§b耐久§r
+stonecraft.keen_lore=§r§f攻击有概率造成§d暴击§f§r
+stonecraft.execute_lore=§r§f目标低血量时伤害§4翻倍§r
+stonecraft.sunder_lore=§r§f命中时无视护甲造成额外的§4真实伤害§r
 
 stonecraft.stone.step=石头生物低吟
 stonecraft.stone.hurt=石头生物受伤
@@ -682,13 +692,3 @@ stonecraft.sacrificial_blood_infusion=血祭自身
 stonecraft.poured_into_the_bottle=灌入血瓶
 stonecraft.stone_heart_broken=石心破碎
 stonecraft.stone_heart_hurt=石心损坏
-entity.stonecraft:pale_martyr.name=白衣的殉道者
-item.spawn_egg.entity.stonecraft:pale_martyr.name=白衣的殉道者刷怪蛋
-entity.stonecraft:pale_martyr_shard.name=§k白衣§r的殉道者
-stonecraft.item.stone_essence_crystal.keen=镶髓石珠·§d锐利§r
-stonecraft.keen_lore=§r§f暴击率随等级提升（+10%/20%/30%），暴击造成 §d1.5 倍§f 伤害§r
-stonecraft.item.stone_essence_crystal.execute=镶髓石珠·§4处决§r
-stonecraft.execute_lore=§r§f目标血量 ≤20%/30%/40% 时，伤害 §42 倍§r
-stonecraft.item.stone_essence_crystal.sunder=镶髓石珠·§4破甲§r
-stonecraft.sunder_lore=§r§f命中时额外造成 §4无视护甲§r 的固定伤害（+1/+2/+3）§r
-stonecraft.axe_only=§r§l§9仅斧§r

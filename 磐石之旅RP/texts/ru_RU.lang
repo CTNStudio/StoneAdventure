@@ -54,6 +54,9 @@ stonecraft.item.stone_essence_crystal.accumulate=Вставленная эссе
 stonecraft.item.stone_essence_crystal.speed=Вставленная эссенциальная бусина·§bСкорость§r
 stonecraft.item.stone_essence_crystal.return_blade=Вставленная эссенциальная бусина·§bВозврат клинка§r
 stonecraft.item.stone_essence_crystal.coagulate_armor=Вставленная эссенциальная бусина·§7Сгущение брони§r
+stonecraft.item.stone_essence_crystal.keen=Вставленная эссенциальная бусина·§dМеткость§r
+stonecraft.item.stone_essence_crystal.execute=Вставленная эссенциальная бусина·§4Казнь§r
+stonecraft.item.stone_essence_crystal.sunder=Вставленная эссенциальная бусина·§4Раскол брони§r
 
 tile.stonecraft:lv1stone.name=Прессованный булыжник, уровень 1
 tile.stonecraft:lv2stone.name=Прессованный булыжник, уровень 2
@@ -191,6 +194,7 @@ item.spawn_egg.entity.stonecraft:wandering_collector.name=Яйцо призыв�
 item.spawn_egg.entity.stonecraft:snatcher.name=Яйцо призыва похитителя
 item.spawn_egg.entity.stonecraft:spire_remnant.name=Яйцо призыва остатка шпиля
 item.spawn_egg.entity.stonecraft:sculk_statue.name=Яйцо призыва скалк-статуи
+item.spawn_egg.entity.stonecraft:pale_martyr.name=Яйцо призыва мученика в белых одеждах
 
 item.spawn_egg.entity.stonecraft:mossy_stone_guard.name=Яйцо призыва мшистого стража камня
 item.spawn_egg.entity.stonecraft:mossy_stone_shooter.name=Яйцо призыва мшистого каменного стрелка
@@ -239,6 +243,8 @@ entity.stonecraft:molten_stone_fissuring_husk.name=Расплавленная р
 
 entity.stonecraft:ancient_stone_totem.name=Древний каменный тотем
 entity.stonecraft:spire_remnant.name=Остаток шпиля
+entity.stonecraft:pale_martyr.name=Мученик в белых одеждах
+entity.stonecraft:pale_martyr_shard.name=§k白衣§r的殉道者
 
 entity.stone_vendor.name=Каменный странствующий торговец
 entity.wandering_collector.name=Странствующий коллекционер
@@ -648,6 +654,7 @@ stonecraft.sword_only=§r§l§9Только меч§r
 stonecraft.boots_only=§r§l§9Только ботинки§r
 stonecraft.helmets_only=§r§l§9Только шлемы§r
 stonecraft.leggings_only=§r§l§9Только поножи§r
+stonecraft.axe_only=§r§l§9Только топор§r
 
 stonecraft.expansion_slab_lore=§r§fРасширяет слоты оружия/брони§r
 stonecraft.battle_fury_lore=§r§fПри попадании даёт §cСила§r
@@ -675,6 +682,9 @@ stonecraft.accumulate_lore=§r§fПри попадании §dнакаплива
 stonecraft.speed_lore=§r§fВ экипировке даёт §bСкорость§r
 stonecraft.return_blade_lore=§r§fВ экипировке каждые 5 секунд восстанавливает свою §bпрочность§r (объём = уровень)§r
 stonecraft.coagulate_armor_lore=§r§fВ экипировке восстанавливает свою §bпрочность§r
+stonecraft.keen_lore=§r§fАтаки могут нанести §dкритический удар§f§r
+stonecraft.execute_lore=§r§fУрон §4удваивается§r§f при низком здоровье цели§r
+stonecraft.sunder_lore=§r§fПри попадании наносит дополнительный §4истинный урон§r§f, игнорируя броню§r
 
 stonecraft.stone.step=Каменное существо бормочет
 stonecraft.stone.hurt=Каменное существо получает урон
@@ -693,13 +703,3 @@ stonecraft.sacrificial_blood_infusion=Кровавое жертвопринош�
 stonecraft.poured_into_the_bottle=Налито в бутылку
 stonecraft.stone_heart_broken=Каменное сердце разбивается
 stonecraft.stone_heart_hurt=Каменное сердце повреждено
-entity.stonecraft:pale_martyr.name=Мученик в белых одеждах
-item.spawn_egg.entity.stonecraft:pale_martyr.name=Яйцо призыва мученика в белых одеждах
-entity.stonecraft:pale_martyr_shard.name=§k白衣§r的殉道者
-stonecraft.item.stone_essence_crystal.keen=Вставленная эссенциальная бусина·§dМеткость§r
-stonecraft.keen_lore=§r§fШанс крита растёт с уровнем (+10%/20%/30%); крит наносит §d1.5x§f урона§r
-stonecraft.item.stone_essence_crystal.execute=Вставленная эссенциальная бусина·§4Казнь§r
-stonecraft.execute_lore=§r§fНаносит §42x§f урона, если у цели ≤20%/30%/40% здоровья§r
-stonecraft.item.stone_essence_crystal.sunder=Вставленная эссенциальная бусина·§4Раскол брони§r
-stonecraft.sunder_lore=§r§fПопадания наносят доп. фиксированный урон, §4игнорируя броню§r (+1/+2/+3)§r
-stonecraft.axe_only=§r§l§9仅斧§r

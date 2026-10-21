@@ -55,6 +55,9 @@ stonecraft.item.stone_essence_crystal.accumulate=Inlaid Essence Bead·§dAccumul
 stonecraft.item.stone_essence_crystal.speed=Inlaid Essence Bead·§bSpeed§r
 stonecraft.item.stone_essence_crystal.return_blade=Inlaid Essence Bead·§bReturn Blade§r
 stonecraft.item.stone_essence_crystal.coagulate_armor=Inlaid Essence Bead·§7Coagulate Armor§r
+stonecraft.item.stone_essence_crystal.keen=Inlaid Essence Bead·§dKeen§r
+stonecraft.item.stone_essence_crystal.execute=Inlaid Essence Bead·§4Execute§r
+stonecraft.item.stone_essence_crystal.sunder=Inlaid Essence Bead·§4Sunder§r
 
 tile.stonecraft:lv1stone.name=Compressed Cobblestone Level 1
 tile.stonecraft:lv2stone.name=Compressed Cobblestone Level 2
@@ -195,6 +198,7 @@ item.spawn_egg.entity.stonecraft:wandering_collector.name=Spawn Wandering Collec
 item.spawn_egg.entity.stonecraft:snatcher.name=Spawn Snatcher
 item.spawn_egg.entity.stonecraft:spire_remnant.name=Spawn Spire Remnant
 item.spawn_egg.entity.stonecraft:sculk_statue.name=Spawn Sculk Statue
+item.spawn_egg.entity.stonecraft:pale_martyr.name=Spawn White-Robed Martyr
 
 item.spawn_egg.entity.stonecraft:mossy_stone_guard.name=Spawn Mossy Stone Guard
 item.spawn_egg.entity.stonecraft:mossy_stone_shooter.name=Spawn Mossy Stone Archer
@@ -243,6 +247,8 @@ entity.stonecraft:molten_stone_fissuring_husk.name=Molten Stone Fissuring Husk
 
 entity.stonecraft:ancient_stone_totem.name=Stone Totem
 entity.stonecraft:spire_remnant.name=Spire Remnant
+entity.stonecraft:pale_martyr.name=White-Robed Martyr
+entity.stonecraft:pale_martyr_shard.name=§k白衣§r的殉道者
 
 entity.stone_vendor.name=Stone Wandering Trader
 entity.wandering_collector.name=Wandering Collector
@@ -653,6 +659,7 @@ stonecraft.sword_only=§r§l§9Sword Only§r
 stonecraft.boots_only=§r§l§9Boots Only§r
 stonecraft.helmets_only=§r§l§9Helmets Only§r
 stonecraft.leggings_only=§r§l§9Leggings Only§r
+stonecraft.axe_only=§r§l§9Axe Only§r
 
 stonecraft.expansion_slab_lore=§r§fExpands weapon/armor slots§r
 stonecraft.battle_fury_lore=§r§fOn hit gain §cStrength§r
@@ -680,6 +687,9 @@ stonecraft.accumulate_lore=§r§fOn hit §daccumulate damage§r and release it w
 stonecraft.speed_lore=§r§fWhen equipped gain §bSpeed§r
 stonecraft.return_blade_lore=§r§fWhen equipped restores its own §bdurability§r every 5s (amount = level)§r
 stonecraft.coagulate_armor_lore=§r§fWhen equipped restores its own §bdurability §r
+stonecraft.keen_lore=§r§fAttacks have a chance to deal a §dCritical Hit§f§r
+stonecraft.execute_lore=§r§fDamage is §4doubled§r§f when the target is at low health§r
+stonecraft.sunder_lore=§r§fOn hit, deals extra §4true damage§r§f that ignores armor§r
 
 stonecraft.stone.step=Stone creature murmurs
 stonecraft.stone.hurt=Stone creature hurts
@@ -698,13 +708,3 @@ stonecraft.sacrificial_blood_infusion=Blood sacrifice self
 stonecraft.poured_into_the_bottle=Poured into bottle
 stonecraft.stone_heart_broken=Stone Heart breaks
 stonecraft.stone_heart_hurt=Stone Heart damaged
-entity.stonecraft:pale_martyr.name=The White-Robed Martyr
-item.spawn_egg.entity.stonecraft:pale_martyr.name=Spawn White-Robed Martyr
-entity.stonecraft:pale_martyr_shard.name=§k白衣§r的殉道者
-stonecraft.item.stone_essence_crystal.keen=Inlaid Essence Bead·§dKeen§r
-stonecraft.keen_lore=§r§fCrit chance rises with level (+10%/20%/30%); crits deal §d1.5x§f damage§r
-stonecraft.item.stone_essence_crystal.execute=Inlaid Essence Bead·§4Execute§r
-stonecraft.execute_lore=§r§fDeals §42x§f damage when the target is at ≤20%/30%/40% health§r
-stonecraft.item.stone_essence_crystal.sunder=Inlaid Essence Bead·§4Sunder§r
-stonecraft.sunder_lore=§r§fHits deal extra fixed damage that §4ignores armor§r (+1/+2/+3)§r
-stonecraft.axe_only=§r§l§9仅斧§r

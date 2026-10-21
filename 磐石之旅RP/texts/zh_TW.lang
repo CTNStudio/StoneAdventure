@@ -55,6 +55,9 @@ stonecraft.item.stone_essence_crystal.accumulate=鑲髓石珠·§d積爆§r
 stonecraft.item.stone_essence_crystal.speed=鑲髓石珠·§b迅捷§r
 stonecraft.item.stone_essence_crystal.return_blade=鑲髓石珠·§b回鋒§r
 stonecraft.item.stone_essence_crystal.coagulate_armor=鑲髓石珠·§7凝甲§r
+stonecraft.item.stone_essence_crystal.keen=鑲髓石珠·§d銳利§r
+stonecraft.item.stone_essence_crystal.execute=鑲髓石珠·§4處決§r
+stonecraft.item.stone_essence_crystal.sunder=鑲髓石珠·§4破甲§r
 
 tile.stonecraft:lv1stone.name=一級壓縮圓石
 tile.stonecraft:lv2stone.name=二級壓縮圓石
@@ -192,6 +195,7 @@ item.spawn_egg.entity.stonecraft:wandering_collector.name=流浪收藏家刷怪�
 item.spawn_egg.entity.stonecraft:snatcher.name=掠寶者刷怪蛋
 item.spawn_egg.entity.stonecraft:spire_remnant.name=高塔餘裔刷怪蛋
 item.spawn_egg.entity.stonecraft:sculk_statue.name=幽匿石像刷怪蛋
+item.spawn_egg.entity.stonecraft:pale_martyr.name=白衣的殉道者刷怪蛋
 
 item.spawn_egg.entity.stonecraft:mossy_stone_guard.name=苔石守衛刷怪蛋
 item.spawn_egg.entity.stonecraft:mossy_stone_shooter.name=苔石射手刷怪蛋
@@ -240,6 +244,8 @@ entity.stonecraft:molten_stone_fissuring_husk.name=熔鑄迸裂石殼
 
 entity.stonecraft:ancient_stone_totem.name=石之圖騰
 entity.stonecraft:spire_remnant.name=高塔餘裔
+entity.stonecraft:pale_martyr.name=白衣的殉道者
+entity.stonecraft:pale_martyr_shard.name=§k白衣§r的殉道者
 
 entity.stone_vendor.name=石頭行商
 entity.wandering_collector.name=流浪收藏家
@@ -649,6 +655,7 @@ stonecraft.sword_only=§r§l§9僅劍§r
 stonecraft.boots_only=§r§l§9僅靴子§r
 stonecraft.helmets_only=§r§l§9僅頭盔§r
 stonecraft.leggings_only=§r§l§9僅護腿§r
+stonecraft.axe_only=§r§l§9僅斧§r
 
 stonecraft.expansion_slab_lore=§r§f擴展武器/護甲空位§r
 stonecraft.battle_fury_lore=§r§f命中獲得§c力量§r
@@ -676,6 +683,9 @@ stonecraft.accumulate_lore=§r§f命中§d積累傷害並在三秒後以更高�
 stonecraft.speed_lore=§r§f裝備獲得§b迅捷§r
 stonecraft.return_blade_lore=§r§f裝備後每五秒回復自身§b耐久§r，回復量＝等級§r
 stonecraft.coagulate_armor_lore=§r§f裝備後回復自身§b耐久§r
+stonecraft.keen_lore=§r§f攻擊有機率造成§d暴擊§f§r
+stonecraft.execute_lore=§r§f目標低血量時傷害§4翻倍§r
+stonecraft.sunder_lore=§r§f命中時無視護甲造成額外的§4真實傷害§r
 
 stonecraft.stone.step=石頭生物低吟
 stonecraft.stone.hurt=石頭生物受傷
@@ -694,13 +704,3 @@ stonecraft.sacrificial_blood_infusion=血祭自身
 stonecraft.poured_into_the_bottle=灌入血瓶
 stonecraft.stone_heart_broken=石心破碎
 stonecraft.stone_heart_hurt=石心損壞
-entity.stonecraft:pale_martyr.name=白衣的殉道者
-item.spawn_egg.entity.stonecraft:pale_martyr.name=白衣的殉道者刷怪蛋
-entity.stonecraft:pale_martyr_shard.name=§k白衣§r的殉道者
-stonecraft.item.stone_essence_crystal.keen=鑲髓石珠·§d銳利§r
-stonecraft.keen_lore=§r§f暴擊率隨等級提升（+10%/20%/30%），暴擊造成 §d1.5 倍§f 傷害§r
-stonecraft.item.stone_essence_crystal.execute=鑲髓石珠·§4處決§r
-stonecraft.execute_lore=§r§f目標血量 ≤20%/30%/40% 時，傷害 §42 倍§r
-stonecraft.item.stone_essence_crystal.sunder=鑲髓石珠·§4破甲§r
-stonecraft.sunder_lore=§r§f命中時額外造成 §4無視護甲§r 的固定傷害（+1/+2/+3）§r
-stonecraft.axe_only=§r§l§9仅斧§r
