@@ -1,3 +1,4 @@
+import { StarTenon } from "./lib/starock/index.js";
 import "./quests/quests_core.js";
 import "./quests/quests_ui.js";
 import { displayMessage } from "./messageManager.js";
@@ -59,3 +60,5 @@ world.afterEvents.playerSpawn.subscribe((eventData) => {
     };
     displayMessage(player, rawMessage);
 });
+
+console.info(`[StarTenon] Occultus SDK · Star Tenon API v${StarTenon.version}（MIT · CTN Studios）`);
