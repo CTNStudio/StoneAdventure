@@ -44,6 +44,7 @@ const vibrations = new Map();// entityId -> { location, tick }
 
 //把一次振动通报给半径内的本体与碎片
 function reportVibration(dimension, location) {
+  if (!dimension || !location) return;
   const now = system.currentTick;
   for (const type of [ENTITY_ID, SHARD_ID]) {
     let nearby;
@@ -53,7 +54,11 @@ function reportVibration(dimension, location) {
       continue;
     }
     for (const entity of nearby) {
-      vibrations.set(entity.id, { location, tick: now });
+      try {
+        if (!entity.isValid) continue;
+        vibrations.set(entity.id, { location, tick: now });
+      } catch {
+      }
     }
   }
 }
@@ -77,7 +82,13 @@ function reactToVibration(entity, vibration) {
   } catch {
   }
   //sculk_charge_pop 是方向性粒子，必须注入 variable.direction，否则 Molang 报错
-  const from = entity.location;
+  let from;
+  try {
+    if (!entity.isValid) return;
+    from = entity.location;
+  } catch {
+    return;
+  }
   spawnMergeParticle(dimension, "minecraft:sculk_charge_pop_particle", location, {
     x: from.x - location.x,
     y: from.y - location.y + 0.5,
@@ -136,8 +147,14 @@ world.afterEvents.playerInteractWithBlock.subscribe(({ player, block }) => {
 });
 
 world.afterEvents.entityHurt.subscribe(({ hurtEntity, damageSource }) => {
-  const source = damageSource?.damagingEntity;
-  reportVibration(hurtEntity.dimension, source ? source.location : hurtEntity.location);
+  try {
+    if (!hurtEntity?.isValid) return;
+    const source = damageSource?.damagingEntity;
+    const location = source?.isValid ? source.location : hurtEntity.location;
+    if (!location) return;
+    reportVibration(hurtEntity.dimension, location);
+  } catch {
+  }
 });
 
 const events = new Set();
@@ -163,6 +180,7 @@ function spawnMergeParticle(dimension, particle, location, direction) {
   try {
     const molang = new MolangVariableMap();
     molang.setVector3("variable.direction", direction);
+    molang.setFloat("variable.rotation", Math.random() * 360);
     dimension.spawnParticle(particle, location, molang);
   } catch {
   }
