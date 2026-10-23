@@ -3,7 +3,7 @@ import { Boss, BossSkill, BossServer } from "../lib/StarTenonAPI/api.js";
 
 const bossServer = new BossServer();
 
-//幽匿感测体技能：轮询周期 20 刻（库的 cooldownTime 实际是 runInterval 周期）
+//幽匿感测体技能：轮询周期 20 刻
 const sculkSensorSkill = new BossSkill(
   "stonecraft:sculk_sensor",// 技能 id
   20,// 轮询周期（刻）
@@ -11,7 +11,7 @@ const sculkSensorSkill = new BossSkill(
     const vibration = takeVibration(executor);
     if (vibration) reactToVibration(executor, vibration);
   },
-  14// 注：库未使用该值，实际范围由 reportVibration 判定
+  14// 奇怪，库未使用该值，实际范围由 reportVibration 判定
 );
 
 const boss = new Boss(
@@ -21,8 +21,6 @@ const boss = new Boss(
 
 bossServer.addBoss(boss);
 
-const ENTITY_ID = "stonecraft:pale_martyr";
-const SHARD_ID = "stonecraft:pale_martyr_shard";
 const PHASE2_EVENT = "stonecraft:pale_martyr_enter_phase_2";
 const PHASE2_TAG = "stonecraft:pale_martyr_phase_2";
 const STARTED_TAG = "stonecraft:pale_martyr_started";
@@ -46,7 +44,7 @@ const vibrations = new Map();// entityId -> { location, tick }
 function reportVibration(dimension, location) {
   if (!dimension || !location) return;
   const now = system.currentTick;
-  for (const type of [ENTITY_ID, SHARD_ID]) {
+  for (const type of ["stonecraft:pale_martyr", "stonecraft:pale_martyr_shard"]) {
     let nearby;
     try {
       nearby = dimension.getEntities({ location, maxDistance: VIBRATION_RADIUS, type });
@@ -240,7 +238,7 @@ function tickEntity(event) {
   if (current === undefined || current <= 0) return;
   if (event.hasTag(PHASE2_TAG)) return;
 
-  const shards = event.dimension.getEntities({ type: SHARD_ID });
+  const shards = event.dimension.getEntities({ type: "stonecraft:pale_martyr_shard" });
   let remaining = 0;
   for (const shard of shards) {
     const hp = healthOf(shard);
@@ -255,22 +253,34 @@ function tickEntity(event) {
   if (event.hasTag(STARTED_TAG) && shards.length === 0) enterPhase2(event);
 }
 
+const SONIC_BOOM_CHANCE = 0.3;// 碎片拥有声波攻击的概率
 const SHARD_COUNT = 7;
 const DISPERSE_POWER = 1.5;
 const DISPERSE_LIFT = 0.15;
 let spawnIndex = 0;
 
 //一阶段碎片共用同一套感测逻辑
-bossServer.addBoss(new Boss(SHARD_ID, [sculkSensorSkill]));
+bossServer.addBoss(new Boss("stonecraft:pale_martyr_shard", [sculkSensorSkill]));
 
 world.afterEvents.entitySpawn.subscribe((event) => {
   const entity = event.entity;
-  if (entity.typeId === ENTITY_ID) {
+  if (entity.typeId === "stonecraft:pale_martyr") {
     events.add(entity);
     spawnIndex = 0;
     return;
   }
-  if (entity.typeId !== SHARD_ID) return;
+  if (entity.typeId !== "stonecraft:pale_martyr_shard") return;
+
+  //声波攻击概率：命中则延后一 tick 触发专用事件（此时碎片已初始化完成）
+  if (Math.random() < SONIC_BOOM_CHANCE) {
+    system.runTimeout(() => {
+      try {
+        if (entity.isValid) entity.triggerEvent("stonecraft:shard_attach_sonic");
+      } catch {
+      }
+    }, 1);
+  }
+
   const angle = (spawnIndex++ % SHARD_COUNT) * ((Math.PI * 2) / SHARD_COUNT);
   const impulse = {
     x: Math.cos(angle) * DISPERSE_POWER,
@@ -288,7 +298,7 @@ world.afterEvents.entitySpawn.subscribe((event) => {
 
 world.afterEvents.worldLoad.subscribe(() => {
   for (const dimensionId of ["minecraft:overworld", "minecraft:nether", "minecraft:the_end"]) {
-    for (const event of world.getDimension(dimensionId).getEntities({ type: ENTITY_ID })) {
+    for (const event of world.getDimension(dimensionId).getEntities({ type: "stonecraft:pale_martyr" })) {
       events.add(event);
     }
   }

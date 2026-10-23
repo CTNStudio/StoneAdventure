@@ -73,7 +73,7 @@
           "duration": 3,
           "speed_multiplier": 1.2,
           "attack_damage": 8,
-          "attack_cooldown": 3,
+          "attack_cooldown": 8,
           "knockback_vertical_strength": 1.5,
           "knockback_horizontal_strength": 1.5,
           "knockback_height_cap": 0.5,

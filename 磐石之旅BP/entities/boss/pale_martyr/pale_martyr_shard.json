@@ -31,18 +31,6 @@
       "minecraft:knockback_resistance": {
         "value": 100.0
       },
-      "minecraft:behavior.sonic_boom": {
-        "duration": 3,
-        "speed_multiplier": 1.2,
-        "attack_damage": 4,
-        "attack_cooldown": 2,
-        "knockback_vertical_strength": 0.5,
-        "knockback_horizontal_strength": 0.5,
-        "knockback_height_cap": 0.5,
-        "attack_sound": "sonic_boom",
-        "charge_sound": "sonic_charge",
-        "priority": 1
-      },
       "minecraft:attack": {
         "damage": 6,
         "effect_duration": 4,
@@ -143,6 +131,32 @@
         "y_dist": 1,
         "speed_multiplier": 1,
         "avoid_damage_blocks": true
+      }
+    },
+    "component_groups": {
+      "stonecraft:sonic_boom": {
+        "minecraft:behavior.sonic_boom": {
+          "duration": 3,
+          "speed_multiplier": 1.2,
+          "attack_damage": 4,
+          "attack_cooldown": 5,
+          "knockback_vertical_strength": 0.5,
+          "knockback_horizontal_strength": 0.5,
+          "knockback_height_cap": 0.5,
+          "attack_sound": "sonic_boom",
+          "charge_sound": "sonic_charge",
+          "priority": 1
+        }
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {},
+      "stonecraft:shard_attach_sonic": {
+        "add": {
+          "component_groups": [
+            "stonecraft:sonic_boom"
+          ]
+        }
       }
     }
   }
