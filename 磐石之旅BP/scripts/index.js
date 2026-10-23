@@ -1,4 +1,4 @@
-import { StarTenon } from "./lib/starock/index.js";
+import { StarTenon } from "./lib/StarTenonAPI/index.js";
 import "./quests/quests_core.js";
 import "./quests/quests_ui.js";
 import { displayMessage } from "./messageManager.js";

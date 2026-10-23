@@ -10,9 +10,16 @@ anyName.register();                               // ← 必须调用
 */
 import { world, system, EntityComponentTypes, EquipmentSlot, GameMode } from "@minecraft/server";
 
+//去皮音效：按【去皮后的方块类型】选音效，新增木材只需加一行 else if
+export function getStripSound(strippedTypeId) {
+  if (strippedTypeId.includes("crimson") || strippedTypeId.includes("warped")) return "step.stem";
+  if (strippedTypeId.includes("cherry")) return "step.cherry_wood";
+  return "use.wood";
+}
+
 export const TOOL_TYPES = {
   axe: {
-    sound: "use.wood",
+    sound: (typeId) => getStripSound(typeId),
     matches: (typeId) => typeId.includes("stripped"),
   },
   shovel: {
@@ -25,7 +32,7 @@ export const TOOL_TYPES = {
   },
   versatile: {
     sound: (typeId) => {
-      if (typeId.includes("stripped")) return "use.wood";
+      if (typeId.includes("stripped")) return getStripSound(typeId);
       if (typeId === "minecraft:farmland") return "step.gravel";
       return "use.grass";
     },

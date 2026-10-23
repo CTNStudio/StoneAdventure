@@ -50,10 +50,33 @@ const tools = new StoneToolRegistry()
 
 | type | 成功判据（交互后的方块类型） | 音效 |
 | --- | --- | --- |
-| `axe` | 包含 `stripped` | `use.wood` |
+| `axe` | 包含 `stripped` | 按材质取，见下 |
 | `shovel` | `minecraft:grass_path` 或 `minecraft:dirt_path` | `use.grass` |
 | `hoe` | `minecraft:farmland` | `step.gravel` |
 | `versatile` | 上述**任一**结果 | 按实际结果取对应音效 |
+
+### 去皮音效按材质区分
+
+由 `getStripSound(strippedTypeId)` 决定，判据是**去皮后的方块类型**（因此不需要任何方块 id 列表）：
+
+| 去皮结果包含 | 音效 |
+| --- | --- |
+| `crimson` 或 `warped`（绯红/诡异菌柄菌核） | `step.stem` |
+| `cherry`（樱花） | `step.cherry_wood` |
+| 其他（橡木、云杉、深色橡木、红树、苍白橡木、竹块…） | `use.wood` |
+
+新增木材只需在 `getStripSound` 里加一行 `else if`：
+
+```js
+export function getStripSound(strippedTypeId) {
+  if (strippedTypeId.includes("crimson") || strippedTypeId.includes("warped")) return "step.stem";
+  if (strippedTypeId.includes("cherry")) return "step.cherry_wood";
+  // if (strippedTypeId.includes("新的木头")) return "新的音效";
+  return "use.wood";
+}
+```
+
+`axe` 与 `versatile` 的去皮分支都走这个函数，改一处两边同时生效。
 
 判定方式是比对同一坐标在交互前后的方块类型，所以：
 
