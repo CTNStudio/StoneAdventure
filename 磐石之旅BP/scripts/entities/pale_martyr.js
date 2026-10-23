@@ -1,5 +1,25 @@
-import { world, system, MolangVariableMap } from "@minecraft/server";
-import "../lib/StarTenonAPI/api.js";
+import { world, system, MolangVariableMap, GameMode } from "@minecraft/server";
+import { Boss, BossSkill, BossServer } from "../lib/StarTenonAPI/api.js";
+
+const bossServer = new BossServer();
+
+//幽匿感测体技能：轮询周期 20 刻（库的 cooldownTime 实际是 runInterval 周期）
+const sculkSensorSkill = new BossSkill(
+  "stonecraft:sculk_sensor",// 技能 id
+  20,// 轮询周期（刻）
+  (executor) => {
+    const vibration = takeVibration(executor);
+    if (vibration) reactToVibration(executor, vibration);
+  },
+  14// 注：库未使用该值，实际范围由 reportVibration 判定
+);
+
+const boss = new Boss(
+  "stonecraft:pale_martyr",// 实体 typeId
+  [sculkSensorSkill]
+);
+
+bossServer.addBoss(boss);
 
 const ENTITY_ID = "stonecraft:pale_martyr";
 const SHARD_ID = "stonecraft:pale_martyr_shard";
@@ -17,6 +37,108 @@ const MERGE_PARTICLES = [
   "minecraft:sculk_charge_particle",
   "sculk_charge_pop_particle"
 ];
+
+const VIBRATION_RADIUS = 14;// 感知半径
+const VIBRATION_TTL = 40;// 振动有效期（刻），需大于技能轮询周期
+const vibrations = new Map();// entityId -> { location, tick }
+
+//把一次振动通报给半径内的本体与碎片
+function reportVibration(dimension, location) {
+  const now = system.currentTick;
+  for (const type of [ENTITY_ID, SHARD_ID]) {
+    let nearby;
+    try {
+      nearby = dimension.getEntities({ location, maxDistance: VIBRATION_RADIUS, type });
+    } catch {
+      continue;
+    }
+    for (const entity of nearby) {
+      vibrations.set(entity.id, { location, tick: now });
+    }
+  }
+}
+
+//技能轮询时取走该实体最近一次振动（同时清掉，避免重复触发）
+function takeVibration(entity) {
+  const record = vibrations.get(entity.id);
+  if (!record) return undefined;
+  vibrations.delete(entity.id);
+  if (system.currentTick - record.tick > VIBRATION_TTL) return undefined;
+  return record;
+}
+
+function reactToVibration(entity, vibration) {
+  const { location } = vibration;
+  const dimension = entity.dimension;
+
+  //A：幽匿感测体的点击音效与粒子
+  try {
+    dimension.playSound("block.sculk_sensor.clicking", location, { volume: 1, pitch: 1 });
+  } catch {
+  }
+  //sculk_charge_pop 是方向性粒子，必须注入 variable.direction，否则 Molang 报错
+  const from = entity.location;
+  spawnMergeParticle(dimension, "minecraft:sculk_charge_pop_particle", location, {
+    x: from.x - location.x,
+    y: from.y - location.y + 0.5,
+    z: from.z - location.z,
+  });
+
+  //B：朝声源靠近，保留 3 格间距避免贴脸
+  try {
+    const dx = from.x - location.x;
+    const dy = from.y - location.y;
+    const dz = from.z - location.z;
+    const length = Math.hypot(dx, dy, dz);
+    if (length < 1) return;
+    const offset = 3;
+    entity.tryTeleport({
+      x: location.x + (dx / length) * offset,
+      y: location.y + (dy / length) * offset,
+      z: location.z + (dz / length) * offset,
+    });
+  } catch {
+  }
+}
+
+function isCreative(player) {
+  try {
+    return player.getGameMode() === GameMode.Creative;
+  } catch {
+    return false;
+  }
+}
+
+//创造模式玩家不产生振动（同原版）
+world.afterEvents.playerBreakBlock.subscribe(({ player, block }) => {
+  if (!player || isCreative(player)) return;
+  reportVibration(block.dimension, block.location);
+});
+
+world.afterEvents.playerPlaceBlock.subscribe(({ player, block }) => {
+  if (!player || isCreative(player)) return;
+  reportVibration(block.dimension, block.location);
+});
+
+world.afterEvents.playerSwingStart.subscribe(({ player }) => {
+  if (!player || isCreative(player)) return;
+  reportVibration(player.dimension, player.location);
+});
+
+world.afterEvents.playerButtonInput.subscribe(({ player }) => {
+  if (!player || isCreative(player)) return;
+  reportVibration(player.dimension, player.location);
+});
+
+world.afterEvents.playerInteractWithBlock.subscribe(({ player, block }) => {
+  if (!player || isCreative(player)) return;
+  reportVibration(block.dimension, block.location);
+});
+
+world.afterEvents.entityHurt.subscribe(({ hurtEntity, damageSource }) => {
+  const source = damageSource?.damagingEntity;
+  reportVibration(hurtEntity.dimension, source ? source.location : hurtEntity.location);
+});
 
 const events = new Set();
 let lastShardLocation;
@@ -119,6 +241,9 @@ const SHARD_COUNT = 7;
 const DISPERSE_POWER = 1.5;
 const DISPERSE_LIFT = 0.15;
 let spawnIndex = 0;
+
+//一阶段碎片共用同一套感测逻辑
+bossServer.addBoss(new Boss(SHARD_ID, [sculkSensorSkill]));
 
 world.afterEvents.entitySpawn.subscribe((event) => {
   const entity = event.entity;
