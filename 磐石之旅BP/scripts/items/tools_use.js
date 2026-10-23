@@ -4,7 +4,7 @@ import {
   EntityComponentTypes,
   system
 } from "@minecraft/server";
-import { StoneToolRegistry } from "../lib/stoneapi/index.js";
+import { StoneToolRegistry } from "../lib/StoneAPI/index.js";
 
 // 可被潜行转换为草径的方块
 const pathConvertibleBlocks = [

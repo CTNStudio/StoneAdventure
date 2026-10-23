@@ -10,6 +10,11 @@
     },
     "components": {
       "minecraft:loot": "loot_tables/blocks/deepslate_stone_essence_ore.json",
+      "stonecraft:custom_ore": {
+        "tier": "diamond",
+        "require_tag": "minecraft:is_pickaxe",
+        "exp": 10
+      },
       "minecraft:destructible_by_mining": {
         "seconds_to_destroy": 14.985,//深层石髓
         "item_specific_speeds": [

@@ -6,6 +6,7 @@ import "./food.js";
 import "./items/durability.js";
 import { initAttackDurability } from "./items/attack_durability.js";
 import "./entities_effect.js";
+import "./blocks/ore_blocks.js";
 import "./items/stone_nugget.js";
 import "./items/tools_use.js";
 import "./items/gun_test.js";
@@ -40,12 +41,9 @@ initForgeCore();
 initPlayerAttributes();
 initWeaponEffects();
 initSpearEffects();
-//连锋的 beforeEvent 需在积爆之后订阅：此时 event.damage 已是其余系统的结算结果
 initComboEffects();
-//回锋/凝甲：每 5 秒按装备自身等级回复耐久
 initDurabilityEffects();
 initDamageEffects();
-//攻击耐久修正：原版攻击实体扣 2 点，统一改为 1 点
 initAttackDurability();
 
 world.afterEvents.playerSpawn.subscribe((eventData) => {
