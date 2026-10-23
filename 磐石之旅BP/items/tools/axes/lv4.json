@@ -1,10 +1,10 @@
 {
-  "format_version": "1.20.60",
+  "format_version": "1.21.100",
   "minecraft:item": {
     "description": {
       "menu_category": {
         "category": "equipment",
-        "group": "itemGroup.name.axe"
+        "group": "minecraft:itemGroup.name.axe"
       },
       "identifier": "stonecraft:lv4stone_axe"
     },
@@ -15,6 +15,9 @@
         "value": "stonecraft.item.axe.lv4"
       },
       "minecraft:max_stack_size": 1,
+      "stonecraft:custom_tool": {
+        "type": "axe"
+      },
       "minecraft:hand_equipped": true,
       "minecraft:durability": {
         "max_durability": 2750

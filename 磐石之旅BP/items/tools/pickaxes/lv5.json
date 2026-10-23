@@ -1,10 +1,10 @@
 {
-  "format_version": "1.20.60",
+  "format_version": "1.21.100",
   "minecraft:item": {
     "description": {
       "menu_category": {
         "category": "equipment",
-        "group": "itemGroup.name.pickaxe"
+        "group": "minecraft:itemGroup.name.pickaxe"
       },
       "identifier": "stonecraft:lv5stone_pickaxe"
     },

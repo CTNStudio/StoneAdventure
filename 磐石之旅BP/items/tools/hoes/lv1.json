@@ -1,10 +1,10 @@
 {
-  "format_version": "1.20.60",
+  "format_version": "1.21.100",
   "minecraft:item": {
     "description": {
       "menu_category": {
         "category": "equipment",
-        "group": "itemGroup.name.hoe"
+        "group": "minecraft:itemGroup.name.hoe"
       },
       "identifier": "stonecraft:lv1stone_hoe"
     },
@@ -15,6 +15,9 @@
         "value": "stonecraft.item.hoe.lv1"
       },
       "minecraft:max_stack_size": 1,
+      "stonecraft:custom_tool": {
+        "type": "hoe"
+      },
       "minecraft:hand_equipped": true,
       "minecraft:durability": {
         "max_durability": 250

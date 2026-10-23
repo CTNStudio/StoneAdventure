@@ -1,5 +1,5 @@
 {
-  "format_version": "1.20.60",
+  "format_version": "1.21.100",
   "minecraft:item": {
     "description": {
       "menu_category": {
@@ -8,6 +8,9 @@
       "identifier": "stonecraft:versatile_stone_tool"
     },
     "components": {
+      "stonecraft:custom_tool": {
+        "type": "versatile"
+      },
       "minecraft:icon": "stonecraft.versatile.lv0",
       "minecraft:display_name": {
         "value": "stonecraft.item.versatile.lv0"

@@ -1,4 +1,5 @@
 import { world, system, MolangVariableMap } from "@minecraft/server";
+import "../lib/starock/api.js";
 
 const ENTITY_ID = "stonecraft:pale_martyr";
 const SHARD_ID = "stonecraft:pale_martyr_shard";

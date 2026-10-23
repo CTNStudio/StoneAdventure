@@ -1,10 +1,10 @@
 import {
   world,
-  Player,
   EquipmentSlot,
   EntityComponentTypes,
   system
 } from "@minecraft/server";
+import { StoneToolRegistry } from "../lib/stoneapi/index.js";
 
 // 可被潜行转换为草径的方块
 const pathConvertibleBlocks = [
@@ -43,6 +43,10 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
     dimension.runCommand(
       `setblock ${block.x} ${block.y} ${block.z} minecraft:grass_path`
     );
-    player.playSound("dig.grass");
+    dimension.playSound("dig.grass", { x: block.x, y: block.y, z: block.z });
   });
 });
+
+const stoneTool = new StoneToolRegistry();
+stoneTool.addComponent("stonecraft:custom_tool");
+stoneTool.register();
