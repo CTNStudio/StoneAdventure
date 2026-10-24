@@ -59,27 +59,6 @@
         }
       },
       "minecraft:peaceful": {
-        /*
-        //失败示例（其实现在也是失败的）
-        "minecraft:environment_sensor": {
-          "triggers": {
-            "filters": {
-              "any_of": [
-                    { "test": "distance_to_nearest_player", "operator": "<=", "value": 10.0}
-                ]
-            },
-            "event": "minecraft:start_angry_event"
-          }
-        },
-        "minecraft:entity_sensor": {
-            "sensor_range": 10,
-            "event_filters": { 
-              "test": "is_family",
-              "subject": "other",
-              "value": "player"
-            },
-            "event": "minecraft:start_angry_event"
-        },*/
         "minecraft:target_nearby_sensor": {
           "inside_range": 10,
           "on_inside_range": {
@@ -93,7 +72,7 @@
           "outside_range": 15
         },
         "minecraft:movement": {
-        "value": 0.6
+        "value": 0.35
         },
         "minecraft:damage_sensor": {
           "triggers": [
@@ -136,8 +115,9 @@
           "cooldown_time": 1,
           "require_complete_path": true
         },
+        
         "minecraft:movement": {
-          "value": 0.65
+          "value": 0.45
         },
         "minecraft:attack": {
           "damage": [6, 8],
@@ -158,7 +138,7 @@
           }
         ]
       },
-        "minecraft:behavior.nearest_attackable_target": {
+      "minecraft:behavior.nearest_attackable_target": {
         "priority": 3,
         "within_radius": 10,
         "must_reach": false,
@@ -202,8 +182,24 @@
       }
     },
     "components": {
+      "minecraft:angry": {
+          "broadcast_anger": true,
+          "broadcast_anger_on_attack": true,
+          "broadcast_anger_on_being_attacked": true,
+          "broadcast_anger_when_dying": false,
+          "broadcast_filters": {
+            "test": "is_family",
+            "value": "stone_vagabond"
+          },
+          "broadcast_range": 32,
+          "calm_event": {
+            "event": "minecraft:on_calm",
+            "target": "self"
+          },
+          "duration": 25
+        },
       "minecraft:type_family": {
-        "family": ["stone", "neutral_mob", "mob"]
+        "family": ["stone", "neutral_mob", "mob", "stone_vagabond"]
       },
       "minecraft:health": {
         "value": 36,
@@ -268,6 +264,14 @@
       }
     },
     "events": {
+      "minecraft:on_calm": {
+        "remove": {
+          "component_groups": ["stonecraft:start_angry", "minecraft:hostile"]
+        },
+        "add": {
+          "component_groups": ["minecraft:peaceful"]
+        }
+      },
       "minecraft:entity_spawned": {
         "add": {
           "component_groups": [

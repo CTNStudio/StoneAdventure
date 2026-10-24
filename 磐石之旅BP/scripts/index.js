@@ -23,6 +23,7 @@ import "./summon_boss/sacrificial_blade.js";
 import './entities/ancient_stone_totem.js';
 import './entities/spire_remnant.js';
 import './entities/pale_martyr.js';
+import './entities/stone_vagabond.js';
 import "./stone_heart/stone_heart_core.js";
 import "./stone_heart/stone_heart_eat.js";
 import "./stone_heart/stone_heart_feedback.js";
