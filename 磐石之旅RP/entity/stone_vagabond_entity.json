@@ -7,7 +7,8 @@
         "default": "spider"
       },
       "textures": {
-        "default": "textures/entity/stone_vagabond"
+        "default": "textures/entity/stone_vagabond",
+        "peaceful": "textures/entity/stone_vagabond_peaceful"
       },
       "geometry": {
         "default": "geometry.humanoid.custom"
@@ -61,7 +62,8 @@
         },
         {
           "damage_nearby_mobs": "controller.animation.humanoid.damage_nearby_mobs"
-        },
+        },
+
         {
           "swimming": "controller.animation.humanoid.swimming"
         },
@@ -73,7 +75,9 @@
         "texture": "stonecraft.spawn_eggs",
         "texture_index": 6
       },
-      "render_controllers": ["controller.render.hurt.color"],
+      "render_controllers": [
+        "controller.render.stone_vagabond"
+      ],
       "enable_attachables": true
     }
   }

@@ -3,7 +3,6 @@ import { world, system } from "@minecraft/server";
 const GROUP_RADIUS = 32;// 群体激怒半径
 const NEAR_RADIUS = 4;// 贴身判定半径
 
-//entityId -> { playerId, ticks }
 const nearTimers = new Map();
 
 function isVagabond(entity) {
@@ -22,7 +21,6 @@ function makeAngry(entity) {
   }
 }
 
-//群体激怒：玩家击中某个石中游魂，半径内同类一起愤怒
 world.afterEvents.entityHurt.subscribe(({ hurtEntity, damageSource }) => {
   try {
     if (!isVagabond(hurtEntity)) return;

@@ -59,6 +59,9 @@
         }
       },
       "minecraft:peaceful": {
+        "minecraft:variant": {
+          "value": 0
+        },
         "minecraft:target_nearby_sensor": {
           "inside_range": 10,
           "on_inside_range": {
@@ -107,6 +110,9 @@
         }
       },
       "minecraft:hostile": {
+        "minecraft:variant": {
+          "value": 1
+        },
         "minecraft:behavior.melee_attack": {
           "priority": 3,
           "melee_fov": 90.0,

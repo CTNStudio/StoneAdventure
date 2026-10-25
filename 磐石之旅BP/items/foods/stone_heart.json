@@ -1,5 +1,5 @@
 {
-  "format_version": "1.20.60",
+  "format_version": "1.26.40",
   "minecraft:item": {
     "description": {
       "identifier": "stonecraft:stone_heart",
@@ -11,11 +11,14 @@
       "minecraft:display_name": {
         "value": "stonecraft.item.stone_heart"
       },
-      "minecraft:icon": "stonecraft.stone_heart",
       "minecraft:use_animation": "eat",
       "minecraft:use_modifiers": {
         "use_duration": 2.4,
         "movement_modifier": 0.35
+      },
+      "minecraft:block_placer": {
+        "block": "stonecraft:stone_heart",
+        "replace_block_item": true
       },
       "minecraft:food": {
         "nutrition": 10,

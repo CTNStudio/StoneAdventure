@@ -1,0 +1,32 @@
+{
+    "format_version": "1.26.40",
+    "minecraft:block": {
+        "description": {
+            "identifier": "stonecraft:stone_heart",
+            "menu_category": {
+                "category": "nature"
+            }
+        },
+        "components": {
+            "minecraft:display_name": "stonecraft.item.stone_heart",
+            "minecraft:geometry": "geometry.stonecraft.block_item",
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "stonecraft.stone_heart",
+                    "render_method": "alpha_test"
+                }
+            },
+            "minecraft:placement_filter": {
+                "conditions": [
+                    {
+                        "block_filter": [
+                            {
+                                "tags": "q.all_tags('stonecraft', 'stone_heart', 'why_i_want_it_be_placed')"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

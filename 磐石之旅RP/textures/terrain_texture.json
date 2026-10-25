@@ -93,6 +93,9 @@
     },
     "ancient_stone_totem_doll": {
       "textures": "textures/blocks/dolls/ancient_stone_totem_doll"
+    },
+    "stonecraft.stone_heart": {
+      "textures": "textures/blocks/items/stone_heart"
     }
   }
 }

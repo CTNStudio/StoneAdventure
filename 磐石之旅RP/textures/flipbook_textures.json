@@ -1,0 +1,9 @@
+[
+    {
+        "flipbook_texture": "textures/blocks/items/stone_heart",
+        "atlas_tile": "stonecraft.stone_heart",
+        "frames": [0, 1, 2, 3],
+        "ticks_per_frame": 4,
+        "blend_frames": false
+    }
+]
