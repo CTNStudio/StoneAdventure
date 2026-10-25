@@ -161,8 +161,12 @@ export function stopStoneTide() {
 
 world.afterEvents.entityDie.subscribe(({ deadEntity }) => {
     if (deadEntity.typeId === "stonecraft:ancient_stone_totem") {
+        //首次击杀才提示；后续击杀只维持世界标记，不重复播报
+        const alreadyKilled = world.getDynamicProperty(BOSS_KILLED_KEY) ?? false;
         world.setDynamicProperty(BOSS_KILLED_KEY, true);
-        world.sendMessage({ translate: "sc.tide.totem_died" });
+        if (!alreadyKilled) {
+            world.sendMessage({ translate: "sc.tide.totem_died" });
+        }
     }
 });
 

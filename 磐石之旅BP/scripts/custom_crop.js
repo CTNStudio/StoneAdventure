@@ -46,8 +46,11 @@ const BlockGrowableComponent = {
         }
 
         const effectLocation = block.center();
-        dimension.playSound("item.bone_meal.use", effectLocation);
-        dimension.spawnParticle("minecraft:crop_growth_emitter", effectLocation);
+        try {
+            dimension.playSound("item.bone_meal.use", effectLocation);
+            dimension.spawnParticle("minecraft:crop_growth_emitter", effectLocation);
+        } catch {
+        }
     }
 };
 

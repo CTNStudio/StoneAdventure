@@ -137,17 +137,21 @@ export function addBleedingEffect(target, level) {
     const pos = target.location;
     const dim = target.dimension;
     const particleCount = 8 + Math.floor(Math.random() * 5);
-    for (let i = 0; i < particleCount; i++) {
-      const offset = {
-        x: (Math.random() - 0.5) * 0.8,
-        y: (Math.random() - 0.5) * 0.6 + 0.5,
-        z: (Math.random() - 0.5) * 0.8,
-      };
-      dim.spawnParticle("minecraft:redstone_wire_dust_particle", {
-        x: pos.x + offset.x,
-        y: pos.y + offset.y,
-        z: pos.z + offset.z,
-      });
+    //目标可能被打出世界边界（如掉到基岩层以下），此时 spawnParticle 会抛 LocationOutOfWorldBoundariesError
+    try {
+      for (let i = 0; i < particleCount; i++) {
+        const offset = {
+          x: (Math.random() - 0.5) * 0.8,
+          y: (Math.random() - 0.5) * 0.6 + 0.5,
+          z: (Math.random() - 0.5) * 0.8,
+        };
+        dim.spawnParticle("minecraft:redstone_wire_dust_particle", {
+          x: pos.x + offset.x,
+          y: pos.y + offset.y,
+          z: pos.z + offset.z,
+        });
+      }
+    } catch {
     }
 
     const newHealth = Math.max(0, health.currentValue - damage);

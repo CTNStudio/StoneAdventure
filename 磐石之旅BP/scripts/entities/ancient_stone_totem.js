@@ -1,8 +1,17 @@
 import { world, system } from "@minecraft/server";
 
 const totemId = "stonecraft:ancient_stone_totem";
-const lowhealthGrouop = "stonecraft:change_mode"; // 二阶段组件
 const entityStateMap = new Map();
+//二阶段已完成：持久化在实体身上，实体重载、玩家退出都不会丢
+const PHASE2_TAG = "stonecraft:totem_phase_2";
+
+function isPhase2(entity) {
+    try {
+        return entity.isValid && entity.hasTag(PHASE2_TAG);
+    } catch {
+        return false;
+    }
+}
 
 function getEntityState(entity) {
     const id = entity.id;
@@ -10,7 +19,6 @@ function getEntityState(entity) {
     if (!entityStateMap.has(id)) {
         entityStateMap.set(id, {
             isTransforming: false,        // 正在触发二阶段转换，期间免疫伤害
-            hasEnteredSecondPhase: false, // 已完成二阶段转换
             intervalId: null              // 转换回血定时器
         });
     }
@@ -35,7 +43,7 @@ function normalRegeneration(entity) {
     const state = getEntityState(entity);
 
     // 转换中或已经二阶段，不进行常态回血
-    if (state.isTransforming || state.hasEnteredSecondPhase) {
+    if (state.isTransforming || isPhase2(entity)) {
         return;
     }
 
@@ -94,7 +102,7 @@ world.beforeEvents.entityHurt.subscribe((event) => {
 
     // 已经进入二阶段：不拦截任何伤害
 
-    if (state.hasEnteredSecondPhase) {
+    if (isPhase2(target)) {
         return;
     }
     
@@ -122,14 +130,17 @@ world.beforeEvents.entityHurt.subscribe((event) => {
 // 二阶段转换
 function triggerSecondPhase(entity, state) {
 
-    if (
-        state.isTransforming ||
-        state.hasEnteredSecondPhase
-    ) {
+    if (state.isTransforming || isPhase2(entity)) {
         return;
     }
 
     state.isTransforming = true;
+
+    //立刻打 tag：即使转换中途玩家退出导致定时器丢失，重载后也不会二次转阶段
+    try {
+        entity.addTag(PHASE2_TAG);
+    } catch {
+    }
 
     system.run(() => {
         if (!entity || !entity.isValid) return;
@@ -198,7 +209,10 @@ function triggerSecondPhase(entity, state) {
 
         // 标记状态
         state.isTransforming = false;
-        state.hasEnteredSecondPhase = true;
+        try {
+            entity.addTag(PHASE2_TAG);
+        } catch {
+        }
 
         clearEntityTimer(entity);
 
@@ -223,14 +237,42 @@ world.afterEvents.entitySpawn.subscribe(({ entity }) => {
 
         const state = getEntityState(entity);
 
-        if (
-            !state.isTransforming &&
-            !state.hasEnteredSecondPhase
-        ) {
+        if (!state.isTransforming && !isPhase2(entity)) {
             normalRegeneration(entity);
         }
 
     });
+});
+
+// 实体重载后：若已二阶段但血量不满（转换被打断），补满
+world.afterEvents.entityLoad.subscribe(({ entity }) => {
+    if (!entity || entity.typeId !== totemId) {
+        return;
+    }
+    system.run(() => {
+        if (!entity.isValid || !isPhase2(entity)) {
+            return;
+        }
+        const health = entity.getComponent("minecraft:health");
+        if (!health) {
+            return;
+        }
+        if (health.currentValue < health.effectiveMax) {
+            try {
+                health.resetToMaxValue();
+            } catch (error) {
+                console.error("[ancient_stone_totem] failed to finish interrupted phase change", error);
+            }
+        }
+    });
+});
+
+// 实体死亡 / 移除时清理内存状态
+world.afterEvents.entityDie.subscribe(({ deadEntity }) => {
+    if (deadEntity) entityStateMap.delete(deadEntity.id);
+});
+world.afterEvents.entityRemove.subscribe(({ removedEntityId }) => {
+    if (removedEntityId) entityStateMap.delete(removedEntityId);
 });
 
 // 自动回血维护

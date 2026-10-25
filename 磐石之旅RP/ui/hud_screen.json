@@ -3083,17 +3083,33 @@
 
   "boss_health_panel": {
     "type": "panel",
-    "size": [ 182, 20 ],
+    "size": [ 188, 26 ],
     "anchor_from": "top_middle",
     "anchor_to": "top_middle",
     "$progress_bar_collection": "boss_bars",
     "controls": [
       {
-        "boss_name@boss_name_panel": {}
+        "boss_name@boss_name_panel": { "layer": 50, "offset": [ 0, -2 ] }
+      },
+      {
+        "totem_skins": {
+          "type": "panel",
+          "size": [ 232, 35 ],
+          "offset": [ 0, 3 ],
+          "layer": 5,
+          "controls": [
+            { "totem_base@boss.totem_base": {} },
+            { "totem_conquest@boss.totem_conquest": {} },
+            { "totem_war@boss.totem_war": {} },
+            { "totem_famine@boss.totem_famine": {} },
+            { "totem_death@boss.totem_death": {} }
+          ]
+        }
       },
       {
         "progress_bar_for_collections@common.progress_bar_for_collections": {
-          "offset": [ 0, 10 ]
+          "offset": [ 0, 16 ],
+          "layer": 1
         }
       }
     ],
@@ -3115,7 +3131,7 @@
     "collection_name": "boss_bars",
     "anchor_to": "top_middle",
     "anchor_from": "top_middle",
-    "size": [ 182, "30%" ],
+    "size": [ 188, "30%" ],
     "bindings": [
       {
         "binding_name": "(not #on_new_death_screen)",

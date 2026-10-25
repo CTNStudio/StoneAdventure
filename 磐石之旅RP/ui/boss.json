@@ -1,0 +1,127 @@
+{
+  "namespace": "boss",
+
+  "empty_progress_bar": {
+    "type": "image",
+    "layer": 2,
+    "texture": "$empty_texture"
+  },
+
+  "filled_progress_bar_for_collections": {
+    "size": [180, 4],
+    "layer": 4,
+    "type": "image",
+    "texture": "$filled_texture",
+    "clip_direction": "left",
+    "clip_pixelperfect": false,
+    "bindings": [
+      {
+        "binding_name": "#progress_percentage",
+        "binding_name_override": "#clip_ratio",
+        "binding_type": "collection",
+        "binding_collection_name": "$progress_bar_collection"
+      }
+    ]
+  },
+
+  "progress_bar_for_collections": {
+    "type": "panel",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "size": [188, 26],
+    "controls": [
+      { "empty@empty_progress_bar": { "layer": 1 } },
+      { "filled@filled_progress_bar_for_collections": { "layer": 2 } }
+    ]
+  },
+
+  "totem_base@progress_bar_for_collections": {
+    "size": [ "100%", "100%" ],
+    "$empty_texture": "textures/ui/totem_bar_empty",
+    "$filled_texture": "textures/ui/totem_bar_full",
+    "controls": [
+      { "empty@empty_progress_bar": { "layer": 1, "size": [ "100%", "100%" ] } },
+      { "filled@filled_progress_bar_for_collections": { "layer": 2, "size": [ "100%", "100%" ] } }
+    ],
+    "bindings": [
+      {
+        "binding_name": "(#bossName = '§8§l石之图腾§r')",
+        "binding_type": "collection",
+        "binding_collection_name": "boss_bars",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "totem_conquest@progress_bar_for_collections": {
+    "size": [ "100%", "100%" ],
+    "$empty_texture": "textures/ui/totem_bar_empty",
+    "$filled_texture": "textures/ui/totem_bar_full",
+    "controls": [
+      { "empty@empty_progress_bar": { "layer": 1, "size": [ "100%", "100%" ] } },
+      { "filled@filled_progress_bar_for_collections": { "layer": 2, "size": [ "100%", "100%" ] } }
+    ],
+    "bindings": [
+      {
+        "binding_name": "(#bossName = '§8§l石之图腾-§q棘沼§r')",
+        "binding_type": "collection",
+        "binding_collection_name": "boss_bars",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "totem_war@progress_bar_for_collections": {
+    "size": [ "100%", "100%" ],
+    "$empty_texture": "textures/ui/totem_bar_empty",
+    "$filled_texture": "textures/ui/totem_bar_full",
+    "controls": [
+      { "empty@empty_progress_bar": { "layer": 1, "size": [ "100%", "100%" ] } },
+      { "filled@filled_progress_bar_for_collections": { "layer": 2, "size": [ "100%", "100%" ] } }
+    ],
+    "bindings": [
+      {
+        "binding_name": "(#bossName = '§8§l石之图腾-§c战狂§r')",
+        "binding_type": "collection",
+        "binding_collection_name": "boss_bars",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "totem_famine@progress_bar_for_collections": {
+    "size": [ "100%", "100%" ],
+    "$empty_texture": "textures/ui/totem_bar_empty",
+    "$filled_texture": "textures/ui/totem_bar_full",
+    "controls": [
+      { "empty@empty_progress_bar": { "layer": 1, "size": [ "100%", "100%" ] } },
+      { "filled@filled_progress_bar_for_collections": { "layer": 2, "size": [ "100%", "100%" ] } }
+    ],
+    "bindings": [
+      {
+        "binding_name": "(#bossName = '§8§l石之图腾-§p荒芜§r')",
+        "binding_type": "collection",
+        "binding_collection_name": "boss_bars",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "totem_death@progress_bar_for_collections": {
+    "size": [ "100%", "100%" ],
+    "$empty_texture": "textures/ui/totem_bar_empty",
+    "$filled_texture": "textures/ui/totem_bar_full",
+    "controls": [
+      { "empty@empty_progress_bar": { "layer": 1, "size": [ "100%", "100%" ] } },
+      { "filled@filled_progress_bar_for_collections": { "layer": 2, "size": [ "100%", "100%" ] } }
+    ],
+    "bindings": [
+      {
+        "binding_name": "(#bossName = '§8§l石之图腾-§5终末§r')",
+        "binding_type": "collection",
+        "binding_collection_name": "boss_bars",
+        "binding_name_override": "#visible"
+      }
+    ]
+  }
+}

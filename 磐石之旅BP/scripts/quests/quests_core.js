@@ -19,6 +19,18 @@ const NAMESPACE = "stonecraft";
 const QUEST_BOOK_ID = `${NAMESPACE}:stone_encyclopedia`;
 const kill_prefix = "kill_progress_";
 const hit_prefix = "hit_progress_";
+//Boss 击杀记录：击杀后给玩家永久 tag，后续任务据此判定，避免新任务要求重复击杀
+const BOSS_KILL_TAGS = {
+    "stonecraft:ancient_stone_totem": "totem_killed",
+};
+const bossKillTagOf = (entityType) => {
+    const tag = BOSS_KILL_TAGS[entityType];
+    return tag ? `${NAMESPACE}:${tag}` : undefined;
+};
+//老玩家迁移用：旧击杀计数对应的任务 id
+const BOSS_KILL_QUEST_IDS = {
+    "stonecraft:ancient_stone_totem": "ancient_stone_totem",
+};
 
 export function addHitCount(player, questId, increment = 1) {
     const key = `${NAMESPACE}:${hit_prefix}${questId}`;
@@ -219,7 +231,9 @@ export function checkQuestConditionWithQuest(player, quest) {
 
     if (condition.killEntity) {
         const required = condition.killEntity.amount || 1;
-        const current = getKillCount(player, quest.id);
+        const bossKillTag = bossKillTagOf(condition.killEntity.entityType);
+        const bossAlreadyKilled = bossKillTag ? player.hasTag(bossKillTag) : false;
+        const current = bossAlreadyKilled ? required : getKillCount(player, quest.id);
         if (current < required) {
             messages.push({
                 translate: "quest.not_enough.kill",
@@ -415,7 +429,8 @@ export function buildQuestBody(quest, player) {
         }
     } else if (condition.killEntity) {
         const required = condition.killEntity.amount || 1;
-        const current = getKillCount(player, quest.id);
+        const bossKillTag = player ? bossKillTagOf(condition.killEntity.entityType) : undefined;
+        const current = bossKillTag && player.hasTag(bossKillTag) ? required : getKillCount(player, quest.id);
         body.rawtext.push({
             translate: "quest.kill",
             with: {
@@ -551,6 +566,16 @@ world.afterEvents.entityDie.subscribe((event) => {
     const player = damageSource.damagingEntity;
     if (!(player instanceof Player)) return;
     const entityType = deadEntity.typeId;
+
+    //击杀 Boss 记录到玩家 tag（永久，用于后续任务判定）
+    const bossKillTag = bossKillTagOf(entityType);
+    if (bossKillTag) {
+        try {
+            player.addTag(bossKillTag);
+        } catch (error) {
+            console.error("[quests] failed to add boss kill tag", error);
+        }
+    }
     const weeklyQuests = getWeeklyQuests();
     for (const quest of weeklyQuests) {
         if (quest.condition.killEntity && quest.condition.killEntity.entityType === entityType) {
@@ -569,6 +594,19 @@ world.afterEvents.entityDie.subscribe((event) => {
 
 world.afterEvents.playerSpawn.subscribe((event) => {
     const player = event.player;
+
+    //迁移：本次更新前已击杀过 Boss 的玩家，由旧的击杀计数补发 tag
+    for (const [entityType, questId] of Object.entries(BOSS_KILL_QUEST_IDS)) {
+        const tag = bossKillTagOf(entityType);
+        if (!tag) continue;
+        try {
+            if (!player.hasTag(tag) && getKillCount(player, questId) >= 1) {
+                player.addTag(tag);
+            }
+        } catch {
+        }
+    }
+
     if (!event.initialSpawn) return;
 
     const hasReceived = player.getDynamicProperty(`${NAMESPACE}:received_book`);

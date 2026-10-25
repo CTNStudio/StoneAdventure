@@ -1,6 +1,7 @@
 {
   "ui_defs": [
     "ui/hud_screen.json",
-    "ui/stone_heart_hud.json"
+    "ui/stone_heart_hud.json",
+    "ui/boss.json"
   ]
 }
