@@ -10,7 +10,7 @@ anyName.register();                               // ← 必须调用
 */
 import { world, system, EntityComponentTypes, EquipmentSlot, GameMode } from "@minecraft/server";
 
-//去皮音效：按【去皮后的方块类型】选音效，新增木材只需加一行 else if
+//去皮音效
 export function getStripSound(strippedTypeId) {
   if (strippedTypeId.includes("crimson") || strippedTypeId.includes("warped")) return "step.stem";
   if (strippedTypeId.includes("cherry")) return "step.cherry_wood";

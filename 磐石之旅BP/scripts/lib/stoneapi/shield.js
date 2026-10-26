@@ -6,19 +6,10 @@
 //物品侧声明（thorns 可省略，省略即不反伤）：
 //    "stonecraft:shield": { "thorns": 4 }
 import { world, system, EquipmentSlot, EntityComponentTypes } from "@minecraft/server";
-//攻击/使用物品后，多少刻内不允许格挡
-const BUSY_TICKS = 12;
-//使用物品后的标记时长（比挥砍长一些）
-const BUSY_TICKS_USE = 24;
-//被禁用后多少刻无法格挡（5 秒）
-const DISABLE_TICKS = 100;
 //不填 thorns 时的反伤值
 const DEFAULT_THORNS = 0;
 //格挡成功的基础耐久消耗（另加 伤害/2）
 const BASE_DURABILITY_COST = 1;
-//击退强度与抬升
-const KNOCKBACK_STRENGTH = 1.6;
-const KNOCKBACK_LIFT = 0.45;
 //可被格挡的伤害类型
 //未列入的 magic（守卫者激光/龙息/状态效果）、sonicBoom（监守者）、fall（摔落）、fire 等都会被拒绝
 const BLOCKABLE_CAUSES = new Set([
@@ -31,10 +22,9 @@ const BLOCKABLE_CAUSES = new Set([
 	"ramAttack",       //劫掠兽冲撞
 	"charging",        //冲撞类
 ]);
-//近战攻击后直接禁用盾牌的生物（图：持有斧的生物 + 监守者）
+//近战攻击后直接禁用盾牌的生物
 const DISABLE_FOR_MELEE_MOBS = new Set([
-	"minecraft:warden",
-	"minecraft:elder_guardian",
+	"minecraft:warden"
 ]);
 //已注册的盾牌组件名
 const shieldComponents = new Set();
@@ -44,10 +34,8 @@ const busyUntil = new Map();
 const disableUntil = new Map();
 let subscribed = false;
 const nowTick = () => system.currentTick;
-/**
- * 判断攻击者是否在实体正前方（已归一化，threshold 为点积阈值，0 表示正前方半球）
- * 注意：原实现直接用未归一化的 dx/dz 参与点积，距离越远结果越大，阈值会失真。
- */
+
+//判断攻击者是否在实体正前方
 export function AttackerInFront(entity, attacker, threshold = 0) {
 	try {
 		const view = entity.getViewDirection();
@@ -63,15 +51,33 @@ export function AttackerInFront(entity, attacker, threshold = 0) {
 		return false;
 	}
 }
-function markBusy(entity, ticks = BUSY_TICKS) {
+function markBusy(entity, ticks = 10) {
 	try {
 		if (!entity?.isValid) return;
 		busyUntil.set(entity.id, nowTick() + ticks);
 	} catch {
 	}
 }
+//正在使用物品的玩家 id（由 itemStartUse / itemStopUse 维护，不依赖使用时长）
+const usingItem = new Set();
+function startUsing(entity) {
+	try {
+		if (!entity?.isValid) return;
+		usingItem.add(entity.id);
+	} catch {
+	}
+}
+function stopUsing(entity) {
+	try {
+		if (!entity) return;
+		usingItem.delete(entity.id);
+	} catch {
+	}
+}
 function isBusy(entity) {
 	try {
+		//正在使用物品（按开始/结束事件追踪，与使用时长无关）
+		if (usingItem.has(entity.id)) return true;
 		const until = busyUntil.get(entity.id);
 		if (until === undefined) return false;
 		if (nowTick() > until) {
@@ -159,8 +165,8 @@ function knockbackAttacker(player, attacker) {
 		const dz = to.z - from.z;
 		const dist = Math.hypot(dx, dz) || 1;
 		attacker.applyKnockback(
-			{ x: (dx / dist) * KNOCKBACK_STRENGTH, z: (dz / dist) * KNOCKBACK_STRENGTH },
-			KNOCKBACK_LIFT
+			{ x: (dx / dist) * 1.6, z: (dz / dist) * 1.6 },
+			0.45
 		);
 	} catch {
 	}
@@ -184,7 +190,7 @@ function shouldDisableShield(attacker, cause) {
 }
 function disableShield(player, shield) {
 	try {
-		disableUntil.set(player.id, nowTick() + DISABLE_TICKS);
+		disableUntil.set(player.id, nowTick() + 100);
 		player.playSound("random.break");
 		//同步物品自身冷却，让快捷栏有冷却显示
 		const cooldown = shield.item.getComponent("minecraft:cooldown");
@@ -208,9 +214,31 @@ function subscribeOnce() {
 	world.afterEvents.entityHitEntity.subscribe(({ damagingEntity }) => {
 		if (damagingEntity?.typeId === "minecraft:player") markBusy(damagingEntity);
 	});
-	//使用物品中
-	world.afterEvents.itemUse.subscribe(({ source }) => {
-		if (source?.typeId === "minecraft:player") markBusy(source, BUSY_TICKS_USE);
+	//使用物品中：按开始/结束事件追踪，吃长时长食物期间同样无法格挡
+	world.afterEvents.itemStartUse.subscribe(({ source }) => {
+		if (source?.typeId === "minecraft:player") startUsing(source);
+	});
+	world.afterEvents.itemStopUse.subscribe(({ source }) => {
+		if (source?.typeId === "minecraft:player") {
+			stopUsing(source);
+			markBusy(source, 4);
+		}
+	});
+	world.afterEvents.itemCompleteUse.subscribe(({ source }) => {
+		if (source?.typeId === "minecraft:player") {
+			stopUsing(source);
+			markBusy(source, 4);
+		}
+	});
+	//切换快捷栏 / 上线 / 离开：清掉使用状态，避免卡在"使用中"
+	world.afterEvents.playerHotbarSelectedSlotChange.subscribe(({ player }) => {
+		if (player) stopUsing(player);
+	});
+	world.afterEvents.playerSpawn.subscribe(({ player }) => {
+		if (player) stopUsing(player);
+	});
+	world.afterEvents.playerLeave.subscribe(({ playerId }) => {
+		if (playerId) usingItem.delete(playerId);
 	});
 	//对方块交互后短时间同样不允许格挡
 	world.afterEvents.playerInteractWithBlock.subscribe(({ player }) => {

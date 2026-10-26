@@ -347,6 +347,21 @@
     "stonecraft.stone_shield": {
       "textures": "textures/items/tools/shields/stone_shield"
     },
+    "stonecraft.stone_shield_lv1": {
+      "textures": "textures/items/tools/shields/stone_shield_lv1"
+    },
+    "stonecraft.stone_shield_lv2": {
+      "textures": "textures/items/tools/shields/stone_shield_lv2"
+    },
+    "stonecraft.stone_shield_lv3": {
+      "textures": "textures/items/tools/shields/stone_shield_lv3"
+    },
+    "stonecraft.stone_shield_lv4": {
+      "textures": "textures/items/tools/shields/stone_shield_lv4"
+    },
+    "stonecraft.stone_shield_lv5": {
+      "textures": "textures/items/tools/shields/stone_shield_lv5"
+    },
 
     "stonecraft.stone_bow": {
       "textures": "textures/items/tools/bows/stone_bow"

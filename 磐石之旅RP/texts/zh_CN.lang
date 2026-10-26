@@ -154,6 +154,7 @@ stonecraft.item.spear.lv4=四级压缩石矛
 stonecraft.item.spear.lv5=五级压缩石矛
 
 stonecraft.item.stone_shield=石盾
+stonecraft.item.stone_shield_lv1=一级压缩石盾
 
 item.stonecraft:stone_bow=石弓
 stonecraft.item.stone_arrow=石箭
