@@ -344,6 +344,10 @@
       "textures": "textures/items/tools/hammers/stone_hammer_lv5"
     },
     
+    "stonecraft.stone_shield": {
+      "textures": "textures/items/tools/shields/stone_shield"
+    },
+
     "stonecraft.stone_bow": {
       "textures": "textures/items/tools/bows/stone_bow"
     },

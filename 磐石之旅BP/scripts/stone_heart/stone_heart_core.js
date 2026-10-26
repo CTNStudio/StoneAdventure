@@ -2,6 +2,7 @@ import { world, system } from '@minecraft/server';
 import { showStoneHeartFeedback } from './stone_heart_feedback.js';
 import { displayModes, getDisplayMode } from '../settings.js';
 import { tryBulwarkBlock } from '../forge/armor_timed_effects.js';
+import { canBlock } from '../lib/StoneAPI/shield.js';
 
 const regenDelay = 100;
 const regenSpeed = 0.5;
@@ -215,6 +216,11 @@ world.beforeEvents.entityHurt.subscribe(event => {
   const player = event.hurtEntity;
 
   if (player.typeId !== 'minecraft:player') {
+    return;
+  }
+
+  //盾牌格挡优先：本次伤害由 StoneAPI 的盾牌逻辑接管，石心不消耗、也不打断回复
+  if (canBlock(player, event)) {
     return;
   }
 

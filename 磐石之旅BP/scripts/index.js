@@ -10,6 +10,8 @@ import "./blocks/ore_blocks.js";
 import "./items/stone_nugget.js";
 import "./items/tools_use.js";
 import "./items/gun_test.js";
+import "./items/stone_bow.js";
+import "./items/stone_shield.js";
 import "./custom_crop.js";
 import "./custom_command.js";
 import "./items/items_lore.js";
