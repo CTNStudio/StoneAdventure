@@ -8,7 +8,7 @@
 				"enchanted": "entity_alphatest_glint"
 			},
 			"textures": {
-				"default": "textures/entity/shields/stone_shield",
+				"default": "textures/entity/shields/stone_shield_lv1",
 				"enchanted": "textures/misc/enchanted_item_glint"
 			},
 			"geometry": {

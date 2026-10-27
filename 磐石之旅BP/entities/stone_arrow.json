@@ -9,7 +9,7 @@
         "runtime_identifier": "minecraft:arrow"
       },
       "component_groups": {
-      "spawn_item": {
+        "spawn_item": {
           "minecraft:instant_despawn": {}
         },
         "pickup_item": {
@@ -135,6 +135,9 @@
           ]
         },
         "minecraft:projectile": {
+          "minecraft:type_family": {
+            "family": [ "arrow", "projectile" ]
+          },
           "on_hit": {
             "impact_damage": {
               "damage": [ 1, 5 ],

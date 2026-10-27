@@ -35,6 +35,11 @@ const disableUntil = new Map();
 let subscribed = false;
 const nowTick = () => system.currentTick;
 
+//可反弹的投掷物 family（原版箭矢 type_family 含 "arrow"）
+const REFLECT_PROJECTILE_FAMILY = "arrow";
+//被盾格挡后会进入眩晕的 family（劫掠兽）
+const STUN_FAMILY = "ravager";
+
 //判断攻击者是否在实体正前方
 export function AttackerInFront(entity, attacker, threshold = 0) {
 	try {
@@ -76,7 +81,6 @@ function stopUsing(entity) {
 }
 function isBusy(entity) {
 	try {
-		//正在使用物品（按开始/结束事件追踪，与使用时长无关）
 		if (usingItem.has(entity.id)) return true;
 		const until = busyUntil.get(entity.id);
 		if (until === undefined) return false;
@@ -171,6 +175,48 @@ function knockbackAttacker(player, attacker) {
 	} catch {
 	}
 }
+//反弹箭矢：朝射击者生成一支反向箭矢
+function reflectArrow(player, shooter) {
+	try {
+		const from = player.getHeadLocation();
+		const to = shooter.getHeadLocation();
+		let dx = to.x - from.x;
+		let dy = to.y - from.y;
+		let dz = to.z - from.z;
+		const len = Math.hypot(dx, dy, dz) || 1;
+		dx /= len;
+		dy /= len;
+		dz /= len;
+		const arrow = player.dimension.spawnEntity("minecraft:arrow", {
+			x: from.x + dx * 0.8,
+			y: from.y + dy * 0.8,
+			z: from.z + dz * 0.8,
+		});
+		arrow.clearVelocity();
+		arrow.applyImpulse({
+			x: dx * 2.6,
+			y: dy * 2.6 + 0.1,
+			z: dz * 2.6,
+		});
+	} catch {
+	}
+}
+//眩晕：定身 + 削弱（劫掠兽被盾挡下攻击后进入此状态）
+function stunEntity(entity) {
+	try {
+		entity.addEffect("slowness", 40, { amplifier: 255, showParticles: false });
+		entity.addEffect("weakness", 40, { amplifier: 4, showParticles: false });
+	} catch {
+	}
+}
+//判断实体是否属于某个 family（先校验有效性，避免 InvalidEntityError）
+function matchesFamily(entity, family) {
+	try {
+		return !!entity && entity.isValid && entity.matches(family);
+	} catch {
+		return false;
+	}
+}
 function holdsAxe(entity) {
 	try {
 		const item = entity
@@ -257,6 +303,9 @@ function subscribeOnce() {
 		const damage = Number(event.damage) || 0;
 		const thorns = readThorns(shield);
 		const disable = shouldDisableShield(attacker, cause);
+		//投掷物 family 判定要在事件内完成（箭矢随后会被移除）
+		const projectile = event.damageSource?.damagingProjectile;
+		const reflect = matchesFamily(projectile, REFLECT_PROJECTILE_FAMILY);
 		system.run(() => {
 			if (!player.isValid) return;
 			try {
@@ -266,6 +315,8 @@ function subscribeOnce() {
 			damageShield(player, shield, BASE_DURABILITY_COST + Math.floor(damage / 2));
 			if (attacker?.isValid) {
 				knockbackAttacker(player, attacker);
+				if (reflect) reflectArrow(player, attacker);
+				if (matchesFamily(attacker, STUN_FAMILY) && Math.random() < 0.5) stunEntity(attacker);
 				if (thorns > 0) {
 					try {
 						attacker.applyDamage(thorns, { cause: "thorns", damagingEntity: player });
