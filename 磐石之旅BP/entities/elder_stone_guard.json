@@ -8,6 +8,25 @@
       "is_experimental": false
     },
     "component_groups": {
+      "easy_attack": {
+        "minecraft:attack": {
+          "damage": 4
+        }
+      },
+      "normal_attack": {
+        "minecraft:attack": {
+          "damage": 5,
+          "effect_duration": 20,
+          "effect_name": "slowness"
+        }
+      },
+      "hard_attack": {
+        "minecraft:attack": {
+          "damage": 6,
+          "effect_duration": 25,
+          "effect_name": "slowness"
+        }
+      },
       "stonecraft:transformation_sensor": {
         "minecraft:environment_sensor": {
           "triggers": [
@@ -466,7 +485,36 @@
       "minecraft:entity_spawned": {
         "add": {
           "component_groups": ["stonecraft:transformation_sensor"]
-        }
+        },
+        "sequence": [
+          {
+            "filters":{ "test": "is_difficulty", "value": "easy" },
+            "remove": {
+              "component_groups": ["normal_attack", "hard_attack"]
+            },
+            "add": {
+              "component_groups": ["easy_attack"]
+            }
+          },
+          {
+            "filters":{ "test": "is_difficulty", "value": "normal" },
+            "remove": {
+              "component_groups": ["easy_attack", "hard_attack"]
+            },
+            "add": {
+              "component_groups": ["normal_attack"]
+            }
+          },
+          {
+            "filters":{ "test": "is_difficulty", "value": "hard" },
+            "remove": {
+              "component_groups": ["easy_attack", "normal_attack"]
+            },
+            "add": {
+              "component_groups": ["hard_attack"]
+            }
+          }
+        ]
       },
       "stonecraft:start_molten_event": {
         "add": {

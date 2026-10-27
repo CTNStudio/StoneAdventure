@@ -168,6 +168,37 @@
       }
     },
     "events": {
+      "minecraft:entity_transformed":{
+        "sequence": [
+          {
+            "filters":{ "test": "is_difficulty", "value": "easy" },
+            "remove": {
+              "component_groups": ["normal_attack", "hard_attack"]
+            },
+            "add": {
+              "component_groups": ["easy_attack"]
+            }
+          },
+          {
+            "filters":{ "test": "is_difficulty", "value": "normal" },
+            "remove": {
+              "component_groups": ["easy_attack", "hard_attack"]
+            },
+            "add": {
+              "component_groups": ["normal_attack"]
+            }
+          },
+          {
+            "filters":{ "test": "is_difficulty", "value": "hard" },
+            "remove": {
+              "component_groups": ["easy_attack", "normal_attack"]
+            },
+            "add": {
+              "component_groups": ["hard_attack"]
+            }
+          }
+        ]
+      },
       "minecraft:entity_spawned": {
         "sequence": [
           {

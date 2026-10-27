@@ -1,3 +1,4 @@
+//傻福ojang给了minecraft:on_prime事件但是不生效
 {
   "format_version": "1.20.70",
   "minecraft:entity": {
