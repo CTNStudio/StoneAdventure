@@ -1,0 +1,37 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:stone_shield_lv2"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+        "ABA", 
+        "AAA", 
+        " A "
+    ],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv2stone"
+      },
+      "B": {
+        "item": "minecraft:iron_ingot"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv2stone"
+      },
+      {
+        "item": "minecraft:iron_ingot"
+      },
+      {
+        "item": "stonecraft:stone_shield"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_shield_lv2",
+      "count": 1
+    }
+  }
+}

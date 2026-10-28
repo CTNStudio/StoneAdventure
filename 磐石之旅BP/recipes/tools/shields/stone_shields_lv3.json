@@ -1,0 +1,37 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:stone_shield_lv3"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+        "ABA", 
+        "AAA", 
+        " A "
+    ],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv3stone"
+      },
+      "B": {
+        "item": "minecraft:iron_ingot"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv3stone"
+      },
+      {
+        "item": "minecraft:iron_ingot"
+      },
+      {
+        "item": "stonecraft:stone_shield_lv3"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_shield_lv3",
+      "count": 1
+    }
+  }
+}

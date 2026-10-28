@@ -1,0 +1,37 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:stone_shield_lv4"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+        "ABA", 
+        "AAA", 
+        " A "
+    ],
+    "key": {
+      "A": {
+        "item": "stonecraft:lv4stone"
+      },
+      "B": {
+        "item": "minecraft:diamond"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:lv4stone"
+      },
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "item": "stonecraft:stone_shield_lv4"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:stone_shield_lv4",
+      "count": 1
+    }
+  }
+}
