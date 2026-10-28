@@ -13,7 +13,7 @@ import {
 
 import {
   clearEffect,
-} from "../food.js";
+} from "../items/food.js";
 
 const EFFECT_HANDLERS = {
   wither: (attacker, target, level) => {

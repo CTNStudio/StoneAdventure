@@ -2,7 +2,7 @@ import { StarTenon } from "./lib/StarTenonAPI/index.js";
 import "./quests/quests_core.js";
 import "./quests/quests_ui.js";
 import { displayMessage } from "./messageManager.js";
-import "./food.js";
+import "./items/food.js";
 import "./items/durability.js";
 import { initAttackDurability } from "./items/attack_durability.js";
 import "./entities_effect.js";
@@ -61,5 +61,3 @@ world.afterEvents.playerSpawn.subscribe((eventData) => {
     };
     displayMessage(player, rawMessage);
 });
-
-console.info(`[StarTenon] Occultus SDK · Star Tenon API v${StarTenon.version}（MIT · CTN Studios）`);

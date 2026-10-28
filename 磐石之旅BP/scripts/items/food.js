@@ -1,5 +1,5 @@
 import { world, Player, system } from "@minecraft/server";
-import { displayMessage } from "./messageManager.js";
+import { displayMessage } from "../messageManager.js";
 //食物效果
 const NEGATIVE_EFFECTS = [
     "slowness", "mining_fatigue", "instant_damage", "nausea", "blindness",
