@@ -5,7 +5,7 @@ import { displayMessage } from "./messageManager.js";
 import "./items/food.js";
 import "./items/durability.js";
 import { initAttackDurability } from "./items/attack_durability.js";
-import "./entities_effect.js";
+import "./entities/entities_effect.js";
 import "./blocks/ore_blocks.js";
 import "./items/stone_nugget.js";
 import "./items/tools_use.js";

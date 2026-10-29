@@ -64,7 +64,7 @@
           "min_random_teleport_time": 2.0,
           "random_teleport_cube": [
             5,
-            0,
+            2,
             5
           ],
           "random_teleports": true
@@ -157,6 +157,12 @@
       }
     },
     "components": {
+      "minecraft:breathable": {
+        "breathes_solids": true,
+        "breathes_air": true,
+        "total_supply": 15,
+        "suffocate_time": 0
+      },
       "minecraft:angry": {
         "broadcast_anger": true,
         "broadcast_anger_on_attack": true,

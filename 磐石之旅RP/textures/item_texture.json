@@ -2,9 +2,9 @@
   "resource_pack_name": "磐石之旅",
   "texture_name": "atlas.items",
   "texture_data": {
-    "stonecraft.stone_star": {
+    /*"stonecraft.stone_star": {
       "textures": "textures/items/treasures/stone_star"
-    },
+    },*/
     "stonecraft.stone_coin": {
       "textures": "textures/items/treasures/stone_coin"
     },
@@ -411,7 +411,8 @@
         "textures/items/spawn_eggs/spawn_egg_wandering_collector",//19
         "textures/items/spawn_eggs/spawn_egg_snatcher",//20
         "textures/items/spawn_eggs/spawn_egg_spire_remnant",//21
-        "textures/items/spawn_eggs/spawn_egg_sculk_statue"//22
+        "textures/items/spawn_eggs/spawn_egg_sculk_statue",//22
+        "textures/items/spawn_eggs/spawn_egg_pale_martyr" //23
       ]
     },
     "stonecraft.stone_encyclopedia": {

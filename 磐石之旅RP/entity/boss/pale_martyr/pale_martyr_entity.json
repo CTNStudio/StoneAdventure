@@ -7,7 +7,7 @@
       },
       "identifier": "stonecraft:pale_martyr",
       "materials": {
-        "default": "skeleton"
+        "default": "ghostblend"
       },
       "animations": {
         "look_at_target_default": "animation.humanoid.look_at_target.default",
@@ -54,7 +54,8 @@
         },
         {
           "damage_nearby_mobs": "controller.animation.humanoid.damage_nearby_mobs"
-        },
+        },
+
         {
           "use_item_progress": "controller.animation.humanoid.use_item_progress"
         },
@@ -76,10 +77,10 @@
       },
       "spawn_egg": {
         "texture": "stonecraft.spawn_eggs",
-        "texture_index": 21
+        "texture_index": 23
       },
       "textures": {
-        "default": "textures/entity/spire_remnant"
+        "default": "textures/entity/pale_martyr"
       }
     }
   }

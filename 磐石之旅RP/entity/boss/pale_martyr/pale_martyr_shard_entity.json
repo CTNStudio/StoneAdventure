@@ -4,10 +4,10 @@
     "description": {
       "identifier": "stonecraft:pale_martyr_shard",
       "materials": {
-        "default": "spider"
+        "default": "ghostblend"
       },
       "textures": {
-        "default": "textures/entity/stone_vagabond"
+        "default": "textures/entity/pale_martyr_shard"
       },
       "geometry": {
         "default": "geometry.humanoid.custom"
@@ -61,7 +61,8 @@
         },
         {
           "damage_nearby_mobs": "controller.animation.humanoid.damage_nearby_mobs"
-        },
+        },
+
         {
           "swimming": "controller.animation.humanoid.swimming"
         },

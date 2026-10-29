@@ -7,6 +7,12 @@
       "is_summonable": true
     },
     "components": {
+      "minecraft:breathable": {
+        "breathes_solids": true,
+        "breathes_air": true,
+        "total_supply": 15,
+        "suffocate_time": 0
+      },
       "minecraft:type_family": {
         "family": [
           "monster",
@@ -40,7 +46,7 @@
         "min_random_teleport_time": 1.0,
         "random_teleport_cube": [
           9,
-          0,
+          4,
           9
         ],
         "random_teleports": true

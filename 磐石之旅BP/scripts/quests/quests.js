@@ -36,6 +36,8 @@ export const CHAPTERS = [
                 id: "cobble_stone",
                 title: { translate: "sc.quest.cobblestone.title" },
                 description: { translate: "sc.quest.cobblestone.body" },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "minecraft:cobblestone",
@@ -50,6 +52,8 @@ export const CHAPTERS = [
                 id: "stone_convert_table",
                 title: { translate: "sc.quest.stone_convert_table.title" },
                 description: { translate: "sc.quest.stone_convert_table.body" },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:stone_convert_table",
@@ -72,6 +76,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.stone_armor.body2" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     anyItem: [
                         {
@@ -109,6 +115,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.stone_hammer.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:stone_hammer",
@@ -129,6 +137,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.stone_nugget.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:stone_nugget",
@@ -149,6 +159,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.stone_coin.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:stone_coin",
@@ -169,6 +181,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.stone_food.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     anyTag: [
                         { tag: "stonecraft:stone_food", name: { translate: "stonecraft.tag.stone_food" } }
@@ -195,6 +209,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.lv1_stone.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:lv1stone",
@@ -222,6 +238,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.lv1stone_pickaxe.body" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:lv1stone_pickaxe",
@@ -251,6 +269,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.lv2_stone.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:lv2stone",
@@ -283,6 +303,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.lv2stone_pickaxe.body" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:lv2stone_pickaxe",
@@ -312,6 +334,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.lv3_stone.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:lv3stone",
@@ -344,6 +368,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.lv3stone_pickaxe.body" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:lv3stone_pickaxe",
@@ -381,6 +407,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.head_debris.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:head_debris",
@@ -415,6 +443,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.head_shard.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:head_shard",
@@ -443,6 +473,8 @@ export const CHAPTERS = [
                 id: "stone_star",
                 title: { translate: "sc.quest.stone_star.title" },
                 description: { translate: "sc.quest.stone_star.body" },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:stone_star",
@@ -471,6 +503,8 @@ export const CHAPTERS = [
                 id: "stone_crafting_table",
                 title: { translate: "sc.quest.stone_crafting_table.title" },
                 description: { translate: "sc.quest.stone_crafting_table.body" },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:stone_crafting_table",
@@ -505,6 +539,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.lv4_stone.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:lv4stone",
@@ -539,6 +575,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.lv5_stone.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:lv5stone",
@@ -573,6 +611,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.lv5stone_sword.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:lv5stone_sword",
@@ -607,6 +647,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.stone_hodgepodge.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:stone_hodgepodge",
@@ -641,6 +683,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.lv5_stone_armor.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     anyItem: [
                         {
@@ -705,6 +749,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.stone_essence.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:stone_essence",
@@ -734,6 +780,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.stone_essence_crystal.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:stone_essence_crystal",
@@ -763,6 +811,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.stone_smithing_table.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:stone_smithing_table",
@@ -792,6 +842,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.inlaid_essence_bead.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:inlaid_essence_bead",
@@ -821,6 +873,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.expansion_slab.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:expansion_slab",
@@ -858,6 +912,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.stone_heart.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:stone_heart",
@@ -892,6 +948,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.sacrificial_blade.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:sacrificial_blade",
@@ -921,6 +979,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.blood_bottle.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:blood_bottle",
@@ -950,6 +1010,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.ersatz_blood_vial.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:ersatz_blood_vial",
@@ -979,6 +1041,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.blood_offering_vial.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:blood_offering_vial",
@@ -1008,6 +1072,8 @@ export const CHAPTERS = [
                         { translate: "sc.quest.stone_summoner_activated.body1" }
                     ]
                 },
+                autoComplete: true,
+                manualReward: true,
                 condition: {
                     item: {
                         itemId: "stonecraft:stone_summoner_activated",

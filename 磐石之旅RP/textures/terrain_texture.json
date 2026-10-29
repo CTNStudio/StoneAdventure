@@ -96,6 +96,9 @@
     },
     "stonecraft.stone_heart": {
       "textures": "textures/blocks/items/stone_heart"
+    },
+    "stonecraft.stone_star": {
+      "textures": "textures/blocks/items/stone_star_glow"
     }
   }
 }

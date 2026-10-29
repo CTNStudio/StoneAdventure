@@ -1,5 +1,5 @@
 {
-  "format_version": "1.20.60",
+  "format_version": "1.26.40",
   "minecraft:item": {
     "description": {
       "identifier": "stonecraft:stone_star",
@@ -8,13 +8,17 @@
       }
     },
     "components": {
-      "minecraft:icon": "stonecraft.stone_star",
+      //"minecraft:icon": "stonecraft.stone_star",
       "minecraft:rarity": "uncommon",
       "minecraft:display_name": {
         "value": "stonecraft.item.stone_star"
       },
       "minecraft:fire_resistant": {
         "value": true
+      },
+      "minecraft:block_placer": {
+        "block": "stonecraft:stone_star",
+        "replace_block_item": true
       },
       "minecraft:should_despawn": false
     }

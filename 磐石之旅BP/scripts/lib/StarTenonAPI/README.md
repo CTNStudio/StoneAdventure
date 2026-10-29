@@ -14,13 +14,11 @@ Occultus SDK · Star Tenon API，本包引入的预编译产物。
 
 - `api.js` —— 上游预编译产物，逻辑未改动；仅在文件顶部添加了版权/协议标注。
 - `LICENSE` —— 上游 MIT 许可全文。
-- `index.js` —— 本项目的转发入口，供 `scripts/` 下其他脚本导入。
 
 ## 使用
 
 ```js
 import { StarTenon } from "../lib/starock/index.js";
-console.info(StarTenon.version);
 ```
 
 ## 构建说明（上游）
