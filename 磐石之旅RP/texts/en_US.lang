@@ -392,6 +392,8 @@ stonecraft.tag.stone_food=Stone Food
 sc.menu.achievements=Achievements
 sc.achievements.title=Achievements
 sc.achievements.description=Go forth, pursue the doubts in your heart, and uncover the unknown truth.
+sc.quest.cobblestone_ach.title=Stonecraft & Stone Journey
+sc.quest.cobblestone_ach.body=Welcome to Stone Journey!
 sc.quest.andesite_ach.title=Obtain Andesite
 sc.quest.andesite_ach.body=Press W to Ponder.jpg
 sc.quest.stone_guard_ach.title=Stone Genie
@@ -714,3 +716,4 @@ stonecraft.item.stone_shield_lv4=Tier 4 Compressed Stone Shield
 stonecraft.item.stone_shield_lv3=Tier 3 Compressed Stone Shield
 stonecraft.item.stone_shield_lv2=Tier 2 Compressed Stone Shield
 stonecraft.item.stone_shield_lv1=Tier 1 Compressed Stone Shield
+

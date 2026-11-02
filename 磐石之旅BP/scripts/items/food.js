@@ -87,15 +87,15 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
             player.addEffect("regeneration", 300, { amplifier: 1 });
             player.addEffect("water_breathing", 300);
             break;
-        case "stonecraft:blindness_potion": player.addEffect("blindness", 400); break;
-        case "stonecraft:longer_blindness_potion": player.addEffect("blindness", 800); break;
+        case "stonecraft:blindness_potion": player.addEffect("blindness", 1800); break;
+        case "stonecraft:longer_blindness_potion": player.addEffect("blindness", 4800); break;
         case "stonecraft:potion_of_growth":
-            player.addEffect("regeneration", 400); 
-            player.addEffect("absorption", 400, { amplifier: 1 });
+            player.addEffect("regeneration", 3600); 
+            player.addEffect("absorption", 3600, { amplifier: 1 });
             break;
         case "stonecraft:potion_of_corruption":
-            player.addEffect("wither", 400); 
-            player.addEffect("fatal_poison", 400, { amplifier: 1 });
+            player.addEffect("wither", 900); 
+            player.addEffect("fatal_poison", 900, { amplifier: 1 });
             break;
         case "stonecraft:ersatz_blood_vial":
             giveNegativeEffect(player, 'bad');

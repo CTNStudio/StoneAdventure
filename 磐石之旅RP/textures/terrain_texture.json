@@ -99,6 +99,9 @@
     },
     "stonecraft.stone_star": {
       "textures": "textures/blocks/items/stone_star_glow"
+    },
+    "stonecraft.petrified_husk": {
+      "textures": "textures/blocks/petrified_husk"
     }
   }
 }

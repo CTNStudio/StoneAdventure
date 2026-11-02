@@ -389,6 +389,8 @@ stonecraft.tag.stone_food=石頭食物
 sc.menu.achievements=成就
 sc.achievements.title=成就
 sc.achievements.description=去吧，去追尋你心中的疑惑，去獲取未知的真相。
+sc.quest.cobblestone_ach.title=石頭工藝&磐石之旅
+sc.quest.cobblestone_ach.body=歡迎來到磐石之旅！
 sc.quest.andesite_ach.title=獲得安山岩
 sc.quest.andesite_ach.body=按w鍵進行思索.jpg
 sc.quest.stone_guard_ach.title=刷石機
@@ -710,3 +712,4 @@ stonecraft.item.stone_shield_lv4=四級壓縮石盾
 stonecraft.item.stone_shield_lv3=三級壓縮石盾
 stonecraft.item.stone_shield_lv2=二級壓縮石盾
 stonecraft.item.stone_shield_lv1=一級壓縮石盾
+

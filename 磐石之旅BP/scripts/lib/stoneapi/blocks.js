@@ -9,6 +9,7 @@
 //    blocks.add(new InteractableBlock("stonecraft:my_door"));
 //    blocks.register();
 import {
+  world,
   system,
   GameMode,
   EntityComponentTypes,
@@ -109,51 +110,17 @@ function spawnLoot(dimension, location, lootTable, toolType) {
   }
 }
 
-/** 单个方块最多生成的经验球实体数，超出部分直接补发给玩家（避免刷实体） */
-const MAX_XP_ORB_ENTITIES = 50;
-
-/** 直接生成等量的 minecraft:xp_orb 实体（每个 1 点经验） */
-function spawnOrbEntities(callback, player, amount) {
-  const base = callback.block.location;
-  const location = { x: base.x + 0.5, y: base.y + 0.5, z: base.z + 0.5 };
-
-  const target = Math.min(amount, MAX_XP_ORB_ENTITIES);
-  let spawned = 0;
-  for (let i = 0; i < target; i++) {
-    try {
-      callback.dimension.spawnEntity("minecraft:xp_orb", location);
-      spawned++;
-    } catch (error) {
-      console.error("[StoneAPI] spawn xp_orb failed:", error);
-      break;
-    }
-  }
-
-  const rest = amount - spawned;
-  if (rest > 0) {
-    try {
-      player.addExperience(rest);
-    } catch (error) {
-      console.error("[StoneAPI] addExperience failed:", error);
-    }
-  }
-}
-
-function spawnXpOrbs(callback, player, exp) {
+/** 在原方块位置生成经验球（本包要求 26.60+，spawnXp 为稳定接口，不做兜底） */
+function spawnXpOrbs(callback, exp) {
   const amount = Math.max(1, Math.min(12000, Math.floor(exp)));
   const base = callback.block.location;
   const location = { x: base.x + 0.5, y: base.y + 0.5, z: base.z + 0.5 };
 
-  if (typeof callback.dimension.spawnXp === "function") {
-    try {
-      callback.dimension.spawnXp(location, amount);
-      return;
-    } catch (error) {
-      console.error("[StoneAPI] spawnXp failed, fallback to xp_orb entities:", error);
-    }
+  try {
+    callback.dimension.spawnXp(location, amount);
+  } catch (error) {
+    console.error("[StoneAPI] spawnXp failed:", error);
   }
-
-  spawnOrbEntities(callback, player, amount);
 }
 
 export class OreBlock {
@@ -224,7 +191,7 @@ export class BlockRegistry {
 
             //④ 掉落与经验各自独立：缺一个不影响另一个
             spawnLoot(callback.dimension, callback.block.location, data.loot_table);
-            if (data.exp) spawnXpOrbs(callback, player, data.exp);
+            if (data.exp) spawnXpOrbs(callback, data.exp);
           },
         });
       }
@@ -245,4 +212,18 @@ export class BlockRegistry {
 
 export function getRegisteredBlockComponents() {
   return [...registeredComponents];
+}
+
+//判断方块坐标
+/*用法：
+const sub = onInteractBlockPos((x, y, z) => {
+    // 这里 x、y、z 就是交互方块的整数坐标，可直接拿去用
+    console.log(x, y, z);
+});
+*/
+export function onInteractBlockPos(callback) {
+    return world.afterEvents.playerInteractWithBlock.subscribe((event) => {
+        const { x, y, z } = event.block.location;
+        callback(x, y, z, event);
+    });
 }

@@ -388,6 +388,8 @@ stonecraft.tag.stone_food=Каменная еда
 sc.menu.achievements=Достижения
 sc.achievements.title=Достижения
 sc.achievements.description=Иди вперёд, следуй за сомнениями в своём сердце и открой неизведанную истину.
+sc.quest.cobblestone_ach.title=Каменное ремесло и Каменное путешествие
+sc.quest.cobblestone_ach.body=Добро пожаловать в Каменное путешествие!
 sc.quest.andesite_ach.title=Получить андезит
 sc.quest.andesite_ach.body=Нажми W, чтобы поразмышлять.jpg
 sc.quest.stone_guard_ach.title=Каменный генератор
@@ -709,3 +711,4 @@ stonecraft.item.stone_shield_lv4=Сжатый каменный щит IV
 stonecraft.item.stone_shield_lv3=Сжатый каменный щит III
 stonecraft.item.stone_shield_lv2=Сжатый каменный щит II
 stonecraft.item.stone_shield_lv1=Сжатый каменный щит I
+

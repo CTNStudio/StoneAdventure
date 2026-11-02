@@ -1,0 +1,31 @@
+{
+    "format_version": "1.26.40",
+    "minecraft:jigsaw": {
+        "description": {
+            "identifier": "stonecraft:sunken_stone_altar"
+        },
+        "step": "underground_structures",
+        "heightmap_projection": "none",
+        "liquid_settings": "ignore_waterlogging",
+        "start_height": {
+            "type": "constant",
+            "value": {
+                "absolute": -58
+            }
+        },
+        "terrain_adaptation": "bury",
+        "max_depth": 1,
+        "start_pool": "stonecraft:pool_sunken_stone_altar",
+        "biome_filters": [
+            {
+                "test": "has_biome_tag",
+                "operator": "==",
+                "value": "deep_dark"
+            }
+        ],
+        "max_distance_from_center": {
+            "horizontal": 80,
+            "vertical": 80
+        }
+    }
+}

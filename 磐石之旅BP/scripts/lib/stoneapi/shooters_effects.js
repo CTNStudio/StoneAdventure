@@ -4,18 +4,29 @@ const rules = new Set();
 let subscription;
 
 const onHit = (event) => {
-    const target = event.getEntityHit?.()?.entity;
-    if (!target?.isValid) return;
+    try {
+        const target = event.getEntityHit?.()?.entity;
+        if (!target?.isValid) return;
 
-    const owner = event.source ?? event.projectile?.getComponent('minecraft:projectile')?.owner;
-    if (!owner) return;
+        // 箭矢命中后可能立刻被移除：projectile 可能已失效，取 owner 前必须先判 isValid
+        let owner = event.source;
+        if (!owner?.isValid) {
+            const projectile = event.projectile;
+            owner = projectile?.isValid
+                ? projectile.getComponent('minecraft:projectile')?.owner
+                : undefined;
+        }
+        if (!owner?.isValid) return;
 
-    for (const rule of rules) {
-        if (owner.typeId !== rule.attackerTypeId) continue;
-        target.addEffect(rule.effectId, rule.duration, {
-            amplifier: rule.amplifier,
-            showParticles: rule.showParticles
-        });
+        for (const rule of rules) {
+            if (owner.typeId !== rule.attackerTypeId) continue;
+            if (!target.isValid) return; // 循环期间目标可能已死
+            target.addEffect(rule.effectId, rule.duration, {
+                amplifier: rule.amplifier,
+                showParticles: rule.showParticles
+            });
+        }
+    } catch {
     }
 };
  /**

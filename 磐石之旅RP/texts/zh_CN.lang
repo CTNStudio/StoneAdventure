@@ -395,6 +395,8 @@ stonecraft.tag.stone_food=石头食物
 sc.menu.achievements=成就
 sc.achievements.title=成就
 sc.achievements.description=去吧，去追寻你心中的疑惑，去获取未知的真相。
+sc.quest.cobblestone_ach.title=石头工艺&磐石之旅
+sc.quest.cobblestone_ach.body=欢迎来到磐石之旅！
 sc.quest.andesite_ach.title=获得安山岩
 sc.quest.andesite_ach.body=按w键进行思索.jpg
 sc.quest.stone_guard_ach.title=刷石机
@@ -640,7 +642,6 @@ sc.quest.stone_puppet.title=石头傀儡
 sc.quest.stone_puppet.body=§o无意识的石头造物§r
 sc.quest.stone_puppet.body1=石头傀儡会被召唤生成，同时本身会召唤出一个石头守卫协助作战
 
-
 stonecraft.expansion_slab=§r§l§9通用§r
 stonecraft.weapon_only=§r§l§9仅武器§r
 stonecraft.armor_only=§r§l§9仅护甲§r
@@ -699,3 +700,4 @@ stonecraft.sacrificial_blood_infusion=血祭自身
 stonecraft.poured_into_the_bottle=灌入血瓶
 stonecraft.stone_heart_broken=石心破碎
 stonecraft.stone_heart_hurt=石心损坏
+

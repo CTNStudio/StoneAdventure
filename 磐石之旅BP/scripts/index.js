@@ -22,6 +22,7 @@ import "./stone_tide/stone_tide.js";
 import "./summon_boss/boss_structure_spawner.js";
 import "./summon_boss/blood_offering_vial.js";
 import "./summon_boss/sacrificial_blade.js";
+import "./summon_boss/petrified_husk.js";
 import './entities/ancient_stone_totem.js';
 import './entities/spire_remnant.js';
 import './entities/pale_martyr.js';

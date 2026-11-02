@@ -1,7 +1,5 @@
 import { world } from "@minecraft/server";
-
-const NAMESPACE = "stonecraft";
-const STONE_POINT_KEY = `${NAMESPACE}:stone_point`;
+const STONE_POINT_KEY = `stonecraft:stone_point`;
 
 /**
  * 获取玩家的石源点数

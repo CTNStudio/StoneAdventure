@@ -1,5 +1,6 @@
 import { world, ItemStack, Player } from "@minecraft/server";
 import { CHAPTERS } from "./quests.js";
+import { AchievementRegistry } from "../lib/CustomAchievement/index.js";
 import { getUseCount, getUseItemCount, resetUseCount, resetUseItemCounts } from "./achievements.js";
 import { displayMessage } from "../messageManager.js";
 import { checkWeeklyProgress, getWeeklyQuests, addWeeklyKillCount } from "./weekly_routine.js";
@@ -15,8 +16,12 @@ export {
     showMainMenu
 };
 
-const NAMESPACE = "stonecraft";
-const QUEST_BOOK_ID = `${NAMESPACE}:stone_encyclopedia`;
+//成就注册表：自动登记 sc_achievements 章节的成就
+const achievementRegistry = new AchievementRegistry()
+    .autoRegisterFromChapters(CHAPTERS)
+    .start();
+
+const QUEST_BOOK_ID = `stonecraft:stone_encyclopedia`;
 const kill_prefix = "kill_progress_";
 const hit_prefix = "hit_progress_";
 //Boss 击杀记录：击杀后给玩家永久 tag，后续任务据此判定，避免新任务要求重复击杀
@@ -25,7 +30,7 @@ const BOSS_KILL_TAGS = {
 };
 const bossKillTagOf = (entityType) => {
     const tag = BOSS_KILL_TAGS[entityType];
-    return tag ? `${NAMESPACE}:${tag}` : undefined;
+    return tag ? `stonecraft:${tag}` : undefined;
 };
 //老玩家迁移用：旧击杀计数对应的任务 id
 const BOSS_KILL_QUEST_IDS = {
@@ -33,42 +38,42 @@ const BOSS_KILL_QUEST_IDS = {
 };
 
 export function addHitCount(player, questId, increment = 1) {
-    const key = `${NAMESPACE}:${hit_prefix}${questId}`;
+    const key = `stonecraft:${hit_prefix}${questId}`;
     const current = player.getDynamicProperty(key) ?? 0;
     player.setDynamicProperty(key, current + increment);
 }
 
 export function getHitCount(player, questId) {
-    const key = `${NAMESPACE}:${hit_prefix}${questId}`;
+    const key = `stonecraft:${hit_prefix}${questId}`;
     return player.getDynamicProperty(key) ?? 0;
 }
 
 export function resetHitCount(player, questId) {
-    const key = `${NAMESPACE}:${hit_prefix}${questId}`;
+    const key = `stonecraft:${hit_prefix}${questId}`;
     player.setDynamicProperty(key, 0);
 }
 
 export function isRewardClaimed(player, questId) {
-    return player.getDynamicProperty(`${NAMESPACE}:reward_claimed_${questId}`) ?? false;
+    return player.getDynamicProperty(`stonecraft:reward_claimed_${questId}`) ?? false;
 }
 
 export function setRewardClaimed(player, questId, claimed = true) {
-    player.setDynamicProperty(`${NAMESPACE}:reward_claimed_${questId}`, claimed);
+    player.setDynamicProperty(`stonecraft:reward_claimed_${questId}`, claimed);
 }
 
 export function addKillCount(player, questId, increment = 1) {
-    const key = `${NAMESPACE}:${kill_prefix}${questId}`;
+    const key = `stonecraft:${kill_prefix}${questId}`;
     const current = player.getDynamicProperty(key) ?? 0;
     player.setDynamicProperty(key, current + increment);
 }
 
 export function getKillCount(player, questId) {
-    const key = `${NAMESPACE}:${kill_prefix}${questId}`;
+    const key = `stonecraft:${kill_prefix}${questId}`;
     return player.getDynamicProperty(key) ?? 0;
 }
 
 export function resetKillCount(player, questId) {
-    const key = `${NAMESPACE}:${kill_prefix}${questId}`;
+    const key = `stonecraft:${kill_prefix}${questId}`;
     player.setDynamicProperty(key, 0);
 }
 
@@ -319,11 +324,13 @@ export function giveItem(player, itemStack) {
 }
 
 export function isQuestCompleted(player, quest) {
-    return player.hasTag(`${NAMESPACE}:${quest.id}`);
+    return player.hasTag(`stonecraft:${quest.id}`);
 }
 
 export function markQuestCompleted(player, quest) {
-    player.addTag(`${NAMESPACE}:${quest.id}`);
+    player.addTag(`stonecraft:${quest.id}`);
+    //成就章节的任务完成时弹成就 Toast（未注册的成就 id 会被忽略）
+    achievementRegistry.grant(player, `custom.achievement.${quest.id}`);
     if (quest.condition.useEachItem) {
         const items = quest.condition.useEachItem.items;
         resetUseItemCounts(player, quest.id, items);
@@ -334,7 +341,7 @@ export function markQuestCompleted(player, quest) {
     if (quest.manualReward) {
         setRewardClaimed(player, quest.id, false);
     }
-    const killTag = `${NAMESPACE}:kill_${quest.id}`;
+    const killTag = `stonecraft:kill_${quest.id}`;
     if (player.hasTag(killTag)) player.removeTag(killTag);
     resetKillCount(player, quest.id);
     resetUseCount(player, quest.id);
@@ -379,6 +386,12 @@ export function giveQuestAward(player, quest) {
         };
         player.sendMessage(message);
     }
+}
+
+//已完成的任务不再显示计数（完成时计数被重置为 0），改显示绿色对勾
+function progressSuffix(player, quest, current, required) {
+    if (player && player.hasTag(`stonecraft:${quest.id}`)) return " §a√";
+    return ` §7(${current}/${required})`;
 }
 
 export function buildQuestBody(quest, player) {
@@ -436,7 +449,7 @@ export function buildQuestBody(quest, player) {
             with: {
                 rawtext: [
                     condition.killEntity.name,
-                    { text: ` §7${current}/${required}` }
+                    { text: progressSuffix(player, quest, current, required) }
                 ]
             }
         });
@@ -449,7 +462,7 @@ export function buildQuestBody(quest, player) {
         if (player) {
             const current = getUseCount(player, quest.id);
             body.rawtext.push({
-                text: ` §7(${current}/${required})`
+                text: progressSuffix(player, quest, current, required)
             });
         }
     } else if (condition.useTag) {
@@ -460,7 +473,7 @@ export function buildQuestBody(quest, player) {
         });
         if (player) {
             const current = getUseCount(player, quest.id);
-            body.rawtext.push({ text: ` §7(${current}/${required})` });
+            body.rawtext.push({ text: progressSuffix(player, quest, current, required) });
         }
     } else if (condition.useEachItem) {
         const items = condition.useEachItem.items;
@@ -469,7 +482,7 @@ export function buildQuestBody(quest, player) {
             const required = item.amount || 1;
             const current = player ? getUseItemCount(player, quest.id, item.itemId) : 0;
             const name = item.name || { text: item.itemId };
-            const progress = player ? ` §7(${current}/${required})` : "";
+            const progress = player ? progressSuffix(player, quest, current, required) : "";
             body.rawtext.push({ text: "  " });
             body.rawtext.push(name);
             body.rawtext.push({ text: ` ${required} 个${progress}\n` });
@@ -482,7 +495,7 @@ export function buildQuestBody(quest, player) {
             with: {
                 rawtext: [
                     condition.hitEntityWithItem.name,
-                    { text: ` §7${current}/${required}` }
+                    { text: progressSuffix(player, quest, current, required) }
                 ]
             }
         });
@@ -609,12 +622,12 @@ world.afterEvents.playerSpawn.subscribe((event) => {
 
     if (!event.initialSpawn) return;
 
-    const hasReceived = player.getDynamicProperty(`${NAMESPACE}:received_book`);
+    const hasReceived = player.getDynamicProperty(`stonecraft:received_book`);
     if (hasReceived) return;
 
     const bookItem = new ItemStack(QUEST_BOOK_ID, 1);
     giveItem(player, bookItem);
-    player.setDynamicProperty(`${NAMESPACE}:received_book`, true);
+    player.setDynamicProperty(`stonecraft:received_book`, true);
 });
 
 world.afterEvents.itemUse.subscribe((event) => {

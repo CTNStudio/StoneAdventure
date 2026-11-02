@@ -1,0 +1,19 @@
+{
+  "format_version": "1.21.20",
+  "minecraft:template_pool": {
+    "description": {
+      "identifier": "stonecraft:pool_sunken_stone_altar"
+    },
+    "elements": [
+      {
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "projection": "rigid",
+          "processors": "stonecraft:sunken_stone_altar_processor",
+          "location": "mysturcture:sunken_stone_altar"
+        },
+        "weight": 1
+      }
+    ]
+  }
+}

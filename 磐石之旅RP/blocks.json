@@ -30,7 +30,7 @@
   "stonecraft:stone_convert_table": {
     "sound": "stone"
   },
-  "stonecraft:stone_smithing_table": {
+  "stonecraft:petrified_husk": {
     "sound": "stone"
   }
 }

@@ -1,0 +1,21 @@
+{
+    "format_version": "1.26.40",
+    "minecraft:structure_set": {
+        "description": {
+            "identifier": "stonecraft:sunken_stone_altar_structure_sets"
+        },
+        "placement": {
+            "type": "minecraft:random_spread",
+            "salt": 90214437,
+            "separation": 3,
+            "spacing": 10,
+            "spread_type": "linear"
+        },
+        "structures": [
+            {
+                "structure": "stonecraft:sunken_stone_altar",
+                "weight": 1
+            }
+        ]
+    }
+}

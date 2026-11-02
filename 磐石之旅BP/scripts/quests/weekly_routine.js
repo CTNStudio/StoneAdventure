@@ -5,14 +5,13 @@ import { displayMessage } from "../messageManager.js";
 import { buildQuestBody,  giveQuestAward, checkQuestConditionWithQuest, resetHitCount, getHitCount, giveItem } from "./quests_core.js";
 import { showMainMenu } from "./quests_ui.js";
 import { addStonePoint } from "../stone_point.js";
-const NAMESPACE = "stonecraft";
-const weekly_week_key = `${NAMESPACE}:weekly_week`;
-const weekly_quests_key = `${NAMESPACE}:weekly_quests`;
-const weekly_completed_prefix = `${NAMESPACE}:weekly_completed_`;
-const weekly_claimed_prefix = `${NAMESPACE}:weekly_claimed_`;
-const weekly_kill_prefix = `${NAMESPACE}:kill_progress_`;
-const weekly_use_prefix = `${NAMESPACE}:use_progress_`;
-const weekly_bonus_claimed_key = `${NAMESPACE}:weekly_bonus_claimed`;
+const weekly_week_key = `stonecraft:weekly_week`;
+const weekly_quests_key = `stonecraft:weekly_quests`;
+const weekly_completed_prefix = `stonecraft:weekly_completed_`;
+const weekly_claimed_prefix = `stonecraft:weekly_claimed_`;
+const weekly_kill_prefix = `stonecraft:kill_progress_`;
+const weekly_use_prefix = `stonecraft:use_progress_`;
+const weekly_bonus_claimed_key = `stonecraft:weekly_bonus_claimed`;
 
 function grantCompletionBonus(player) {
     const bonus = WEEKLY_COMPLETION_BONUS;
