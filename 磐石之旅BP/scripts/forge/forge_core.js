@@ -16,6 +16,7 @@ import {
     setMainHandItem,
 } from "./forge_utils.js";
 import InventoryUtil from "../utils/InventoryUtil.js";
+import { updatePlayerAttributes } from "./player_attributes.js";
 
 const BLOCK_ID = "stonecraft:stone_smithing_table";
 const STATE_FILLED = "stonecraft:filled_item";
@@ -91,6 +92,16 @@ function playPlaceWeaponSound(player) {
     player?.playSound?.("block.decorated_pot.insert");
   } catch {
   }
+}
+
+function refreshAttributes(player) {
+  system.run(() => {
+    try {
+      updatePlayerAttributes(player);
+    } catch (error) {
+      console.error("[Stonecraft] refresh attributes failed:", error);
+    }
+  });
 }
 
 function getItemTags(item) {
@@ -563,6 +574,7 @@ function onTakeOut(player, block) {
   if (!success) {
     giveItem(player, item);
   }
+  refreshAttributes(player);
   sendFeedback(player, "stonecraft.forge.take_out");
 }
 
@@ -635,6 +647,7 @@ function onApplyMaterial(player, block, heldItem) {
     if (!returned) {
       giveItem(player, result.item);
     }
+    refreshAttributes(player);
     playForgeSuccessSound(player);
     sendFeedback(player, isExpansionSlab(heldItem) ? "stonecraft.forge.completed_expansion" : "stonecraft.forge.completed_socket");
     return;
@@ -663,6 +676,7 @@ function onApplyMaterial(player, block, heldItem) {
     if (!returned) {
       giveItem(player, result.item);
     }
+    refreshAttributes(player);
     playForgeSuccessSound(player);
     sendFeedback(player, storedType === "slab" ? "stonecraft.forge.completed_expansion" : "stonecraft.forge.completed_socket");
     return;
@@ -701,39 +715,60 @@ function interactWithTable(event) {
   onApplyMaterial(player, block, heldItem);
 }
 
-export function initForgeCore() {
-  const register = (event) => {
-    try {
-      if (!event || !event.blockComponentRegistry) {
-        console.error("[Stonecraft] blockComponentRegistry is unavailable");
-        return;
+function registerForgeComponent(event) {
+  try {
+    if (!event || !event.blockComponentRegistry) {
+      console.error("[Stonecraft] blockComponentRegistry is unavailable");
+      return;
+    }
+    event.blockComponentRegistry.registerCustomComponent(
+      "stonecraft:stone_smithing_table",
+      { onPlayerInteract: interactWithTable }
+    );
+  } catch (error) {
+    console.error("[Stonecraft] forge core registration failed:", error);
+  }
+}
+
+// 2.10.0+ 只使用 system.beforeEvents.startup，worldInitialize 已废弃
+try {
+  system.beforeEvents.startup.subscribe(registerForgeComponent);
+} catch (error) {
+  console.error("[Stonecraft] system startup hook failed:", error);
+}
+
+//挖掉锻造台时把里面存的武器吐出来，避免直接消失
+//beforeEvents 是只读上下文：这里只能读方块数据，反序列化（会写耐久组件）必须留到 system.run 里做
+try {
+  world.beforeEvents.playerBreakBlock.subscribe((event) => {
+    const block = event.block;
+    if (!block || block.typeId !== BLOCK_ID) return;
+    if (!getBlockFilled(block)) return;
+
+    const blockKey = getBlockCacheKey(block);
+    const dataText = getStoredData(block) || BLOCK_CACHE.get(blockKey)?.data;
+    if (!dataText) return;
+
+    const dimension = block.dimension;
+    const location = block.location;
+
+    system.run(() => {
+      try {
+        const item = deserializeItemStack(dataText);
+        if (!item) return;
+        rebuildLore(item);
+        dimension.spawnItem(item, {
+          x: location.x + 0.5,
+          y: location.y + 0.5,
+          z: location.z + 0.5,
+        });
+      } catch (error) {
+        console.error("[Stonecraft] forge table drop failed:", error);
       }
-      event.blockComponentRegistry.registerCustomComponent(
-        "stonecraft:stone_smithing_table",
-        { onPlayerInteract: interactWithTable }
-      );
-    } catch (error) {
-      console.error("[Stonecraft] forge core registration failed:", error);
-    }
-  };
+    });
 
-  try {
-    if (system.beforeEvents && system.beforeEvents.startup && system.beforeEvents.startup.subscribe) {
-      system.beforeEvents.startup.subscribe(register);
-      return;
-    }
-  } catch (error) {
-    console.error("[Stonecraft] system startup hook failed:", error);
-  }
-
-  try {
-    if (world.beforeEvents && world.beforeEvents.worldInitialize && world.beforeEvents.worldInitialize.subscribe) {
-      world.beforeEvents.worldInitialize.subscribe(register);
-      return;
-    }
-  } catch (error) {
-    console.error("[Stonecraft] worldInitialize hook failed:", error);
-  }
-
-  console.error("[Stonecraft] no valid initialization event found for custom block registration");
+    BLOCK_CACHE.delete(blockKey);
+  });
+} catch (error) {
+  console.error("[Stonecraft] forge break hook failed:", error);
 }

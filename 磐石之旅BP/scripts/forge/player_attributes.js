@@ -228,7 +228,12 @@ function scheduleByName(
   );
 }
 
+let playerAttributesInitialized = false;
+
 export function initPlayerAttributes() {
+  if (playerAttributesInitialized) return;
+  playerAttributesInitialized = true;
+
   const afterEvents =
     world?.afterEvents ?? {};
 
@@ -382,6 +387,6 @@ export function initPlayerAttributes() {
         );
       }
     },
-    1
+    20
   );
 }

@@ -1,5 +1,5 @@
 import {
-  system, world,
+  system,
 } from "@minecraft/server";
 
 import {
@@ -269,26 +269,6 @@ export function tryBulwarkBlock(player, damage) { //坚壁
   return Math.random() * 100 < chance;
 }
 
-let bulwarkInitialized = false;
-
 export function initBulwark() {
-  if (bulwarkInitialized) return;
-  bulwarkInitialized = true;
-
-  world.beforeEvents.entityHurt.subscribe((event) => {
-    try {
-      const player = event.hurtEntity;
-      if (!player || player.typeId !== "minecraft:player") return;
-
-      const level = getOrZero(player, "stonecraft:bulwark", 0);
-      if (level <= 0) return;
-
-      const chance = 5 + ((level - 1) * 45) / 11;
-      if (Math.random() * 100 < chance) {
-        event.cancel = true;
-      }
-    } catch (error) {
-      console.warn("[Stonecraft] bulwark hurt check failed", error);
-    }
-  });
+  // 坚壁判定统一在 stone_heart_core.js 的 entityHurt 中完成，此处不再重复订阅
 }

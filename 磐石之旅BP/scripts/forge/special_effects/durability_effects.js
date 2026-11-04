@@ -79,7 +79,12 @@ function repairPlayerEquipment(player) {
   }
 }
 
+let durabilityEffectsInitialized = false;
+
 export function initDurabilityEffects() {
+  if (durabilityEffectsInitialized) return;
+  durabilityEffectsInitialized = true;
+
   system.runInterval(() => {
     for (const player of world.getAllPlayers()) {
       try {

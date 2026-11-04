@@ -7,7 +7,6 @@
 //  · 连击未造成伤害（无敌帧）时原版同样扣耐久，这里也统一为 1 点
 import {
   system,
-  world,
 } from "@minecraft/server";
 
 //组件 ID：物品 JSON 里以 "stonecraft:attack_durability_1": {} 声明
@@ -15,48 +14,33 @@ export const ATTACK_DURABILITY_COMPONENT = "stonecraft:attack_durability_1";
 
 const ATTACK_DURABILITY_COST = 1;
 
-export function initAttackDurability() {
-  const register = (event) => {
-    try {
-      if (!event || !event.itemComponentRegistry) {
-        console.error("[Stonecraft] itemComponentRegistry is unavailable");
-        return;
+function registerAttackDurability(event) {
+  try {
+    if (!event || !event.itemComponentRegistry) {
+      console.error("[Stonecraft] itemComponentRegistry is unavailable");
+      return;
+    }
+    event.itemComponentRegistry.registerCustomComponent(
+      ATTACK_DURABILITY_COMPONENT,
+      {
+        //durabilityDamage 是可写属性（官方文档中未标注 read-only）
+        onBeforeDurabilityDamage: (durabilityEvent) => {
+          try {
+            durabilityEvent.durabilityDamage = ATTACK_DURABILITY_COST;
+          } catch (e) {
+            console.warn("[Stonecraft] attack durability override failed", e);
+          }
+        },
       }
-      event.itemComponentRegistry.registerCustomComponent(
-        ATTACK_DURABILITY_COMPONENT,
-        {
-          //durabilityDamage 是可写属性（官方文档中未标注 read-only）
-          onBeforeDurabilityDamage: (durabilityEvent) => {
-            try {
-              durabilityEvent.durabilityDamage = ATTACK_DURABILITY_COST;
-            } catch (e) {
-              console.warn("[Stonecraft] attack durability override failed", e);
-            }
-          },
-        }
-      );
-    } catch (error) {
-      console.error("[Stonecraft] attack durability registration failed:", error);
-    }
-  };
-
-  try {
-    if (system.beforeEvents && system.beforeEvents.startup && system.beforeEvents.startup.subscribe) {
-      system.beforeEvents.startup.subscribe(register);
-      return;
-    }
+    );
   } catch (error) {
-    console.error("[Stonecraft] startup hook failed:", error);
+    console.error("[Stonecraft] attack durability registration failed:", error);
   }
+}
 
-  try {
-    if (world.beforeEvents && world.beforeEvents.worldInitialize && world.beforeEvents.worldInitialize.subscribe) {
-      world.beforeEvents.worldInitialize.subscribe(register);
-      return;
-    }
-  } catch (error) {
-    console.error("[Stonecraft] worldInitialize hook failed:", error);
-  }
-
-  console.error("[Stonecraft] no valid initialization event found for attack durability component");
+// 2.10.0+ 只使用 system.beforeEvents.startup，worldInitialize 已废弃
+try {
+  system.beforeEvents.startup.subscribe(registerAttackDurability);
+} catch (error) {
+  console.error("[Stonecraft] startup hook failed:", error);
 }

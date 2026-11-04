@@ -338,7 +338,12 @@ function applyLegacyUcStoneSwordEffects(attacker, target) {
   return applied;
 }
 
+let weaponEffectsInitialized = false;
+
 export function initWeaponEffects() {
+  if (weaponEffectsInitialized) return;
+  weaponEffectsInitialized = true;
+
   const hitEvent = world.afterEvents.entityHitEntity;
   if (!hitEvent) return;
 

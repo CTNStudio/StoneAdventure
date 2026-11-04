@@ -292,7 +292,12 @@ function tickComboStates() {
   }
 }
 
+let comboEffectsInitialized = false;
+
 export function initComboEffects() {
+  if (comboEffectsInitialized) return;
+  comboEffectsInitialized = true;
+
   const beforeHurt = world.beforeEvents?.entityHurt;
   if (beforeHurt?.subscribe) {
     beforeHurt.subscribe((event) => {

@@ -49,7 +49,12 @@ function removeSpearSpeed(player) {
     }
 }
 
+let spearEffectsInitialized = false;
+
 export function initSpearEffects() {
+    if (spearEffectsInitialized) return;
+    spearEffectsInitialized = true;
+
     world.afterEvents.itemStartUse.subscribe((event) => {
         try {
             const player = event.source;

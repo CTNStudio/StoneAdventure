@@ -62,7 +62,12 @@ function applySunder(attacker, target) {
   } catch {}
 }
 
+let damageEffectsInitialized = false;
+
 export function initDamageEffects() {
+  if (damageEffectsInitialized) return;
+  damageEffectsInitialized = true;
+
   world.beforeEvents.entityHurt.subscribe((event) => {
     const source = event.damageSource;
     if (!source || source.cause !== "entityAttack") return;

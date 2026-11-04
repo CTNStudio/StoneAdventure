@@ -1,5 +1,5 @@
 {
-  "format_version": "1.20.70",
+  "format_version": "1.26.30",
   "minecraft:entity": {
     "description": {
       "identifier": "stonecraft:spire_remnant",
@@ -8,56 +8,206 @@
       "is_experimental": false
     },
     "component_groups": {
-      "stonecraft:phase_one": {
+      "stonecraft:p1_easy": {
+        "minecraft:health": {
+          "value": 100,
+          "max": 100
+        },
+        "minecraft:attack": {
+          "damage": 4
+        },
+        "minecraft:movement": {
+          "value": 0.207
+        }
+      },
+      "stonecraft:p1_normal": {
+        "minecraft:health": {
+          "value": 125,
+          "max": 125
+        },
+        "minecraft:attack": {
+          "damage": 5
+        },
         "minecraft:movement": {
           "value": 0.23
         }
       },
-      "stonecraft:phase_two": {
-        "minecraft:area_attack": {
-          "cause": "entity_attack",
-          "damage_cooldown": 4.0,
-          "damage_per_tick": 6,
-          "damage_range": 5.0,
-          "entity_filter": {
-            "test": "is_family",
-            "subject": "other",
-            "value": "player"
-          }
-        },
-        "minecraft:movement": {
-          "value": 0.35
+      "stonecraft:p1_hard": {
+        "minecraft:health": {
+          "value": 150,
+          "max": 150
         },
         "minecraft:attack": {
-          "damage": 10
+          "damage": 6
+        },
+        "minecraft:movement": {
+          "value": 0.253
+        }
+      },
+      "stonecraft:p2_easy": {
+        "minecraft:attack": {
+          "damage": 4
+        },
+        "minecraft:movement": {
+          "value": 0.28
         },
         "minecraft:damage_sensor": {
           "triggers": [
             {
-              "damage_multiplier": 0.6
+              "damage_multiplier": 0.85
             }
           ]
         }
       },
-      "stonecraft:easy_attack": {
+      "stonecraft:p2_normal": {
         "minecraft:attack": {
           "damage": 6
+        },
+        "minecraft:movement": {
+          "value": 0.33
+        },
+        "minecraft:damage_sensor": {
+          "triggers": [
+            {
+              "damage_multiplier": 0.8
+            }
+          ]
         }
       },
-      "stonecraft:normal_attack": {
+      "stonecraft:p2_hard": {
         "minecraft:attack": {
           "damage": 8
+        },
+        "minecraft:movement": {
+          "value": 0.38
+        },
+        "minecraft:damage_sensor": {
+          "triggers": [
+            {
+              "damage_multiplier": 0.7
+            }
+          ]
         }
       },
-      "stonecraft:hard_attack": {
-        "minecraft:attack": {
-          "damage": 10
+      "stonecraft:fireball_easy": {
+        "minecraft:behavior.ranged_attack": {
+          "priority": 3,
+          "attack_interval": 11,
+          "attack_radius": 48,
+          "burst_interval": 0.3,
+          "burst_shots": 1
+        }
+      },
+      "stonecraft:fireball_normal": {
+        "minecraft:behavior.ranged_attack": {
+          "priority": 3,
+          "attack_interval": 8,
+          "attack_radius": 48,
+          "burst_interval": 0.3,
+          "burst_shots": 1
+        }
+      },
+      "stonecraft:fireball_hard": {
+        "minecraft:behavior.ranged_attack": {
+          "priority": 3,
+          "attack_interval": 6,
+          "attack_radius": 48,
+          "burst_interval": 0.3,
+          "burst_shots": 2
+        }
+      },
+      "stonecraft:summon_easy": {
+        "minecraft:behavior.summon_entity": {
+          "priority": 2,
+          "summon_choices": [
+            {
+              "cast_duration": 0.5,
+              "cooldown_time": 15,
+              "min_activation_range": 0,
+              "max_activation_range": 16,
+              "weight": 1,
+              "sequence": [
+                {
+                  "entity_type": "stonecraft:stone_block",
+                  "num_entities_spawned": 1,
+                  "shape": "circle",
+                  "size": 2,
+                  "base_delay": 0,
+                  "delay_per_summon": 0
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "stonecraft:summon_normal": {
+        "minecraft:behavior.summon_entity": {
+          "priority": 2,
+          "summon_choices": [
+            {
+              "cast_duration": 0.5,
+              "cooldown_time": 12,
+              "min_activation_range": 0,
+              "max_activation_range": 16,
+              "weight": 1,
+              "sequence": [
+                {
+                  "entity_type": "stonecraft:stone_block",
+                  "num_entities_spawned": 2,
+                  "shape": "circle",
+                  "size": 2,
+                  "base_delay": 0,
+                  "delay_per_summon": 0
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "stonecraft:summon_hard": {
+        "minecraft:behavior.summon_entity": {
+          "priority": 2,
+          "summon_choices": [
+            {
+              "cast_duration": 0.5,
+              "cooldown_time": 9,
+              "min_activation_range": 0,
+              "max_activation_range": 16,
+              "weight": 1,
+              "sequence": [
+                {
+                  "entity_type": "stonecraft:stone_block",
+                  "num_entities_spawned": 3,
+                  "shape": "circle",
+                  "size": 2,
+                  "base_delay": 0,
+                  "delay_per_summon": 0
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "stonecraft:melee_mode": {
+        "minecraft:behavior.melee_attack": {
+          "priority": 3,
+          "melee_fov": 90,
+          "reach_multiplier": 1,
+          "speed_multiplier": 1,
+          "track_target": false,
+          "require_complete_path": true
         }
       }
     },
     "components": {
       "minecraft:type_family": {
-        "family": ["monster", "boss", "stone_boss", "undead", "mob"]
+        "family": [
+          "monster",
+          "boss",
+          "stone_boss",
+          "undead",
+          "mob"
+        ]
       },
       "minecraft:loot": {
         "table": "loot_tables/entities/spire_remnant.json"
@@ -67,12 +217,20 @@
       },
       "minecraft:boss": {
         "should_darken_sky": true,
-        "name": "高塔余裔",
+        "name": "§5高塔余裔",
         "hud_range": 16
       },
+      "minecraft:persistent": {},
+      "minecraft:nameable": {},
       "minecraft:health": {
         "value": 150,
         "max": 150
+      },
+      "minecraft:attack": {
+        "damage": 8
+      },
+      "minecraft:movement": {
+        "value": 0.23
       },
       "minecraft:collision_box": {
         "height": 1.8,
@@ -81,23 +239,18 @@
       "minecraft:scale": {
         "value": 1.2
       },
-      "minecraft:pushable": {
-        "is_pushable": false,
-        "is_pushable_by_piston": false
+      "minecraft:pushable_by_entity": {
+        "presets": [
+          {
+            "push_mode": "none"
+          }
+        ]
       },
       "minecraft:knockback_resistance": {
         "value": 100
       },
-      "minecraft:area_attack": {
-        "cause": "entity_attack",
-        "damage_cooldown": 5.0,
-        "damage_per_tick": 5,
-        "damage_range": 2.5,
-        "entity_filter": {
-          "test": "is_family",
-          "subject": "other",
-          "value": "player"
-        }
+      "minecraft:shooter": {
+        "def": "minecraft:small_fireball"
       },
       "minecraft:behavior.hurt_by_target": {
         "priority": 1,
@@ -105,8 +258,18 @@
           {
             "filters": {
               "all_of": [
-                { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone_boss" },
-                { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone" }
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "operator": "!=",
+                  "value": "stone_boss"
+                },
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "operator": "!=",
+                  "value": "stone"
+                }
               ]
             },
             "max_dist": 16
@@ -115,22 +278,42 @@
       },
       "minecraft:behavior.nearest_attackable_target": {
         "priority": 3,
-        "within_radius": 10,
+        "within_radius": 48,
         "must_reach": false,
         "reselect_targets": true,
-        "must_see_forget_duration": 17.0,
+        "must_see_forget_duration": 17,
         "entity_types": [
           {
             "filters": {
               "any_of": [
-                { "test": "is_family", "subject": "other", "value": "player" },
-                { "test": "is_family", "subject": "other", "value": "snowgolem" },
-                { "test": "is_family", "subject": "other", "value": "irongolem" },
-                { "test": "is_family", "subject": "other", "value": "warden" },
-                { "test": "is_family", "subject": "other", "value": "wandering_trader"}
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "value": "player"
+                },
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "value": "snowgolem"
+                },
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "value": "irongolem"
+                },
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "value": "warden"
+                },
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "value": "wandering_trader"
+                }
               ]
             },
-            "max_dist": 48.0,
+            "max_dist": 48,
             "must_see": true
           },
           {
@@ -154,20 +337,9 @@
         ],
         "must_see": true
       },
-      "minecraft:behavior.melee_attack": {
-        "priority": 3,
-        "melee_fov": 90.0,
-        "reach_multiplier": 1.0,
-        "speed_multiplier": 1.0,
-        "track_target": false,
-        "require_complete_path": true
-      },
-      "minecraft:behavior.move_indoors": {
-        "priority": 4
-      },
       "minecraft:behavior.random_stroll": {
         "priority": 6,
-        "speed_multiplier": 1.0
+        "speed_multiplier": 1
       },
       "minecraft:behavior.look_at_player": {
         "look_distance": 8,
@@ -194,7 +366,7 @@
         "avoid_water": true,
         "avoid_sun": false,
         "can_walk": true,
-        "can_break_doors": true,
+        "can_break_doors": false,
         "can_pass_doors": true
       }
     },
@@ -202,41 +374,163 @@
       "minecraft:entity_spawned": {
         "sequence": [
           {
+            "filters": {
+              "test": "is_difficulty",
+              "value": "easy"
+            },
             "add": {
-              "component_groups": ["stonecraft:phase_one"]
+              "component_groups": [
+                "stonecraft:p1_easy",
+                "stonecraft:fireball_easy",
+                "stonecraft:summon_easy",
+                "stonecraft:melee_mode"
+              ]
             }
           },
           {
-            "filters": { "test": "is_difficulty", "value": "easy" },
+            "filters": {
+              "test": "is_difficulty",
+              "value": "normal"
+            },
             "add": {
-              "component_groups": ["stonecraft:easy_attack"]
+              "component_groups": [
+                "stonecraft:p1_normal",
+                "stonecraft:fireball_normal",
+                "stonecraft:summon_normal",
+                "stonecraft:melee_mode"
+              ]
             }
           },
           {
-            "filters": { "test": "is_difficulty", "value": "normal" },
+            "filters": {
+              "test": "is_difficulty",
+              "value": "hard"
+            },
             "add": {
-              "component_groups": ["stonecraft:normal_attack"]
-            }
-          },
-          {
-            "filters": { "test": "is_difficulty", "value": "hard" },
-            "add": {
-              "component_groups": ["stonecraft:hard_attack"]
+              "component_groups": [
+                "stonecraft:p1_hard",
+                "stonecraft:fireball_hard",
+                "stonecraft:summon_hard",
+                "stonecraft:melee_mode"
+              ]
             }
           }
         ]
       },
-      "stonecraft:enter_phase_two": {
+      "stonecraft:enter_phase_two_easy": {
         "remove": {
           "component_groups": [
-            "stonecraft:phase_one",
-            "stonecraft:easy_attack",
-            "stonecraft:normal_attack",
-            "stonecraft:hard_attack"
+            "stonecraft:p1_easy"
           ]
         },
         "add": {
-          "component_groups": ["stonecraft:phase_two"]
+          "component_groups": [
+            "stonecraft:p2_easy"
+          ]
+        }
+      },
+      "stonecraft:enter_phase_two_normal": {
+        "remove": {
+          "component_groups": [
+            "stonecraft:p1_normal"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "stonecraft:p2_normal"
+          ]
+        }
+      },
+      "stonecraft:enter_phase_two_hard": {
+        "remove": {
+          "component_groups": [
+            "stonecraft:p1_hard"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "stonecraft:p2_hard"
+          ]
+        }
+      },
+      "stonecraft:mode_ranged_easy": {
+        "remove": {
+          "component_groups": [
+            "stonecraft:melee_mode"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "stonecraft:fireball_easy"
+          ]
+        }
+      },
+      "stonecraft:mode_ranged_normal": {
+        "remove": {
+          "component_groups": [
+            "stonecraft:melee_mode"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "stonecraft:fireball_normal"
+          ]
+        }
+      },
+      "stonecraft:mode_ranged_hard": {
+        "remove": {
+          "component_groups": [
+            "stonecraft:melee_mode"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "stonecraft:fireball_hard"
+          ]
+        }
+      },
+      "stonecraft:mode_melee": {
+        "remove": {
+          "component_groups": [
+            "stonecraft:fireball_easy",
+            "stonecraft:fireball_normal",
+            "stonecraft:fireball_hard"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "stonecraft:melee_mode"
+          ]
+        }
+      },
+      "stonecraft:summon_off": {
+        "remove": {
+          "component_groups": [
+            "stonecraft:summon_easy",
+            "stonecraft:summon_normal",
+            "stonecraft:summon_hard"
+          ]
+        }
+      },
+      "stonecraft:summon_on_easy": {
+        "add": {
+          "component_groups": [
+            "stonecraft:summon_easy"
+          ]
+        }
+      },
+      "stonecraft:summon_on_normal": {
+        "add": {
+          "component_groups": [
+            "stonecraft:summon_normal"
+          ]
+        }
+      },
+      "stonecraft:summon_on_hard": {
+        "add": {
+          "component_groups": [
+            "stonecraft:summon_hard"
+          ]
         }
       }
     }

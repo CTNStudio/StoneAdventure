@@ -201,11 +201,10 @@ function reflectArrow(player, shooter) {
 	} catch {
 	}
 }
-//眩晕：定身 + 削弱（劫掠兽被盾挡下攻击后进入此状态）
+//眩晕：触发劫掠兽原版眩晕事件（定身 + 眩晕动作）
 function stunEntity(entity) {
 	try {
-		entity.addEffect("slowness", 40, { amplifier: 255, showParticles: false });
-		entity.addEffect("weakness", 40, { amplifier: 4, showParticles: false });
+		entity.triggerEvent("minecraft:become_stunned");
 	} catch {
 	}
 }

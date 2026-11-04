@@ -1,11 +1,11 @@
 {
-  "format_version": "1.21.20",
+  "format_version": "1.21.90",
   "minecraft:item": {
     "description": {
       "identifier": "stonecraft:lv5stone_boots",
       "menu_category": {
         "category": "equipment",
-        "group": "itemGroup.name.boots"
+        "group": "minecraft:itemGroup.name.boots"
       }
     },
     "components": {
@@ -24,6 +24,9 @@
       "minecraft:wearable": {
         "slot": "slot.armor.feet",
         "protection": 6
+      },
+      "xy:toughness": {
+        "value": 4
       },
       "minecraft:repairable": {
         "repair_items": [
