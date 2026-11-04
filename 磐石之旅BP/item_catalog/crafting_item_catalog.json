@@ -127,6 +127,25 @@
                   ]
                }
             ]
+         },
+         {
+            "category_name" : "equipment",
+            "groups" : [
+               {
+                  "group_identifier" : {
+                     "icon" : "stonecraft:stone_shield",
+                     "name" : "stonecraft:itemGroup.name.stone_shield"
+                  },
+                  "items" : [
+                     "stonecraft:stone_shield",
+                     "stonecraft:stone_shield_lv1",
+                     "stonecraft:stone_shield_lv2",
+                     "stonecraft:stone_shield_lv3",
+                     "stonecraft:stone_shield_lv4",
+                     "stonecraft:stone_shield_lv5"
+                  ]
+               }
+            ]
          }
       ]
    }

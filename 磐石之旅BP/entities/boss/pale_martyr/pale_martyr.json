@@ -60,8 +60,8 @@
           "mob_effect": "darkness"
         },
         "minecraft:teleport": {
-          "max_random_teleport_time": 3.0,
-          "min_random_teleport_time": 2.0,
+          "max_random_teleport_time": 3,
+          "min_random_teleport_time": 2,
           "random_teleport_cube": [
             5,
             2,
@@ -77,15 +77,16 @@
           "knockback_vertical_strength": 1.5,
           "knockback_horizontal_strength": 1.5,
           "knockback_height_cap": 0.5,
-          "attack_sound": "sonic_charge",
+          "charge_sound": "block.sculk_shrieker.shriek",
+          "attack_sound": "block.sculk_catalyst.bloom",
           "priority": 1
         },
         "minecraft:behavior.melee_attack": {
           "priority": 2,
-          "melee_fov": 90.0,
-          "speed_multiplier": 1.0,
+          "melee_fov": 90,
+          "speed_multiplier": 1,
           "track_target": false,
-          "reach_multiplier": 2.0
+          "reach_multiplier": 2
         },
         "minecraft:behavior.charge_attack": {
           "priority": 4,
@@ -101,7 +102,7 @@
           "within_radius": 10,
           "must_reach": false,
           "reselect_targets": true,
-          "must_see_forget_duration": 17.0,
+          "must_see_forget_duration": 17,
           "entity_types": [
             {
               "filters": {
@@ -133,7 +134,7 @@
                   }
                 ]
               },
-              "max_dist": 48.0,
+              "max_dist": 48,
               "must_see": true
             }
           ]
@@ -147,6 +148,10 @@
         },
         "minecraft:damage_sensor": {
           "triggers": [
+            {
+              "cause": "suffocation",
+              "deals_damage": "no"
+            },
             {
               "cause": "all",
               "deals_damage": "yes"
@@ -177,7 +182,7 @@
         },
         "broadcast_range": 32,
         "duration": 25
-},
+      },
       "minecraft:attack": {
         "damage": 8,
         "effect_duration": 8,
@@ -218,10 +223,10 @@
         "on_death": "query.last_hit_by_player ? 2000 : 0"
       },
       "minecraft:knockback_resistance": {
-        "value": 100.0
+        "value": 100
       },
       "minecraft:scale": {
-        "value": 1.0
+        "value": 1
       },
       "minecraft:collision_box": {
         "height": 1.8,
@@ -251,7 +256,7 @@
       "minecraft:jump.static": {},
       "minecraft:behavior.look_at_player": {
         "priority": 8,
-        "look_distance": 8.0,
+        "look_distance": 8,
         "probability": 0.02
       }
     },

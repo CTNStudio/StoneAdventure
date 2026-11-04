@@ -9,6 +9,7 @@ stonecraft:itemGroup.name.versatile=石质多功能工具
 stonecraft:itemGroup.name.stone_hammer=石锤
 stonecraft:itemGroup.name.inlaid_essence_bead=镶髓石珠
 stonecraft:itemGroup.name.blood_relics=血祭遗物
+stonecraft:itemGroup.name.stone_shield=石盾
 
 stonecraft.item.head_debris=头颅残骸
 stonecraft.item.head_shard=头颅残片

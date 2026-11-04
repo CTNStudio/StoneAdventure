@@ -2,7 +2,6 @@ import { world, system, MolangVariableMap, GameMode } from "@minecraft/server";
 import { Boss, BossSkill, BossServer } from "../lib/StarTenonAPI/api.js";
 
 const bossServer = new BossServer();
-
 //幽匿感测体技能：轮询周期 20 刻
 const sculkSensorSkill = new BossSkill(
   "stonecraft:sculk_sensor",// 技能 id
@@ -26,7 +25,6 @@ const PHASE2_TAG = "stonecraft:pale_martyr_phase_2";
 const STARTED_TAG = "stonecraft:pale_martyr_started";
 const MAX_HP = 360;
 const MIN_HP = 10;
-const INTERVAL_TICKS = 5;
 const MERGE_TICKS = 50;
 const MERGE_STEP = 2;
 const MERGE_PARTICLES = [
@@ -74,7 +72,7 @@ function reactToVibration(entity, vibration) {
   const { location } = vibration;
   const dimension = entity.dimension;
 
-  //A：幽匿感测体的点击音效与粒子
+  //幽匿感测体的点击音效与粒子
   try {
     dimension.playSound("block.sculk_sensor.clicking", location, { volume: 1, pitch: 1 });
   } catch {
@@ -93,7 +91,7 @@ function reactToVibration(entity, vibration) {
     z: from.z - location.z,
   });
 
-  //B：朝声源靠近，保留 3 格间距避免贴脸
+  //朝声源靠近，保留 3 格间距避免贴脸
   try {
     const dx = from.x - location.x;
     const dy = from.y - location.y;
@@ -229,6 +227,166 @@ function enterPhase2(event) {
   playMergeEffect(event);
 }
 
+const PROP_PINCER_CD = "pm:pincer_cd";
+
+const pincerRunning = new Set();
+
+function pincerTarget(boss) {
+  let players;
+  try {
+    players = boss.dimension.getPlayers({
+      location: boss.location,
+      maxDistance: 48,
+    });
+  } catch {
+    return undefined;
+  }
+  let best;
+  let bestDist = Infinity;
+  for (const player of players) {
+    let mode;
+    try {
+      mode = player.getGameMode();
+    } catch {
+      continue;
+    }
+    if (mode === GameMode.Creative || mode === GameMode.Spectator) continue;
+    const dx = player.location.x - boss.location.x;
+    const dy = player.location.y - boss.location.y;
+    const dz = player.location.z - boss.location.z;
+    const dist = dx * dx + dy * dy + dz * dz;
+    if (dist < bestDist) {
+      bestDist = dist;
+      best = player;
+    }
+  }
+  return best;
+}
+
+function castPincer(boss) {
+  if (pincerRunning.has(boss.id)) return false;
+
+  const target = pincerTarget(boss);
+  if (!target) return false;
+
+  let shards;
+  try {
+    shards = boss.dimension.getEntities({
+      type: "stonecraft:pale_martyr_shard",
+      location: boss.location,
+      maxDistance: 64,
+    });
+  } catch {
+    return false;
+  }
+  if (shards.length === 0) return false;
+
+  pincerRunning.add(boss.id);
+  const dimension = boss.dimension;
+  const count = shards.length;
+
+  let center = { ...target.location };
+  let locked;
+  let points = [];
+
+  const ring = (origin) => {
+    const list = [];
+    for (let i = 0; i < count; i++) {
+      const angle = (Math.PI * 2 * i) / count;
+      list.push({
+        x: origin.x + Math.cos(angle) * 4,
+        y: origin.y,
+        z: origin.z + Math.sin(angle) * 4,
+      });
+    }
+    return list;
+  };
+
+  const place = (list) => {
+    for (let i = 0; i < count; i++) {
+      try {
+        if (shards[i].isValid) shards[i].teleport(list[i]);
+      } catch {
+      }
+    }
+  };
+
+  const follow = system.runInterval(() => {
+    if (!boss.isValid) {
+      system.clearRun(follow);
+      pincerRunning.delete(boss.id);
+      return;
+    }
+    if (!locked) {
+      try {
+        if (target.isValid) center = { ...target.location };
+      } catch {
+      }
+      points = ring(center);
+    }
+    place(points);
+  }, 2);
+
+  points = ring(center);
+  place(points);
+
+  try {
+    dimension.playSound("block.sculk_sensor.clicking", center, { volume: 1, pitch: 0.6 });
+  } catch {
+  }
+
+  system.runTimeout(() => {
+    if (!boss.isValid) {
+      system.clearRun(follow);
+      pincerRunning.delete(boss.id);
+      return;
+    }
+    locked = { ...center };
+    points = ring(locked);
+    place(points);
+    for (const pos of points) {
+      spawnMergeParticle(
+        dimension,
+        "minecraft:sculk_soul",
+        { x: pos.x, y: pos.y + 0.6, z: pos.z },
+        { x: 0, y: 1, z: 0 }
+      );
+    }
+  }, 30);
+
+  system.runTimeout(() => {
+    system.clearRun(follow);
+    pincerRunning.delete(boss.id);
+    if (!boss.isValid || !locked) return;
+
+    for (let i = 0; i < count; i++) {
+      try {
+        const shard = shards[i];
+        if (!shard.isValid) continue;
+        const pos = points[i];
+        const dx = locked.x - pos.x;
+        const dy = locked.y - pos.y;
+        const dz = locked.z - pos.z;
+        const len = Math.hypot(dx, dy, dz) || 1;
+        shard.clearVelocity();
+        shard.applyImpulse({
+          x: (dx / len) * 1.5,
+          y: (dy / len) * 1.5 + 0.2,
+          z: (dz / len) * 1.5,
+        });
+      } catch {
+      }
+    }
+
+    try {
+      dimension.playSound("mob.warden.roar", locked, { volume: 1, pitch: 1.1 });
+    } catch {
+    }
+  }, 45);
+
+  return true;
+}
+
 function tickEntity(event) {
   if (!event.isValid) {
     events.delete(event);
@@ -237,6 +395,14 @@ function tickEntity(event) {
   const current = healthOf(event);
   if (current === undefined || current <= 0) return;
   if (event.hasTag(PHASE2_TAG)) return;
+
+  let pincerCd = event.getDynamicProperty(PROP_PINCER_CD);
+  if (typeof pincerCd !== "number") pincerCd = 600;
+  pincerCd -= 5;
+  if (pincerCd <= 0) {
+    pincerCd = castPincer(event) ? 600 : 500;
+  }
+  event.setDynamicProperty(PROP_PINCER_CD, pincerCd);
 
   const shards = event.dimension.getEntities({ type: "stonecraft:pale_martyr_shard" });
   let remaining = 0;
@@ -306,4 +472,36 @@ world.afterEvents.worldLoad.subscribe(() => {
 
 system.runInterval(() => {
   for (const event of events) tickEntity(event);
-}, INTERVAL_TICKS);
+}, 5);
+
+function canHearHeartbeat(player) {
+  try {
+    const mode = player.getGameMode();
+    return mode !== GameMode.Creative && mode !== GameMode.Spectator;
+  } catch {
+    return false;
+  }
+}
+
+system.runInterval(() => {
+  if (events.size === 0) return;
+  for (const boss of [...events]) {
+    if (!boss?.isValid) continue;
+    let players;
+    try {
+      players = boss.dimension.getPlayers({
+        location: boss.location,
+        maxDistance: 16,
+      });
+    } catch {
+      continue;
+    }
+    for (const player of players) {
+      if (!canHearHeartbeat(player)) continue;
+      player.playSound("mob.warden.heartbeat", {
+        volume: 10.0,
+        pitch: 0.9,
+      });
+    }
+  }
+}, 20);
