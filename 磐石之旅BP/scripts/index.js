@@ -10,6 +10,7 @@ import { displayMessage } from "./messageManager.js";
 import "./items/food.js";
 import "./items/durability.js";
 import "./items/attack_durability.js";
+import { initItemLock } from "./items/item_lock.js";
 import "./entities/entities_effect.js";
 import "./blocks/ore_blocks.js";
 import "./items/stone_nugget.js";
@@ -50,7 +51,7 @@ initSpearEffects();
 initComboEffects();
 initDurabilityEffects();
 initDamageEffects();
-
+initItemLock();
 world.afterEvents.playerSpawn.subscribe((eventData) => {
     if (!eventData.initialSpawn) return;
     const player = eventData.player;

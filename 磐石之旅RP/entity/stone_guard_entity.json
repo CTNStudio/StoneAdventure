@@ -25,6 +25,7 @@
         "damage_nearby_mobs": "animation.humanoid.damage_nearby_mobs",
         "use_item_progress": "animation.humanoid.use_item_progress",
         "zombie_attack_bare_hand": "animation.zombie.attack_bare_hand",
+        "baby_zombie_attack_bare_hand": "animation.zombie.baby_attack_bare_hand",
         "swimming": "animation.humanoid.swimming"
       },
       "animation_controllers": [
@@ -54,7 +55,8 @@
         },
         {
           "damage_nearby_mobs": "controller.animation.humanoid.damage_nearby_mobs"
-        },
+        },
+
         {
           "use_item_progress": "controller.animation.humanoid.use_item_progress"
         },

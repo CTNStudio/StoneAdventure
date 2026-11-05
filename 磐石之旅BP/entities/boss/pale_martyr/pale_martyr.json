@@ -161,6 +161,9 @@
       }
     },
     "components": {
+      "minecraft:loot": {
+        "table": "loot_tables/entities/pale_martyr.json"
+      },
       "minecraft:breathable": {
         "breathes_solids": true,
         "breathes_air": true,

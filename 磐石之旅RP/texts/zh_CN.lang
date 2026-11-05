@@ -189,6 +189,7 @@ stonecraft.item.longer_blindness_potion=失明药水
 stonecraft.item.potion_of_growth=萌芽药水
 stonecraft.item.potion_of_corruption=腐化药水
 stonecraft.item.stone_heart=石心
+stonecraft.item.septem_seal_stone=七兆印石
 
 item.spawn_egg.entity.stonecraft:stone_guard.name=石头守卫刷怪蛋
 item.spawn_egg.entity.stonecraft:elder_stone_guard.name=远古石头守卫刷怪蛋

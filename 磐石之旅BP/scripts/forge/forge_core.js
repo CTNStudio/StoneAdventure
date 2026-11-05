@@ -15,7 +15,7 @@ import {
     getOrZero,
     setMainHandItem,
 } from "./forge_utils.js";
-import InventoryUtil from "../utils/InventoryUtil.js";
+import InventoryUtil from "../lib/StoneAPI/InventoryUtil.js";
 import { updatePlayerAttributes } from "./player_attributes.js";
 
 const BLOCK_ID = "stonecraft:stone_smithing_table";

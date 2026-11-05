@@ -4,7 +4,7 @@ import {
     EntityComponentTypes,
 } from "@minecraft/server";
 import { getOrZero } from "../forge_utils.js";
-import InventoryUtil from "../../utils/InventoryUtil.js";
+import InventoryUtil from "../../lib/StoneAPI/InventoryUtil.js";
 
 function getMainHandItem(player) {
     return InventoryUtil.getMainHandItem(player);

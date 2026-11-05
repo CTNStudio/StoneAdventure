@@ -26,7 +26,7 @@
                         },
                         "block_entity_modifier": {
                             "type": "minecraft:append_loot",
-                            "loot_table": "loot_tables/chests/ancient_stone_altar.json"
+                            "loot_table": "loot_tables/chests/sunken_stone_altar.json"
                         }
                     },
                     {
@@ -47,7 +47,7 @@
                         },
                         "block_entity_modifier": {
                             "type": "minecraft:append_loot",
-                            "loot_table": "loot_tables/chests/ancient_stone_altar.json"
+                            "loot_table": "loot_tables/chests/sunken_stone_altar.json"
                         }
                     },
                     {
@@ -68,7 +68,7 @@
                         },
                         "block_entity_modifier": {
                             "type": "minecraft:append_loot",
-                            "loot_table": "loot_tables/chests/ancient_stone_altar.json"
+                            "loot_table": "loot_tables/chests/sunken_stone_altar.json"
                         }
                     },
                     {
@@ -89,7 +89,7 @@
                         },
                         "block_entity_modifier": {
                             "type": "minecraft:append_loot",
-                            "loot_table": "loot_tables/chests/ancient_stone_altar.json"
+                            "loot_table": "loot_tables/chests/sunken_stone_altar.json"
                         }
                     }
                 ]

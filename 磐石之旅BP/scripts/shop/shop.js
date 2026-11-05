@@ -4,7 +4,7 @@ import { giveItem } from "../quests/quests_core.js";
 import { SHOP_TRADES } from "./shop_config.js";
 import { addStonePoint, getStonePoint, removeStonePoint } from "../stone_point.js";
 import { showMainMenu } from "../quests/quests_ui.js";
-import InventoryUtil from "../utils/InventoryUtil.js";
+import InventoryUtil from "../lib/StoneAPI/InventoryUtil.js";
 
 function hasEnoughItems(player, requirements) {
     for (const req of requirements) {

@@ -400,7 +400,7 @@ function tickEntity(event) {
   if (typeof pincerCd !== "number") pincerCd = 600;
   pincerCd -= 5;
   if (pincerCd <= 0) {
-    pincerCd = castPincer(event) ? 600 : 500;
+    pincerCd = castPincer(event) ? 600 : 50;
   }
   event.setDynamicProperty(PROP_PINCER_CD, pincerCd);
 

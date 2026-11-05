@@ -387,6 +387,9 @@
     "stonecraft.ersatz_blood_vial": {
       "textures": "textures/items/sacrifice/ersatz_blood_vial"
     },
+    "stonecraft.septem_seal_stone": {
+      "textures": "textures/items/treasures/septem_seal_stone"
+    },
     "stonecraft.spawn_eggs": {
       "textures": [
         "textures/items/spawn_eggs/spawn_egg_stone_shooter",//0

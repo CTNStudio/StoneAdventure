@@ -1,0 +1,186 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "stonecraft:lv5stone",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 6,
+                "max": 16
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:echo_shard",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 4,
+                "max": 8
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:sculk_catalyst",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "stonecraft:stone_star",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "stonecraft:stone_coin",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 64,
+                "max": 80
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "stonecraft:inlaid_essence_bead",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 2,
+                "max": 4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "stonecraft:raw_stone_essence",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 8,
+                "max": 16
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "stonecraft:septem_seal_stone",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    //还要加专属的镶髓石珠
+    {
+      "conditions": [
+        {
+          "condition": "killed_by_player"
+        },
+        {
+          "condition": "random_chance_with_looting",
+          "chance": 1,
+          "looting_multiplier": 1
+        }
+      ],
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "stonecraft:ancient_stone_totem_doll",//要改，改成这家伙的doll
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

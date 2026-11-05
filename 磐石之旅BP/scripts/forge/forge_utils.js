@@ -4,7 +4,7 @@ import {
     EntityComponentTypes,
     ItemStack,
 } from "@minecraft/server";
-import InventoryUtil from "../utils/InventoryUtil.js";
+import InventoryUtil from "../lib/StoneAPI/InventoryUtil.js";
 
 export const ATTRIBUTE_DEFS = [
     {

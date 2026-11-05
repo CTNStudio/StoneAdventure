@@ -5,7 +5,7 @@ import { getUseCount, getUseItemCount, resetUseCount, resetUseItemCounts } from 
 import { displayMessage } from "../messageManager.js";
 import { checkWeeklyProgress, getWeeklyQuests, addWeeklyKillCount } from "./weekly_routine.js";
 import { addStonePoint, getStonePoint } from "../stone_point.js";
-import InventoryUtil from "../utils/InventoryUtil.js";
+import InventoryUtil from "../lib/StoneAPI/InventoryUtil.js";
 
 import {
     showQuestBook,
