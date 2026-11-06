@@ -415,6 +415,8 @@ sc.quest.spire_remnant_ach.title=真是黑心
 sc.quest.spire_remnant_ach.body=豪赤……个鬼
 sc.ach.hit_with_arrow.title=神射手
 sc.ach.hit_with_arrow.body=使用石箭射中640次实体
+sc.quest.stone_totem_ach.title=揭却四兆
+sc.quest.stone_totem_ach.body=击败一次石之图腾
 
 stonecraft.settings.title=设置
 stonecraft.settings.body=磐石之旅设置

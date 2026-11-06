@@ -158,9 +158,9 @@
             "minecraft:spawn_entity": {
                 "entities": [
                 {
-                    "min_wait_time": 8,
-                    "max_wait_time": 8,
-                    "num_to_spawn": 2,
+                    "min_wait_time": 10,
+                    "max_wait_time": 10,
+                    "num_to_spawn": 1,
                     "single_use": false,
                     "spawn_event": "minecraft:timer",
                     "spawn_entity": "stonecraft:stone_puppet"
@@ -169,7 +169,7 @@
             },
             "minecraft:timer": {
                 "looping": false,
-                "time": 8.0,
+                "time": 10.0,
                 "time_down_event": {
                     "event": "stonecraft:show_particles"
                 }

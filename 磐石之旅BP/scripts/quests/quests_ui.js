@@ -10,6 +10,9 @@ import {
     giveQuestAward,
     buildQuestBody,
     checkQuestConditionWithQuest,
+    isRewardClaimed,
+    notifyQuestCompleted,
+    checkAutoAchievement,
 } from "./quests_core.js";
 import { CHAPTERS } from "./quests.js";
 import { showWeeklyMenu } from "./weekly_routine.js";
@@ -124,6 +127,10 @@ function showTaskChapters(player) {
 }
 
 function showChapterQuests(player, chapter, backCallback) {
+    //打开章节时补一次自动提交检查，覆盖「物品早就在背包里」的情况
+    for (const quest of chapter.quests) {
+        if (quest.autoComplete === true) checkAutoAchievement(player, quest);
+    }
     const form = new ActionFormData();
     form.title(chapter.title);
     if (chapter.description) form.body(chapter.description);
@@ -150,16 +157,20 @@ function showChapterQuests(player, chapter, backCallback) {
 
 function showQuestDetail(player, quest, returnCallback) {
     const isCompleted = isQuestCompleted(player, quest);
+    const manualReward = quest.manualReward === true;
+    const canClaim = isCompleted && manualReward && !isRewardClaimed(player, quest.id);
     const body = buildQuestBody(quest, player);
     const form = new MessageFormData()
         .title(quest.title)
         .body(body)
         .button1({ translate: "gui.back" });
 
-    if (isCompleted) {
-        form.button2({ translate: "quest.done" });
-    } else {
+    if (!isCompleted) {
         form.button2({ translate: "quest.check" });
+    } else if (canClaim) {
+        form.button2({ translate: "quest.claim_reward" });
+    } else {
+        form.button2({ translate: "quest.reward_claimed" });
     }
 
     form.show(player).then((response) => {
@@ -170,16 +181,14 @@ function showQuestDetail(player, quest, returnCallback) {
             } else {
                 showQuestBook(player);
             }
-        } else if (response.selection === 1) {
-            if (isCompleted) {
-                if (returnCallback) {
-                    returnCallback(player);
-                } else {
-                    showQuestBook(player);
-                }
-            } else {
-                tryCompleteQuest(player, quest, returnCallback);
-            }
+            return;
+        }
+        if (!isCompleted) {
+            tryCompleteQuest(player, quest, returnCallback);
+        } else if (canClaim) {
+            claimQuestReward(player, quest, () => showQuestDetail(player, quest, returnCallback));
+        } else {
+            displayMessage(player, { translate: "quest.reward_already_claimed" });
         }
     });
 }
@@ -204,6 +213,14 @@ function tryCompleteQuest(player, quest, returnCallback) {
     }
 
     markQuestCompleted(player, quest);
+
+    //手动领奖的任务：提交后停在详情页，由玩家点「领取奖励」
+    if (quest.manualReward === true) {
+        notifyQuestCompleted(player, quest);
+        showQuestDetail(player, quest, returnCallback);
+        return;
+    }
+
     giveQuestAward(player, quest);
 
     if (returnCallback) {
@@ -211,6 +228,20 @@ function tryCompleteQuest(player, quest, returnCallback) {
     } else {
         showQuestBook(player);
     }
+}
+
+function claimQuestReward(player, quest, afterCallback) {
+    if (quest.manualReward !== true || isRewardClaimed(player, quest.id)) {
+        displayMessage(player, { translate: "quest.reward_already_claimed" });
+        if (afterCallback) afterCallback(player);
+        return;
+    }
+
+    giveQuestAward(player, quest);
+    player.playSound("random.orb");
+    displayMessage(player, { translate: "quest.reward_claimed_success" });
+
+    if (afterCallback) afterCallback(player);
 }
 
 //生物志
@@ -260,52 +291,6 @@ function showQuestList(player, quests, title, backCallback) {
             return;
         }
         const selectedQuest = quests[response.selection];
-        showQuestDetailWithBack(player, selectedQuest, () => showQuestList(player, quests, title, backCallback));
+        showQuestDetail(player, selectedQuest, () => showQuestList(player, quests, title, backCallback));
     });
-}
-
-function showQuestDetailWithBack(player, quest, backCallback) {
-    const isCompleted = isQuestCompleted(player, quest);
-    const body = buildQuestBody(quest, player);
-    const form = new MessageFormData()
-        .title(quest.title)
-        .body(body)
-        .button1({ translate: "gui.back" });
-    if (isCompleted) {
-        form.button2({ translate: "quest.done" });
-    } else {
-        form.button2({ translate: "quest.check" });
-    }
-    form.show(player).then((response) => {
-        if (response.canceled || response.selection === undefined) {
-            if (backCallback) backCallback(player);
-            return;
-        }
-        if (response.selection === 0) {
-            if (backCallback) backCallback(player);
-        } else if (response.selection === 1) {
-            if (isCompleted) {
-                if (backCallback) backCallback(player);
-            } else {
-                tryCompleteQuestWithBack(player, quest, backCallback);
-            }
-        }
-    });
-}
-
-function tryCompleteQuestWithBack(player, quest, backCallback) {
-    if (isQuestCompleted(player, quest)) {
-        displayMessage(player, { translate: "quest.already_completed" });
-        if (backCallback) backCallback(player);
-        return;
-    }
-    const result = checkQuestConditionWithQuest(player, quest);
-    if (!result.success) {
-        displayMessage(player, { rawtext: result.messages });
-        showQuestDetailWithBack(player, quest, backCallback);
-        return;
-    }
-    markQuestCompleted(player, quest);
-    giveQuestAward(player, quest);
-    if (backCallback) backCallback(player);
 }

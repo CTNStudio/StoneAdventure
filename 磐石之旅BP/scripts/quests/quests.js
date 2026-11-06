@@ -938,7 +938,7 @@ export const CHAPTERS = [
                         }
                     ]
                 },
-                iconPath: "textures/items/foods/stone_heart"
+                iconPath: "textures/items/foods/stone_heart_item"
             },
             {
                 id: "sacrificial_blade",

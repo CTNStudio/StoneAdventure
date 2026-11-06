@@ -9,26 +9,38 @@ const useItemToQuests = new Map();
 const USE_ITEM_PREFIX = "use_item_progress_"; // 用于分物品计数
 const useTagToQuests = new Map();
 const itemConditionQuests = new Map();
+const tagConditionQuests = new Map();
 
 function initItemConditionMap() {
     itemConditionQuests.clear();
-    const achievementsChapter = CHAPTERS.find(ch => ch.id === "sc_achievements");
-    if (!achievementsChapter) return;
-    for (const quest of achievementsChapter.quests) {
-        const cond = quest.condition;
-        let itemIds = [];
-        if (cond.item) {
-            itemIds.push(cond.item.itemId);
-        } else if (cond.anyItem) {
-            itemIds = cond.anyItem.map(it => it.itemId);
-        } else if (cond.allItems) {
-            itemIds = cond.allItems.map(it => it.itemId);
-        }
-        for (const id of itemIds) {
-            if (!itemConditionQuests.has(id)) {
-                itemConditionQuests.set(id, []);
+    tagConditionQuests.clear();
+    for (const chapter of CHAPTERS) {
+        for (const quest of chapter.quests) {
+            if (quest.autoComplete !== true) continue;
+            const cond = quest.condition;
+            let itemIds = [];
+            if (cond.item) {
+                itemIds.push(cond.item.itemId);
+            } else if (cond.anyItem) {
+                itemIds = cond.anyItem.map(it => it.itemId);
+            } else if (cond.allItems) {
+                itemIds = cond.allItems.map(it => it.itemId);
             }
-            itemConditionQuests.get(id).push(quest);
+            for (const id of itemIds) {
+                if (!itemConditionQuests.has(id)) {
+                    itemConditionQuests.set(id, []);
+                }
+                itemConditionQuests.get(id).push(quest);
+            }
+            if (Array.isArray(cond.anyTag)) {
+                for (const tagItem of cond.anyTag) {
+                    if (!tagItem?.tag) continue;
+                    if (!tagConditionQuests.has(tagItem.tag)) {
+                        tagConditionQuests.set(tagItem.tag, []);
+                    }
+                    tagConditionQuests.get(tagItem.tag).push(quest);
+                }
+            }
         }
     }
 }
@@ -266,16 +278,29 @@ world.afterEvents.playerInventoryItemChange.subscribe((event) => {
     const player = event.player;
     if (!player) return;
 
+    let item = event.itemStack;
+    if (!item) {
+        try {
+            item = player.getComponent("inventory")?.container?.getItem(event.slot);
+        } catch {
+        }
+    }
+    if (!item) return;
+
+    const itemId = item.typeId;
+    const itemTags = item.getTags?.() ?? [];
+
     // 延迟 2 个 tick，确保物品已完全更新到背包
     system.runTimeout(() => {
-        // 遍历所有物品条件任务（来自 itemConditionQuests 映射）
-        for (const [itemId, quests] of itemConditionQuests) {
-            for (const quest of quests) {
-                // 只检查自动完成的任务（避免非自动任务被意外触发）
-                if (quest.autoComplete === true) {
-                    checkAutoAchievement(player, quest);
-                }
-            }
+        // 只查与本次变动物品相关的任务，避免每次背包变动都全表扫描
+        const quests = new Set();
+        for (const quest of itemConditionQuests.get(itemId) ?? []) quests.add(quest);
+        for (const tag of itemTags) {
+            for (const quest of tagConditionQuests.get(tag) ?? []) quests.add(quest);
+        }
+        for (const quest of quests) {
+            if (isQuestCompleted(player, quest)) continue;
+            checkAutoAchievement(player, quest);
         }
     }, 2);
 });

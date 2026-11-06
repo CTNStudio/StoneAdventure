@@ -26,7 +26,7 @@ export const ACHIEVEMENTS_CHAPTER = {
                     itemId: "minecraft:cobblestone",
                     amount: 1,
                     name: {
-                        translate: "tile.stone.cobblestone.name"
+                        translate: "tile.cobblestone.name"
                     }
                 }
             },
@@ -325,6 +325,39 @@ export const ACHIEVEMENTS_CHAPTER = {
                 ]
             },
             iconPath: "textures/items/foods/stone_bread"
+        },
+        {
+            id: "stone_totem_ach",
+            title: { translate: "sc.quest.stone_totem_ach.title" },
+            description: {
+                rawtext: [
+                    { translate: "sc.quest.stone_totem_ach.body"  },
+                    { text: "\n" }
+                ]
+            },
+            autoComplete: true,
+            manualReward: true,
+            condition: {
+                killEntity: {
+                    entityType: "stonecraft:ancient_stone_totem",
+                    amount: 1,
+                    name: { translate: "entity.stonecraft:ancient_stone_totem.name" }
+                }
+            },
+            award: {
+                 exp: 200,
+                 stonePoint: 100,
+                 items: [
+                    {
+                        itemId: "stonecraft:inlaid_essence_bead_combo",
+                        amount: 1,
+                        name: {
+                            translate: "stonecraft.item.stone_essence_crystal.combo"
+                        }
+                    }
+                ]
+            },
+            iconPath: "textures/ui/quest/entities/ancient_stone_totem"
         },
         {
             id: "lv5stone_armors_ach",

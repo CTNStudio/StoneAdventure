@@ -21,6 +21,11 @@ const achievementRegistry = new AchievementRegistry()
     .autoRegisterFromChapters(CHAPTERS)
     .start();
 
+//成就章节的任务 id，用于区分「任务」与「成就」的完成提示与成就弹窗
+const achievementQuestIds = new Set(
+    (CHAPTERS.find((chapter) => chapter.id === "sc_achievements")?.quests ?? []).map((quest) => quest.id)
+);
+
 const QUEST_BOOK_ID = `stonecraft:stone_encyclopedia`;
 const kill_prefix = "kill_progress_";
 const hit_prefix = "hit_progress_";
@@ -329,11 +334,10 @@ export function isQuestCompleted(player, quest) {
 
 export function markQuestCompleted(player, quest) {
     player.addTag(`stonecraft:${quest.id}`);
-    //成就章节的任务完成时弹成就 Toast（未注册的成就 id 会被忽略）
-    achievementRegistry.grant(player, `custom.achievement.${quest.id}`);
-    if (quest.condition.useEachItem) {
-        const items = quest.condition.useEachItem.items;
-        resetUseItemCounts(player, quest.id, items);
+    //只有已登记的成就才弹 Toast，普通任务不再触发「未注册的成就」警告
+    const achievementId = `custom.achievement.${quest.id}`;
+    if (achievementRegistry.get(achievementId)) {
+        achievementRegistry.grant(player, achievementId);
     }
     if (quest.condition.useEachItem) {
         resetUseItemCounts(player, quest.id, quest.condition.useEachItem.items);
@@ -548,7 +552,7 @@ export function checkAutoAchievement(player, quest) {
     const result = checkQuestConditionWithQuest(player, quest);
     if (!result.success) return false;
     markQuestCompleted(player, quest);
-    notifyAchievementComplete(player, quest);
+    notifyCompleted(player, quest);
     return true;
 }
 
@@ -571,6 +575,30 @@ export function notifyAchievementComplete(player, quest) {
         ]
     };
     displayMessage(player, message);
+}
+
+//任务（非成就）的提交成功提示
+export function notifyQuestCompleted(player, quest) {
+    if (!player || !quest) return;
+    player.playSound("random.orb");
+    const titleMessage = typeof quest.title === "string" ? { text: quest.title } : quest.title;
+    displayMessage(player, {
+        rawtext: [
+            { translate: "quest.done" },
+            { text: "「" },
+            titleMessage,
+            { text: "」" }
+        ]
+    });
+}
+
+//按章节分流完成提示：成就走成就 Toast，任务走任务提示
+function notifyCompleted(player, quest) {
+    if (achievementQuestIds.has(quest.id)) {
+        notifyAchievementComplete(player, quest);
+    } else {
+        notifyQuestCompleted(player, quest);
+    }
 }
 
 //事件监听

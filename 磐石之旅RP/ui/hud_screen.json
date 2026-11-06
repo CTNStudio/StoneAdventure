@@ -172,27 +172,18 @@
     "type": "panel",
     "anchor_from": "top_right",
     "anchor_to": "top_right",
-    "size": [
-      "100%c",
-      "100%c"
-    ],
+    "size": [ "100%c", "100%c" ],
     "controls": [
       {
         "pudding": {
           "type": "panel",
-          "size": [
-            0,
-            2
-          ]
+          "size": [ 0, 2 ]
         }
       },
       {
         "custom.achievement.cobblestone_ach@hud.achievement_element": {
           "$when_draw": "custom.achievement.cobblestone_ach",
-          "$uv": [
-            0,
-            0
-          ],
+          "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/ui/quest/cobblestone",
           "$achievement_text": "sc.quest.cobblestone_ach.title",
           "$content_text": "sc.quest.cobblestone_ach.body"
@@ -201,10 +192,7 @@
       {
         "custom.achievement.andesite_ach@hud.achievement_element": {
           "$when_draw": "custom.achievement.andesite_ach",
-          "$uv": [
-            0,
-            0
-          ],
+          "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/ui/quest/andesite_ach",
           "$achievement_text": "sc.quest.andesite_ach.title",
           "$content_text": "sc.quest.andesite_ach.body"
@@ -213,10 +201,7 @@
       {
         "custom.achievement.stone_guard_ach@hud.achievement_element": {
           "$when_draw": "custom.achievement.stone_guard_ach",
-          "$uv": [
-            0,
-            0
-          ],
+          "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/ui/quest/entities/stone_guard",
           "$achievement_text": "sc.quest.stone_guard_ach.title",
           "$content_text": "sc.quest.stone_guard_ach.body"
@@ -225,10 +210,7 @@
       {
         "custom.achievement.stone_shooter_ach@hud.achievement_element": {
           "$when_draw": "custom.achievement.stone_shooter_ach",
-          "$uv": [
-            0,
-            0
-          ],
+          "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/ui/quest/entities/stone_shooter",
           "$achievement_text": "sc.quest.stone_shooter_ach.title",
           "$content_text": "sc.quest.stone_shooter_ach.body"
@@ -237,10 +219,7 @@
       {
         "custom.achievement.spire_remnant_ach@hud.achievement_element": {
           "$when_draw": "custom.achievement.spire_remnant_ach",
-          "$uv": [
-            0,
-            0
-          ],
+          "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/ui/quest/entities/spire_remnant",
           "$achievement_text": "sc.quest.spire_remnant_ach.title",
           "$content_text": "sc.quest.spire_remnant_ach.body"
@@ -249,10 +228,7 @@
       {
         "custom.achievement.hit_with_arrow_ach@hud.achievement_element": {
           "$when_draw": "custom.achievement.hit_with_arrow_ach",
-          "$uv": [
-            0,
-            0
-          ],
+          "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/items/stone_arrow",
           "$achievement_text": "sc.ach.hit_with_arrow.title",
           "$content_text": "sc.ach.hit_with_arrow.body"
@@ -261,10 +237,7 @@
       {
         "custom.achievement.stone_food_ach@hud.achievement_element": {
           "$when_draw": "custom.achievement.stone_food_ach",
-          "$uv": [
-            0,
-            0
-          ],
+          "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/items/foods/stone_bread",
           "$achievement_text": "sc.quest.stone_food_ach.title",
           "$content_text": "sc.quest.stone_food_ach.body"
@@ -273,10 +246,7 @@
       {
         "custom.achievement.stone_baguette_ach@hud.achievement_element": {
           "$when_draw": "custom.achievement.stone_baguette_ach",
-          "$uv": [
-            0,
-            0
-          ],
+          "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/items/foods/stone_bread",
           "$achievement_text": "sc.quest.stone_baguette_ach.title",
           "$content_text": "sc.quest.stone_baguette_ach.body"
@@ -285,22 +255,25 @@
       {
         "custom.achievement.stone_food_collector_ach@hud.achievement_element": {
           "$when_draw": "custom.achievement.stone_food_collector_ach",
-          "$uv": [
-            0,
-            0
-          ],
+          "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/items/foods/stone_bread",
           "$achievement_text": "sc.quest.stone_food_collector_ach.title",
           "$content_text": "sc.quest.stone_food_collector_ach.body"
         }
       },
       {
+        "custom.achievement.stone_totem_ach@hud.achievement_element": {
+          "$when_draw": "custom.achievement.stone_totem_ach",
+          "$uv": [ 0, 0 ],
+          "$achievement_icon": "textures/ui/quest/entities/ancient_stone_totem",
+          "$achievement_text": "sc.quest.stone_totem_ach.title",
+          "$content_text": "sc.quest.stone_totem_ach.body"
+        }
+      },
+      {
         "custom.achievement.lv5stone_armors_ach@hud.achievement_element": {
           "$when_draw": "custom.achievement.lv5stone_armors_ach",
-          "$uv": [
-            0,
-            0
-          ],
+          "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/items/armors/chestplates/lv5",
           "$achievement_text": "sc.quest.lv5stone_armors.title",
           "$content_text": "sc.quest.lv5stone_armors.body"
