@@ -717,3 +717,49 @@ stonecraft.item.stone_shield_lv3=Tier 3 Compressed Stone Shield
 stonecraft.item.stone_shield_lv2=Tier 2 Compressed Stone Shield
 stonecraft.item.stone_shield_lv1=Tier 1 Compressed Stone Shield
 
+
+## 七兆印石 lore
+stonecraft.septem_seal_line_1=§8Unseals the Sevenfold Seal when used
+stonecraft.septem_seal_line_2=§cSeven Curses
+stonecraft.septem_seal_line_3=§7· Petrified: slowed, always hungry, mining fatigue, weakened strikes
+stonecraft.septem_seal_line_4=§7· Take more damage; stone heart heals at half rate
+stonecraft.septem_seal_line_5=§7· Cannot trade with villagers or wandering traders
+stonecraft.septem_seal_line_6=§7· Tools and armor wear twice as fast
+stonecraft.septem_seal_line_7=§7· Neutral creatures are no longer friendly
+stonecraft.septem_seal_line_8=§7· Blinded in the dark
+stonecraft.septem_seal_line_9=§7· Can never sleep
+stonecraft.septem_seal_line_10=§aSeven Blessings
+stonecraft.septem_seal_line_11=§7· Slaying stone-born creatures yields stone essence
+stonecraft.septem_seal_line_12=§7· Slaying creatures grants extra experience
+stonecraft.septem_seal_line_13=§7· Weekly completion rewards are doubled
+stonecraft.septem_seal_line_14=§7· Immune to the Warden's sonic boom
+stonecraft.septem_seal_line_15=§7· Keep more experience on death
+stonecraft.septem_seal_line_16=§7· Doll effects are doubled
+stonecraft.septem_seal_line_17=§7· Unleash the true power of some weapons
+
+## 七兆印石界面与提示
+stonecraft.septem.title=§5Sevenfold Seal
+stonecraft.septem.line1=You will bear seven curses.
+stonecraft.septem.line2=Seven blessings take effect too.
+stonecraft.septem.line3=Curses can be lifted one by one, at a cost.
+stonecraft.septem.ask=Unseal it now?
+stonecraft.septem.ok=Confirm
+stonecraft.septem.already=§7You already bear the Sevenfold Seal.
+stonecraft.septem.no_item=§cThe seal stone is not in your hand.
+stonecraft.septem.failed=§cThe seal failed.
+stonecraft.septem.done_title=§5§lThe Sevenfold Seal is broken
+stonecraft.septem.done_body=§7Seven curses and seven blessings are now active. See the Stone Encyclopedia for details.
+stonecraft.septem.cmd.no_seal=§7You do not bear the Seven Curses.
+stonecraft.septem.cmd.curse_done=§aCurse lifted: 
+stonecraft.septem.cmd.bless_done=§aBlessing lifted: 
+stonecraft.septem.cmd.bad_index=§cThe index must be 1-7.
+stonecraft.septem.cancel=Back
+stonecraft.septem.body=You will bear seven curses.\n\nSeven blessings take effect too.\n\nCurses can be lifted one by one, at a cost.\n\nUnseal it now?
+
+## 七咒界面
+stonecraft.septem.detail_title=Sevenfold Seal
+stonecraft.septem.menu_none=§8Sevenfold Seal: unbroken
+stonecraft.septem.menu_have=§5Sevenfold Seal: curses 
+stonecraft.septem.menu_bless= · blessings 
+stonecraft.septem.curse3_blocked=§cThe Seven Curses bar you from trading.
+stonecraft.septem.curse7_blocked=§cThe Seven Curses keep you from sleeping.

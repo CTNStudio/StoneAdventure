@@ -1,6 +1,27 @@
 import { world, system } from '@minecraft/server';
 
 const ITEM_LORE_CONFIG = {
+    'stonecraft:septem_seal_stone': [
+        { translate: 'stonecraft.septem_seal_line_1' },
+        { text: ' ' },
+        { translate: 'stonecraft.septem_seal_line_2' },
+        { translate: 'stonecraft.septem_seal_line_3' },
+        { translate: 'stonecraft.septem_seal_line_4' },
+        { translate: 'stonecraft.septem_seal_line_5' },
+        { translate: 'stonecraft.septem_seal_line_6' },
+        { translate: 'stonecraft.septem_seal_line_7' },
+        { translate: 'stonecraft.septem_seal_line_8' },
+        { translate: 'stonecraft.septem_seal_line_9' },
+        { text: ' ' },
+        { translate: 'stonecraft.septem_seal_line_10' },
+        { translate: 'stonecraft.septem_seal_line_11' },
+        { translate: 'stonecraft.septem_seal_line_12' },
+        { translate: 'stonecraft.septem_seal_line_13' },
+        { translate: 'stonecraft.septem_seal_line_14' },
+        { translate: 'stonecraft.septem_seal_line_15' },
+        { translate: 'stonecraft.septem_seal_line_16' },
+        { translate: 'stonecraft.septem_seal_line_17' }
+    ],
     'stonecraft:expansion_slab': [
         { translate: 'stonecraft.expansion_slab' },
         { translate: 'stonecraft.expansion_slab_lore' }

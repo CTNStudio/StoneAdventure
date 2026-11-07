@@ -1,5 +1,6 @@
 import { world, system, MolangVariableMap, GameMode, ItemStack } from "@minecraft/server";
 import { Boss, BossSkill, BossServer } from "../lib/StarTenonAPI/api.js";
+import { getLethalCredit } from "../forge/damage_credit.js";
 
 const bossServer = new BossServer();
 //幽匿感测体技能：轮询周期 20 刻
@@ -439,6 +440,10 @@ function sealKillerOf(dead, damageSource) {
   } catch {
   }
   if (attacker?.typeId === "minecraft:player") return attacker;
+
+  //破甲/失血这类直接改血的最后一击：用锻造模块登记的归属，比"附近玩家"准确
+  const credited = getLethalCredit(dead);
+  if (credited?.isValid) return credited;
 
   //死因不是玩家（摔落、火焰等）时，归给附近最近的玩家
   let players;

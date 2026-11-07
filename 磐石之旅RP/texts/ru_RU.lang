@@ -712,3 +712,49 @@ stonecraft.item.stone_shield_lv3=Сжатый каменный щит III
 stonecraft.item.stone_shield_lv2=Сжатый каменный щит II
 stonecraft.item.stone_shield_lv1=Сжатый каменный щит I
 
+
+## 七兆印石 lore
+stonecraft.septem_seal_line_1=§8При использовании снимает Семикратную печать
+stonecraft.septem_seal_line_2=§cСемь проклятий
+stonecraft.septem_seal_line_3=§7· Окаменение: замедление, постоянный голод, усталость при добыче, слабые удары
+stonecraft.septem_seal_line_4=§7· Получаемый урон выше; каменное сердце восстанавливается вдвое медленнее
+stonecraft.septem_seal_line_5=§7· Нельзя торговать с крестьянами и странствующими торговцами
+stonecraft.septem_seal_line_6=§7· Инструменты и броня изнашиваются вдвое быстрее
+stonecraft.septem_seal_line_7=§7· Нейтральные существа больше не дружелюбны
+stonecraft.septem_seal_line_8=§7· Слепота в темноте
+stonecraft.septem_seal_line_9=§7· Невозможно уснуть
+stonecraft.septem_seal_line_10=§aСемь благословений
+stonecraft.septem_seal_line_11=§7· Убийство каменных созданий даёт каменную эссенцию
+stonecraft.septem_seal_line_12=§7· Убийство существ даёт дополнительный опыт
+stonecraft.septem_seal_line_13=§7· Награды за полное недельное задание удваиваются
+stonecraft.septem_seal_line_14=§7· Иммунитет к звуковой волне Хранителя
+stonecraft.septem_seal_line_15=§7· Больше опыта сохраняется после смерти
+stonecraft.septem_seal_line_16=§7· Эффекты кукол удваиваются
+stonecraft.septem_seal_line_17=§7· Истинная сила некоторых видов оружия раскрыта
+
+## 七兆印石界面与提示
+stonecraft.septem.title=§5Семикратная печать
+stonecraft.septem.line1=Вы понесёте семь проклятий.
+stonecraft.septem.line2=Семь благословений также вступят в силу.
+stonecraft.septem.line3=Проклятия можно снимать по одному, но за цену.
+stonecraft.septem.ask=Снять печать сейчас?
+stonecraft.septem.ok=Подтвердить
+stonecraft.septem.already=§7Вы уже несёте Семикратную печать.
+stonecraft.septem.no_item=§cКамень печати не в руке.
+stonecraft.septem.failed=§cПечать не сработала.
+stonecraft.septem.done_title=§5§lСемикратная печать снята
+stonecraft.septem.done_body=§7Семь проклятий и семь благословений вступили в силу. Подробности — в Каменной энциклопедии.
+stonecraft.septem.cmd.no_seal=§7Вы не несёте Семь проклятий.
+stonecraft.septem.cmd.curse_done=§aПроклятие снято: 
+stonecraft.septem.cmd.bless_done=§aБлагословение снято: 
+stonecraft.septem.cmd.bad_index=§cИндекс должен быть от 1 до 7.
+stonecraft.septem.cancel=Назад
+stonecraft.septem.body=Вы понесёте семь проклятий.\n\nСемь благословений также вступят в силу.\n\nПроклятия можно снимать по одному, но за цену.\n\nСнять печать сейчас?
+
+## 七咒界面
+stonecraft.septem.detail_title=Семикратная печать
+stonecraft.septem.menu_none=§8Семикратная печать: не снята
+stonecraft.septem.menu_have=§5Семикратная печать: проклятий 
+stonecraft.septem.menu_bless= · благословений 
+stonecraft.septem.curse3_blocked=§cСемь проклятий не дают вам торговать.
+stonecraft.septem.curse7_blocked=§cСемь проклятий не дают вам уснуть.

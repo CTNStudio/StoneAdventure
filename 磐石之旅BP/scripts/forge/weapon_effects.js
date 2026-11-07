@@ -14,6 +14,7 @@ import {
 import {
   clearEffect,
 } from "../items/food.js";
+import { recordLethalCredit } from "./damage_credit.js";
 
 const EFFECT_HANDLERS = {
   wither: (attacker, target, level) => {
@@ -59,7 +60,7 @@ const EFFECT_HANDLERS = {
     });
   },
   bleeding: (attacker, target, level) => {
-    addBleedingEffect(target, level);
+    addBleedingEffect(target, level, attacker);
   },
   accumulate: () => {},
 };
@@ -73,7 +74,7 @@ function clampLevel(level) {
 
 const bleedingStates = new Map();
 
-export function addBleedingEffect(target, level) {
+export function addBleedingEffect(target, level, attacker) {
   if (!target || !target.isValid) return;
 
   const healthComp = target.getComponent("minecraft:health");
@@ -93,6 +94,8 @@ export function addBleedingEffect(target, level) {
     existing.level = level;
     existing.endTick = tick + durationTicks;
     existing.lastHitTick = tick;
+    //换成最新的攻击者，失血打死时算他的击杀
+    if (attacker) existing.attackerRef = attacker;
     return;
   }
 
@@ -100,6 +103,7 @@ export function addBleedingEffect(target, level) {
     level,
     endTick: tick + durationTicks,
     lastHitTick: tick,
+    attackerRef: attacker,
     intervalId: undefined,
   };
 
@@ -155,6 +159,14 @@ export function addBleedingEffect(target, level) {
     }
 
     const newHealth = Math.max(0, health.currentValue - damage);
+    //这一下会打死目标：先把击杀归属记下来（直接改血不会经过引擎的伤害来源系统）
+    if (newHealth <= 0) {
+      const attacker = s.attackerRef;
+      try {
+        if (attacker?.isValid) recordLethalCredit(target, attacker);
+      } catch {
+      }
+    }
     try {
       health.setCurrentValue(newHealth);
     } catch (e) {
@@ -257,6 +269,13 @@ function tickAccumulateWindows() {
     }
   }
 
+  //爆发后的 10 tick 免伤窗口，过期即清，避免按实体 id 无界增长
+  for (const [id, graceUntil] of accumulateGraceUntil) {
+    if (tick > graceUntil + 100) {
+      accumulateGraceUntil.delete(id);
+    }
+  }
+
   if (accumulateWindows.size === 0) return;
 
   for (const [targetId, record] of accumulateWindows) {
@@ -284,7 +303,8 @@ function tickAccumulateWindows() {
     const health = target.getComponent("minecraft:health");
     if (!health || health.currentValue <= 0) continue;
 
-    const multiplier = ACCUMULATE_MULTIPLIERS[Math.min(record.level, 3)] ?? 1;
+    //等级 1/2/3 → 1.2/1.5/2.0 倍，数组下标 = 等级 - 1
+    const multiplier = ACCUMULATE_MULTIPLIERS[Math.min(Math.max(record.level, 1), 3) - 1] ?? 1;
     const finalDamage = record.damage * multiplier;
 
     accumulateGraceUntil.set(targetId, tick + 10);
@@ -383,7 +403,6 @@ export function initWeaponEffects() {
       if (!attacker || attacker.typeId !== "minecraft:player") return;
       if (!target || typeof target.addEffect !== "function") return;
 
-      const cacheKeys = ATTRIBUTE_DEFS.map((def) => def.playerKey);
       let appliedAny = false;
 
       for (const def of ATTRIBUTE_DEFS) {
@@ -403,13 +422,6 @@ export function initWeaponEffects() {
 
       if (!appliedAny) {
         appliedAny = applyItemDynamicEffects(attacker, target) || applyLegacyUcStoneSwordEffects(attacker, target);
-      }
-
-      for (const key of cacheKeys) {
-        const total = clampLevel(getOrZero(attacker, key, 0));
-        if (total < 0) {
-          attacker.setDynamicProperty(key, 0);
-        }
       }
     } catch (error) {
       console.error("[Stonecraft] entityHitEntity failed:", error);

@@ -4,16 +4,7 @@
     "description": {
       "identifier": "stonecraft:stone_smithing_table",
       "states": {
-        "stonecraft:filled_item": [false, true],
-        "stonecraft:filled_item_id": [
-          "none",
-          "stonecraft:uc_stone_sword",
-          "stonecraft:uc2_stone_sword",
-          "stonecraft:uc3_stone_sword"
-        ],
-        "stonecraft:filled_item_blindness": [false, true],
-        "stonecraft:filled_item_regeneration": [false, true],
-        "stonecraft:filled_item_wither": [false, true]
+        "stonecraft:filled_item": [false, true]
       },
       "traits": {
         "minecraft:placement_direction": {

@@ -6,6 +6,15 @@ import { displayMessage } from "../messageManager.js";
 import { checkWeeklyProgress, getWeeklyQuests, addWeeklyKillCount } from "./weekly_routine.js";
 import { addStonePoint, getStonePoint } from "../stone_point.js";
 import InventoryUtil from "../lib/StoneAPI/InventoryUtil.js";
+import { getLethalCredit } from "../forge/damage_credit.js";
+import {
+    COLOR_CLAIMABLE,
+    COLOR_DONE,
+    COLOR_RESET,
+    GLYPH_SUBMIT,
+    GLYPH_DONE,
+    titleNode,
+} from "./quest_marks.js";
 
 import {
     showQuestBook,
@@ -392,6 +401,54 @@ export function giveQuestAward(player, quest) {
     }
 }
 
+// ===== 列表显示状态（只读，不参与任何奖励判定/提交/领取） =====
+// 条件已满足但还没提交。这里只调纯判据函数，绝不调用 checkAutoAchievement
+// （那个会真的提交）；并且先用完成态兜住，避免击杀计数被清零后倒退回「未完成」。
+export function isQuestSubmittable(player, quest) {
+    if (!player || !quest) return false;
+    if (isQuestCompleted(player, quest)) return false;
+    return checkQuestConditionWithQuest(player, quest).success === true;
+}
+
+// 四态的列表皮肤：未完成 / 可提交 / 待领奖 / 已领奖
+// options.submitBadge=true 时才计算「可提交」（只有生物志需要，代价是逐条重算判据）
+export function buildQuestListLabel(player, quest, options = {}) {
+    if (!quest) return "";
+    if (isQuestCompleted(player, quest)) {
+        const manualReward = quest.manualReward === true;
+        // 已领奖，或本来就没有手动领奖步骤（生物志：奖励在提交时已发）
+        if (!manualReward || isRewardClaimed(player, quest.id)) {
+            return { rawtext: [titleNode(quest.title), { text: ` ${COLOR_DONE}${GLYPH_DONE}` }] };
+        }
+        // 已提交、奖励还没领：整名橙色
+        return { rawtext: [{ text: COLOR_CLAIMABLE }, titleNode(quest.title), { text: COLOR_RESET }] };
+    }
+    if (options.submitBadge === true && isQuestSubmittable(player, quest)) {
+        return { rawtext: [titleNode(quest.title), { text: ` ${COLOR_CLAIMABLE}${GLYPH_SUBMIT}` }] };
+    }
+    return quest.title;
+}
+
+// 章节按钮：有奖励待领 → 整名橙色；全部领完 → 末尾 ✔；其余保持原样
+export function buildChapterListLabel(player, chapter) {
+    const quests = chapter?.quests ?? [];
+    let hasClaimable = false;
+    let allDone = quests.length > 0;
+    for (const quest of quests) {
+        const completed = isQuestCompleted(player, quest);
+        const unclaimed = completed && quest.manualReward === true && !isRewardClaimed(player, quest.id);
+        if (unclaimed) hasClaimable = true;
+        if (!completed || unclaimed) allDone = false;
+    }
+    if (hasClaimable) {
+        return { rawtext: [{ text: COLOR_CLAIMABLE }, titleNode(chapter.title), { text: COLOR_RESET }] };
+    }
+    if (allDone) {
+        return { rawtext: [titleNode(chapter.title), { text: ` ${COLOR_DONE}${GLYPH_DONE}` }] };
+    }
+    return chapter.title;
+}
+
 //已完成的任务不再显示计数（完成时计数被重置为 0），改显示绿色对勾
 function progressSuffix(player, quest, current, required) {
     if (player && player.hasTag(`stonecraft:${quest.id}`)) return " §a√";
@@ -604,7 +661,12 @@ function notifyCompleted(player, quest) {
 //事件监听
 world.afterEvents.entityDie.subscribe((event) => {
     const { deadEntity, damageSource } = event;
-    const player = damageSource.damagingEntity;
+    let player = damageSource.damagingEntity;
+
+    //破甲/失血这类直接改血的击杀拿不到 damagingEntity，用锻造模块登记的最后一击归属兜底
+    if (!(player instanceof Player)) {
+        player = getLethalCredit(deadEntity);
+    }
     if (!(player instanceof Player)) return;
     const entityType = deadEntity.typeId;
 

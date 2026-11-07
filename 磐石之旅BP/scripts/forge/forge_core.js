@@ -17,6 +17,7 @@ import {
 } from "./forge_utils.js";
 import InventoryUtil from "../lib/StoneAPI/InventoryUtil.js";
 import { updatePlayerAttributes } from "./player_attributes.js";
+import { displayMessage, messageChannels } from "../messageManager.js";
 
 const BLOCK_ID = "stonecraft:stone_smithing_table";
 const STATE_FILLED = "stonecraft:filled_item";
@@ -24,7 +25,8 @@ const PROP_STORED_TYPE = "stonecraft:stored_type";
 const PROP_STORED_DATA = "stonecraft:stored_data";
 const PROP_STORED_ITEM_ID = "stonecraft:stored_item_id";
 const PROP_EXPANSION_TIMES = "stonecraft:expansion_times";
-const WEAPON_SUFFIXES = ["sword", "axe", "pickaxe", "shovel", "hoe", "spear", "hammer", "versatile"];
+//"weapon" 是多功能工具（tag forge_weapon）的通用武器类别，加进来后「仅武器」石珠也能镶嵌
+const WEAPON_SUFFIXES = ["sword", "axe", "pickaxe", "shovel", "hoe", "spear", "hammer", "versatile", "weapon"];
 const ARMOR_SUFFIXES = ["helmets", "chestplates", "leggings", "boots"];
 
 const EQUIP_SUFFIXES = [
@@ -69,15 +71,8 @@ function writeBlockDynamicProperty(block, key, value) {
 }
 
 function sendFeedback(player, key) {
-  const msg = { translate: key };
-  try {
-    player.onScreenDisplay?.setActionBar(msg);
-  } catch {
-    try {
-      player.sendMessage(msg);
-    } catch {
-    }
-  }
+  //锻造反馈属于短提示，走操作栏通道（UI 模式下会自动改走聊天栏）
+  displayMessage(player, { translate: key }, { channel: messageChannels.actionbar });
 }
 
 function playForgeSuccessSound(player) {
@@ -364,14 +359,14 @@ function consumeHeldItem(player, heldItem) {
   }
 }
 
+//锻造台里只可能是武器/护甲：空台放入石珠/石板会在 interactWithTable 就被拦下。
+//旧版本可能把石珠/石板存进过台子，这里判为非法，交给 onApplyMaterial 的退款逻辑原样退回。
 function isStoredTypeValid(type) {
-  return type === "weapon" || type === "armor" || type === "bead" || type === "slab";
+  return type === "weapon" || type === "armor";
 }
 
 function inferStoredType(item) {
   if (!item) return "";
-  if (isExpansionSlab(item)) return "slab";
-  if (isBead(item)) return "bead";
   if (isValidForgeMaterial(item) || isForgedWeapon(item)) {
     const forgeType = findForgeType(item);
     if (ARMOR_SUFFIXES.includes(forgeType)) return "armor";
@@ -482,7 +477,7 @@ function rebuildLore(item) {
   }
   const used = countUsedSlots(item);
   const max = getMaxSlots(item);
-  lore.push(`§6空位: §7${used}/${max}`);
+  lore.push(`§6槽位: §7${used}/${max}`);
 
   try {
     item.setLore(lore);
@@ -523,7 +518,7 @@ export function applyBeadToWeapon(player, weapon, beadItem) {
   }
   const currentLevel = getOrZero(weapon, def.key, 0);
   if (currentLevel >= 3) {
-    try { player.addExperience(5); } catch {}
+    //失败不消耗材料，因此不再补偿经验（旧系统的残留，且可被反复刷）
     return { ok: false, reason: "stonecraft.error.attribute_maxed" };
   }
 
@@ -547,7 +542,6 @@ export function applyBeadToWeapon(player, weapon, beadItem) {
 export function applyExpansionToWeapon(player, weapon) {
   const times = getExpansionTimes(weapon);
   if (times >= 3) {
-    try { player.addExperience(5); } catch {}
     return { ok: false, reason: "stonecraft.error.expansion_maxed" };
   }
 
@@ -614,75 +608,44 @@ function onApplyMaterial(player, block, heldItem) {
     }
   }
 
+  //数据不可信（旧版本可能把石珠/石板存进过台子）：原样退还，避免物品被清空
   if (!isStoredTypeValid(storedType)) {
+    giveItem(player, storedItem);
     clearBlockStorage(block);
     sendFeedback(player, "stonecraft.error.invalid_state");
     return;
   }
 
-  if (storedType === "weapon" || storedType === "armor") {
-    if (!isBaseItem(heldItem)) {
-      if (isValidForgeMaterial(heldItem) || isForgedWeapon(heldItem)) {
-        sendFeedback(player, storedType === "armor" ? "stonecraft.error.already_has_weapon" : "stonecraft.error.already_has_weapon");
-        return;
-      }
-      sendFeedback(player, "stonecraft.error.invalid_base");
+  //校验过后 storedType 只可能是 weapon / armor
+  if (!isBaseItem(heldItem)) {
+    if (isValidForgeMaterial(heldItem) || isForgedWeapon(heldItem)) {
+      sendFeedback(player, "stonecraft.error.already_has_weapon");
       return;
     }
-
-    const result = isExpansionSlab(heldItem)
-      ? applyExpansionToWeapon(player, storedItem)
-      : applyBeadToWeapon(player, storedItem, heldItem);
-
-    if (!result.ok) {
-      giveItem(player, storedItem);
-      clearBlockStorage(block);
-      sendFeedback(player, result.reason);
-      return;
-    }
-
-    consumeHeldItem(player, heldItem);
-    clearBlockStorage(block);
-    const returned = setMainHandItem(player, result.item);
-    if (!returned) {
-      giveItem(player, result.item);
-    }
-    refreshAttributes(player);
-    playForgeSuccessSound(player);
-    sendFeedback(player, isExpansionSlab(heldItem) ? "stonecraft.forge.completed_expansion" : "stonecraft.forge.completed_socket");
+    sendFeedback(player, "stonecraft.error.invalid_base");
     return;
   }
 
-  if (storedType === "bead" || storedType === "slab") {
-    if (!isValidForgeMaterial(heldItem) && !isForgedWeapon(heldItem)) {
-      sendFeedback(player, "stonecraft.error.invalid_weapon");
-      return;
-    }
+  const result = isExpansionSlab(heldItem)
+    ? applyExpansionToWeapon(player, storedItem)
+    : applyBeadToWeapon(player, storedItem, heldItem);
 
-    const result = storedType === "slab"
-      ? applyExpansionToWeapon(player, heldItem)
-      : applyBeadToWeapon(player, heldItem, storedItem);
-
-    if (!result.ok) {
-      giveItem(player, storedItem);
-      clearBlockStorage(block);
-      sendFeedback(player, result.reason);
-      return;
-    }
-
+  if (!result.ok) {
+    giveItem(player, storedItem);
     clearBlockStorage(block);
-    setMainHandItem(player, undefined);
-    const returned = setMainHandItem(player, result.item);
-    if (!returned) {
-      giveItem(player, result.item);
-    }
-    refreshAttributes(player);
-    playForgeSuccessSound(player);
-    sendFeedback(player, storedType === "slab" ? "stonecraft.forge.completed_expansion" : "stonecraft.forge.completed_socket");
+    sendFeedback(player, result.reason);
     return;
   }
 
-  sendFeedback(player, "stonecraft.error.invalid_state");
+  consumeHeldItem(player, heldItem);
+  clearBlockStorage(block);
+  const returned = setMainHandItem(player, result.item);
+  if (!returned) {
+    giveItem(player, result.item);
+  }
+  refreshAttributes(player);
+  playForgeSuccessSound(player);
+  sendFeedback(player, isExpansionSlab(heldItem) ? "stonecraft.forge.completed_expansion" : "stonecraft.forge.completed_socket");
 }
 
 function interactWithTable(event) {

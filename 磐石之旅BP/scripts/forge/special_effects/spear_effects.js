@@ -4,6 +4,10 @@ import {
     EntityComponentTypes,
 } from "@minecraft/server";
 import { getOrZero } from "../forge_utils.js";
+import {
+    applyTimedSustainedEffects,
+    resetTimedEffectCooldown,
+} from "../armor_timed_effects.js";
 import InventoryUtil from "../../lib/StoneAPI/InventoryUtil.js";
 
 function getMainHandItem(player) {
@@ -40,10 +44,14 @@ function applySpearSpeed(player, level) {
 
 function removeSpearSpeed(player) {
     try {
-        if (getOrZero(player, "stonecraft:dash_managed", 0) === 1) {
-            player.removeEffect("speed");
-            player.setDynamicProperty("stonecraft:dash_managed", 0);
-        }
+        if (getOrZero(player, "stonecraft:dash_managed", 0) !== 1) return;
+        player.setDynamicProperty("stonecraft:dash_managed", 0);
+
+        //迅突和「迅捷」共用同一个 speed 效果：先摘掉迅突这一份，再清掉 CD 让定时系统
+        //按护甲等级立刻恢复，避免带着迅捷靴收回长矛时把靴子的效果一起删掉（旧版要等满一个 CD）
+        try { player.removeEffect("speed"); } catch {}
+        resetTimedEffectCooldown(player, "speed");
+        applyTimedSustainedEffects(player);
     } catch (e) {
         console.warn("[Stonecraft] spear speed remove failed", e);
     }

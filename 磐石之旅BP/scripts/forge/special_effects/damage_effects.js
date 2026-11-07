@@ -1,5 +1,6 @@
 import { world } from "@minecraft/server";
 import { ATTRIBUTE_DEFS, getAttributeLevel, getMainHandItem } from "../forge_utils.js";
+import { recordLethalCredit } from "../damage_credit.js";
 
 const CRIT_MULTIPLIER = 1.5;
 const KEEN_CHANCES = [0.1, 0.2, 0.3];
@@ -58,7 +59,10 @@ function applySunder(attacker, target) {
   try {
     const health = target.getComponent("minecraft:health");
     if (!health || health.currentValue <= 0) return;
-    health.setCurrentValue(Math.max(0, health.currentValue - SUNDER_DAMAGES[tier(level)]));
+    const damage = SUNDER_DAMAGES[tier(level)];
+    //这一下会打死目标：先把击杀归属记下来（直接改血不会经过引擎的伤害来源系统）
+    if (health.currentValue <= damage) recordLethalCredit(target, attacker);
+    health.setCurrentValue(Math.max(0, health.currentValue - damage));
   } catch {}
 }
 

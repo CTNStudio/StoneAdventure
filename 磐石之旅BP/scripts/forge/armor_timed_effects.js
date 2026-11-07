@@ -8,9 +8,25 @@ import {
 
 const KEY_NEXT_APPLY = (id) => `stonecraft:next_apply_${id}`;
 const KEY_MANAGED    = (id) => `stonecraft:managed_${id}`;
+//最近一次施加效果时的「预计失效 tick」：效果提前消失说明是被外部清掉的（死亡、牛奶、图腾……），
+//这种情况立即补回来；只有撑到预计失效才消失的，才按 CD / 占空比走。全程事件驱动，不做每 tick 覆盖。
+const KEY_EXPECT_END = (id) => `stonecraft:expect_end_${id}`;
 
 function now() {
   try { return system.currentTick; } catch { return Date.now(); }
+}
+
+//只有真存在属性时才写「清除」，否则每秒钟 7 条效果会白白各写一次
+function hasProp(player, key) {
+  try {
+    return player.getDynamicProperty(key) !== undefined;
+  } catch {
+    return false;
+  }
+}
+function clearProp(player, key) {
+  if (!hasProp(player, key)) return;
+  try { player.setDynamicProperty(key, undefined); } catch {}
 }
 
 function isManaged(player, id) {
@@ -20,7 +36,7 @@ function markManaged(player, id) {
   try { player.setDynamicProperty(KEY_MANAGED(id), 1); } catch {}
 }
 function unmarkManaged(player, id) {
-  try { player.setDynamicProperty(KEY_MANAGED(id), undefined); } catch {}
+  clearProp(player, KEY_MANAGED(id));
 }
 
 function getNextApply(player, id) {
@@ -30,7 +46,40 @@ function setNextApply(player, id, tick) {
   try { player.setDynamicProperty(KEY_NEXT_APPLY(id), tick); } catch {}
 }
 function clearNextApply(player, id) {
-  try { player.setDynamicProperty(KEY_NEXT_APPLY(id), undefined); } catch {}
+  clearProp(player, KEY_NEXT_APPLY(id));
+}
+
+function getExpectEnd(player, id) {
+  return getOrZero(player, KEY_EXPECT_END(id), 0);
+}
+function setExpectEnd(player, id, tick) {
+  if (!Number.isFinite(tick) || tick <= 0) {
+    clearProp(player, KEY_EXPECT_END(id));
+    return;
+  }
+  try { player.setDynamicProperty(KEY_EXPECT_END(id), tick); } catch {}
+}
+function clearExpectEnd(player, id) {
+  clearProp(player, KEY_EXPECT_END(id));
+}
+
+//记录「我们施加的是哪一档」。外部（药水等）把它换成别的档位后，
+//我们就不能再用 removeEffect 把它当自己的效果清掉。
+const KEY_APPLIED_AMP = (id) => `stonecraft:applied_amp_${id}`;
+
+function getAppliedAmp(player, id) {
+  try {
+    const value = player.getDynamicProperty(KEY_APPLIED_AMP(id));
+    return typeof value === "number" ? value : undefined;
+  } catch {
+    return undefined;
+  }
+}
+function setAppliedAmp(player, id, amplifier) {
+  try { player.setDynamicProperty(KEY_APPLIED_AMP(id), amplifier); } catch {}
+}
+function clearAppliedAmp(player, id) {
+  clearProp(player, KEY_APPLIED_AMP(id));
 }
 
 export function isPlayerValid(player) {
@@ -141,9 +190,14 @@ function isCustom(cfg) {
   return typeof cfg.apply === "function" && typeof cfg.remove === "function";
 }
 
-function applyVanilla(player, cfg, level, amplifier) {
+//统一解析本次施加的持续时长（tick），0 表示该效果没有时长概念
+function resolveDuration(cfg, level) {
   const duration = cfg.getDuration ? cfg.getDuration(level) : cfg.durationTicks;
-  player.addEffect(cfg.effectId, duration, {
+  return Number.isFinite(duration) && duration > 0 ? duration : 0;
+}
+
+function applyVanilla(player, cfg, level, amplifier) {
+  player.addEffect(cfg.effectId, resolveDuration(cfg, level), {
     amplifier,
     showParticles: false,
   });
@@ -167,6 +221,26 @@ export function getTimedEffectIds() {
   return Object.values(TIMED_EFFECT_CONFIG).map((c) => c.id);
 }
 
+//外部摘掉了本条效果后（例如迅突收回），清掉 CD / 归属，让定时系统立刻按装备等级重刷
+export function resetTimedEffectCooldown(player, id) {
+  if (!isPlayerValid(player)) return;
+  clearNextApply(player, id);
+  clearExpectEnd(player, id);
+  unmarkManaged(player, id);
+  clearAppliedAmp(player, id);
+}
+
+function getCurrentAmplifier(player, cfg) {
+  try {
+    const current = isCustom(cfg)
+      ? (typeof cfg.getCurrent === "function" ? cfg.getCurrent(player) : undefined)
+      : getVanillaCurrent(player, cfg);
+    return current?.amplifier;
+  } catch {
+    return undefined;
+  }
+}
+
 export function applyTimedSustainedEffects(player) {
   if (!isPlayerValid(player)) return;
 
@@ -176,16 +250,25 @@ export function applyTimedSustainedEffects(player) {
     const id    = cfg.id;
     const level = getOrZero(player, cfg.playerKey, 0);
 
-    // 等级为 0：仅移除系统加的
+    // 等级为 0：仅移除系统加的，且只移除「我们施加的那一档」
     if (level <= 0) {
       if (isManaged(player, id)) {
-        try {
-          if (isCustom(cfg)) cfg.remove(player, 0);
-          else removeVanilla(player, cfg, 0);
-        } catch {}
+        const appliedAmp = getAppliedAmp(player, id);
+        const currentAmp = getCurrentAmplifier(player, cfg);
+        const stillOurs = appliedAmp === undefined
+          || currentAmp === undefined
+          || currentAmp === appliedAmp;
+        if (stillOurs) {
+          try {
+            if (isCustom(cfg)) cfg.remove(player, 0);
+            else removeVanilla(player, cfg, 0);
+          } catch {}
+        }
         unmarkManaged(player, id);
+        clearAppliedAmp(player, id);
       }
       clearNextApply(player, id);
+      clearExpectEnd(player, id);
       continue;
     }
 
@@ -200,21 +283,45 @@ export function applyTimedSustainedEffects(player) {
       ? (typeof cfg.getCurrent === "function" ? cfg.getCurrent(player) : undefined)
       : getVanillaCurrent(player, cfg);
 
-        const nextApply = getNextApply(player, id);
+    const nextApply = getNextApply(player, id);
     const reapplyOnExpire = cfg.reapplyOnExpire ?? true;
 
     if (!current) {
-      // 效果不存在：根据配置决定是否无视 CD 立即重刷
-      if (reapplyOnExpire || tick >= nextApply) {
+      // 效果不存在分两种情况：
+      //  · 撑到「预计失效 tick」才没有的 → 自然到期，继续按 CD / 占空比走
+      //  · 没到期就没了（死亡、牛奶、不死图腾、其它模组清除）→ 立刻补回，不用等满一个 CD
+      const expectEnd = getExpectEnd(player, id);
+      const removedEarly = expectEnd > 0 && tick < expectEnd;
+      if (removedEarly || reapplyOnExpire || tick >= nextApply) {
         needApply = true;
       }
-    } else if (current.amplifier !== amplifier) {
-      // 等级变化时立即重刷（无视CD，保证换装即时生效）
-      needApply = true;
-      mustRemove = true;
-    } else if (tick >= nextApply) {
-      // 效果仍在，CD到期则刷新
-      needApply = true;
+    } else {
+      //「所有权」判定：只有档位与我们上次施加的一致，才认为这个效果归我们管。
+      //外部来源（药水、指令、其它模组）无论更强、更弱还是越界回绕都比对不上，
+      //一律不覆盖、不接管；等它消失后由上面的「效果不存在」分支按装备等级接管。
+      //用归属比对而不是大小比较，是为了不被 255 这类越界倍率（引擎里可能回绕成
+      //负数或 0）误判成"比我们弱"而覆盖掉。
+      const appliedAmp = getAppliedAmp(player, id);
+      let owned = appliedAmp !== undefined && current.amplifier === appliedAmp;
+      if (!owned && appliedAmp === undefined && isManaged(player, id)) {
+        //旧存档迁移：标记是"我们施加的"但没有记录档位，认领当前档位
+        setAppliedAmp(player, id, current.amplifier);
+        owned = true;
+      }
+
+      if (!owned) {
+        unmarkManaged(player, id);
+        continue;
+      }
+
+      if (current.amplifier !== amplifier) {
+        // 效果是我们的，但装备等级变了 → 立即重刷（无视 CD）
+        needApply = true;
+        mustRemove = true;
+      } else if (tick >= nextApply) {
+        // 效果仍在，CD到期则刷新
+        needApply = true;
+      }
     }
 
     if (!needApply) continue;
@@ -229,10 +336,14 @@ export function applyTimedSustainedEffects(player) {
       else applyVanilla(player, cfg, level, amplifier);
 
       markManaged(player, id);
+      setAppliedAmp(player, id, amplifier);
       const refresh = cfg.getRefreshInterval
         ? cfg.getRefreshInterval(level)
         : cfg.refreshIntervalTicks;
       setNextApply(player, id, tick + refresh);
+
+      const duration = resolveDuration(cfg, level);
+      setExpectEnd(player, id, duration > 0 ? tick + duration : 0);
     } catch (e) {
       console.warn(`[Stonecraft] apply effect ${id} failed`, e);
     }
@@ -249,6 +360,8 @@ export function clearTimedEffects(player) {
         unmarkManaged(player, id);
       }
       clearNextApply(player, id);
+      clearExpectEnd(player, id);
+      clearAppliedAmp(player, id);
     } catch {}
   }
 }

@@ -103,7 +103,6 @@
           "minecraft:is_tool",
           "stonecraft:custom_weapon",
           "minecraft:netherite_tier",
-          "stonecraft:can_smithing",
           "forge_sword",
           "forge_weapon"
         ]

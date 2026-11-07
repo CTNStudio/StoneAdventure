@@ -3,10 +3,27 @@ import { showStoneHeartFeedback } from './stone_heart_feedback.js';
 import { displayModes, getDisplayMode } from '../settings.js';
 import { tryBulwarkBlock } from '../forge/armor_timed_effects.js';
 import { canBlock } from '../lib/StoneAPI/shield.js';
+import { hasCurse } from '../seven_curses/index.js';
 
 const regenDelay = 100;
 const regenSpeed = 0.5;
 const stoneHeartInvulnerabilityTicks = 10;
+
+//回复效率倍率：七咒「受伤更重，石心愈合减半」在这里生效
+const REGEN_MULTIPLIERS = [
+    { curse: 2, factor: 0.5 },
+];
+
+function regenMultiplierOf(player) {
+    let factor = 1;
+    for (const rule of REGEN_MULTIPLIERS) {
+        try {
+            if (hasCurse(player, rule.curse)) factor *= rule.factor;
+        } catch {
+        }
+    }
+    return factor;
+}
 
 const pendingDamage = new Map();
 const lastDamageTick = new Map();
@@ -186,11 +203,14 @@ function regenStoneHeart() {
 
     const elapsedTicks = now - startTick;
 
-    if (elapsedTicks <= 0 || regenSpeed <= 0) {
+    //回复效率 = 基础效率 × 玩家倍率（七咒等来源在这里叠加，没有则乘 1.0）
+    const speed = regenSpeed * regenMultiplierOf(player);
+
+    if (elapsedTicks <= 0 || speed <= 0) {
       continue;
     }
 
-    const amount = elapsedTicks / 20 * regenSpeed;
+    const amount = elapsedTicks / 20 * speed;
     const actualAmount = Math.min(
       Math.floor(amount / 0.5) * 0.5,
       stoneHeartMax - stoneHeart
@@ -202,7 +222,7 @@ function regenStoneHeart() {
 
     setStoneHeart(player, stoneHeart + actualAmount);
 
-    const usedTicks = actualAmount / regenSpeed * 20;
+    const usedTicks = actualAmount / speed * 20;
     lastRegenTick.set(player.id, startTick + usedTicks);
 
     if (getStoneHeart(player) >= stoneHeartMax) {

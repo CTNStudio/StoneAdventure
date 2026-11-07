@@ -13,7 +13,10 @@ import {
     isRewardClaimed,
     notifyQuestCompleted,
     checkAutoAchievement,
+    buildQuestListLabel,
+    buildChapterListLabel,
 } from "./quests_core.js";
+import { withLegend, LEGEND_TASKS, LEGEND_BESTIARY, LEGEND_CHAPTERS } from "./quest_marks.js";
 import { CHAPTERS } from "./quests.js";
 import { showWeeklyMenu } from "./weekly_routine.js";
 import { getStonePoint } from "../stone_point.js";
@@ -106,12 +109,12 @@ export function showMainMenu(player) {
 function showTaskChapters(player) {
     const form = new ActionFormData();
     form.title({ translate: "sc.menu.tasks" });
-    form.body({ translate: "sc.menu.tasks.body" });
+    form.body(withLegend({ translate: "sc.menu.tasks.body" }, LEGEND_CHAPTERS));
     const taskChapters = CHAPTERS.filter(ch => 
         !["sc_biogeography", "sc_achievements"].includes(ch.id)
     );
     for (const chapter of taskChapters) {
-        form.button(chapter.title, chapter.iconPath);
+        form.button(buildChapterListLabel(player, chapter), chapter.iconPath);
     }
     form.button({ translate: "gui.back" });
     form.show(player).then((response) => {
@@ -133,13 +136,9 @@ function showChapterQuests(player, chapter, backCallback) {
     }
     const form = new ActionFormData();
     form.title(chapter.title);
-    if (chapter.description) form.body(chapter.description);
+    form.body(withLegend(chapter.description, LEGEND_TASKS));
     for (const quest of chapter.quests) {
-        let buttonText = quest.title;
-        if (isQuestCompleted(player, quest)) {
-            buttonText = { rawtext: [quest.title, { text: " \xA72\u2714" }] };
-        }
-        form.button(buttonText, quest.iconPath);
+        form.button(buildQuestListLabel(player, quest), quest.iconPath);
     }
     form.button({ translate: "gui.back" });
     form.show(player).then((response) => {
@@ -169,6 +168,9 @@ function showQuestDetail(player, quest, returnCallback) {
         form.button2({ translate: "quest.check" });
     } else if (canClaim) {
         form.button2({ translate: "quest.claim_reward" });
+    } else if (!manualReward) {
+        //没有手动领奖步骤（生物志）：奖励在提交时已经发放，这里只是状态说明
+        form.button2({ text: "已完成" });
     } else {
         form.button2({ translate: "quest.reward_claimed" });
     }
@@ -187,6 +189,13 @@ function showQuestDetail(player, quest, returnCallback) {
             tryCompleteQuest(player, quest, returnCallback);
         } else if (canClaim) {
             claimQuestReward(player, quest, () => showQuestDetail(player, quest, returnCallback));
+        } else if (!manualReward) {
+            //已经发过奖、也没有领奖步骤：按钮只是个状态说明，点它直接返回
+            if (returnCallback) {
+                returnCallback(player);
+            } else {
+                showQuestBook(player);
+            }
         } else {
             displayMessage(player, { translate: "quest.reward_already_claimed" });
         }
@@ -274,13 +283,12 @@ function showBestiary(player) {
 }
 
 function showQuestList(player, quests, title, backCallback) {
-    const form = new ActionFormData().title(title);
+    const form = new ActionFormData()
+        .title(title)
+        .body(withLegend(undefined, LEGEND_BESTIARY));
     for (const quest of quests) {
-        let buttonText = quest.title;
-        if (isQuestCompleted(player, quest)) {
-            buttonText = { rawtext: [quest.title, { text: " \xA72\u2714" }] };
-        }
-        form.button(buttonText, quest.iconPath);
+        //生物志是唯一有「条件已满足但还没提交」窗口的类别，这里才做只读重算
+        form.button(buildQuestListLabel(player, quest, { submitBadge: true }), quest.iconPath);
     }
     form.button({ translate: "gui.back" });
     form.show(player).then((response) => {

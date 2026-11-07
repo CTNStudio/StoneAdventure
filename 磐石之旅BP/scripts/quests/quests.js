@@ -53,7 +53,13 @@ export const CHAPTERS = [
             {
                 id: "stone_convert_table",
                 title: { translate: "sc.quest.stone_convert_table.title" },
-                description: { translate: "sc.quest.stone_convert_table.body" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.stone_convert_table.body" },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.stone_convert_table.body1" }
+                    ]
+                },
                 autoComplete: true,
                 manualReward: true,
                 condition: {
@@ -333,7 +339,9 @@ export const CHAPTERS = [
                     rawtext: [
                         { translate: "sc.quest.lv3_stone.body" },
                         { text: "\n\n" },
-                        { translate: "sc.quest.lv3_stone.body1" }
+                        { translate: "sc.quest.lv3_stone.body1" },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.lv3_stone.body2" }
                     ]
                 },
                 autoComplete: true,
@@ -474,7 +482,13 @@ export const CHAPTERS = [
             {
                 id: "stone_star",
                 title: { translate: "sc.quest.stone_star.title" },
-                description: { translate: "sc.quest.stone_star.body" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.stone_star.body" },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.stone_star.body1" }
+                    ]
+                },
                 autoComplete: true,
                 manualReward: true,
                 condition: {
@@ -504,7 +518,13 @@ export const CHAPTERS = [
             {
                 id: "stone_crafting_table",
                 title: { translate: "sc.quest.stone_crafting_table.title" },
-                description: { translate: "sc.quest.stone_crafting_table.body" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.stone_crafting_table.body" },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.stone_crafting_table.body1" }
+                    ]
+                },
                 autoComplete: true,
                 manualReward: true,
                 condition: {

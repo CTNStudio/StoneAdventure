@@ -1,6 +1,7 @@
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { world, Player, system} from "@minecraft/server";
-import { giveQuestAward, isQuestCompleted, markQuestCompleted, checkQuestConditionWithQuest, buildQuestBody, checkAutoAchievement, isRewardClaimed, setRewardClaimed, notifyAchievementComplete} from "./quests_core.js";
+import { giveQuestAward, isQuestCompleted, markQuestCompleted, checkQuestConditionWithQuest, buildQuestBody, checkAutoAchievement, isRewardClaimed, setRewardClaimed, notifyAchievementComplete, buildQuestListLabel} from "./quests_core.js";
+import { withLegend, LEGEND_TASKS } from "./quest_marks.js";
 import { showMainMenu } from "./quests_ui.js";
 import { CHAPTERS } from "./quests.js";
 import { checkWeeklyProgress, getWeeklyQuests, addWeeklyUseCount } from "./weekly_routine.js";
@@ -128,14 +129,13 @@ export function showAchievements(player) {
     }
     const form = new ActionFormData()
         .title(achievementsChapter.title || { translate: "sc.menu.achievements" })
-        .body(achievementsChapter.description || { translate: "sc.menu.achievements.body" });
+        .body(withLegend(
+            achievementsChapter.description || { translate: "sc.menu.achievements.body" },
+            LEGEND_TASKS
+        ));
 
     for (const quest of achievementsChapter.quests) {
-        let buttonText = quest.title;
-        if (isQuestCompleted(player, quest)) {
-            buttonText = { rawtext: [quest.title, { text: " \xA72\u2714" }] };
-        }
-        form.button(buttonText, quest.iconPath);
+        form.button(buildQuestListLabel(player, quest), quest.iconPath);
     }
 
     form.button({ translate: "gui.back" });

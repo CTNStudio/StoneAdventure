@@ -4,7 +4,7 @@
     "description": {
       "identifier": "stonecraft:stone_smithing_table"
     },
-    "tags": ["crafting_table"],
+    "tags": ["stone_crafting_table"],
     "pattern": [
       "ACA",
       "ABA",

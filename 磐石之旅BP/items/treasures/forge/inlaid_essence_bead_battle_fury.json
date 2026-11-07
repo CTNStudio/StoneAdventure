@@ -14,7 +14,7 @@
       },
       "minecraft:max_stack_size": 1,
       "minecraft:tags": {
-        "tags": [  "inlaid_essence_bead_bead_weapon_battle"]
+        "tags": [ "inlaid_essence_bead_weapon_battle_fury" ]
       }
     }
   }

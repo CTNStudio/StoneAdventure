@@ -705,3 +705,45 @@ stonecraft.poured_into_the_bottle=灌入血瓶
 stonecraft.stone_heart_broken=石心破碎
 stonecraft.stone_heart_hurt=石心损坏
 
+
+## 七兆印石 lore
+stonecraft.septem_seal_line_1=§8使用后解开七兆封印
+stonecraft.septem_seal_line_2=§c 七咒
+stonecraft.septem_seal_line_3=§7· 石化：行动迟缓、永远饥饿、挖掘疲惫、出手无力
+stonecraft.septem_seal_line_4=§7· 受伤更重，石心愈合减半
+stonecraft.septem_seal_line_5=§7· 无法与村民和行商交易
+stonecraft.septem_seal_line_6=§7· 工具与装备磨损加倍
+stonecraft.septem_seal_line_7=§7· 中立生灵不再对你友善
+stonecraft.septem_seal_line_8=§7· 幽暗之处陷入失明
+stonecraft.septem_seal_line_9=§7· 再也无法入睡
+stonecraft.septem_seal_line_10=§a 此外，
+stonecraft.septem_seal_line_11=§7· 击败石头生物可得石源
+stonecraft.septem_seal_line_12=§7· 击杀生灵额外获得经验
+stonecraft.septem_seal_line_13=§7· 周常全清奖励翻倍
+stonecraft.septem_seal_line_14=§7· 免疫监守者的声波
+stonecraft.septem_seal_line_15=§7· 死亡时保留更多经验
+stonecraft.septem_seal_line_16=§7· BOSS战利品效果翻倍
+stonecraft.septem_seal_line_17=§7· 部分物品的真正力量得以释放
+
+## 七兆印石界面与提示
+stonecraft.septem.title=§5七兆封印
+stonecraft.septem.line1=解开后将背负七道诅咒。
+stonecraft.septem.line2=七道祝福同时生效。
+stonecraft.septem.line3=诅咒可逐条解除，但需代价。
+stonecraft.septem.ask=确定要解开封印吗？
+stonecraft.septem.ok=确定
+stonecraft.septem.already=§7你身上已经有七兆封印了。
+stonecraft.septem.no_item=§c封印石不在手上。
+stonecraft.septem.failed=§c封印失败了。
+stonecraft.septem.done_title=§5§l七兆封印已解
+stonecraft.septem.done_body=§7七道诅咒与七重祝福同时生效，可在磐石大典主页查看详情。
+stonecraft.septem.cmd.no_seal=§7你没有背负七咒。
+stonecraft.septem.cmd.curse_done=§a已解除诅咒 
+stonecraft.septem.cmd.bless_done=§a已解除祝福 
+stonecraft.septem.cmd.bad_index=§c编号必须是 1~7。
+stonecraft.septem.cancel=再想想
+stonecraft.septem.body=解开后将背负七道诅咒。\n\n七道祝福同时生效。\n\n确定要解开封印吗？
+
+## 七咒界面
+stonecraft.septem.curse3_blocked=§c七咒缠身，无法与村民交易。
+stonecraft.septem.curse7_blocked=§c七咒缠身，你无法入睡。

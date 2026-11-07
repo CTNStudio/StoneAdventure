@@ -3,8 +3,10 @@ import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { weekly_pool, WEEKLY_COMPLETION_BONUS } from "./weekly_routine_config.js";
 import { displayMessage } from "../messageManager.js";
 import { buildQuestBody,  giveQuestAward, checkQuestConditionWithQuest, resetHitCount, getHitCount, giveItem } from "./quests_core.js";
+import { COLOR_CLAIMABLE, COLOR_DONE, COLOR_RESET, GLYPH_DONE, titleNode, withLegend, LEGEND_TASKS } from "./quest_marks.js";
 import { showMainMenu } from "./quests_ui.js";
 import { addStonePoint } from "../stone_point.js";
+import { hasBless } from "../seven_curses/index.js";
 const weekly_week_key = `stonecraft:weekly_week`;
 const weekly_quests_key = `stonecraft:weekly_quests`;
 const weekly_completed_prefix = `stonecraft:weekly_completed_`;
@@ -15,12 +17,18 @@ const weekly_bonus_claimed_key = `stonecraft:weekly_bonus_claimed`;
 
 function grantCompletionBonus(player) {
     const bonus = WEEKLY_COMPLETION_BONUS;
-    if (bonus.exp) player.addExperience(bonus.exp);
-    if (bonus.level) player.addLevels(bonus.level);
-    if (bonus.stonePoint) addStonePoint(player, bonus.stonePoint);
+    //七祝福 3：周常全清奖励翻倍
+    let factor = 1;
+    try {
+        if (hasBless(player, 3)) factor = 2;
+    } catch {
+    }
+    if (bonus.exp) player.addExperience(bonus.exp * factor);
+    if (bonus.level) player.addLevels(bonus.level * factor);
+    if (bonus.stonePoint) addStonePoint(player, bonus.stonePoint * factor);
     if (bonus.items) {
         for (const item of bonus.items) {
-            giveItem(player, new ItemStack(item.itemId, item.amount));
+            giveItem(player, new ItemStack(item.itemId, item.amount * factor));
         }
     }
 }
@@ -91,18 +99,17 @@ export function showWeeklyMenu(player) {
 
     const form = new ActionFormData()
         .title({ translate: "sc.menu.weekly" })
-        .body({ translate: "sc.weekly.body" });
+        .body(withLegend({ translate: "sc.weekly.body" }, LEGEND_TASKS));
 
     for (const quest of weeklyQuests) {
         let buttonText = quest.title;
         const completed = isWeeklyCompleted(player, quest.id);
         const claimed = isWeeklyClaimed(player, quest.id);
         if (completed && claimed) {
-            buttonText = { rawtext: [quest.title, { text: " \xA72\u2714" }] };
+            buttonText = { rawtext: [titleNode(quest.title), { text: ` ${COLOR_DONE}${GLYPH_DONE}` }] };
         } else if (completed && !claimed) {
-            buttonText = { rawtext: [quest.title, { translate: "quest.completed" }] };
-        } else {
-            buttonText = { rawtext: [quest.title, { translate: "quest.not_completed" }] };
+            //已提交、奖励还没领：整名橙色
+            buttonText = { rawtext: [{ text: COLOR_CLAIMABLE }, titleNode(quest.title), { text: COLOR_RESET }] };
         }
         form.button(buttonText, quest.iconPath);
     }

@@ -70,6 +70,11 @@ export function lockItemAtSlot(player, slot) {
 
 let itemLockInitialized = false;
 
+//低频巡检：物品定义被重载（改 JSON）时，已存在的物品堆栈会被重建，
+//lockMode / keepOnDeath 这些运行时属性会丢失，而上面两个事件都不会触发。
+//每 200 tick（10 秒）补扫一次，applyLock 对已锁定的物品会直接跳过，开销很小。
+const LOCK_SWEEP_INTERVAL = 200;
+
 export function initItemLock() {
     if (itemLockInitialized) return;
     itemLockInitialized = true;
@@ -85,4 +90,13 @@ export function initItemLock() {
         const slot = event.slot;
         system.run(() => lockItemAtSlot(player, slot));
     });
+
+    system.runInterval(() => {
+        for (const player of world.getPlayers()) {
+            try {
+                lockPlayerItems(player);
+            } catch {
+            }
+        }
+    }, LOCK_SWEEP_INTERVAL);
 }
