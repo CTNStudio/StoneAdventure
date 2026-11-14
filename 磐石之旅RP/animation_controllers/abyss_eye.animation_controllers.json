@@ -1,0 +1,21 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.abyss_eye.idle": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "animations": ["idle_anim"]
+        }
+      }
+    },
+    "controller.animation.abyss_eye_pupil.flutter": {
+      "initial_state": "flutter",
+      "states": {
+        "flutter": {
+          "animations": ["flutter_anim"]
+        }
+      }
+    }
+  }
+}

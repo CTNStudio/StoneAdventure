@@ -1,0 +1,29 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "stonecraft:abyss_eye",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/abyss_eye"
+      },
+      "geometry": {
+        "default": "geometry.abyss_eye"
+      },
+      "animations": {
+        "idle_anim": "animation.abyss_eye.idle",
+        "idle": "controller.animation.abyss_eye.idle"
+      },
+      "scripts": {
+        "animate": ["idle"]
+      },
+      "render_controllers": ["controller.render.default"],
+      "spawn_egg": {
+        "texture": "stonecraft.spawn_eggs",
+        "texture_index": 24
+      }
+    }
+  }
+}

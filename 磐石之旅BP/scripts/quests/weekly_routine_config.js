@@ -131,7 +131,7 @@ export const WEEKLY_COMPLETION_BONUS = {
         {
             itemId: "stonecraft:lv3stone",
             amount: 16,
-            name: { translate: "tile.stonecraft:lv3stone" }
+            name: { translate: "tile.stonecraft:lv3stone.name" }
         }
     ]
 };

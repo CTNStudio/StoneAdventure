@@ -1,0 +1,25 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "stonecraft:abyss_eye_pupil",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/abyss_eye_pupil"
+      },
+      "geometry": {
+        "default": "geometry.abyss_eye_pupil"
+      },
+      "animations": {
+        "flutter_anim": "animation.abyss_eye_pupil.flutter",
+        "flutter": "controller.animation.abyss_eye_pupil.flutter"
+      },
+      "scripts": {
+        "animate": ["flutter"]
+      },
+      "render_controllers": ["controller.render.default"]
+    }
+  }
+}

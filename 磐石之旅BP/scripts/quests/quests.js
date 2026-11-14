@@ -762,6 +762,37 @@ export const CHAPTERS = [
         iconPath: "textures/items/treasures/essences/inlaid_essence_bead",
         quests: [
             {
+                id: "raw_stone_essence",
+                title: { translate: "sc.quest.raw_stone_essence.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.raw_stone_essence.body" },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.raw_stone_essence.body1" }
+                    ]
+                },
+                autoComplete: true,
+                manualReward: true,
+                condition: {
+                    item: {
+                        itemId: "stonecraft:raw_stone_essence",
+                        amount: 1,
+                        name: { translate: "stonecraft.item.raw_stone_essence" }
+                    }
+                },
+                award: { 
+                    exp: 25,
+                    items: [
+                        {
+                            itemId: "stonecraft:stone_coin",
+                            amount: 8,
+                            name: { translate: "stonecraft.item.stone_coin" }
+                        }
+                    ]
+                },
+                iconPath: "textures/items/treasures/essences/raw_stone_essence"
+            },
+            {
                 id: "stone_essence",
                 title: { translate: "sc.quest.stone_essence.title" },
                 description: {
@@ -1115,6 +1146,45 @@ export const CHAPTERS = [
                 },
                 iconPath: "textures/ui/quest/stone_summoner_activated"
             }
+        ]
+    },
+    {
+        id: "sc_chapter_6",
+        title: { translate: "sc.chapter_6.title" },
+        description: { translate: "sc.chapter_6.description" },
+        iconPath: "textures/items/sacrifice/blood_bottle",
+        quests: [
+            {
+                id: "ominous_bottle",
+                title: { translate: "sc.quest.ominous_bottle.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.ominous_bottle.body" },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.ominous_bottle.body1" }
+                    ]
+                },
+                autoComplete: true,
+                manualReward: true,
+                condition: {
+                    item: {
+                        itemId: "minecraft:ominous_bottle",
+                        amount: 1,
+                        name: { translate: "item.ominous_bottle.name" }
+                    }
+                },
+                award: {
+                    exp: 25,
+                    items: [
+                        {
+                            itemId: "stonecraft:stone_coin",
+                            amount: 16,
+                            name: { translate: "stonecraft.item.stone_coin" }
+                        }
+                    ]
+                },
+                iconPath: "textures/items/ominous_bottle"
+            },
         ]
     },
     {

@@ -390,6 +390,15 @@
     "stonecraft.septem_seal_stone": {
       "textures": "textures/items/treasures/septem_seal_stone"
     },
+    "stonecraft.abyss_eye": {
+      "textures": "textures/items/treasures/abyss_eye"
+    },
+    "stonecraft.stone_encyclopedia": {
+      "textures": "textures/items/stone_encyclopedia"
+    },
+    "stonecraft.trail_compass": {
+      "textures": "textures/items/treasures/trail_compass"
+    },
     "stonecraft.spawn_eggs": {
       "textures": [
         "textures/items/spawn_eggs/spawn_egg_stone_shooter",//0
@@ -415,11 +424,9 @@
         "textures/items/spawn_eggs/spawn_egg_snatcher",//20
         "textures/items/spawn_eggs/spawn_egg_spire_remnant",//21
         "textures/items/spawn_eggs/spawn_egg_sculk_statue",//22
-        "textures/items/spawn_eggs/spawn_egg_pale_martyr" //23
+        "textures/items/spawn_eggs/spawn_egg_pale_martyr",//23
+        "textures/items/spawn_eggs/abyss_eye_spawn_egg" //24
       ]
-    },
-    "stonecraft.stone_encyclopedia": {
-      "textures": "textures/items/stone_encyclopedia"
     }
   }
 }

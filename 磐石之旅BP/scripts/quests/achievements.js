@@ -1,7 +1,6 @@
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { world, Player, system} from "@minecraft/server";
 import { giveQuestAward, isQuestCompleted, markQuestCompleted, checkQuestConditionWithQuest, buildQuestBody, checkAutoAchievement, isRewardClaimed, setRewardClaimed, notifyAchievementComplete, buildQuestListLabel} from "./quests_core.js";
-import { withLegend, LEGEND_TASKS } from "./quest_marks.js";
 import { showMainMenu } from "./quests_ui.js";
 import { CHAPTERS } from "./quests.js";
 import { checkWeeklyProgress, getWeeklyQuests, addWeeklyUseCount } from "./weekly_routine.js";
@@ -129,10 +128,7 @@ export function showAchievements(player) {
     }
     const form = new ActionFormData()
         .title(achievementsChapter.title || { translate: "sc.menu.achievements" })
-        .body(withLegend(
-            achievementsChapter.description || { translate: "sc.menu.achievements.body" },
-            LEGEND_TASKS
-        ));
+        .body(achievementsChapter.description || { translate: "sc.menu.achievements.body" });
 
     for (const quest of achievementsChapter.quests) {
         form.button(buildQuestListLabel(player, quest), quest.iconPath);

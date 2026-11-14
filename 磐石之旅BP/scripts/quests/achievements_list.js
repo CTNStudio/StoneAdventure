@@ -12,10 +12,10 @@ export const ACHIEVEMENTS_CHAPTER = {
     quests: [
         {
             id: "cobblestone_ach",
-            title: { translate: "sc.quest.cobblestone_ach.title" },
+            title: { translate: "sc.ach.cobblestone.title" },
             description: {
                 rawtext: [
-                    { translate: "sc.quest.cobblestone_ach.body"  }
+                    { translate: "sc.ach.cobblestone.body"  }
                 ]
             },
             autoComplete: true,
@@ -46,10 +46,10 @@ export const ACHIEVEMENTS_CHAPTER = {
         },
         {
             id: "andesite_ach",
-            title: { translate: "sc.quest.andesite_ach.title" },
+            title: { translate: "sc.ach.andesite.title" },
             description: {
                 rawtext: [
-                    { translate: "sc.quest.andesite_ach.body"  }
+                    { translate: "sc.ach.andesite.body"  }
                 ]
             },
             autoComplete: true,
@@ -80,10 +80,10 @@ export const ACHIEVEMENTS_CHAPTER = {
         },
         {
             id: "stone_guard_ach",
-            title: { translate: "sc.quest.stone_guard_ach.title" },
+            title: { translate: "sc.ach.stone_guard.title" },
             description: {
                 rawtext: [
-                    { translate: "sc.quest.stone_guard_ach.body"  }
+                    { translate: "sc.ach.stone_guard.body"  }
                 ]
             },
             autoComplete: true,
@@ -112,10 +112,10 @@ export const ACHIEVEMENTS_CHAPTER = {
         },
         {
             id: "stone_shooter_ach",
-            title: { translate: "sc.quest.stone_shooter_ach.title" },
+            title: { translate: "sc.ach.stone_shooter.title" },
             description: {
                 rawtext: [
-                    { translate: "sc.quest.stone_shooter_ach.body"  }
+                    { translate: "sc.ach.stone_shooter.body"  }
                 ]
             },
             autoComplete: true,
@@ -144,10 +144,10 @@ export const ACHIEVEMENTS_CHAPTER = {
         },
         {
             id: "spire_remnant_ach",
-            title: { translate: "sc.quest.spire_remnant_ach.title" },
+            title: { translate: "sc.ach.spire_remnant.title" },
             description: {
                 rawtext: [
-                    { translate: "sc.quest.spire_remnant_ach.body"  }
+                    { translate: "sc.ach.spire_remnant.body"  }
                 ]
             },
             autoComplete: true,
@@ -207,10 +207,10 @@ export const ACHIEVEMENTS_CHAPTER = {
         },
         {
             id: "stone_food_ach",
-            title: { translate: "sc.quest.stone_food_ach.title" },
+            title: { translate: "sc.ach.stone_food.title" },
             description: {
                 rawtext: [
-                    { translate: "sc.quest.stone_food_ach.body"  }
+                    { translate: "sc.ach.stone_food.body"  }
                 ]
             },
             autoComplete: true,
@@ -241,10 +241,10 @@ export const ACHIEVEMENTS_CHAPTER = {
         },
         {
             id: "stone_baguette_ach",
-            title: { translate: "sc.quest.stone_baguette_ach.title" },
+            title: { translate: "sc.ach.stone_baguette.title" },
             description: {
                 rawtext: [
-                    { translate: "sc.quest.stone_baguette_ach.body"  }
+                    { translate: "sc.ach.stone_baguette.body"  }
                 ]
             },
             autoComplete: true,
@@ -275,8 +275,8 @@ export const ACHIEVEMENTS_CHAPTER = {
         },
         {
             id: "stone_food_collector_ach",
-            title: { translate: "sc.quest.stone_food_collector_ach.title" },
-            description: { translate: "sc.quest.stone_food_collector_ach.body" },
+            title: { translate: "sc.ach.stone_food_collector.title" },
+            description: { translate: "sc.ach.stone_food_collector.body" },
             autoComplete: true,
             manualReward: true,
             condition: {
@@ -321,10 +321,10 @@ export const ACHIEVEMENTS_CHAPTER = {
         },
         {
             id: "stone_totem_ach",
-            title: { translate: "sc.quest.stone_totem_ach.title" },
+            title: { translate: "sc.ach.stone_totem.title" },
             description: {
                 rawtext: [
-                    { translate: "sc.quest.stone_totem_ach.body"  }
+                    { translate: "sc.ach.stone_totem.body"  }
                 ]
             },
             autoComplete: true,
@@ -353,10 +353,10 @@ export const ACHIEVEMENTS_CHAPTER = {
         },
         {
             id: "lv5stone_armors_ach",
-            title: { translate: "sc.quest.lv5stone_armors.title" },
+            title: { translate: "sc.ach.lv5stone_armors.title" },
             description: {
                 rawtext: [
-                    { translate: "sc.quest.lv5stone_armors.body" }
+                    { translate: "sc.ach.lv5stone_armors.body" }
                 ]
             },
             autoComplete: true,

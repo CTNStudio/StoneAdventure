@@ -1,6 +1,24 @@
 {
   "entity_sounds": {
     "entities": {
+      "stonecraft:abyss_eye": {
+        "events": {
+          "ambient": "mob.warden.listening",
+          "death": "mob.warden.death",
+          "hurt": "mob.warden.hurt"
+        },
+        "pitch": [0.7, 1.0],
+        "volume": 1.0
+      },
+      "stonecraft:abyss_eye_pupil": {
+        "events": {
+          "ambient": "mob.warden.tendril_clicks",
+          "death": "mob.warden.hurt",
+          "hurt": "mob.warden.hurt"
+        },
+        "pitch": [1.3, 1.7],
+        "volume": 0.8
+      },
       "stonecraft:stone_guard": {
         "events": {
           "ambient": "stonecraft.stone.step",

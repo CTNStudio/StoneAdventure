@@ -551,12 +551,16 @@ export function buildQuestBody(quest, player) {
     } else if (condition.hitEntityWithItem) {
         const required = condition.hitEntityWithItem.amount || 1;
         const current = getHitCount(player, quest.id);
+        //quest.hit 的语言模板把「次」排在占位符后面，所以这里不能复用带 √ 的 progressSuffix
+        //（否则会渲染成「射中生物 √ 次」）；完成时改成显示满进度
+        const completed = player && player.hasTag(`stonecraft:${quest.id}`);
+        const shown = completed ? required : current;
         body.rawtext.push({
             translate: "quest.hit",
             with: {
                 rawtext: [
                     condition.hitEntityWithItem.name,
-                    { text: progressSuffix(player, quest, current, required) }
+                    { text: `§7(${shown}/${required})` }
                 ]
             }
         });

@@ -16,7 +16,6 @@ import {
     buildQuestListLabel,
     buildChapterListLabel,
 } from "./quests_core.js";
-import { withLegend, LEGEND_TASKS, LEGEND_BESTIARY, LEGEND_CHAPTERS } from "./quest_marks.js";
 import { CHAPTERS } from "./quests.js";
 import { showWeeklyMenu } from "./weekly_routine.js";
 import { getStonePoint } from "../stone_point.js";
@@ -109,7 +108,7 @@ export function showMainMenu(player) {
 function showTaskChapters(player) {
     const form = new ActionFormData();
     form.title({ translate: "sc.menu.tasks" });
-    form.body(withLegend({ translate: "sc.menu.tasks.body" }, LEGEND_CHAPTERS));
+    form.body({ translate: "sc.menu.tasks.body" });
     const taskChapters = CHAPTERS.filter(ch => 
         !["sc_biogeography", "sc_achievements"].includes(ch.id)
     );
@@ -136,7 +135,7 @@ function showChapterQuests(player, chapter, backCallback) {
     }
     const form = new ActionFormData();
     form.title(chapter.title);
-    form.body(withLegend(chapter.description, LEGEND_TASKS));
+    if (chapter.description) form.body(chapter.description);
     for (const quest of chapter.quests) {
         form.button(buildQuestListLabel(player, quest), quest.iconPath);
     }
@@ -283,9 +282,7 @@ function showBestiary(player) {
 }
 
 function showQuestList(player, quests, title, backCallback) {
-    const form = new ActionFormData()
-        .title(title)
-        .body(withLegend(undefined, LEGEND_BESTIARY));
+    const form = new ActionFormData().title(title);
     for (const quest of quests) {
         //生物志是唯一有「条件已满足但还没提交」窗口的类别，这里才做只读重算
         form.button(buildQuestListLabel(player, quest, { submitBadge: true }), quest.iconPath);

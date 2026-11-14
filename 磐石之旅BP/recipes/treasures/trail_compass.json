@@ -1,0 +1,43 @@
+{
+  "format_version": "1.20.60",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "stonecraft:trail_compass"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+      "EBE", 
+      "BSB", 
+      "EBE"
+    ],
+    "key": {
+      "E": {
+        "item": "minecraft:ender_pearl"
+      },
+      "S": {
+        "item": "stonecraft:stone_essence_crystal"
+      },
+      "B": {
+        "item": "minecraft:cobblestone"
+      }
+    },
+    "unlock": [
+      {
+        "item": "stonecraft:trail_compass"
+      },
+      {
+        "item": "minecraft:cobblestone"
+      },
+      {
+        "item": "stonecraft:stone_essence_crystal"
+      },
+      {
+        "item": "minecraft:ender_pearl"
+      }
+    ],
+    "result": {
+      "item": "stonecraft:trail_compass",
+      "count": 1
+    }
+  }
+}

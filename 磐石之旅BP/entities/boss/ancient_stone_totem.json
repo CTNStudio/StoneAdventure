@@ -678,6 +678,9 @@
       "stonecraft:change_mode_event": {
         "add": {
           "component_groups": ["stonecraft:conquest_mode"]
+        },
+        "remove": {
+          "component_groups": ["stonecraft:death_mode"]
         }
       },
       "stonecraft:change_mode_war_event": {

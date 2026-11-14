@@ -3,7 +3,7 @@ import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { weekly_pool, WEEKLY_COMPLETION_BONUS } from "./weekly_routine_config.js";
 import { displayMessage } from "../messageManager.js";
 import { buildQuestBody,  giveQuestAward, checkQuestConditionWithQuest, resetHitCount, getHitCount, giveItem } from "./quests_core.js";
-import { COLOR_CLAIMABLE, COLOR_DONE, COLOR_RESET, GLYPH_DONE, titleNode, withLegend, LEGEND_TASKS } from "./quest_marks.js";
+import { COLOR_CLAIMABLE, COLOR_DONE, COLOR_RESET, GLYPH_DONE, titleNode } from "./quest_marks.js";
 import { showMainMenu } from "./quests_ui.js";
 import { addStonePoint } from "../stone_point.js";
 import { hasBless } from "../seven_curses/index.js";
@@ -99,7 +99,7 @@ export function showWeeklyMenu(player) {
 
     const form = new ActionFormData()
         .title({ translate: "sc.menu.weekly" })
-        .body(withLegend({ translate: "sc.weekly.body" }, LEGEND_TASKS));
+        .body({ translate: "sc.weekly.body" });
 
     for (const quest of weeklyQuests) {
         let buttonText = quest.title;

@@ -6,11 +6,7 @@ const NEAR_RADIUS = 4;// 贴身判定半径
 const nearTimers = new Map();
 
 function isVagabond(entity) {
-  try {
-    return entity?.isValid && entity.typeId === "stonecraft:stone_vagabond";
-  } catch {
-    return false;
-  }
+  return entity?.isValid === true && entity.typeId === "stonecraft:stone_vagabond";
 }
 
 function makeAngry(entity) {

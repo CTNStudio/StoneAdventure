@@ -42,7 +42,7 @@ function resolveKiller(dead, damageSource) {
   }
   if (killer?.typeId === "minecraft:player" && killer.isValid) return killer;
 
-  //破甲/失血这类直接改血的最后一击：优先用锻造模块登记的归属，比"附近玩家"准确
+//破甲/失血这类直接改血的最后一击：优先用锻造模块登记的归属，比"附近玩家"准确
   const credited = getLethalCredit(dead);
   if (credited?.isValid) return credited;
 
@@ -67,7 +67,7 @@ function resolveKiller(dead, damageSource) {
   return best;
 }
 
-// ---------------------------------------------------------------- 祝福 4：免疫声波
+//祝福 4：免疫声波
 
 world.beforeEvents.entityHurt.subscribe((event) => {
   const hurt = event.hurtEntity;
@@ -81,7 +81,7 @@ world.beforeEvents.entityHurt.subscribe((event) => {
   }
 });
 
-// ---------------------------------------------------------------- 祝福 1 / 2：击杀奖励
+//祝福 1 / 2：击杀奖励
 
 world.afterEvents.entityDie.subscribe((event) => {
   const dead = event.deadEntity;
@@ -106,7 +106,7 @@ world.afterEvents.entityDie.subscribe((event) => {
   }
 });
 
-// ---------------------------------------------------------------- 祝福 5：死亡保留经验
+//祝福 5：死亡保留经验
 
 world.afterEvents.entityDie.subscribe((event) => {
   const dead = event.deadEntity;

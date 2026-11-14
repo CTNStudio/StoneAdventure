@@ -32,6 +32,7 @@ import './entities/ancient_stone_totem.js';
 import './entities/spire_remnant.js';
 import './entities/pale_martyr.js';
 import './entities/stone_vagabond.js';
+import './entities/abyss_eye.js';
 import "./stone_heart/stone_heart_eat.js";
 import "./stone_heart/stone_heart_feedback.js";
 import './stone_heart/stone_heart_display.js';
@@ -47,6 +48,7 @@ import "./seven_curses/curse.js";
 import "./seven_curses/bless.js";
 import "./seven_curses/bind.js";
 import "./seven_curses/commands.js";
+import "./locator/index.js";
 import { world } from "@minecraft/server";
 //我嘞个超长导入啊
 

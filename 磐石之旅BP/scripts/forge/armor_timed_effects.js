@@ -13,7 +13,7 @@ const KEY_MANAGED    = (id) => `stonecraft:managed_${id}`;
 const KEY_EXPECT_END = (id) => `stonecraft:expect_end_${id}`;
 
 function now() {
-  try { return system.currentTick; } catch { return Date.now(); }
+  return system.currentTick;
 }
 
 //只有真存在属性时才写「清除」，否则每秒钟 7 条效果会白白各写一次

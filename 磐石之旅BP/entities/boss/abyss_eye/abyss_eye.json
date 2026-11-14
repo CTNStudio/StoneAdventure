@@ -1,0 +1,260 @@
+{
+  "format_version": "1.21.100",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "stonecraft:abyss_eye",
+      "is_spawnable": true,
+      "is_summonable": true
+    },
+    "component_groups": {
+      "stonecraft:phase2": {
+        "minecraft:behavior.knockback_roar": {
+          "priority": 3,
+          "attack_time": 0.4,
+          "duration": 0.8,
+          "cooldown_time": 3.5,
+          "knockback_damage": 8,
+          "knockback_range": 12,
+          "knockback_horizontal_strength": 1.5,
+          "knockback_vertical_strength": 0.5,
+          "knockback_height_cap": 0.5,
+          "knockback_filters": {
+            "any_of": [
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "is_family", "subject": "other", "value": "irongolem" },
+              { "test": "is_family", "subject": "other", "value": "snowgolem" }
+            ]
+          }
+        }
+      },
+      "stonecraft:phase3": {
+        "minecraft:behavior.knockback_roar": {
+          "priority": 3,
+          "attack_time": 0.4,
+          "duration": 0.8,
+          "cooldown_time": 2.5,
+          "knockback_damage": 12,
+          "knockback_range": 12,
+          "knockback_horizontal_strength": 1.8,
+          "knockback_vertical_strength": 0.6,
+          "knockback_height_cap": 0.5,
+          "knockback_filters": {
+            "any_of": [
+              { "test": "is_family", "subject": "other", "value": "player" },
+              { "test": "is_family", "subject": "other", "value": "irongolem" },
+              { "test": "is_family", "subject": "other", "value": "snowgolem" }
+            ]
+          }
+        },
+        "minecraft:teleport": {
+          "random_teleports": true,
+          "min_random_teleport_time": 1,
+          "max_random_teleport_time": 2,
+          "random_teleport_cube": [8, 0, 8]
+        }
+      },
+      "stonecraft:wide_pool": {
+        "minecraft:health": {
+          "value": 700,
+          "max": 700
+        }
+      },
+      "stonecraft:frenzy": {
+        "minecraft:damage_sensor": {
+          "triggers": [
+            {
+              "deals_damage": "yes",
+              "damage_multiplier": 1.5
+            }
+          ]
+        }
+      },
+      "stonecraft:sonic": {
+        "minecraft:behavior.sonic_boom": {
+          "priority": 2,
+          "duration": 1,
+          "speed_multiplier": 1,
+          "attack_damage": 10,
+          "attack_cooldown": 3,
+          "attack_range_horizontal": 15,
+          "attack_range_vertical": 20,
+          "knockback_vertical_strength": 0.5,
+          "knockback_horizontal_strength": 2.5,
+          "knockback_height_cap": 0.5,
+          "attack_sound": "sonic_boom",
+          "charge_sound": "sonic_charge"
+        },
+        "minecraft:timer": {
+          "time": 10,
+          "looping": false,
+          "time_down_event": {
+            "event": "stonecraft:sonic_end",
+            "target": "self"
+          }
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": ["monster", "stone", "stone_boss"]
+      },
+      "minecraft:collision_box": {
+        "width": 1.6,
+        "height": 1.4
+      },
+      "minecraft:health": {
+        "value": 350,
+        "max": 350
+      },
+      "minecraft:knockback_resistance": {
+        "value": 100
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": false
+      },
+      "minecraft:movement": {
+        "value": 0.12
+      },
+      "minecraft:movement.fly": {},
+      "minecraft:navigation.fly": {
+        "can_path_from_air": true,
+        "can_path_over_water": true,
+        "avoid_portals": true
+      },
+      "minecraft:physics": {},
+      "minecraft:breathable": {
+        "total_supply": 60,
+        "suffocate_time": 0,
+        "breathes_water": true
+      },
+      "minecraft:boss": {
+        "should_darken_sky": true,
+        "hud_range": 96,
+        "name": "§5§l深渊守望者§r"
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/abyss_eye.json"
+      },
+      "minecraft:experience_reward": {
+        "on_death": "query.last_hit_by_player ? 30 : 0"
+      },
+      "minecraft:conditional_bandwidth_optimization": {},
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:behavior.knockback_roar": {
+        "priority": 3,
+        "attack_time": 0.4,
+        "duration": 0.8,
+        "cooldown_time": 4.5,
+        "knockback_damage": 6,
+        "knockback_range": 12,
+        "knockback_horizontal_strength": 1.2,
+        "knockback_vertical_strength": 0.4,
+        "knockback_height_cap": 0.4,
+        "knockback_filters": {
+          "any_of": [
+            { "test": "is_family", "subject": "other", "value": "player" },
+            { "test": "is_family", "subject": "other", "value": "irongolem" },
+            { "test": "is_family", "subject": "other", "value": "snowgolem" }
+          ]
+        }
+      },
+      "minecraft:behavior.random_hover": {
+        "priority": 6,
+        "xz_dist": 8,
+        "y_dist": 4,
+        "y_offset": 1,
+        "interval": 40,
+        "hover_height": [1, 3]
+      },
+      "minecraft:behavior.move_towards_target": {
+        "priority": 2,
+        "target_distance": 4,
+        "speed_multiplier": 1
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "priority": 3,
+        "within_radius": 32,
+        "must_reach": false,
+        "reselect_targets": true,
+        "must_see_forget_duration": 20,
+        "entity_types": [
+          {
+            "filters": {
+              "all_of": [
+                { "test": "is_family", "subject": "other", "operator": "!=", "value": "abyss_creatures" },
+                { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone" },
+                { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone_boss" },
+                {
+                  "any_of": [
+                    { "test": "is_family", "subject": "other", "value": "player" },
+                    { "test": "is_family", "subject": "other", "value": "irongolem" },
+                    { "test": "is_family", "subject": "other", "value": "snowgolem" }
+                  ]
+                }
+              ]
+            },
+            "max_dist": 32
+          }
+        ]
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1,
+        "entity_types": [
+          {
+            "filters": {
+              "all_of": [
+                { "test": "is_family", "subject": "other", "operator": "!=", "value": "abyss_creatures" },
+                { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone" },
+                { "test": "is_family", "subject": "other", "operator": "!=", "value": "stone_boss" }
+              ]
+            },
+            "max_dist": 64
+          }
+        ]
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 8,
+        "look_distance": 16,
+        "probability": 0.1
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 9
+      }
+    },
+    "events": {
+      "stonecraft:enter_phase2": {
+        "add": {
+          "component_groups": ["stonecraft:phase2"]
+        }
+      },
+      "stonecraft:enter_phase3": {
+        "add": {
+          "component_groups": ["stonecraft:phase3", "stonecraft:wide_pool"]
+        }
+      },
+      "stonecraft:frenzy_start": {
+        "add": {
+          "component_groups": ["stonecraft:frenzy"]
+        }
+      },
+      "stonecraft:frenzy_end": {
+        "remove": {
+          "component_groups": ["stonecraft:frenzy"]
+        }
+      },
+      "stonecraft:sonic_start": {
+        "add": {
+          "component_groups": ["stonecraft:sonic"]
+        }
+      },
+      "stonecraft:sonic_end": {
+        "remove": {
+          "component_groups": ["stonecraft:sonic"]
+        }
+      }
+    }
+  }
+}
