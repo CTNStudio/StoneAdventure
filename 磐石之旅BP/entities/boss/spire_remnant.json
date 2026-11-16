@@ -278,7 +278,7 @@
       },
       "minecraft:behavior.nearest_attackable_target": {
         "priority": 3,
-        "within_radius": 48,
+        "within_radius": 24,
         "must_reach": false,
         "reselect_targets": true,
         "must_see_forget_duration": 17,
@@ -313,7 +313,7 @@
                 }
               ]
             },
-            "max_dist": 48,
+            "max_dist": 24,
             "must_see": true
           },
           {
@@ -336,10 +336,6 @@
           }
         ],
         "must_see": true
-      },
-      "minecraft:behavior.random_stroll": {
-        "priority": 6,
-        "speed_multiplier": 1
       },
       "minecraft:behavior.look_at_player": {
         "look_distance": 8,

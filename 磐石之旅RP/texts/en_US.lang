@@ -743,6 +743,9 @@ stonecraft.poured_into_the_bottle=Poured into bottle
 stonecraft.stone_heart_broken=Stone Heart breaks
 stonecraft.stone_heart_hurt=Stone Heart damaged
 
+## 白衣的殉道者
+stonecraft.pale_martyr.phase2_line=Our number is complete — why does the Lord still withhold judgment!
+
 ## 七兆印石 lore
 stonecraft.septem_seal_line_1=§8Unseals the Sevenfold Seal when used
 stonecraft.septem_seal_line_2=§cSeven Curses

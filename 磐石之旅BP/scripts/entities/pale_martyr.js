@@ -213,7 +213,7 @@ function playMergeEffect(event) {
   }, MERGE_STEP);
 }
 
-function enterPhase2(event) {
+function enterPhase2(event) {//进入二阶段
   if (event.hasTag(PHASE2_TAG)) return;
   const current = healthOf(event);
   if (current === undefined || current <= 0) return;
@@ -223,6 +223,7 @@ function enterPhase2(event) {
   }
   event.addTag(PHASE2_TAG);
   event.triggerEvent(PHASE2_EVENT);
+  world.sendMessage({ translate: "stonecraft.pale_martyr.phase2_line" });
   const component = event.getComponent("minecraft:health");
   if (component) component.resetToMaxValue();
   playMergeEffect(event);
@@ -430,7 +431,6 @@ let spawnIndex = 0;
 bossServer.addBoss(new Boss("stonecraft:pale_martyr_shard", [sculkSensorSkill]));
 
 //每个玩家首次击败时掉落七印石，之后不再掉落
-const SEAL_ITEM = "stonecraft:septem_seal_stone";
 const SEAL_CLAIMED_TAG = "stonecraft:septem_seal_claimed";
 
 function sealKillerOf(dead, damageSource) {
@@ -482,7 +482,7 @@ world.afterEvents.entityDie.subscribe((event) => {
   }
 
   try {
-    dead.dimension.spawnItem(new ItemStack(SEAL_ITEM, 1), dead.location);
+    dead.dimension.spawnItem(new ItemStack("stonecraft:septem_seal_stone", 1), dead.location);
   } catch (error) {
     console.error("[PaleMartyr] seal drop failed:", error);
   }

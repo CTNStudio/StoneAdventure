@@ -6,7 +6,7 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
     const itemId = event.itemStack.typeId;
 
     switch (itemId) {
-        case "stonecraft:stone_heart": increaseStoneHeartMax(player, 4); 
+        case "stonecraft:stone_heart": increaseStoneHeartMax(player, 2); 
             system.run(() => {
                 player.playSound("random.levelup", {
                     volume: 0.6,

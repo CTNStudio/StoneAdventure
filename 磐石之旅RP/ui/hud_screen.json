@@ -185,8 +185,8 @@
           "$when_draw": "custom.achievement.cobblestone_ach",
           "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/ui/quest/cobblestone",
-          "$achievement_text": "sc.quest.cobblestone_ach.title",
-          "$content_text": "sc.quest.cobblestone_ach.body"
+          "$achievement_text": "sc.ach.cobblestone.title",
+          "$content_text": "sc.ach.cobblestone.body"
         }
       },
       {
@@ -194,8 +194,8 @@
           "$when_draw": "custom.achievement.andesite_ach",
           "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/ui/quest/andesite_ach",
-          "$achievement_text": "sc.quest.andesite_ach.title",
-          "$content_text": "sc.quest.andesite_ach.body"
+          "$achievement_text": "sc.ach.andesite.title",
+          "$content_text": "sc.ach.andesite.body"
         }
       },
       {
@@ -203,8 +203,8 @@
           "$when_draw": "custom.achievement.stone_guard_ach",
           "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/ui/quest/entities/stone_guard",
-          "$achievement_text": "sc.quest.stone_guard_ach.title",
-          "$content_text": "sc.quest.stone_guard_ach.body"
+          "$achievement_text": "sc.ach.stone_guard.title",
+          "$content_text": "sc.ach.stone_guard.body"
         }
       },
       {
@@ -212,8 +212,8 @@
           "$when_draw": "custom.achievement.stone_shooter_ach",
           "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/ui/quest/entities/stone_shooter",
-          "$achievement_text": "sc.quest.stone_shooter_ach.title",
-          "$content_text": "sc.quest.stone_shooter_ach.body"
+          "$achievement_text": "sc.ach.stone_shooter.title",
+          "$content_text": "sc.ach.stone_shooter.body"
         }
       },
       {
@@ -221,8 +221,8 @@
           "$when_draw": "custom.achievement.spire_remnant_ach",
           "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/ui/quest/entities/spire_remnant",
-          "$achievement_text": "sc.quest.spire_remnant_ach.title",
-          "$content_text": "sc.quest.spire_remnant_ach.body"
+          "$achievement_text": "sc.ach.spire_remnant.title",
+          "$content_text": "sc.ach.spire_remnant.body"
         }
       },
       {
@@ -239,8 +239,8 @@
           "$when_draw": "custom.achievement.stone_food_ach",
           "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/items/foods/stone_bread",
-          "$achievement_text": "sc.quest.stone_food_ach.title",
-          "$content_text": "sc.quest.stone_food_ach.body"
+          "$achievement_text": "sc.ach.stone_food.title",
+          "$content_text": "sc.ach.stone_food.body"
         }
       },
       {
@@ -248,8 +248,8 @@
           "$when_draw": "custom.achievement.stone_baguette_ach",
           "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/items/foods/stone_bread",
-          "$achievement_text": "sc.quest.stone_baguette_ach.title",
-          "$content_text": "sc.quest.stone_baguette_ach.body"
+          "$achievement_text": "sc.ach.stone_baguette.title",
+          "$content_text": "sc.ach.stone_baguette.body"
         }
       },
       {
@@ -257,8 +257,8 @@
           "$when_draw": "custom.achievement.stone_food_collector_ach",
           "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/items/foods/stone_bread",
-          "$achievement_text": "sc.quest.stone_food_collector_ach.title",
-          "$content_text": "sc.quest.stone_food_collector_ach.body"
+          "$achievement_text": "sc.ach.stone_food_collector.title",
+          "$content_text": "sc.ach.stone_food_collector.body"
         }
       },
       {
@@ -266,8 +266,8 @@
           "$when_draw": "custom.achievement.stone_totem_ach",
           "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/ui/quest/entities/ancient_stone_totem",
-          "$achievement_text": "sc.quest.stone_totem_ach.title",
-          "$content_text": "sc.quest.stone_totem_ach.body"
+          "$achievement_text": "sc.ach.stone_totem.title",
+          "$content_text": "sc.ach.stone_totem.body"
         }
       },
       {
@@ -275,8 +275,8 @@
           "$when_draw": "custom.achievement.lv5stone_armors_ach",
           "$uv": [ 0, 0 ],
           "$achievement_icon": "textures/items/armors/chestplates/lv5",
-          "$achievement_text": "sc.quest.lv5stone_armors.title",
-          "$content_text": "sc.quest.lv5stone_armors.body"
+          "$achievement_text": "sc.ach.lv5stone_armors.title",
+          "$content_text": "sc.ach.lv5stone_armors.body"
         }
       }
     ]

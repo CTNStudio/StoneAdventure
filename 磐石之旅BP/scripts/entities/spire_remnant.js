@@ -8,7 +8,7 @@ const MINION_LIMIT = 9;
 // 硬兜底上限（只有异常情况下（例如脚本重载丢标记）才会触发）
 const MINION_HARD_CAP = 12;
 // 目标搜索半径（与 JSON 的 nearest_attackable_target max_dist 保持一致）
-const TARGET_RANGE = 48;
+const TARGET_RANGE = 24;
 
 const PROP_PHASE = "sc:sr_phase";
 const PROP_DIFF = "sc:sr_diff";
@@ -18,6 +18,7 @@ const PROP_CD_SPIKE = "sc:sr_cd_spike";
 const PROP_SPIKE = "sc:sr_spike";
 const PROP_MINIONS = "sc:sr_minions";
 const PROP_MODE = "sc:sr_mode";
+const PROP_HOME = "sc:sr_home";
 
 // 远程/近战切换的距离阈值（格）：超过则切远程，低于则切近战
 const RANGED_SWITCH_DIST = 6;
@@ -379,6 +380,9 @@ function isSafeTeleport(dimension, x, y, z) {
 }
 
 function castBlink(boss, target, diff) {
+    // 玩家在脚下或更低时不闪现，否则会把 Boss 送到下层
+    if (target.location.y < boss.location.y - 0.5) return false;
+
     const cfg = C.blink;
     const dimension = boss.dimension;
 
@@ -667,6 +671,14 @@ function initBoss(boss) {
         } catch {
         }
     }
+    if (!readJson(boss, PROP_HOME, undefined)) {
+        writeJson(boss, PROP_HOME, {
+            x: boss.location.x,
+            y: boss.location.y,
+            z: boss.location.z,
+        });
+    }
+
     bosses.add(boss);
 }
 
@@ -677,6 +689,14 @@ function tickBoss(boss) {
         bosses.delete(boss);
         return;
     }
+
+    // 掉离塔顶（或传送到下面楼层）就归位，避免在塔内继续战斗
+    const home = readJson(boss, PROP_HOME, undefined);
+    if (home && boss.location.y < home.y - 1.5) {
+        boss.teleport(home);
+        return;
+    }
+
     const diff = loadDiff(boss);
     let phase = loadPhase(boss);
     const health = getHealth(boss);

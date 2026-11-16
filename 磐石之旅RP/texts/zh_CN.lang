@@ -750,6 +750,10 @@ stonecraft.poured_into_the_bottle=灌入血瓶
 stonecraft.stone_heart_broken=石心破碎
 stonecraft.stone_heart_hurt=石心损坏
 
+## 白衣的殉道者
+stonecraft.summon_boss.level_too_low=§c尔灵澄净，未蒙垂听§r
+stonecraft.pale_martyr.phase2_line=§c吾等数目既已满足，主为何仍不审判！§r
+
 ## 七兆印石 lore
 stonecraft.septem_seal_line_1=§8使用后解开七兆封印
 stonecraft.septem_seal_line_2=§c 七咒

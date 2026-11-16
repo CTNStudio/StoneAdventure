@@ -1185,6 +1185,38 @@ export const CHAPTERS = [
                 },
                 iconPath: "textures/items/ominous_bottle"
             },
+            {
+                id: "trail_compass",
+                title: { translate: "sc.quest.trail_compass.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.trail_compass.body" },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.trail_compass.body1" }
+                    ]
+                },
+                autoComplete: true,
+                manualReward: true,
+                condition: {
+                    item: {
+                        itemId: "stonecraft:trail_compass",
+                        amount: 1,
+                        name: { translate: "stonecraft.item.trail_compass" }
+                    }
+                },
+                award: {
+                    exp: 50,
+                    stonePoint: 10,
+                    items: [
+                        {
+                            itemId: "stonecraft:stone_coin",
+                            amount: 16,
+                            name: { translate: "stonecraft.item.stone_coin" }
+                        }
+                    ]
+                },
+                iconPath: "textures/items/treasures/trail_compass"
+            },
         ]
     },
     {
