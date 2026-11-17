@@ -36,6 +36,54 @@ export function clearLethalCredit(target) {
   if (target?.id) credits.delete(target.id);
 }
 
+//「附近玩家」兜底的搜索半径（格）
+const NEAREST_KILLER_RADIUS = 32;
+
+/**
+ * 击杀归属解析（三级兜底，供所有「玩家击杀了 X 之后……」的逻辑共用）：
+ * 1) damageSource.damagingEntity 就是玩家；
+ * 2) 锻造模块登记的最后一击归属——破甲/失血这类直接改血的击杀，引擎看不到伤害来源；
+ * 3) 死亡位置附近最近的玩家。
+ *
+ * nearestFallback: false 时只认前两级。任务/周常这类「击杀计数」不希望
+ * 把「被铁傀儡打死」也算到路过的玩家头上，就传 false；掉落/祝福这类默认 true。
+ */
+export function resolveKiller(dead, damageSource, { nearestFallback = true } = {}) {
+  if (!dead) return undefined;
+
+  let direct;
+  try {
+    direct = damageSource?.damagingEntity;
+  } catch {
+  }
+  if (direct?.typeId === "minecraft:player" && direct.isValid) return direct;
+
+  const credited = getLethalCredit(dead);
+  if (credited?.isValid) return credited;
+
+  if (!nearestFallback) return undefined;
+
+  let players;
+  try {
+    players = dead.dimension.getPlayers({ location: dead.location, maxDistance: NEAREST_KILLER_RADIUS });
+  } catch {
+    return undefined;
+  }
+  let best;
+  let bestDist = Infinity;
+  for (const player of players) {
+    const dx = player.location.x - dead.location.x;
+    const dy = player.location.y - dead.location.y;
+    const dz = player.location.z - dead.location.z;
+    const dist = dx * dx + dy * dy + dz * dz;
+    if (dist < bestDist) {
+      bestDist = dist;
+      best = player;
+    }
+  }
+  return best;
+}
+
 function pruneCredits() {
   const tick = system.currentTick;
   for (const [id, record] of credits) {

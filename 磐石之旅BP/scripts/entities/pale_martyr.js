@@ -1,6 +1,6 @@
 import { world, system, MolangVariableMap, GameMode, ItemStack } from "@minecraft/server";
 import { Boss, BossSkill, BossServer } from "../lib/StarTenonAPI/api.js";
-import { getLethalCredit } from "../forge/damage_credit.js";
+import { resolveKiller } from "../forge/damage_credit.js";
 
 const bossServer = new BossServer();
 //幽匿感测体技能：轮询周期 20 刻
@@ -433,45 +433,11 @@ bossServer.addBoss(new Boss("stonecraft:pale_martyr_shard", [sculkSensorSkill]))
 //每个玩家首次击败时掉落七印石，之后不再掉落
 const SEAL_CLAIMED_TAG = "stonecraft:septem_seal_claimed";
 
-function sealKillerOf(dead, damageSource) {
-  let attacker;
-  try {
-    attacker = damageSource?.damagingEntity;
-  } catch {
-  }
-  if (attacker?.typeId === "minecraft:player") return attacker;
-
-  //破甲/失血这类直接改血的最后一击：用锻造模块登记的归属，比"附近玩家"准确
-  const credited = getLethalCredit(dead);
-  if (credited?.isValid) return credited;
-
-  //死因不是玩家（摔落、火焰等）时，归给附近最近的玩家
-  let players;
-  try {
-    players = dead.dimension.getPlayers({ location: dead.location, maxDistance: 32 });
-  } catch {
-    return undefined;
-  }
-  let best;
-  let bestDist = Infinity;
-  for (const player of players) {
-    const dx = player.location.x - dead.location.x;
-    const dy = player.location.y - dead.location.y;
-    const dz = player.location.z - dead.location.z;
-    const dist = dx * dx + dy * dy + dz * dz;
-    if (dist < bestDist) {
-      bestDist = dist;
-      best = player;
-    }
-  }
-  return best;
-}
-
 world.afterEvents.entityDie.subscribe((event) => {
   const dead = event.deadEntity;
   if (dead?.typeId !== "stonecraft:pale_martyr") return;
 
-  const player = sealKillerOf(dead, event.damageSource);
+  const player = resolveKiller(dead, event.damageSource);
   if (!player?.isValid) return;
 
   try {

@@ -45,6 +45,7 @@ import { initDurabilityEffects } from "./forge/special_effects/durability_effect
 import { initDamageEffects } from "./forge/special_effects/damage_effects.js";
 import "./seven_curses/index.js";
 import "./seven_curses/curse.js";
+import "./seven_curses/uncurses.js";
 import "./seven_curses/bless.js";
 import "./seven_curses/bind.js";
 import "./seven_curses/commands.js";

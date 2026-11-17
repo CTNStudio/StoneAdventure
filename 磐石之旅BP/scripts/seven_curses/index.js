@@ -59,10 +59,12 @@ export function removeCurse(player, id) {
   try {
     if (!player?.isValid) return false;
     player.removeTag(curseTag(id));
-    return true;
   } catch {
     return false;
   }
+  //移除成功后派发 onRemoved，让效果模块清理自己留下的即时效果（例如诅咒 6 的失明）
+  notifyRemoved(player, "curse", id);
+  return true;
 }
 
 export function removeBlessing(player, id) {
@@ -75,7 +77,12 @@ export function removeBlessing(player, id) {
   }
 }
 
-/** 注册效果模块：{ tick?(player), onBind?(player), onRemoved?(player, kind, id) } */
+/**
+ * 注册效果模块：{ tick?(player), onBind?(player), onRemoved?(player, kind, id) }
+ * - tick：每 20 tick 对背负封印的玩家调用一次
+ * - onBind：grantSeal 成功后调用
+ * - onRemoved：removeCurse 成功后调用（kind = "curse"），用于清理该条诅咒留下的即时效果
+ */
 export function registerEffectModule(module) {
   if (module) effectModules.push(module);
 }
@@ -103,6 +110,17 @@ export function notifyBind(player) {
     if (typeof module.onBind !== "function") continue;
     try {
       module.onBind(player);
+    } catch {
+    }
+  }
+}
+
+//派发解咒清理。祝福暂不需要清理逻辑，所以 removeBlessing 不派发
+function notifyRemoved(player, kind, id) {
+  for (const module of effectModules) {
+    if (typeof module.onRemoved !== "function") continue;
+    try {
+      module.onRemoved(player, kind, id);
     } catch {
     }
   }

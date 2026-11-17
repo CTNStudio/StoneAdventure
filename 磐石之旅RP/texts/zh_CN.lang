@@ -790,11 +790,17 @@ stonecraft.septem.cmd.curse_done=§a已解除诅咒
 stonecraft.septem.cmd.bless_done=§a已解除祝福 
 stonecraft.septem.cmd.bad_index=§c编号必须是 1~7。
 stonecraft.septem.cancel=再想想
-stonecraft.septem.body=解开后将背负七道诅咒。\n\n七道祝福同时生效。\n\n确定要解开封印吗？
+stonecraft.septem.body=解开后将背负七道诅咒。\n\n七道祝福同时生效。\n\n诅咒可逐条解除，但需代价。\n\n确定要解开封印吗？
 
 ## 七咒界面
 stonecraft.septem.curse3_blocked=§c七咒缠身，无法与村民交易。
 stonecraft.septem.curse7_blocked=§c七咒缠身，你无法入睡。
+
+## 七兆解咒
+stonecraft.septem.unc_6_title=§5§l解除了一项诅咒
+stonecraft.septem.unc_6_body=§7低光失明已从你身上退去。
+stonecraft.septem.unc_6_done=§8这一兆早已不在你身上。
+stonecraft.septem.hint_6=§8深暗之中，有什么在听。
 
 ## 寻石罗盘
 stonecraft.locator.title=寻迹罗盘

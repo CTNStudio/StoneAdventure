@@ -788,6 +788,12 @@ stonecraft.septem.body=You will bear seven curses.\n\nSeven blessings take effec
 stonecraft.septem.curse3_blocked=§cThe Seven Curses bar you from trading.
 stonecraft.septem.curse7_blocked=§cThe Seven Curses keep you from sleeping.
 
+## Lifting the Seven Curses
+stonecraft.septem.unc_6_title=§5§lA curse has been lifted
+stonecraft.septem.unc_6_body=§7The blindness of dim light has left you.
+stonecraft.septem.unc_6_done=§8That curse is long gone from you.
+stonecraft.septem.hint_6=§8Something in the dark is listening.
+
 ## 寻石罗盘
 stonecraft.locator.title=Trail Compass
 stonecraft.locator.group_biome=Biomes

@@ -788,6 +788,12 @@ stonecraft.septem.body=解開後將背負七道詛咒。\n\n七道祝福同時�
 stonecraft.septem.curse3_blocked=§c七咒纏身，無法與村民交易。
 stonecraft.septem.curse7_blocked=§c七咒纏身，你無法入睡。
 
+## 七兆解咒
+stonecraft.septem.unc_6_title=§5§l解除了一項詛咒
+stonecraft.septem.unc_6_body=§7低光失明已從你身上退去。
+stonecraft.septem.unc_6_done=§8這一兆早已不在你身上。
+stonecraft.septem.hint_6=§8深暗之中，有什麼在聽。
+
 ## 寻石罗盘
 stonecraft.locator.title=尋跡羅盤
 stonecraft.locator.group_biome=群系

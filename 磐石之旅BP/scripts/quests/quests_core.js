@@ -6,7 +6,7 @@ import { displayMessage } from "../messageManager.js";
 import { checkWeeklyProgress, getWeeklyQuests, addWeeklyKillCount } from "./weekly_routine.js";
 import { addStonePoint, getStonePoint } from "../stone_point.js";
 import InventoryUtil from "../lib/StoneAPI/InventoryUtil.js";
-import { getLethalCredit } from "../forge/damage_credit.js";
+import { resolveKiller } from "../forge/damage_credit.js";
 import {
     COLOR_CLAIMABLE,
     COLOR_DONE,
@@ -665,13 +665,9 @@ function notifyCompleted(player, quest) {
 //事件监听
 world.afterEvents.entityDie.subscribe((event) => {
     const { deadEntity, damageSource } = event;
-    let player = damageSource.damagingEntity;
-
-    //破甲/失血这类直接改血的击杀拿不到 damagingEntity，用锻造模块登记的最后一击归属兜底
-    if (!(player instanceof Player)) {
-        player = getLethalCredit(deadEntity);
-    }
-    if (!(player instanceof Player)) return;
+    //任务计数只认真实伤害来源与锻造归属，不做「附近玩家」兜底（与改动前口径一致）
+    const player = resolveKiller(deadEntity, damageSource, { nearestFallback: false });
+    if (!player) return;
     const entityType = deadEntity.typeId;
 
     //击杀 Boss 记录到玩家 tag（永久，用于后续任务判定）

@@ -788,6 +788,12 @@ stonecraft.septem.body=Вы понесёте семь проклятий.\n\nС�
 stonecraft.septem.curse3_blocked=§cСемь проклятий не дают вам торговать.
 stonecraft.septem.curse7_blocked=§cСемь проклятий не дают вам уснуть.
 
+## Снятие Семи Проклятий
+stonecraft.septem.unc_6_title=§5§lПроклятие снято
+stonecraft.septem.unc_6_body=§7Слепота во тьме покинула вас.
+stonecraft.septem.unc_6_done=§8Этого проклятия на вас уже нет.
+stonecraft.septem.hint_6=§8Что-то во тьме слушает.
+
 ## 寻石罗盘
 stonecraft.locator.title=Компас следа
 stonecraft.locator.group_biome=Биомы

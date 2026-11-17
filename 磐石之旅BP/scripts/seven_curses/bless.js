@@ -1,7 +1,7 @@
 import { system, world } from "@minecraft/server";
 import { hasBless } from "./index.js";
 import { addStonePoint } from "../stone_point.js";
-import { getLethalCredit } from "../forge/damage_credit.js";
+import { resolveKiller } from "../forge/damage_credit.js";
 
 const BLESS = {
   stoneSource: 1,
@@ -33,39 +33,7 @@ function isStoneBorn(entity) {
   return String(entity.typeId ?? "").toLowerCase().includes("stone");
 }
 
-//击杀者的 damagingEntity 经常是空的（尤其近战），退化为"死亡位置附近的玩家"
-function resolveKiller(dead, damageSource) {
-  let killer;
-  try {
-    killer = damageSource?.damagingEntity;
-  } catch {
-  }
-  if (killer?.typeId === "minecraft:player" && killer.isValid) return killer;
-
-//破甲/失血这类直接改血的最后一击：优先用锻造模块登记的归属，比"附近玩家"准确
-  const credited = getLethalCredit(dead);
-  if (credited?.isValid) return credited;
-
-  let players;
-  try {
-    players = dead.dimension.getPlayers({ location: dead.location, maxDistance: 32 });
-  } catch {
-    return undefined;
-  }
-  let best;
-  let bestDist = Infinity;
-  for (const player of players) {
-    const dx = player.location.x - dead.location.x;
-    const dy = player.location.y - dead.location.y;
-    const dz = player.location.z - dead.location.z;
-    const dist = dx * dx + dy * dy + dz * dz;
-    if (dist < bestDist) {
-      bestDist = dist;
-      best = player;
-    }
-  }
-  return best;
-}
+//击杀归属统一走 forge/damage_credit.js 的 resolveKiller（damagingEntity → 锻造归属 → 32 格最近玩家）
 
 //祝福 4：免疫声波
 

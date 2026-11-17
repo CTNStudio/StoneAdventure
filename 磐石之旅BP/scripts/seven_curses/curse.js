@@ -165,6 +165,21 @@ function consumeExtraDurability(player) {
 
 const BLINDNESS_LIGHT_LIMIT = 4;
 const BLINDNESS_TICKS = 40;
+//首次因这条诅咒真的失明时给一次氛围提示；重新背负封印时由 onBind 清掉，保证新的一轮还能看到
+const DARKNESS_HINT_TAG = "stonecraft:seven_hint_6";
+
+function showDarknessHintOnce(player) {
+  try {
+    if (player.hasTag(DARKNESS_HINT_TAG)) return;
+    player.addTag(DARKNESS_HINT_TAG);
+  } catch {
+    return;
+  }
+  try {
+    displayMessage(player, { translate: "stonecraft.septem.hint_6" }, { channel: messageChannels.actionbar });
+  } catch {
+  }
+}
 
 function applyDarknessBlindness(player) {
   try {
@@ -173,6 +188,16 @@ function applyDarknessBlindness(player) {
     const level = block.getLightLevel?.() ?? 15;
     if (level >= BLINDNESS_LIGHT_LIMIT) return;
     player.addEffect("blindness", BLINDNESS_TICKS, { amplifier: 0, showParticles: false });
+    //只有真的被这条诅咒弄瞎了才提示，光照足够时不算
+    showDarknessHintOnce(player);
+  } catch {
+  }
+}
+
+//解咒清理：诅咒 6 一被移除就把残留的失明一起清掉，否则还要再瞎满 40 tick
+function clearDarknessBlindness(player) {
+  try {
+    player.removeEffect("blindness");
   } catch {
   }
 }
@@ -278,6 +303,18 @@ export function tickPetrification(player) {
 registerEffectModule({
   tick(player) {
     tickPetrification(player);
+  },
+  //removeCurse 之后由 index.js 派发：清掉这条诅咒留下的即时效果
+  onRemoved(player, kind, id) {
+    if (kind !== "curse" || id !== CURSE.darkness) return;
+    clearDarknessBlindness(player);
+  },
+  //grantSeal 之后由 bind.js 派发：重新背负封印时重置一次性提示
+  onBind(player) {
+    try {
+      player.removeTag(DARKNESS_HINT_TAG);
+    } catch {
+    }
   },
 });
 
