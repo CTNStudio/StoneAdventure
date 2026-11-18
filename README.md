@@ -4,7 +4,7 @@
 
 [![Release](https://img.shields.io/github/v/release/CTNStudio/StoneAdventure?label=release&sort=semver&color=2f81f7)](https://github.com/CTNStudio/StoneAdventure/releases)
 [![License](https://img.shields.io/github/license/CTNStudio/StoneAdventure?label=license&color=2ea043)](LICENSE)
-[![Minecraft](https://img.shields.io/badge/Minecraft_Bedrock-1.26.60%2B-3C8527)](https://www.minecraft.net/)
+[![Minecraft](https://img.shields.io/badge/Minecraft_Bedrock-1.26.40%2B-3C8527)](https://www.minecraft.net/)
 [![Downloads](https://img.shields.io/github/downloads/CTNStudio/StoneAdventure/total?label=downloads&color=e3b341)](https://github.com/CTNStudio/StoneAdventure/releases)
 [![Issues](https://img.shields.io/github/issues/CTNStudio/StoneAdventure?label=issues&color=d73a49)](https://github.com/CTNStudio/StoneAdventure/issues)
 
@@ -294,16 +294,28 @@
 
 - NewBee：原作 / 程序 / 策划 / 美术
 - 方漓猫：程序 / 策划
+- 流然LR：策划
 - 星零大队长：主美术
-- KuLou_D、是亚克力、Goldencat：美术
-- 流然：JE 程序 / 英文本地化
-- 哈基尽：程序 / 原 JE 程序
+- KuLou_D：美术
+- 是亚克力：美术
+- Goldencat：美术
+- 小史龙吖Slime_Dragon：美术
+- 哈基尽：程序 / 策划
 - Stone_Nugget：英文本地化
 - Призмарин：俄文本地化
 
-**过往参与成员**：初雪·冰（美术）、一护次叶（美术，已退出工作室）
+**过往参与成员**
 
-**非星屹成员**：涵AH（美术）、JD（代码支持）、simple-mq（代码贡献者）、星云（代码贡献者）
+- 流然：英文本地化
+- 初雪·冰：美术
+- 一护次叶（已退出工作室）：美术
+
+**非星屹成员**
+
+- 涵AH：美术
+- JD：代码支持
+- simple-mq：代码贡献者
+- 星云：代码贡献者
 
 ### 鸣谢（排名不分先后）
 
