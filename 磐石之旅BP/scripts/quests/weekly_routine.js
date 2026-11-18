@@ -7,6 +7,7 @@ import { COLOR_CLAIMABLE, COLOR_DONE, COLOR_RESET, GLYPH_DONE, titleNode } from 
 import { showMainMenu } from "./quests_ui.js";
 import { addStonePoint } from "../stone_point.js";
 import { hasBless } from "../seven_curses/index.js";
+import { BLESS } from "../seven_curses/bless.js";
 const weekly_week_key = `stonecraft:weekly_week`;
 const weekly_quests_key = `stonecraft:weekly_quests`;
 const weekly_completed_prefix = `stonecraft:weekly_completed_`;
@@ -20,7 +21,7 @@ function grantCompletionBonus(player) {
     //七祝福 3：周常全清奖励翻倍
     let factor = 1;
     try {
-        if (hasBless(player, 3)) factor = 2;
+        if (hasBless(player, BLESS.weekly)) factor = 2;
     } catch {
     }
     if (bonus.exp) player.addExperience(bonus.exp * factor);

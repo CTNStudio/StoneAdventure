@@ -749,20 +749,20 @@ stonecraft.pale_martyr.phase2_line=Наше число исполнено — п
 ## 七兆印石 lore
 stonecraft.septem_seal_line_1=§8При использовании снимает Семикратную печать
 stonecraft.septem_seal_line_2=§cСемь проклятий
-stonecraft.septem_seal_line_3=§7· Окаменение: замедление, постоянный голод, усталость при добыче, слабые удары
-stonecraft.septem_seal_line_4=§7· Получаемый урон выше; каменное сердце восстанавливается вдвое медленнее
-stonecraft.septem_seal_line_5=§7· Нельзя торговать с крестьянами и странствующими торговцами
-stonecraft.septem_seal_line_6=§7· Инструменты и броня изнашиваются вдвое быстрее
-stonecraft.septem_seal_line_7=§7· Нейтральные существа больше не дружелюбны
-stonecraft.septem_seal_line_8=§7· Слепота в темноте
-stonecraft.septem_seal_line_9=§7· Невозможно уснуть
+stonecraft.septem_seal_line_3=§7· Невозможно уснуть
+stonecraft.septem_seal_line_4=§7· Нельзя торговать с крестьянами и странствующими торговцами
+stonecraft.septem_seal_line_5=§7· Инструменты и броня изнашиваются вдвое быстрее
+stonecraft.septem_seal_line_6=§7· Получаемый урон выше; каменное сердце восстанавливается вдвое медленнее
+stonecraft.septem_seal_line_7=§7· Слепота в темноте
+stonecraft.septem_seal_line_8=§7· Нейтральные существа больше не дружелюбны
+stonecraft.septem_seal_line_9=§7· Окаменение: замедление, постоянный голод, усталость при добыче, слабые удары
 stonecraft.septem_seal_line_10=§aСемь благословений
 stonecraft.septem_seal_line_11=§7· Убийство каменных созданий даёт каменную эссенцию
 stonecraft.septem_seal_line_12=§7· Убийство существ даёт дополнительный опыт
 stonecraft.septem_seal_line_13=§7· Награды за полное недельное задание удваиваются
-stonecraft.septem_seal_line_14=§7· Иммунитет к звуковой волне Хранителя
-stonecraft.septem_seal_line_15=§7· Больше опыта сохраняется после смерти
-stonecraft.septem_seal_line_16=§7· Эффекты кукол удваиваются
+stonecraft.septem_seal_line_14=§7· Больше опыта сохраняется после смерти
+stonecraft.septem_seal_line_15=§7· Эффекты кукол удваиваются
+stonecraft.septem_seal_line_16=§7· Иммунитет к звуковой волне Хранителя
 stonecraft.septem_seal_line_17=§7· Истинная сила некоторых видов оружия раскрыта
 
 ## 七兆印石界面与提示
@@ -785,14 +785,14 @@ stonecraft.septem.cancel=Назад
 stonecraft.septem.body=Вы понесёте семь проклятий.\n\nСемь благословений также вступят в силу.\n\nПроклятия можно снимать по одному, но за цену.\n\nСнять печать сейчас?
 
 ## 七咒界面
-stonecraft.septem.curse3_blocked=§cСемь проклятий не дают вам торговать.
-stonecraft.septem.curse7_blocked=§cСемь проклятий не дают вам уснуть.
+stonecraft.septem.curse2_blocked=§cСемь проклятий не дают вам торговать.
+stonecraft.septem.curse1_blocked=§cСемь проклятий не дают вам уснуть.
 
 ## Снятие Семи Проклятий
-stonecraft.septem.unc_6_title=§5§lПроклятие снято
-stonecraft.septem.unc_6_body=§7Слепота во тьме покинула вас.
-stonecraft.septem.unc_6_done=§8Этого проклятия на вас уже нет.
-stonecraft.septem.hint_6=§8Что-то во тьме слушает.
+stonecraft.septem.unc_5_title=§5§lПроклятие снято
+stonecraft.septem.unc_5_body=§7Слепота во тьме покинула вас.
+stonecraft.septem.unc_5_done=§8Этого проклятия на вас уже нет.
+stonecraft.septem.hint_5=§8Что-то во тьме слушает.
 
 ## 寻石罗盘
 stonecraft.locator.title=Компас следа
@@ -824,3 +824,4 @@ stonecraft.locator.success_biome=Биом найден:
 stonecraft.locator.status_ready=Готово
 stonecraft.locator.distance=, 
 stonecraft.locator.blocks= блоков
+stonecraft.locator.cost=%s каменной эссенции

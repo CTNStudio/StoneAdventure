@@ -8,6 +8,7 @@
 //判定的，所以 tag 一没就不会再被施加；已经贴在身上的即时效果由各模块的 onRemoved 清掉。
 import { world } from "@minecraft/server";
 import { hasCurse, hasSeal, removeCurse } from "./index.js";
+import { CURSE } from "./curse.js";
 import { resolveKiller } from "../forge/damage_credit.js";
 import { displayMessage, messageChannels } from "../messageManager.js";
 
@@ -15,12 +16,13 @@ const DONE_SOUND = "random.levelup";
 
 const UNCURSE_RULES = [
   {
-    curseId: 6,
+    //低光失明（解咒顺序第五条）；用常量而不是字面量，重排编号时不会错位
+    curseId: CURSE.darkness,
     trigger: "entityDie",
     entityTypes: ["minecraft:warden"],
-    titleKey: "stonecraft.septem.unc_6_title",
-    bodyKey: "stonecraft.septem.unc_6_body",
-    doneKey: "stonecraft.septem.unc_6_done",
+    titleKey: "stonecraft.septem.unc_5_title",
+    bodyKey: "stonecraft.septem.unc_5_body",
+    doneKey: "stonecraft.septem.unc_5_done",
   },
 ];
 
@@ -50,10 +52,10 @@ function tryUncurse(player, rule) {
 
   //已经解过：给一句确认，不重复播报
   if (!hasCurse(player, rule.curseId)) {
-    try {
+    /*try {
       displayMessage(player, { translate: rule.doneKey }, { channel: messageChannels.actionbar });
     } catch {
-    }
+    }*/
     return;
   }
 

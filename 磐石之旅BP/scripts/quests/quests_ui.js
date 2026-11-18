@@ -4,6 +4,8 @@ import { showAchievements } from "./achievements.js";
 import { showSettingsMenu } from "../settings.js";
 import { getStoneHeart, getStoneHeartMax } from "../stone_heart/stone_heart_core.js";
 import { ATTRIBUTE_DEFS, getOrZero } from "../forge/forge_utils.js";
+import { TIMED_EFFECT_CONFIG } from "../forge/armor_timed_effects.js";
+import { BOSS_ENTITIES } from "./bestiary_list.js";
 import {
     isQuestCompleted,
     markQuestCompleted,
@@ -21,10 +23,12 @@ import { showWeeklyMenu } from "./weekly_routine.js";
 import { getStonePoint } from "../stone_point.js";
 import { showShopMenu } from "../shop/shop.js";
 
-const BOSS_ENTITIES = [
-    "stonecraft:ancient_stone_totem",
-    "stonecraft:spire_remnant"
-];
+//任务书只列护甲词条，武器词条随武器变化不在这里显示
+const ARMOR_ATTRIBUTE_IDS = new Set(
+    Object.values(TIMED_EFFECT_CONFIG)
+        .filter((config) => config.armorOnly)
+        .map((config) => config.effectId)
+);
 
 //制作名单
 function showCredits(player) {
@@ -61,6 +65,7 @@ export function showMainMenu(player) {
     form.divider();
     const attrParts = [];
     for (const def of ATTRIBUTE_DEFS) {
+        if (!ARMOR_ATTRIBUTE_IDS.has(def.id)) continue;
         const level = getOrZero(player, def.playerKey, 0);
         if (level > 0) {
             attrParts.push({

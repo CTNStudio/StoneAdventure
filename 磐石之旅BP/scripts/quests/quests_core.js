@@ -93,11 +93,6 @@ export function resetKillCount(player, questId) {
 
 const entityToQuests = new Map();
 
-const BOSS_ENTITIES = [
-    "stonecraft:ancient_stone_totem",
-    "stonecraft:spire_remnant"
-];
-
 function initKillQuestMap() {
     entityToQuests.clear();
     for (const chapter of CHAPTERS) {

@@ -12,6 +12,6 @@ export const locatorEntries = [
 
 // 单条可加 cost / cooldown 覆盖这里
 export const locatorCost = {
-    stonePoint: 10,
+    stonePoint: 50,
     cooldownTicks: 6000
 };

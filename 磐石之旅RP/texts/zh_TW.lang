@@ -749,20 +749,20 @@ stonecraft.pale_martyr.phase2_line=吾等數目既已滿足，主為何仍不審
 ## 七兆印石 lore
 stonecraft.septem_seal_line_1=§8使用後解開七兆封印
 stonecraft.septem_seal_line_2=§c七咒
-stonecraft.septem_seal_line_3=§7· 石化：行動遲緩、永遠饑餓、挖掘疲憊、出手無力
-stonecraft.septem_seal_line_4=§7· 受傷更重，石心癒合減半
-stonecraft.septem_seal_line_5=§7· 無法與村民和行商交易
-stonecraft.septem_seal_line_6=§7· 工具與裝備磨損加倍
-stonecraft.septem_seal_line_7=§7· 中立生靈不再對你友善
-stonecraft.septem_seal_line_8=§7· 幽暗之處陷入失明
-stonecraft.septem_seal_line_9=§7· 再也無法入睡
+stonecraft.septem_seal_line_3=§7· 再也無法入睡
+stonecraft.septem_seal_line_4=§7· 無法與村民和行商交易
+stonecraft.septem_seal_line_5=§7· 工具與裝備磨損加倍
+stonecraft.septem_seal_line_6=§7· 受傷更重，石心癒合減半
+stonecraft.septem_seal_line_7=§7· 幽暗之處陷入失明
+stonecraft.septem_seal_line_8=§7· 中立生靈不再對你友善
+stonecraft.septem_seal_line_9=§7· 石化：行動遲緩、永遠饑餓、挖掘疲憊、出手無力
 stonecraft.septem_seal_line_10=§a七祝福
 stonecraft.septem_seal_line_11=§7· 擊敗石造生靈可得石源
 stonecraft.septem_seal_line_12=§7· 擊殺生靈額外獲得經驗
 stonecraft.septem_seal_line_13=§7· 週常全清獎勵翻倍
-stonecraft.septem_seal_line_14=§7· 免疫監守者的聲波
-stonecraft.septem_seal_line_15=§7· 死亡時保留更多經驗
-stonecraft.septem_seal_line_16=§7· 玩偶之力翻倍
+stonecraft.septem_seal_line_14=§7· 死亡時保留更多經驗
+stonecraft.septem_seal_line_15=§7· 玩偶之力翻倍
+stonecraft.septem_seal_line_16=§7· 免疫監守者的聲波
 stonecraft.septem_seal_line_17=§7· 武器的真正力量得以釋放
 
 ## 七兆印石界面与提示
@@ -785,14 +785,14 @@ stonecraft.septem.cancel=再想想
 stonecraft.septem.body=解開後將背負七道詛咒。\n\n七道祝福同時生效。\n\n詛咒可逐條解除，但需代價。\n\n確定要解開封印嗎？
 
 ## 七咒界面
-stonecraft.septem.curse3_blocked=§c七咒纏身，無法與村民交易。
-stonecraft.septem.curse7_blocked=§c七咒纏身，你無法入睡。
+stonecraft.septem.curse2_blocked=§c七咒纏身，無法與村民交易。
+stonecraft.septem.curse1_blocked=§c七咒纏身，你無法入睡。
 
 ## 七兆解咒
-stonecraft.septem.unc_6_title=§5§l解除了一項詛咒
-stonecraft.septem.unc_6_body=§7低光失明已從你身上退去。
-stonecraft.septem.unc_6_done=§8這一兆早已不在你身上。
-stonecraft.septem.hint_6=§8深暗之中，有什麼在聽。
+stonecraft.septem.unc_5_title=§5§l解除了一項詛咒
+stonecraft.septem.unc_5_body=§7低光失明已從你身上退去。
+stonecraft.septem.unc_5_done=§8這一兆早已不在你身上。
+stonecraft.septem.hint_5=§8深暗之中，有什麼在聽。
 
 ## 寻石罗盘
 stonecraft.locator.title=尋跡羅盤
@@ -824,3 +824,4 @@ stonecraft.locator.success_biome=找到群系：座標
 stonecraft.locator.status_ready=已就緒
 stonecraft.locator.distance=，距離 
 stonecraft.locator.blocks= 格
+stonecraft.locator.cost=消耗 %s 石源

@@ -1,17 +1,17 @@
 import { world, system } from "@minecraft/server";
 import { STONE_TIDE_CONFIG } from "./stone_tide_config.js";
+import { displayMessage, messageChannels } from "../messageManager.js";
 
 const NAMESPACE = "stonecraft";
 const BOSS_KILLED_KEY = `${NAMESPACE}:totem_defeated`;
 const TIDE_ACTIVE_KEY = `${NAMESPACE}:tide_active`;
 
-const WEEKEND_DAYS = [0, 6];
+const WEEKEND_DAYS = [0,6];
 const NIGHT_START = 13000;
 const NIGHT_END = 22813;
 
 let tideActive = false;
 let tideSpawnInterval = null;
-let sleepCheckInterval = null;
 let lastCheckedNightKey = null;
 
 const mobWeightTable = (() => {
@@ -96,39 +96,36 @@ function spawnMobsAroundPlayers() {
     }
 }
 
-//睡眠阻止
-function startSleepBlocking() {
-    if (sleepCheckInterval !== null) return;
-    sleepCheckInterval = system.runInterval(() => {
-        if (!tideActive) {
-            system.clearRun(sleepCheckInterval);
-            sleepCheckInterval = null;
-            return;
-        }
-        for (const player of world.getAllPlayers()) {
-            if (player.isSleeping) {
-                const loc = player.location;
-                // 微小传送强制唤醒
-                player.teleport({ x: loc.x, y: loc.y + 0.01, z: loc.z });
-                player.sendMessage({ translate: "sc.tide.sleep_blocked" });
-            }
-        }
-    }, 20);
-}
-
-function stopSleepBlocking() {
-    if (sleepCheckInterval !== null) {
-        system.clearRun(sleepCheckInterval);
-        sleepCheckInterval = null;
+//睡眠阻止：订阅只注册一次，用 tideActive 控制是否生效
+world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
+    if (!tideActive) return;
+    const player = event.player;
+    if (!player?.isValid) return;
+    const block = event.block;
+    if (!block) return;
+    //孩子们bedrock也是bed
+    const id = String(block.typeId);
+    if (id !== "minecraft:bed" && !id.endsWith("_bed")) return;
+    try {
+        event.cancel = true;
+    } catch {
     }
-}
+    system.run(() => {
+        try {
+            if (player.isValid) {
+                displayMessage(player, { translate: "sc.tide.sleep_blocked" }, { channel: messageChannels.actionbar });
+            }
+        } catch {
+        }
+    });
+});
 
 export function startStoneTide() {
     if (tideActive) return;
     tideActive = true;
     world.setDynamicProperty(TIDE_ACTIVE_KEY, true);
     world.sendMessage({ translate: "sc.tide.tide_begins" });
-    startSleepBlocking();
+
 
     if (tideSpawnInterval === null) {
         tideSpawnInterval = system.runInterval(() => {
@@ -156,7 +153,7 @@ export function stopStoneTide() {
         system.clearRun(tideSpawnInterval);
         tideSpawnInterval = null;
     }
-    stopSleepBlocking();
+
 }
 
 world.afterEvents.entityDie.subscribe(({ deadEntity }) => {

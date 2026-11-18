@@ -1,5 +1,6 @@
 import { system, EquipmentSlot } from "@minecraft/server";
 import { hasBless } from "./seven_curses/index.js";
+import { BLESS } from "./seven_curses/bless.js";
 const activeRepairZones = new Map();
 
 function tryRepairItem(item, times = 1) {
@@ -91,10 +92,10 @@ system.beforeEvents.startup.subscribe((event) => {
 
             dimension.playSound("note.pling", location, { volume: 1.0, pitch: 1.0 });
 
-            //七祝福 6：玩偶效果翻倍（持续时长与修复速度都 ×2）
+            //七祝福 5：玩偶效果翻倍（持续时长与修复速度都 ×2）
             let factor = 1;
             try {
-                if (hasBless(player, 6)) factor = 2;
+                if (hasBless(player, BLESS.doll)) factor = 2;
             } catch {
             }
 

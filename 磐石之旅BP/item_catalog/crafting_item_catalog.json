@@ -106,7 +106,9 @@
                      "stonecraft:inlaid_essence_bead_keen",
                      "stonecraft:inlaid_essence_bead_execute",
                      "stonecraft:inlaid_essence_bead_sunder",
-                     "stonecraft:inlaid_essence_bead_coagulate_armor"
+                     "stonecraft:inlaid_essence_bead_coagulate_armor",
+                     "stonecraft:inlaid_essence_bead_sonic",
+                     "stonecraft:inlaid_essence_bead_veil"
                   ]
                }
             ]

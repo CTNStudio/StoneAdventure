@@ -160,8 +160,7 @@ export const ATTRIBUTE_DEFS = [
         loreText: "§7凝甲",
         beadTagPrefix: "inlaid_essence_bead",
         materialTagPrefix: "forge",
-    }
-,
+    },
     {
         //锐利：武器通用，提升暴击率，暴击造成 1.5 倍伤害
         id: "keen",
@@ -186,6 +185,24 @@ export const ATTRIBUTE_DEFS = [
         key: "stonecraft:sunder_level",
         playerKey: "stonecraft:sunder",
         loreText: "§4破甲",
+        beadTagPrefix: "inlaid_essence_bead",
+        materialTagPrefix: "forge"
+    },
+    {
+        //尖啸：仅剑，蓄能后右键发射监守者尖啸
+        id: "sonic",
+        key: "stonecraft:sonic_level",
+        playerKey: "stonecraft:sonic",
+        loreText: "§3尖啸",
+        beadTagPrefix: "inlaid_essence_bead",
+        materialTagPrefix: "forge"
+    },
+    {
+        //幽暗：仅胸甲，蓄能后潜行三秒使周围生物陷入黑暗与迟缓
+        id: "veil",
+        key: "stonecraft:veil_level",
+        playerKey: "stonecraft:veil",
+        loreText: "§3幽暗",
         beadTagPrefix: "inlaid_essence_bead",
         materialTagPrefix: "forge"
     }];

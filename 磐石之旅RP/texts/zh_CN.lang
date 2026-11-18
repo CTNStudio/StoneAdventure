@@ -59,6 +59,8 @@ stonecraft.item.stone_essence_crystal.coagulate_armor=镶髓石珠·§7凝甲§r
 stonecraft.item.stone_essence_crystal.keen=镶髓石珠·§d锐利§r
 stonecraft.item.stone_essence_crystal.execute=镶髓石珠·§4处决§r
 stonecraft.item.stone_essence_crystal.sunder=镶髓石珠·§4破甲§r
+stonecraft.item.stone_essence_crystal.sonic=镶髓石珠·§3尖啸§r
+stonecraft.item.stone_essence_crystal.veil=镶髓石珠·§3幽暗§r
 
 tile.stonecraft:lv1stone.name=一级压缩圆石
 tile.stonecraft:lv2stone.name=二级压缩圆石
@@ -423,23 +425,14 @@ stonecraft.settings.mode.ui=ui模式
 stonecraft.settings.changed=切换模式
 
 stonecraft.stone_heart.status=：%1/%2
-stonecraft.attribute.wither=§j凋零§r
-stonecraft.attribute.blindness=失明
-stonecraft.attribute.regeneration=§a再生§r
-stonecraft.attribute.cleansing=§b净化§r
-stonecraft.attribute.stun=§8震击§r
-stonecraft.attribute.battle_fury=§c战意§r
-stonecraft.attribute.concuss=§8昏眩§r
 stonecraft.attribute.resistance=§7抗性§r
 stonecraft.attribute.health_boost=§a生机§r
 stonecraft.attribute.night_vision=§9夜视§r
-stonecraft.attribute.bleeding=§c失血§r
 stonecraft.attribute.fire_resistance=§6抗火§r
-stonecraft.attribute.dash=§b迅突§r
 stonecraft.attribute.bulwark=§8坚壁§r
-stonecraft.attribute.accumulate=§d积爆§r
 stonecraft.attribute.speed=§b迅捷§r
 stonecraft.attribute.coagulate_armor=§7凝甲§r
+stonecraft.attribute.veil=§3幽暗§r
 
 stonecraft.attributes.none=无护甲属性
 stonecraft.stone_heart.info=: %s/%s
@@ -584,9 +577,18 @@ sc.quest.stone_summoner_activated.body1=§o“法尔苏斯蒙骗了我们！这�
 sc.chapter_6.title=第四章·幽匿殉道之章
 sc.chapter_6.description=埋葬于幽匿之地的游魂，正诉说着千年的痛苦
 
+sc.quest.trail_compass.title=寻迹罗盘
+sc.quest.trail_compass.body=在工作台合成寻迹罗盘，探寻远方的未知。
+sc.quest.trail_compass.body1=§o传闻，曾经的冒险家都习惯带上这件罗盘，游历四方。§r
 sc.quest.ominous_bottle.title=不详之瓶
-sc.quest.ominous_bottle.body=获得不详之瓶
+sc.quest.ominous_bottle.body=获得不详之瓶。
 sc.quest.ominous_bottle.body1=§o“你们死在过往的罪恶之中，主叫你们复活。那时，你们在其中行事为人，随从今世的风俗，顺服风中掌权者的首领，就是现今在悖逆之子心中运行的邪灵。”§r
+sc.quest.septem_seal_stone.title=七兆印石
+sc.quest.septem_seal_stone.body=击败白衣的殉道者，获得七兆印石。
+sc.quest.septem_seal_stone.body1=§o“我们从前也都在他们中间，放纵肉体的私欲，随着肉体和心中所喜好的去行，本为可怒之子，和别人一样。”§r
+sc.quest.kill_warden.title=监守者
+sc.quest.kill_warden.body=身负七兆诅咒，击败监守者，解除一项诅咒。
+sc.quest.kill_warden.body1=§o背负诅咒的孩子，渴望光明的孩子，去摘下罪恶之兽的眼睛吧。§r
 
 ## 生物志
 
@@ -658,10 +660,14 @@ sc.quest.ancient_stone_totem.title=§o§l§p[boss]§r石之图腾§r
 sc.quest.ancient_stone_totem.body=§o旧日灾祸之源§r
 sc.quest.ancient_stone_totem.body1=特殊而强大的boss，由两个五级压缩石头和一个激活的血祭石柱召唤
 sc.quest.ancient_stone_totem.body2=分两个阶段，一阶段只能通过任意镐子造成伤害，二阶段会在四个形态中轮流转换。请做好充足准备。
-sc.quest.spire_remnant.title=§o§l§p[boss]§r高塔余裔
+sc.quest.spire_remnant.title=§o§l§p[boss]§r高塔余裔§r
 sc.quest.spire_remnant.body=§o旧文明的余泣§r
 sc.quest.spire_remnant.body1=生成于高塔的小boss，击败后获得石心
-sc.quest.spire_remnant.body2=分两个阶段，当血量低于一定比例后，将变得愤怒，并提高移速
+sc.quest.spire_remnant.body2=分两个阶段，当血量低于一定比例后，将变得愤怒，并提高移速，获得更多技能。
+sc.quest.pale_martyr.title=§o§l§p[boss]§r白衣的殉道者§r
+sc.quest.pale_martyr.body=§o渴望救赎的冤魂§r
+sc.quest.pale_martyr.body1=令人恐惧的boss，在获得不祥之兆同时等级达到55级的情况下与石化遗骸交互召唤。
+sc.quest.pale_martyr.body2=分两个阶段，一阶段为7个§k白衣§r的殉道者，击败后会出现白衣的殉道者。
 
 ## 成就
 
@@ -731,6 +737,13 @@ stonecraft.coagulate_armor_lore=§r§f装备后回复自身§b耐久§r
 stonecraft.keen_lore=§r§f攻击有概率造成§d暴击§f§r
 stonecraft.execute_lore=§r§f目标低血量时伤害§4翻倍§r
 stonecraft.sunder_lore=§r§f命中时无视护甲造成额外的§4真实伤害§r
+stonecraft.sonic_lore=§r§f蓄能满后右键发射监守者尖啸§r
+stonecraft.veil_lore=§r§f蓄能满后潜行三秒使周围生物陷入黑暗与迟缓§r
+
+stonecraft.sonic.ready=尖啸已蓄能
+stonecraft.sonic.not_ready=尖啸蓄能不足
+stonecraft.veil.ready=幽暗已蓄能
+stonecraft.veil.not_ready=幽暗蓄能不足
 
 stonecraft.stone.step=石头生物低吟
 stonecraft.stone.hurt=石头生物受伤
@@ -757,20 +770,20 @@ stonecraft.pale_martyr.phase2_line=§c吾等数目既已满足，主为何仍不
 ## 七兆印石 lore
 stonecraft.septem_seal_line_1=§8使用后解开七兆封印
 stonecraft.septem_seal_line_2=§c 七咒
-stonecraft.septem_seal_line_3=§7· 石化：行动迟缓、永远饥饿、挖掘疲惫、出手无力
-stonecraft.septem_seal_line_4=§7· 受伤更重，石心愈合减半
-stonecraft.septem_seal_line_5=§7· 无法与村民和行商交易
-stonecraft.septem_seal_line_6=§7· 工具与装备磨损加倍
-stonecraft.septem_seal_line_7=§7· 中立生灵不再对你友善
-stonecraft.septem_seal_line_8=§7· 幽暗之处陷入失明
-stonecraft.septem_seal_line_9=§7· 再也无法入睡
+stonecraft.septem_seal_line_3=§7· 再也无法入睡
+stonecraft.septem_seal_line_4=§7· 无法与村民和行商交易
+stonecraft.septem_seal_line_5=§7· 工具与装备磨损加倍
+stonecraft.septem_seal_line_6=§7· 受伤更重，石心愈合减半
+stonecraft.septem_seal_line_7=§7· 幽暗之处陷入失明
+stonecraft.septem_seal_line_8=§7· 中立生灵不再对你友善
+stonecraft.septem_seal_line_9=§7· 石化：行动迟缓、永远饥饿、挖掘疲惫、出手无力
 stonecraft.septem_seal_line_10=§a 此外，
 stonecraft.septem_seal_line_11=§7· 击败石头生物可得石源
 stonecraft.septem_seal_line_12=§7· 击杀生灵额外获得经验
 stonecraft.septem_seal_line_13=§7· 周常全清奖励翻倍
-stonecraft.septem_seal_line_14=§7· 免疫监守者的声波
-stonecraft.septem_seal_line_15=§7· 死亡时保留更多经验
-stonecraft.septem_seal_line_16=§7· BOSS战利品效果翻倍
+stonecraft.septem_seal_line_14=§7· 死亡时保留更多经验
+stonecraft.septem_seal_line_15=§7· BOSS战利品效果翻倍
+stonecraft.septem_seal_line_16=§7· 免疫监守者的声波
 stonecraft.septem_seal_line_17=§7· 部分物品的真正力量得以释放
 
 ## 七兆印石界面与提示
@@ -793,14 +806,14 @@ stonecraft.septem.cancel=再想想
 stonecraft.septem.body=解开后将背负七道诅咒。\n\n七道祝福同时生效。\n\n诅咒可逐条解除，但需代价。\n\n确定要解开封印吗？
 
 ## 七咒界面
-stonecraft.septem.curse3_blocked=§c七咒缠身，无法与村民交易。
-stonecraft.septem.curse7_blocked=§c七咒缠身，你无法入睡。
+stonecraft.septem.curse2_blocked=§c七咒缠身，无法与村民交易。
+stonecraft.septem.curse1_blocked=§c七咒缠身，你无法入睡。
 
 ## 七兆解咒
-stonecraft.septem.unc_6_title=§5§l解除了一项诅咒
-stonecraft.septem.unc_6_body=§7低光失明已从你身上退去。
-stonecraft.septem.unc_6_done=§8这一兆早已不在你身上。
-stonecraft.septem.hint_6=§8深暗之中，有什么在听。
+stonecraft.septem.unc_5_title=§5§l解除了一项诅咒
+stonecraft.septem.unc_5_body=§7低光失明已从你身上退去。
+stonecraft.septem.unc_5_done=§8这一兆早已不在你身上。
+stonecraft.septem.hint_5=§8深暗之中，有什么在听。
 
 ## 寻石罗盘
 stonecraft.locator.title=寻迹罗盘
@@ -832,3 +845,4 @@ stonecraft.locator.success_biome=找到群系：坐标
 stonecraft.locator.status_ready=已就绪
 stonecraft.locator.distance=，距离 
 stonecraft.locator.blocks= 格
+stonecraft.locator.cost=消耗 %s 石源

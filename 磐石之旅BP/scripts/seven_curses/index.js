@@ -62,7 +62,7 @@ export function removeCurse(player, id) {
   } catch {
     return false;
   }
-  //移除成功后派发 onRemoved，让效果模块清理自己留下的即时效果（例如诅咒 6 的失明）
+  //移除成功后派发 onRemoved，让效果模块清理自己留下的即时效果（例如低光失明留下的 blindness）
   notifyRemoved(player, "curse", id);
   return true;
 }

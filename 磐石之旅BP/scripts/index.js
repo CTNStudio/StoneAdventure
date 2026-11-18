@@ -43,6 +43,7 @@ import { initSpearEffects } from "./forge/special_effects/spear_effects.js";
 import { initComboEffects } from "./forge/special_effects/combo_effects.js";
 import { initDurabilityEffects } from "./forge/special_effects/durability_effects.js";
 import { initDamageEffects } from "./forge/special_effects/damage_effects.js";
+import { initChargeAbilities } from "./forge/special_effects/charge_abilities.js";
 import "./seven_curses/index.js";
 import "./seven_curses/curse.js";
 import "./seven_curses/uncurses.js";
@@ -50,6 +51,7 @@ import "./seven_curses/bless.js";
 import "./seven_curses/bind.js";
 import "./seven_curses/commands.js";
 import "./locator/index.js";
+import "./entities/warden_ieb.js";
 import { world } from "@minecraft/server";
 //我嘞个超长导入啊
 
@@ -59,6 +61,7 @@ initSpearEffects();
 initComboEffects();
 initDurabilityEffects();
 initDamageEffects();
+initChargeAbilities();
 initItemLock();
 world.afterEvents.playerSpawn.subscribe((eventData) => {
     if (!eventData.initialSpawn) return;

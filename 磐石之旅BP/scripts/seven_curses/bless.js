@@ -3,14 +3,15 @@ import { hasBless } from "./index.js";
 import { addStonePoint } from "../stone_point.js";
 import { resolveKiller } from "../forge/damage_credit.js";
 
+//编号 = 显示顺序（七咒七福排序清单，2026-11 重排）
 const BLESS = {
   stoneSource: 1,
   extraXp: 2,
   weekly: 3,
-  sonic: 4,
-  keepXp: 5,
-  doll: 6,
-  weapon: 7,
+  keepXp: 4,
+  doll: 5,
+  sonic: 6,
+  truePower: 7,
 };
 
 const STONE_POINT_PER_KILL = 1;
@@ -35,7 +36,7 @@ function isStoneBorn(entity) {
 
 //击杀归属统一走 forge/damage_credit.js 的 resolveKiller（damagingEntity → 锻造归属 → 32 格最近玩家）
 
-//祝福 4：免疫声波
+//祝福 6：免疫声波
 
 world.beforeEvents.entityHurt.subscribe((event) => {
   const hurt = event.hurtEntity;
@@ -74,7 +75,7 @@ world.afterEvents.entityDie.subscribe((event) => {
   }
 });
 
-//祝福 5：死亡保留经验
+//祝福 4：死亡保留经验
 
 world.afterEvents.entityDie.subscribe((event) => {
   const dead = event.deadEntity;

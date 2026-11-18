@@ -2,14 +2,15 @@ import { system, world } from "@minecraft/server";
 import { hasCurse, getCursedPlayers, registerEffectModule } from "./index.js";
 import { displayMessage, messageChannels } from "../messageManager.js";
 
+//编号 = 解咒顺序（七咒七福排序清单，2026-11 重排）
 const CURSE = {
-  stone: 1,
-  fragile: 2,
-  noTrade: 3,
-  wear: 4,
-  hostility: 5,
-  darkness: 6,
-  insomnia: 7,
+  insomnia: 1,
+  noTrade: 2,
+  wear: 3,
+  fragile: 4,
+  darkness: 5,
+  hostility: 6,
+  stone: 7,
 };
 
 const TRADE_BLOCKED = new Set(["minecraft:villager_v2", "minecraft:villager", "minecraft:wandering_trader"]);
@@ -26,7 +27,7 @@ function showBlockedHint(player, key) {
   });
 }
 
-//诅咒 1：石化
+//诅咒 7：石化
 
 const STONE_EFFECT_TICKS = 60;
 
@@ -40,7 +41,7 @@ function applyPetrification(player) {
   }
 }
 
-//诅咒 5：中立生物敌对
+//诅咒 6：中立生物敌对
 
 const HOSTILITY_RADIUS = 16;
 const HOSTILITY_PULSE_TICKS = 100;
@@ -109,7 +110,7 @@ function pokeNeutrals(player) {
   }
 }
 
-//诅咒 4：耐久翻倍
+//诅咒 3：耐久翻倍
 
 const WEAR_INTERVAL_TICKS = 10;
 const WEAR_SLOTS = ["Mainhand", "Offhand", "Head", "Chest", "Legs", "Feet"];
@@ -161,12 +162,12 @@ function consumeExtraDurability(player) {
   }
 }
 
-//诅咒 6：低光失明
+//诅咒 5：低光失明
 
 const BLINDNESS_LIGHT_LIMIT = 4;
 const BLINDNESS_TICKS = 40;
 //首次因这条诅咒真的失明时给一次氛围提示；重新背负封印时由 onBind 清掉，保证新的一轮还能看到
-const DARKNESS_HINT_TAG = "stonecraft:seven_hint_6";
+const DARKNESS_HINT_TAG = "stonecraft:seven_hint_5";
 
 function showDarknessHintOnce(player) {
   try {
@@ -176,7 +177,7 @@ function showDarknessHintOnce(player) {
     return;
   }
   try {
-    displayMessage(player, { translate: "stonecraft.septem.hint_6" }, { channel: messageChannels.actionbar });
+    displayMessage(player, { translate: "stonecraft.septem.hint_5" }, { channel: messageChannels.actionbar });
   } catch {
   }
 }
@@ -194,7 +195,7 @@ function applyDarknessBlindness(player) {
   }
 }
 
-//解咒清理：诅咒 6 一被移除就把残留的失明一起清掉，否则还要再瞎满 40 tick
+//解咒清理：诅咒 5 一被移除就把残留的失明一起清掉，否则还要再瞎满 40 tick
 function clearDarknessBlindness(player) {
   try {
     player.removeEffect("blindness");
@@ -202,13 +203,13 @@ function clearDarknessBlindness(player) {
   }
 }
 
-//事件：诅咒 2 / 7、祝福 4
+//事件：诅咒 4 / 1、祝福 6
 
 world.beforeEvents.entityHurt.subscribe((event) => {
   const hurt = event.hurtEntity;
   if (hurt?.typeId !== "minecraft:player") return;
   try {
-    //诅咒 2：受到伤害增加
+    //诅咒 4：受到伤害增加
     if (hasCurse(hurt, CURSE.fragile)) {
       event.damage = (Number(event.damage) || 0) * 1.25;
     }
@@ -225,21 +226,23 @@ world.beforeEvents.playerInteractWithEntity.subscribe((event) => {
     event.cancel = true;
   } catch {
   }
-  showBlockedHint(player, "stonecraft.septem.curse3_blocked");
+  showBlockedHint(player, "stonecraft.septem.curse2_blocked");
 });
 
 world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
   const player = event.player;
   if (!player?.isValid || !hasCurse(player, CURSE.insomnia)) return;
   const block = event.block;
-  //基岩版所有床都是 minecraft:bed（颜色在方块状态里），不能用 _bed 后缀判断
-  if (!block || !String(block.typeId).includes("bed")) return;
+  if (!block) return;
+  //只认真正的床。基岩 minecraft:bedrock 里也含 "bed"，用子串判断会连放置都拦掉
+  const id = String(block.typeId);
+  if (id !== "minecraft:bed" && !id.endsWith("_bed")) return;
   try {
     event.cancel = true;
   } catch {
   }
   //beforeEvents 是受限执行上下文，setActionBar 这类原生方法必须延到 system.run
-  showBlockedHint(player, "stonecraft.septem.curse7_blocked");
+  showBlockedHint(player, "stonecraft.septem.curse1_blocked");
 });
 
 //主循环
@@ -278,17 +281,6 @@ system.runInterval(() => {
     if (pulseNeutrals && hasCurse(player, CURSE.hostility)) {
       try {
         pokeNeutrals(player);
-      } catch {
-      }
-    }
-    //兜底：万一床交互没拦住，睡着就立刻叫醒，并给出同样的提示
-    if (hasCurse(player, CURSE.insomnia)) {
-      try {
-        if (player.isSleeping) {
-          const loc = player.location;
-          player.teleport({ x: loc.x, y: loc.y + 0.01, z: loc.z });
-          showBlockedHint(player, "stonecraft.septem.curse7_blocked");
-        }
       } catch {
       }
     }

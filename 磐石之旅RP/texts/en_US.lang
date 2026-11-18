@@ -59,6 +59,8 @@ stonecraft.item.stone_essence_crystal.coagulate_armor=Inlaid Essence Bead·§7Co
 stonecraft.item.stone_essence_crystal.keen=Inlaid Essence Bead·§dKeen§r
 stonecraft.item.stone_essence_crystal.execute=Inlaid Essence Bead·§4Execute§r
 stonecraft.item.stone_essence_crystal.sunder=Inlaid Essence Bead·§4Sunder§r
+stonecraft.item.stone_essence_crystal.sonic=Inlaid Essence Bead·§3Sonic§r
+stonecraft.item.stone_essence_crystal.veil=Inlaid Essence Bead·§5Veil§r
 
 tile.stonecraft:lv1stone.name=Compressed Cobblestone Level 1
 tile.stonecraft:lv2stone.name=Compressed Cobblestone Level 2
@@ -423,23 +425,14 @@ stonecraft.settings.mode.ui=UI Mode
 stonecraft.settings.changed=Mode Switched
 
 stonecraft.stone_heart.status=：%1/%2
-stonecraft.attribute.wither=§0Wither§r
-stonecraft.attribute.blindness=Blindness
-stonecraft.attribute.regeneration=§aRegeneration§r
-stonecraft.attribute.cleansing=§bCleansing§r
-stonecraft.attribute.stun=§8Stun§r
-stonecraft.attribute.battle_fury=§cBattle Fury§r
-stonecraft.attribute.concuss=§8Concuss§r
 stonecraft.attribute.resistance=§7Resistance§r
 stonecraft.attribute.health_boost=§aHealth Boost§r
 stonecraft.attribute.night_vision=§9Night Vision§r
-stonecraft.attribute.bleeding=§cBleeding§r
 stonecraft.attribute.fire_resistance=Fire Resistance
-stonecraft.attribute.dash=§bDash§r
 stonecraft.attribute.bulwark=§8Bulwark§r
-stonecraft.attribute.accumulate=§dAccumulate§r
 stonecraft.attribute.speed=§bSpeed§r
 stonecraft.attribute.coagulate_armor=§7Coagulated Armor§r
+stonecraft.attribute.veil=§5Veil§r
 
 stonecraft.attributes.none=No Armor Attributes
 stonecraft.stone_heart.info=: %s/%s
@@ -724,6 +717,12 @@ stonecraft.coagulate_armor_lore=§r§fWhen equipped restores its own §bdurabili
 stonecraft.keen_lore=§r§fAttacks have a chance to deal a §dCritical Hit§f§r
 stonecraft.execute_lore=§r§fDamage is §4doubled§r§f when the target is at low health§r
 stonecraft.sunder_lore=§r§fOn hit, deals extra §4true damage§r§f that ignores armor§r
+stonecraft.sonic_lore=§r§fRight-click to fire a Warden sonic boom when charged§r
+stonecraft.veil_lore=§r§fSneak for 3 seconds when charged to blind and slow nearby mobs§r
+stonecraft.sonic.ready=Sonic charge ready
+stonecraft.sonic.not_ready=Sonic charge insufficient
+stonecraft.veil.ready=Veil charge ready
+stonecraft.veil.not_ready=Veil charge insufficient
 
 stonecraft.stone.step=Stone creature murmurs
 stonecraft.stone.hurt=Stone creature hurts
@@ -749,20 +748,20 @@ stonecraft.pale_martyr.phase2_line=Our number is complete — why does the Lord 
 ## 七兆印石 lore
 stonecraft.septem_seal_line_1=§8Unseals the Sevenfold Seal when used
 stonecraft.septem_seal_line_2=§cSeven Curses
-stonecraft.septem_seal_line_3=§7· Petrified: slowed, always hungry, mining fatigue, weakened strikes
-stonecraft.septem_seal_line_4=§7· Take more damage; stone heart heals at half rate
-stonecraft.septem_seal_line_5=§7· Cannot trade with villagers or wandering traders
-stonecraft.septem_seal_line_6=§7· Tools and armor wear twice as fast
-stonecraft.septem_seal_line_7=§7· Neutral creatures are no longer friendly
-stonecraft.septem_seal_line_8=§7· Blinded in the dark
-stonecraft.septem_seal_line_9=§7· Can never sleep
+stonecraft.septem_seal_line_3=§7· Can never sleep
+stonecraft.septem_seal_line_4=§7· Cannot trade with villagers or wandering traders
+stonecraft.septem_seal_line_5=§7· Tools and armor wear twice as fast
+stonecraft.septem_seal_line_6=§7· Take more damage; stone heart heals at half rate
+stonecraft.septem_seal_line_7=§7· Blinded in the dark
+stonecraft.septem_seal_line_8=§7· Neutral creatures are no longer friendly
+stonecraft.septem_seal_line_9=§7· Petrified: slowed, always hungry, mining fatigue, weakened strikes
 stonecraft.septem_seal_line_10=§aSeven Blessings
 stonecraft.septem_seal_line_11=§7· Slaying stone-born creatures yields stone essence
 stonecraft.septem_seal_line_12=§7· Slaying creatures grants extra experience
 stonecraft.septem_seal_line_13=§7· Weekly completion rewards are doubled
-stonecraft.septem_seal_line_14=§7· Immune to the Warden's sonic boom
-stonecraft.septem_seal_line_15=§7· Keep more experience on death
-stonecraft.septem_seal_line_16=§7· Doll effects are doubled
+stonecraft.septem_seal_line_14=§7· Keep more experience on death
+stonecraft.septem_seal_line_15=§7· Doll effects are doubled
+stonecraft.septem_seal_line_16=§7· Immune to the Warden's sonic boom
 stonecraft.septem_seal_line_17=§7· Unleash the true power of some weapons
 
 ## 七兆印石界面与提示
@@ -785,14 +784,14 @@ stonecraft.septem.cancel=Back
 stonecraft.septem.body=You will bear seven curses.\n\nSeven blessings take effect too.\n\nCurses can be lifted one by one, at a cost.\n\nUnseal it now?
 
 ## 七咒界面
-stonecraft.septem.curse3_blocked=§cThe Seven Curses bar you from trading.
-stonecraft.septem.curse7_blocked=§cThe Seven Curses keep you from sleeping.
+stonecraft.septem.curse2_blocked=§cThe Seven Curses bar you from trading.
+stonecraft.septem.curse1_blocked=§cThe Seven Curses keep you from sleeping.
 
 ## Lifting the Seven Curses
-stonecraft.septem.unc_6_title=§5§lA curse has been lifted
-stonecraft.septem.unc_6_body=§7The blindness of dim light has left you.
-stonecraft.septem.unc_6_done=§8That curse is long gone from you.
-stonecraft.septem.hint_6=§8Something in the dark is listening.
+stonecraft.septem.unc_5_title=§5§lA curse has been lifted
+stonecraft.septem.unc_5_body=§7The blindness of dim light has left you.
+stonecraft.septem.unc_5_done=§8That curse is long gone from you.
+stonecraft.septem.hint_5=§8Something in the dark is listening.
 
 ## 寻石罗盘
 stonecraft.locator.title=Trail Compass
@@ -824,3 +823,4 @@ stonecraft.locator.success_biome=Biome found at
 stonecraft.locator.status_ready=Ready
 stonecraft.locator.distance=, 
 stonecraft.locator.blocks= blocks away
+stonecraft.locator.cost=%s stone essence

@@ -128,6 +128,14 @@ const ITEM_LORE_CONFIG = {
         { translate: 'stonecraft.axe_only' },
         { translate: 'stonecraft.sunder_lore' }
     ],
+    'stonecraft:inlaid_essence_bead_sonic': [
+        { translate: 'stonecraft.weapon_only' },
+        { translate: 'stonecraft.sonic_lore' }
+    ],
+    'stonecraft:inlaid_essence_bead_veil': [
+        { translate: 'stonecraft.armor_only' },
+        { translate: 'stonecraft.veil_lore' }
+    ],
 };
 
 function isLoreEqual(currentLore, expectedLore) {

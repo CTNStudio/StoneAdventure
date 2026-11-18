@@ -165,6 +165,18 @@ export const TIMED_EFFECT_CONFIG = {
     remove: () => {},
     getCurrent: () => ({ amplifier: 0 }),
   },
+  veil: {
+    id: "veil",
+    effectId: "veil",
+    playerKey: "stonecraft:veil",
+    armorOnly: true,
+    refreshIntervalTicks: 999999 * 20,
+    durationTicks: 0,
+    getAmplifier: () => 0,
+    apply: () => {},
+    remove: () => {},
+    getCurrent: () => ({ amplifier: 0 }),
+  },
 };
 
 // 注册护甲自定义特效

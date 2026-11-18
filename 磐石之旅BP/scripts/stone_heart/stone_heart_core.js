@@ -4,6 +4,7 @@ import { displayModes, getDisplayMode } from '../settings.js';
 import { tryBulwarkBlock } from '../forge/armor_timed_effects.js';
 import { canBlock } from '../lib/StoneAPI/shield.js';
 import { hasCurse } from '../seven_curses/index.js';
+import { CURSE } from '../seven_curses/curse.js';
 
 const regenDelay = 100;
 const regenSpeed = 0.5;
@@ -11,7 +12,7 @@ const stoneHeartInvulnerabilityTicks = 10;
 
 //回复效率倍率：七咒「受伤更重，石心愈合减半」在这里生效
 const REGEN_MULTIPLIERS = [
-    { curse: 2, factor: 0.5 },
+    { curse: CURSE.fragile, factor: 0.5 },
 ];
 
 function regenMultiplierOf(player) {

@@ -4,15 +4,24 @@ import { getStonePoint, removeStonePoint } from "../stone_point.js";
 import { displayMessage, messageChannels } from "../messageManager.js";
 import { locatorEntries, locatorCost } from "./locator_config.js";
 import { locateBiome, locateStructure, isInsideBiome } from "./locator_locate.js";
+import { truePowerOf } from "../seven_curses/true_power.js";
 
 const cooldownKey = "stonecraft:locator_cooldown";
+const LOCATOR_ITEM_ID = "stonecraft:trail_compass";
 
-function costOf(entry) {
-    return entry.cost ?? locatorCost.stonePoint;
+//祝福 7 生效时走 true_power.js 配置的数值（取更划算的一边）
+function costOf(player, entry) {
+    const base = entry.cost ?? locatorCost.stonePoint;
+    const power = truePowerOf(player, LOCATOR_ITEM_ID);
+    if (!power?.stonePointCost) return base;
+    return Math.min(base, power.stonePointCost);
 }
 
-function cooldownOf(entry) {
-    return entry.cooldown ?? locatorCost.cooldownTicks;
+function cooldownOf(player, entry) {
+    const base = entry.cooldown ?? locatorCost.cooldownTicks;
+    const power = truePowerOf(player, LOCATOR_ITEM_ID);
+    if (!power?.cooldownTicks) return base;
+    return Math.min(base, power.cooldownTicks);
 }
 
 function cooldownLeft(player) {
@@ -41,8 +50,17 @@ function statusBody(player) {
     return { rawtext: parts };
 }
 
-function entryLabel(entry) {
-    return { translate: nameKeyOf(entry) };
+function costLine(player, entry) {
+    return {
+        translate: "stonecraft.locator.cost",
+        with: { rawtext: [{ text: String(costOf(player, entry)) }] }
+    };
+}
+
+function entryLabel(player, entry) {
+    return {
+        rawtext: [{ translate: nameKeyOf(entry) }, { text: "  " }, costLine(player, entry)]
+    };
 }
 
 export function openMenu(player) {
@@ -57,11 +75,11 @@ export function openMenu(player) {
 
     form.divider();
     form.label({ translate: "stonecraft.locator.group_biome" });
-    for (const entry of biomeEntries) form.button(entryLabel(entry));
+    for (const entry of biomeEntries) form.button(entryLabel(player, entry));
 
     form.divider();
     form.label({ translate: "stonecraft.locator.group_structure" });
-    for (const entry of structureEntries) form.button(entryLabel(entry));
+    for (const entry of structureEntries) form.button(entryLabel(player, entry));
 
     form.show(player).then(response => {
         if (response.canceled || response.selection === undefined) return;
@@ -74,7 +92,9 @@ export function openMenu(player) {
 function openConfirm(player, entry) {
     new ActionFormData()
         .title({ translate: nameKeyOf(entry) })
-        .body(statusBody(player))
+        .body({
+            rawtext: [...statusBody(player).rawtext, { text: "\n" }, costLine(player, entry)]
+        })
         .button({ translate: "stonecraft.locator.btn_locate" })
         .button({ translate: "stonecraft.locator.btn_back" })
         .show(player)
@@ -101,7 +121,7 @@ function doLocate(player, entry) {
         return;
     }
 
-    const cost = costOf(entry);
+    const cost = costOf(player, entry);
     if (getStonePoint(player) < cost) {
         displayMessage(player, {
             rawtext: [{ translate: "stonecraft.locator.no_stone" }, { text: String(cost) }]
@@ -120,7 +140,7 @@ function doLocate(player, entry) {
             return;
         }
         removeStonePoint(player, cost);
-        setCooldown(player, cooldownOf(entry));
+        setCooldown(player, cooldownOf(player, entry));
         const at = found.location;
         displayMessage(player, {
             rawtext: [
@@ -140,7 +160,7 @@ function doLocate(player, entry) {
         return;
     }
     removeStonePoint(player, cost);
-    setCooldown(player, cooldownOf(entry));
+    setCooldown(player, cooldownOf(player, entry));
     displayMessage(player, { translate: "stonecraft.locator.success_structure" }, { channel: messageChannels.chat });
 }
 
