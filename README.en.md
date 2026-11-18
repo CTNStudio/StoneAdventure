@@ -1,4 +1,4 @@
-# Stone Craft & Stone Adventure
+# Stone Adventure
 
 [简体中文](README.md) ｜ [繁體中文](README.zh-TW.md) ｜ **English** ｜ [Русский](README.ru.md)
 
@@ -16,12 +16,10 @@ Icon designed by [@星零大队长](https://www.mcmod.cn/author/29211.html). A [
 
 | | |
 | --- | --- |
-| Current version | **1.3.0** |
-| Requires | **Minecraft Bedrock 1.26.60+** |
+| Current released version | **1.2.2** |
+| Requires | **Minecraft Bedrock 1.26.40+** |
 | Type | Behavior Pack + Resource Pack (add-on) |
 | Languages | Simplified Chinese / Traditional Chinese / English / Russian |
-
-> **Play Stone Adventure.** It contains everything from Stone Craft plus the full adventure layer. Stone Craft is now kept for its utility features only.
 
 ---
 
@@ -33,17 +31,17 @@ Mine stone and hunt stone creatures to stockpile stone and compressed stone, the
 
 ## Highlights
 
-- ⛏️ **Stone as currency** — every cobblestone converts into power
-- 🗜️ **Five compression tiers** — nine stone become one; everything builds on this
-- 💎 **Marrow gems** — 20+ socketable gems, each with a dedicated gear slot
-- 📖 **The Stone Codex** — quests, achievements and a shop in one book
-- 🪙 **Stone source & weekly quests** — sell coins for source, three new weeklies every game-week
-- 🫀 **Stone hearts** — a second health pool that regenerates out of combat
-- 🌊 **Stone tide** — after you beat the boss, weekend nights can turn into a siege
-- 👑 **Multiple bosses** — the Stone Totem, the Tower Scion, each a different fight
-- 🏯 **Battle towers** — eight floors of escalating trials
-- 🌍 **Boulder Wasteland** — a new biome hiding relics of an older civilization
-- 🌐 **Fully localized** — zh-CN / zh-TW / en_US / ru_RU
+- **Stone as currency** — every cobblestone converts into power
+- **Five compression tiers** — nine stone become one; everything builds on this
+- **Marrow gems** — 20+ socketable gems, each with a dedicated gear slot
+- **The Stone Codex** — quests, achievements and a shop in one book
+- **Stone source & weekly quests** — sell coins for source, three new weeklies every game-week
+- **Stone hearts** — a second health pool that regenerates out of combat
+- **Stone tide** — after you beat the boss, weekend nights can turn into a siege
+- **Multiple bosses** — the Stone Totem, the Tower Scion, each a different fight
+- **Battle towers** — eight floors of escalating trials
+- **Boulder Wasteland** — a new biome hiding relics of an older civilization
+- **Fully localized** — zh-CN / zh-TW / en_US / ru_RU
 
 ## Getting started
 
@@ -155,9 +153,6 @@ Different parts are licensed differently:
 | **Art assets** (textures, models, sounds, fonts, icons) | © CTN STUDIO, **all rights reserved** — no extraction, redistribution or commercial use without written permission |
 | **NetEase edition** | **Not covered by this license** — governed by NetEase terms |
 | **Third-party components** | Their own licenses, see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) |
-| **Legacy add-on** | [MIT](https://opensource.org/license/mit) — pre-remake versions only |
-
-In short: **take the code, not the art; the NetEase edition is separate.**
 
 ## Credits
 
