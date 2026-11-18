@@ -1,0 +1,62 @@
+name: 功能请求
+description: 新玩法、新内容或平衡性调整的建议
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢建议！请先 [搜索已有 Issue](https://github.com/CTNStudio/StoneAdventure/issues?q=is%3Aissue)，避免重复。
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: 建议类型
+      options:
+        - 新物品 / 方块
+        - 新生物 / BOSS
+        - 新建筑 / 结构
+        - 玩法机制
+        - 数值平衡
+        - 界面 / 任务书
+        - 兼容性 / 性能
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 你想解决什么问题
+      description: 先说清楚痛点，再说方案
+      placeholder: 目前……导致……，所以希望能……
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 建议的方案
+      description: 具体一点，比如数值、合成配方、出现位置
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 考虑过的替代方案
+      description: 有没有其他做法？为什么这个更好？
+    validations:
+      required: false
+
+  - type: dropdown
+    id: contribute
+    attributes:
+      label: 你是否愿意自己实现并提交 PR？
+      options:
+        - 愿意，我可以写代码
+        - 愿意，我可以画纹理
+        - 愿意，但需要指导
+        - 只是想提个建议
+    validations:
+      required: true

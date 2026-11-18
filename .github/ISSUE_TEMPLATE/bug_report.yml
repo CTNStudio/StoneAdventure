@@ -1,0 +1,119 @@
+name: Bug 报告
+description: 崩溃、数值异常、行为不符预期等可复现的问题
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈！提交前请先 [搜索已有 Issue](https://github.com/CTNStudio/StoneAdventure/issues?q=is%3Aissue)，避免重复。
+
+        - 玩法求助 / 联机问题请到 [QQ 群](https://qm.qq.com/q/GikRP6ZZio)，不要开 Issue。
+        - 建议与平衡性意见请使用「功能请求」模板。
+
+  - type: dropdown
+    id: pack_version
+    attributes:
+      label: 附加包版本
+      description: 在游戏内「设置 → 存储」中可以查看
+      options:
+        - 1.3.0
+        - 1.2.2
+        - 1.2.1
+        - 1.2.0 或更早
+        - 不确定
+    validations:
+      required: true
+
+  - type: input
+    id: game_version
+    attributes:
+      label: 游戏版本
+      description: 例如 1.26.60，主菜单右下角可以看到
+      placeholder: "1.26.60"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: 运行平台
+      options:
+        - Windows
+        - Android
+        - iOS / iPadOS
+        - Xbox
+        - PlayStation
+        - 其他
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mode
+    attributes:
+      label: 游戏模式
+      options:
+        - 单人存档
+        - 局域网 / 联机
+        - 专用服务器
+        - 领域（Realms）
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 简单说说发生了什么
+      placeholder: 我在……的时候，出现了……
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 按顺序写清楚，越具体越好
+      placeholder: |
+        1. 新建创造模式世界，只启用磐石之旅 BP 与 RP
+        2. 手持 x 物品右键 y 方块
+        3. 出现报错
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望结果
+      description: 你认为正常情况下应该是怎样的
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志 / 截图
+      description: |
+        内容日志（设置 → 创作者 → 内容日志）或崩溃信息请粘贴在下方；
+        截图可以直接拖进这个输入框。
+      render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充信息
+      description: 是否同时启用了其他附加包？是否使用了资源包覆盖？
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已搜索过已有 Issue，没有找到相同问题
+          required: true
+        - label: 我已确认游戏版本不低于 1.26.60，且 BP 与 RP 均已启用
+          required: true

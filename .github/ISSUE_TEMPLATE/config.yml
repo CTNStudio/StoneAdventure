@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 玩法求助 / 联机 / 闲聊
+    url: https://qm.qq.com/q/GikRP6ZZio
+    about: QQ 群 860577116。安装、玩法、联机问题请在这里问，不要开 Issue。
+  - name: 官方 Wiki
+    url: https://www.ctnstudios.top/wiki/works/mods/stone-adventure/
+    about: 更新日志、条目说明与常见问题。
+  - name: 问卷式反馈
+    url: https://docs.qq.com/form/page/DZXRZakpEUGFUR1R5
+    about: 不方便用 GitHub 时，可以通过问卷反馈。
+  - name: 版权与授权问题
+    url: https://www.ctnstudios.top/
+    about: 涉及美术资源使用、商用授权等，请通过工作室官网联系我们。
