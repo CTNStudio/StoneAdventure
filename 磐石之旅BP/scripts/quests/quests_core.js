@@ -92,6 +92,24 @@ export function resetKillCount(player, questId) {
     player.setDynamicProperty(key, 0);
 }
 
+const break_prefix = "break_progress_";
+
+export function addBreakCount(player, questId, increment = 1) {
+    const key = `stonecraft:${break_prefix}${questId}`;
+    const current = player.getDynamicProperty(key) ?? 0;
+    player.setDynamicProperty(key, current + increment);
+}
+
+export function getBreakCount(player, questId) {
+    const key = `stonecraft:${break_prefix}${questId}`;
+    return player.getDynamicProperty(key) ?? 0;
+}
+
+export function resetBreakCount(player, questId) {
+    const key = `stonecraft:${break_prefix}${questId}`;
+    player.setDynamicProperty(key, 0);
+}
+
 const entityToQuests = new Map();
 
 function initKillQuestMap() {
@@ -127,6 +145,46 @@ function initHitItemQuestMap() {
     }
 }
 initHitItemQuestMap();
+
+//方块 → 依赖它的任务/成就（挖掘方块检测）
+const breakBlockToQuests = new Map();
+
+//条件里写 blockType 或 blockTypes 都支持
+function breakConditionMatches(cond, blockId) {
+    if (!cond || !blockId) return false;
+    if (cond.blockType && cond.blockType === blockId) return true;
+    return Array.isArray(cond.blockTypes) && cond.blockTypes.includes(blockId);
+}
+
+//方块显示名：name 可以写纯字符串，也可以写 rawtext 节点；不写就退回方块 id
+function breakBlockNameNode(cond) {
+    if (!cond) return { text: "" };
+    const name = cond.name;
+    if (name === undefined || name === null || name === "") {
+        const fallback = cond.blockType || (Array.isArray(cond.blockTypes) ? cond.blockTypes.join(" / ") : "");
+        return { text: fallback };
+    }
+    return typeof name === "string" ? { text: name } : name;
+}
+
+function initBreakBlockQuestMap() {
+    breakBlockToQuests.clear();
+    for (const chapter of CHAPTERS) {
+        if (!Array.isArray(chapter?.quests)) continue;
+        for (const quest of chapter.quests) {
+            const cond = quest?.condition?.breakBlock;
+            if (!cond) continue;
+            const blockIds = cond.blockTypes ? cond.blockTypes : (cond.blockType ? [cond.blockType] : []);
+            for (const blockId of blockIds) {
+                if (!breakBlockToQuests.has(blockId)) {
+                    breakBlockToQuests.set(blockId, []);
+                }
+                breakBlockToQuests.get(blockId).push(quest);
+            }
+        }
+    }
+}
+initBreakBlockQuestMap();
 
 //玩家 tag → 依赖它的任务/成就（七兆的封印、解咒都写 tag，靠这里反查）
 const playerTagToQuests = new Map();
@@ -350,6 +408,20 @@ export function checkQuestConditionWithQuest(player, quest) {
             });
         }
     }
+    if (condition.breakBlock) {
+        const required = condition.breakBlock.amount || 1;
+        const current = getBreakCount(player, quest.id);
+        if (current < required) {
+            messages.push({
+                rawtext: [
+                    { text: "还需要挖掘 " },
+                    { text: required.toString() },
+                    { text: " 个 " },
+                    breakBlockNameNode(condition.breakBlock)
+                ]
+            });
+        }
+    }
     if (condition.playerTag) {
         const tag = condition.playerTag.tag;
         let hasTag = false;
@@ -415,6 +487,7 @@ export function markQuestCompleted(player, quest) {
     resetKillCount(player, quest.id);
     resetUseCount(player, quest.id);
     resetHitCount(player, quest.id);
+    resetBreakCount(player, quest.id);
 }
 
 export function giveQuestAward(player, quest) {
@@ -607,8 +680,6 @@ export function buildQuestBody(quest, player) {
     } else if (condition.hitEntityWithItem) {
         const required = condition.hitEntityWithItem.amount || 1;
         const current = getHitCount(player, quest.id);
-        //quest.hit 的语言模板把「次」排在占位符后面，所以这里不能复用带 √ 的 progressSuffix
-        //（否则会渲染成「射中生物 √ 次」）；完成时改成显示满进度
         const completed = player && player.hasTag(`stonecraft:${quest.id}`);
         const shown = completed ? required : current;
         body.rawtext.push({
@@ -620,6 +691,17 @@ export function buildQuestBody(quest, player) {
                 ]
             }
         });
+    }
+    else if (condition.breakBlock) {
+        const required = condition.breakBlock.amount || 1;
+        body.rawtext.push({
+            translate: "quest.break_block",
+            with: { rawtext: [{ text: required.toString() }, condition.breakBlock.name] }
+        });
+        if (player) {
+            const current = getBreakCount(player, quest.id);
+            body.rawtext.push({ text: progressSuffix(player, quest, current, required) });
+        }
     }
     else if (condition.playerTag) {
         //玩家 tag 类条件（七兆的封印/解咒标记），名称由数据里的 name 提供
@@ -778,6 +860,30 @@ world.afterEvents.playerSpawn.subscribe((event) => {
     const bookItem = new ItemStack(QUEST_BOOK_ID, 1);
     giveItem(player, bookItem);
     player.setDynamicProperty(`stonecraft:received_book`, true);
+});
+
+//挖掘方块：任务/成就按 blockType 索引，周常直接遍历本周三个任务
+world.afterEvents.playerBreakBlock.subscribe((event) => {
+    const player = event.player;
+    if (!player) return;
+    //afterEvents 里 block 已经被破坏，优先读 brokenBlockPermutation
+    const blockId = event.brokenBlockPermutation?.type?.id ?? event.block?.typeId;
+    if (!blockId) return;
+
+    const quests = breakBlockToQuests.get(blockId);
+    if (quests) {
+        for (const quest of quests) {
+            if (isQuestCompleted(player, quest)) continue;
+            addBreakCount(player, quest.id, 1);
+            checkAutoAchievement(player, quest);
+        }
+    }
+
+    for (const quest of getWeeklyQuests()) {
+        if (!breakConditionMatches(quest.condition?.breakBlock, blockId)) continue;
+        addBreakCount(player, quest.id, 1);
+        checkWeeklyProgress(player, quest);
+    }
 });
 
 world.afterEvents.itemUse.subscribe((event) => {

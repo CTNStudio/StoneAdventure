@@ -8,8 +8,6 @@
 import { world, system, EquipmentSlot, EntityComponentTypes } from "@minecraft/server";
 //不填 thorns 时的反伤值
 const DEFAULT_THORNS = 0;
-//格挡成功的基础耐久消耗（另加 伤害/2）
-const BASE_DURABILITY_COST = 1;
 //可被格挡的伤害类型
 //未列入的 magic（守卫者激光/龙息/状态效果）、sonicBoom（监守者）、fall（摔落）、fire 等都会被拒绝
 const BLOCKABLE_CAUSES = new Set([
@@ -311,7 +309,10 @@ function subscribeOnce() {
 				player.playSound("item.shield.block");
 			} catch {
 			}
-			damageShield(player, shield, BASE_DURABILITY_COST + Math.floor(damage / 2));
+			//原版按取整后的伤害算（2.5 记作 3）：不足 3 点不消耗，3 点及以上消耗 伤害+1
+			const blocked = Math.round(damage);
+			const durabilityCost = blocked < 3 ? 0 : blocked + 1;
+			if (durabilityCost > 0) damageShield(player, shield, durabilityCost);
 			if (attacker?.isValid) {
 				knockbackAttacker(player, attacker);
 				if (reflect) reflectArrow(player, attacker);

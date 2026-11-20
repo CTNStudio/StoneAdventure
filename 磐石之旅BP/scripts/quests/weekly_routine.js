@@ -2,7 +2,7 @@ import { world, system, Player, ItemStack } from "@minecraft/server";
 import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { weekly_pool, WEEKLY_COMPLETION_BONUS } from "./weekly_routine_config.js";
 import { displayMessage } from "../messageManager.js";
-import { buildQuestBody,  giveQuestAward, checkQuestConditionWithQuest, resetHitCount, getHitCount, giveItem } from "./quests_core.js";
+import { buildQuestBody,  giveQuestAward, checkQuestConditionWithQuest, resetHitCount, getHitCount, giveItem, getBreakCount, resetBreakCount } from "./quests_core.js";
 import { COLOR_CLAIMABLE, COLOR_DONE, COLOR_RESET, GLYPH_DONE, titleNode } from "./quest_marks.js";
 import { showMainMenu } from "./quests_ui.js";
 import { addStonePoint } from "../stone_point.js";
@@ -88,6 +88,7 @@ function resetWeeklyProgress(player, questId) {
     player.setDynamicProperty(`${weekly_kill_prefix}${questId}`, 0);
     player.setDynamicProperty(`${weekly_use_prefix}${questId}`, 0);
     resetHitCount(player, questId);
+    resetBreakCount(player, questId);
 }
 // 显示周常菜单
 export function showWeeklyMenu(player) {
@@ -324,6 +325,9 @@ export function checkWeeklyProgress(player, quest) {
     } else if (condition.hitEntityWithItem) {
         const count = getHitCount(player, quest.id);
         satisfied = count >= (condition.hitEntityWithItem.amount || 1);
+    } else if (condition.breakBlock) {
+        const count = getBreakCount(player, quest.id);
+        satisfied = count >= (condition.breakBlock.amount || 1);
     }
 
     if (!satisfied) return false;

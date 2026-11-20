@@ -112,11 +112,11 @@ export const weekly_pool = [
         title: { translate: "sc.weekly.dig_stone.title" },
         description: { translate: "sc.weekly.dig_stone.body" },
         condition: { 
-            item: { 
-                itemId: "minecraft:cobblestone", 
-                amount: 64, 
-                name: { translate: "tile.cobblestone.name" } 
-            } 
+            breakBlock: {
+                blockType: "minecraft:stone",
+                amount: 64,
+                name: { text: "石头" }
+            }
         },
         award: { stonePoint: 1, exp: 10 },
         iconPath: "textures/ui/quest/cobblestone",

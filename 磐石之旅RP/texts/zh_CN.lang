@@ -386,6 +386,8 @@ quest.reset=§6周常已刷新！§r
 sc.weekly.bonus_claimed=§6§l本周周常全部完成！额外奖励已发放！
 quest.hit=用 %s 射中生物 %s 次
 quest.not_enough.hit=还需要用 %2$s 射中生物 %1$s 次 %3$s
+quest.break_block=挖掘 %1 个 %2
+quest.not_enough.break_block=还需要挖掘 %1 个 %2
 
 sc.weekly.use_bread.title=食用石头面包
 sc.weekly.use_bread.body=食用16个石头面包
@@ -396,7 +398,7 @@ sc.weekly.kill_guard.body=击杀20个石头守卫
 sc.weekly.kill_shooter.title=击杀石头射手
 sc.weekly.kill_shooter.body=击杀15个石头射手
 sc.weekly.dig_stone.title=挖掘石头
-sc.weekly.dig_stone.body=获得一组圆石
+sc.weekly.dig_stone.body=挖掘一组石头
 sc.weekly.kill_sandstone_guard.title=击杀砂岩守卫
 sc.weekly.kill_sandstone_guard.body=击杀10个砂岩守卫
 sc.weekly.kill_molten_stone_guard.title=击杀熔铸石头守卫
@@ -596,7 +598,7 @@ sc.quest.kill_warden.body=身负七兆诅咒，击败监守者，解除一项诅
 sc.quest.kill_warden.body1=§o§5背负诅咒的孩子，渴望光明的孩子，去摘下罪恶之兽的眼睛吧。§r
 sc.quest.seven_curses_unc_5.title=低光失明
 sc.quest.seven_curses_unc_5.body=你解除了诅咒：低光失明。
-sc.quest.seven_curses_unc_5.body1=§o你做的很好，很好。§r
+sc.quest.seven_curses_unc_5.body1=§o§5你做的很好，很好。§r
 
 ## 生物志
 
