@@ -1234,7 +1234,37 @@ export const CHAPTERS = [
                     item: {
                         itemId: "stonecraft:septem_seal_stone",
                         amount: 1,
-                        name: { translate: "item.stonecraft.septem_seal_stone.name" }
+                        name: { translate: "stonecraft.item.septem_seal_stone" }
+                    }
+                },
+                award: {
+                    exp: 25,
+                    items: [
+                        {
+                            itemId: "stonecraft:stone_coin",
+                            amount: 16,
+                            name: { translate: "stonecraft.item.stone_coin" }
+                        }
+                    ]
+                },
+                iconPath: "textures/items/treasures/septem_seal_stone"
+            },
+                        {
+                id: "seven_curses_seal",
+                title: { translate: "sc.quest.seven_curses_seal.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.seven_curses_seal.body" },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.seven_curses_seal.body1" }
+                    ]
+                },
+                autoComplete: true,
+                manualReward: true,
+                condition: {
+                    playerTag: {
+                        tag: "stonecraft:seven_seal",
+                        name: { translate: "sc.quest.seven_curses_seal.condition" }
                     }
                 },
                 award: {
@@ -1279,6 +1309,36 @@ export const CHAPTERS = [
                     ]
                 },
                 iconPath: "textures/ui/quest/entities/warden"
+            },
+                        {
+                id: "seven_curses_unc_5",
+                title: { translate: "sc.quest.seven_curses_unc_5.title" },
+                description: {
+                    rawtext: [
+                        { translate: "sc.quest.seven_curses_unc_5.body" },
+                        { text: "\n\n" },
+                        { translate: "sc.quest.seven_curses_unc_5.body1" }
+                    ]
+                },
+                autoComplete: true,
+                manualReward: true,
+                condition: {
+                    playerTag: {
+                        tag: "stonecraft:seven_curse_removed_5",
+                        name: { translate: "sc.quest.seven_curses_unc_5.condition" }
+                    }
+                },
+                award: {
+                    exp: 25,
+                    items: [
+                        {
+                            itemId: "stonecraft:stone_coin",
+                            amount: 16,
+                            name: { translate: "stonecraft.item.stone_coin" }
+                        }
+                    ]
+                },
+                iconPath: "textures/items/treasures/septem_seal_stone"
             },
         ]
     },

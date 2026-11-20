@@ -352,6 +352,67 @@ export const ACHIEVEMENTS_CHAPTER = {
             iconPath: "textures/ui/quest/entities/ancient_stone_totem"
         },
         {
+            id: "pale_martyr_ach",
+            title: { translate: "sc.ach.pale_martyr.title" },
+            description: {
+                rawtext: [
+                    { translate: "sc.ach.pale_martyr.body"  }
+                ]
+            },
+            autoComplete: true,
+            manualReward: true,
+            condition: {
+                killEntity: {
+                    entityType: "stonecraft:pale_martyr",
+                    amount: 1,
+                    name: { translate: "entity.stonecraft:pale_martyr.name" }
+                }
+            },
+            award: {
+                 exp: 250,
+                 stonePoint: 200,
+                 items: [
+                    {
+                        itemId: "stonecraft:inlaid_essence_bead_veil",
+                        amount: 1,
+                        name: {
+                            translate: "stonecraft.item.stone_essence_crystal.veil"
+                        }
+                    }
+                ]
+            },
+            iconPath: "textures/ui/quest/entities/pale_martyr"
+        },
+        {
+            id: "seven_curses_seal_ach",
+            title: { translate: "sc.ach.seven_curses_seal.title" },
+            description: {
+                rawtext: [
+                    { translate: "sc.ach.seven_curses_seal.body" }
+                ]
+            },
+            autoComplete: true,
+            manualReward: true,
+            condition: {
+                playerTag: {
+                    tag: "stonecraft:seven_seal",
+                    name: { translate: "sc.ach.seven_curses_seal.condition" }
+                }
+            },
+            award: {
+                exp: 1000,
+                stonePoint: 100,
+                items: [
+                    {
+                        itemId: "stonecraft:lv5stone",
+                        amount: 8,
+                        name: { translate: "tile.stonecraft:lv5stone.name" }
+                    }
+                ]
+            },
+            iconPath: "textures/items/treasures/septem_seal_stone"
+        },
+        {
             id: "lv5stone_armors_ach",
             title: { translate: "sc.ach.lv5stone_armors.title" },
             description: {

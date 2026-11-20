@@ -412,6 +412,8 @@ sc.tide.tide_ends=§a石潮平息了...§r
 sc.tide.totem_died=§c§l时空的裂隙已然形成，石潮将有概率在晚上出现§r
 
 stonecraft.tag.stone_food=石头食物
+sc.quest.seven_curses_seal.condition=接触七兆
+sc.quest.seven_curses_unc_5.condition=解除低光失明
 
 sc.menu.achievements=成就
 sc.menu.achievements.body=记录你一路走来的足迹
@@ -560,19 +562,19 @@ sc.quest.stone_heart.body=击败高塔余裔获得石心，食用后给予自身
 sc.quest.stone_heart.body1=§o灾厄之影覆于高塔之上，王终是明白了——他同父亲一般愚昧。那巍峨而坚固的塔楼，又怎能阻挡劫数的降临？如父亲当年那般，他举起利刃，以命赎罪。§r
 sc.quest.sacrificial_blade.title=献祭短刀
 sc.quest.sacrificial_blade.body=在古石祭坛里找到献祭短刀。
-sc.quest.sacrificial_blade.body1=§o“这神圣的器物，在你手下已证明了其价值。萨克里乌斯呦，请你上来。”§r
+sc.quest.sacrificial_blade.body1=§o“§3这神圣的器物，在你手下已证明了其价值。萨克里乌斯呦，请你上来。§r”§r
 sc.quest.blood_bottle.title=血瓶
 sc.quest.blood_bottle.body=背包里有玻璃瓶时，手持使用献祭短刀获得血瓶。
-sc.quest.blood_bottle.body1=§o“看呐！公民们！这就是法尔苏斯所说的神圣之血，流淌在这样的小人身上！”§r
+sc.quest.blood_bottle.body1=§o“§3看呐！公民们！这就是法尔苏斯所说的神圣之血，流淌在这样的小人身上！§r”§r
 sc.quest.ersatz_blood_vial.title=赝血祭瓶
 sc.quest.ersatz_blood_vial.body=在工作台中用血瓶合成赝血祭瓶。
-sc.quest.ersatz_blood_vial.body1=§o“法尔苏斯！你向我保证过的！可为何此血不纯！”§r
+sc.quest.ersatz_blood_vial.body1=§o“§5法尔苏斯！你向我保证过的！可为何此血不纯！§r”§r
 sc.quest.blood_offering_vial.title=血祭之瓶
 sc.quest.blood_offering_vial.body=将赝血祭瓶放入酿造台中，使用石头之星提纯。
 sc.quest.blood_offering_vial.body1=§o无人应答。萨克里乌斯在风中飘摇，命运已指向清晰而令人恐惧的方向。§r
 sc.quest.stone_summoner_activated.title=激活的血祭石柱
 sc.quest.stone_summoner_activated.body=将血祭之瓶灌入古石祭坛中心的血祭石柱中，并挖掘下来。
-sc.quest.stone_summoner_activated.body1=§o“法尔苏斯蒙骗了我们！这绝非救世的先兆，而是灾厄的序章！”§r
+sc.quest.stone_summoner_activated.body1=§o“§5法尔苏斯蒙骗了我们！这绝非救世的先兆，而是灾厄的序章！§r”§r
 
 sc.chapter_6.title=第四章·幽匿殉道之章
 sc.chapter_6.description=埋葬于幽匿之地的游魂，正诉说着千年的痛苦
@@ -586,9 +588,15 @@ sc.quest.ominous_bottle.body1=§o“你们死在过往的罪恶之中，主叫�
 sc.quest.septem_seal_stone.title=七兆印石
 sc.quest.septem_seal_stone.body=击败白衣的殉道者，获得七兆印石。
 sc.quest.septem_seal_stone.body1=§o“我们从前也都在他们中间，放纵肉体的私欲，随着肉体和心中所喜好的去行，本为可怒之子，和别人一样。”§r
+sc.quest.seven_curses_seal.title=七兆
+sc.quest.seven_curses_seal.body=使用七兆印石，背负旧文明的诅咒。
+sc.quest.seven_curses_seal.body1=§o§5你拿到了它。接触它吧，你将得知更多的真相。§r
 sc.quest.kill_warden.title=监守者
 sc.quest.kill_warden.body=身负七兆诅咒，击败监守者，解除一项诅咒。
-sc.quest.kill_warden.body1=§o背负诅咒的孩子，渴望光明的孩子，去摘下罪恶之兽的眼睛吧。§r
+sc.quest.kill_warden.body1=§o§5背负诅咒的孩子，渴望光明的孩子，去摘下罪恶之兽的眼睛吧。§r
+sc.quest.seven_curses_unc_5.title=低光失明
+sc.quest.seven_curses_unc_5.body=你解除了诅咒：低光失明。
+sc.quest.seven_curses_unc_5.body1=§o你做的很好，很好。§r
 
 ## 生物志
 
@@ -694,6 +702,10 @@ sc.ach.stone_food_collector.title=史诗食世石
 sc.ach.stone_food_collector.body=吃掉所有种类的石头食物
 sc.ach.stone_totem.title=揭却四兆
 sc.ach.stone_totem.body=击败一次石之图腾
+sc.ach.pale_martyr.title=揭却五兆
+sc.ach.pale_martyr.body=击败一次白衣的殉道者
+sc.ach.seven_curses_seal.title=七兆之影
+sc.ach.seven_curses_seal.body=使用七兆印石
 sc.ach.lv5stone_armors.title=五级压缩石套
 sc.ach.lv5stone_armors.body=凑齐五级压缩石套
 

@@ -3,6 +3,9 @@ import { system, world } from "@minecraft/server";
 export const SEAL_TAG = "stonecraft:seven_seal";
 const CURSE_PREFIX = "stonecraft:seven_curse_";
 const BLESS_PREFIX = "stonecraft:seven_bless_";
+const CURSE_REMOVED_PREFIX = "stonecraft:seven_curse_removed_";
+//解除过至少一条诅咒的通用标记；按条区分的标记见 curseRemovedTag(id)
+export const CURSE_REMOVED_TAG = "stonecraft:seven_curse_removed";
 
 export const CURSE_IDS = [1, 2, 3, 4, 5, 6, 7];
 export const BLESS_IDS = [1, 2, 3, 4, 5, 6, 7];
@@ -20,6 +23,10 @@ function safeHasTag(player, tag) {
 
 export function curseTag(id) {
   return CURSE_PREFIX + id;
+}
+
+export function curseRemovedTag(id) {
+  return CURSE_REMOVED_PREFIX + id;
 }
 
 export function blessTag(id) {
@@ -56,11 +63,22 @@ export function grantSeal(player) {
 }
 
 export function removeCurse(player, id) {
+  let hadCurse = false;
   try {
     if (!player?.isValid) return false;
+    //removeTag 删不存在的 tag 不会报错，所以必须先读一次才能分辨「真的解除了」
+    hadCurse = player.hasTag(curseTag(id));
     player.removeTag(curseTag(id));
   } catch {
     return false;
+  }
+  //只有真的解除过才留下永久标记，供任务/成就的 playerTag 判定读取
+  if (hadCurse) {
+    try {
+      player.addTag(curseRemovedTag(id));
+      player.addTag(CURSE_REMOVED_TAG);
+    } catch {
+    }
   }
   //移除成功后派发 onRemoved，让效果模块清理自己留下的即时效果（例如低光失明留下的 blindness）
   notifyRemoved(player, "curse", id);

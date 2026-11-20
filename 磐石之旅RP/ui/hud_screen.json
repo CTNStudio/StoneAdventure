@@ -271,6 +271,24 @@
         }
       },
       {
+        "custom.achievement.pale_martyr_ach@hud.achievement_element": {
+          "$when_draw": "custom.achievement.pale_martyr_ach",
+          "$uv": [ 0, 0 ],
+          "$achievement_icon": "textures/ui/quest/entities/pale_martyr",
+          "$achievement_text": "sc.ach.pale_martyr.title",
+          "$content_text": "sc.ach.pale_martyr.body"
+        }
+      },
+      {
+        "custom.achievement.seven_curses_seal_ach@hud.achievement_element": {
+          "$when_draw": "custom.achievement.seven_curses_seal_ach",
+          "$uv": [ 0, 0 ],
+          "$achievement_icon": "textures/items/treasures/septem_seal_stone",
+          "$achievement_text": "sc.ach.seven_curses_seal.title",
+          "$content_text": "sc.ach.seven_curses_seal.body"
+        }
+      },
+      {
         "custom.achievement.lv5stone_armors_ach@hud.achievement_element": {
           "$when_draw": "custom.achievement.lv5stone_armors_ach",
           "$uv": [ 0, 0 ],

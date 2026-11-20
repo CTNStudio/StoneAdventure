@@ -15,6 +15,7 @@ import {
     GLYPH_DONE,
     titleNode,
 } from "./quest_marks.js";
+import { registerEffectModule, SEAL_TAG, CURSE_REMOVED_TAG, curseRemovedTag } from "../seven_curses/index.js";
 
 import {
     showQuestBook,
@@ -126,6 +127,51 @@ function initHitItemQuestMap() {
     }
 }
 initHitItemQuestMap();
+
+//玩家 tag → 依赖它的任务/成就（七兆的封印、解咒都写 tag，靠这里反查）
+const playerTagToQuests = new Map();
+
+function initPlayerTagQuestMap() {
+    playerTagToQuests.clear();
+    for (const chapter of CHAPTERS) {
+        if (!Array.isArray(chapter?.quests)) continue;
+        for (const quest of chapter.quests) {
+            const cond = quest?.condition?.playerTag;
+            if (!cond || !cond.tag) continue;
+            if (!playerTagToQuests.has(cond.tag)) {
+                playerTagToQuests.set(cond.tag, []);
+            }
+            playerTagToQuests.get(cond.tag).push(quest);
+        }
+    }
+}
+initPlayerTagQuestMap();
+
+//某个 tag 出现后，立刻推进依赖它的任务/成就（自动提交 + 成就 Toast）
+function checkPlayerTagQuests(player, tag) {
+    if (!player || !tag) return;
+    const quests = playerTagToQuests.get(tag);
+    if (!quests) return;
+    for (const quest of quests) {
+        try {
+            checkAutoAchievement(player, quest);
+        } catch (error) {
+            console.error("[quests] tag quest check failed", error);
+        }
+    }
+}
+
+//七兆：绑定封印 / 解咒 都走 effectModule 派发，这里接住并推进任务
+registerEffectModule({
+    onBind(player) {
+        checkPlayerTagQuests(player, SEAL_TAG);
+    },
+    onRemoved(player, kind, id) {
+        if (kind !== "curse") return;
+        checkPlayerTagQuests(player, curseRemovedTag(id));
+        checkPlayerTagQuests(player, CURSE_REMOVED_TAG);
+    },
+});
 
 function getPlayerContainer(player) {
     return InventoryUtil.getContainer(player);
@@ -301,6 +347,21 @@ export function checkQuestConditionWithQuest(player, quest) {
                     condition.hitEntityWithItem.name,
                     { text: ` §7(${current}/${required})` }
                 ] }
+            });
+        }
+    }
+    if (condition.playerTag) {
+        const tag = condition.playerTag.tag;
+        let hasTag = false;
+        try {
+            hasTag = !!(player && tag && player.hasTag(tag));
+        } catch {
+            hasTag = false;
+        }
+        if (!hasTag) {
+            messages.push({
+                translate: "quest.not_enough.player_tag",
+                with: { rawtext: [condition.playerTag.name || { text: tag || "" }] }
             });
         }
     }
@@ -559,6 +620,10 @@ export function buildQuestBody(quest, player) {
                 ]
             }
         });
+    }
+    else if (condition.playerTag) {
+        //玩家 tag 类条件（七兆的封印/解咒标记），名称由数据里的 name 提供
+        body.rawtext.push(condition.playerTag.name || { text: condition.playerTag.tag || "" });
     }
     else {
         body.rawtext.push({ translate: "quest.condition.none" });
