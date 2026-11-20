@@ -16,6 +16,7 @@
 - 添加了寻迹罗盘，可以用来定位结构和群系
 - 添加了镶髓石珠·锐利、处决、破甲（by 流然）
 - 添加了镶髓石珠·尖啸、幽暗
+- 更新了第四章任务
 - 引入第三方库 StarTenonAPI（MIT License），版权与许可声明见 `scripts/lib/StarTenonAPI/LICENSE`
 - 新增 StoneAPI，用于自定义工具音效，盾牌，射手给予状态，矿物经验给予等
 - 更新了 glyph_F0 文件（by 星零大队长）
