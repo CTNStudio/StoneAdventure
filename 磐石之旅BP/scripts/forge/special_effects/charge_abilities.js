@@ -20,6 +20,7 @@ const xpBaseline = new Map();
 const sneakSince = new Map();
 const lastUse = new Map();
 const lastPrompt = new Map();
+const pendingShots = new Map();
 
 function equippableOf(player) {
   return player.getComponent(EntityComponentTypes.Equippable);
@@ -159,12 +160,31 @@ function onItemUse(event) {
 
   const key = `${player.id}:sonic`;
   if (now - (lastUse.get(key) ?? -100) < 20) return; //技能 1 秒冷却
+  if (pendingShots.has(player.id)) return; //蓄力中
+
+  pendingShots.set(player.id, now + 30); //右键 1.5 秒后发射
+}
+
+function tickSonicShots(player, now) {
+  const due = pendingShots.get(player.id);
+  if (due === undefined || now < due) return;
+
+  pendingShots.delete(player.id);
+
+  const equippable = equippableOf(player);
+  const item = equippable.getEquipment(EquipmentSlot.Mainhand);
+  const level = levelOf(item, "sonic");
+  if (level <= 0) return;
+  if (chargeOf(item, "sonic", level) < thresholdOf("sonic", level)) return;
+
+  const key = `${player.id}:sonic`;
+  if (now - (lastUse.get(key) ?? -100) < 20) return;
   lastUse.set(key, now);
 
   item.setDynamicProperty("stonecraft:xp_sonic", 0);
   equippable.setEquipment(EquipmentSlot.Mainhand, item);
 
-  fireSonicBoom(player, [4, 8, 12][level - 1]);
+  fireSonicBoom(player, [8, 12, 20][level - 1]);
 }
 
 let initialized = false;
@@ -178,6 +198,7 @@ export function initChargeAbilities() {
   world.afterEvents.playerLeave.subscribe(({ playerId }) => {
     xpBaseline.delete(playerId);
     sneakSince.delete(playerId);
+    pendingShots.delete(playerId);
     for (const key of [...lastUse.keys()]) {
       if (key.startsWith(`${playerId}:`)) lastUse.delete(key);
     }
@@ -191,6 +212,7 @@ export function initChargeAbilities() {
     for (const player of world.getAllPlayers()) {
       tickCharges(player);
       tickVeil(player, now);
+      tickSonicShots(player, now);
     }
   }, 4);
 }

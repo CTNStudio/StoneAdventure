@@ -407,6 +407,12 @@ sc.weekly.hit_with_arrow.title=射手
 sc.weekly.hit_with_arrow.body=使用石箭射中任意生物32次
 sc.weekly.use_stonickers.title=横扫饥饿
 sc.weekly.use_stonickers.body=食用4次石力架
+sc.weekly.craft_lv1stone.title=获得一级压缩石头
+sc.weekly.craft_lv1stone.body=获得32个一级压缩石头
+sc.weekly.craft_lv2stone.title=获得二级压缩石头
+sc.weekly.craft_lv2stone.body=获得16个二级压缩石头
+sc.weekly.craft_lv3stone.title=获得三级压缩石头
+sc.weekly.craft_lv3stone.body=获得4个三级压缩石头
 
 sc.tide.sleep_blocked=§c你感到烦躁，无法入睡§r
 sc.tide.tide_begins=§c§l石潮爆发！大量石头生物正在涌来！§r

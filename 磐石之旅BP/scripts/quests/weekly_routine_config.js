@@ -60,7 +60,7 @@ export const weekly_pool = [
         title: { translate: "sc.weekly.use_bread.title" },
         description: { translate: "sc.weekly.use_bread.body" },
         condition: { useItem: { itemId: "stonecraft:stone_bread", amount: 16, name: { translate: "stonecraft.item.stone_bread" } } },
-        award: { stonePoint: 5, exp: 50, items: [ { itemId: "stonecraft:stone_bread", amount: 16, name: { translate: "stonecraft.item.stone_bread" } } ] },
+        award: { stonePoint: 5, exp: 50, items: [ { itemId: "stonecraft:stone_bread", amount: 8, name: { translate: "stonecraft.item.stone_bread" } } ] },
         iconPath: "textures/items/foods/stone_bread",
         autoComplete: true,
         manualReward: true
@@ -108,6 +108,36 @@ export const weekly_pool = [
         manualReward: true
     },
     {
+        id: "weekly_craft_lv1stone",
+        title: { translate: "sc.weekly.craft_lv1stone.title" },
+        description: { translate: "sc.weekly.craft_lv1stone.body" },
+        condition: { item: { itemId: "stonecraft:lv1stone", amount: 32, name: { translate: "tile.stonecraft:lv1stone.name" } } },
+        award: { stonePoint: 5, exp: 20, items: [ { itemId: "minecraft:iron_ingot", amount: 16, name: { translate: "item.iron_ingot.name" } } ] },
+        iconPath: "textures/ui/quest/lv1_stone",
+        autoComplete: true,
+        manualReward: true
+    },
+    {
+        id: "weekly_craft_lv2stone",
+        title: { translate: "sc.weekly.craft_lv2stone.title" },
+        description: { translate: "sc.weekly.craft_lv2stone.body" },
+        condition: { item: { itemId: "stonecraft:lv2stone", amount: 16, name: { translate: "tile.stonecraft:lv2stone.name" } } },
+        award: { stonePoint: 6, exp: 25, items: [ { itemId: "minecraft:diamond", amount: 4, name: { translate: "item.diamond.name" } } ] },
+        iconPath: "textures/ui/quest/lv2_stone",
+        autoComplete: true,
+        manualReward: true
+    },
+    {
+        id: "weekly_craft_lv3stone",
+        title: { translate: "sc.weekly.craft_lv3stone.title" },
+        description: { translate: "sc.weekly.craft_lv3stone.body" },
+        condition: { item: { itemId: "stonecraft:lv3stone", amount: 4, name: { translate: "tile.stonecraft:lv3stone.name" } } },
+        award: { stonePoint: 8, exp: 30, items: [ { itemId: "minecraft:netherite_ingot", amount: 1, name: { translate: "item.netherite_ingot.name" } } ] },
+        iconPath: "textures/ui/quest/lv3_stone",
+        autoComplete: true,
+        manualReward: true
+    },
+    {
         id: "weekly_dig_stone",
         title: { translate: "sc.weekly.dig_stone.title" },
         description: { translate: "sc.weekly.dig_stone.body" },
@@ -115,7 +145,7 @@ export const weekly_pool = [
             breakBlock: {
                 blockType: "minecraft:stone",
                 amount: 64,
-                name: { text: "石头" }
+                name: { translate: "tile.stone.stone.name" }
             }
         },
         award: { stonePoint: 1, exp: 10 },

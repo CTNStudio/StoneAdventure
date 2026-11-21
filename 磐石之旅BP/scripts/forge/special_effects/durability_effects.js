@@ -50,7 +50,7 @@ function repairItem(item) {
   if (durability.damage <= 0) return undefined;
 
   try {
-    durability.damage = Math.max(0, durability.damage - level);
+    durability.damage = Math.max(0, durability.damage - [1, 3, 5][level - 1]); //等级 1/2/3 每次回复量
   } catch {
     return undefined;
   }

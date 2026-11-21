@@ -3,6 +3,9 @@ import { hasBless } from "./seven_curses/index.js";
 import { BLESS } from "./seven_curses/bless.js";
 const activeRepairZones = new Map();
 
+//玩偶的基础生效范围：以方块中心为原点 ±1.5 格（3x3x3）。祝福 5 生效时这个半边长也 ×2。
+const DOLL_ZONE_HALF = 1.5;
+
 function tryRepairItem(item, times = 1) {
     if (!item) return null;
     try {
@@ -60,13 +63,15 @@ system.runInterval(() => {
             continue;
         }
 
-        const { dimension, center, speed } = zone;
+        const { dimension, center, speed, half } = zone;
+        const reach = half ?? DOLL_ZONE_HALF;
 
         let entities;
         try {
             entities = dimension.getEntities({
                 location: center,
-                maxDistance: 3
+                //球形查询要盖住立方体的角（半边长×√3），取 2 倍半边长
+                maxDistance: reach * 2
             });
         } catch {
             continue;
@@ -74,10 +79,10 @@ system.runInterval(() => {
 
         for (const entity of entities) {
             const loc = entity.location;
-            // 精确过滤到 3x3x3 立方体范围
-            if (Math.abs(loc.x - center.x) <= 1.5 &&
-                Math.abs(loc.y - center.y) <= 1.5 &&
-                Math.abs(loc.z - center.z) <= 1.5) {
+            // 精确过滤成立方体范围
+            if (Math.abs(loc.x - center.x) <= reach &&
+                Math.abs(loc.y - center.y) <= reach &&
+                Math.abs(loc.z - center.z) <= reach) {
                 repairEntityEquipment(entity, speed ?? 1);
             }
         }
@@ -92,7 +97,7 @@ system.beforeEvents.startup.subscribe((event) => {
 
             dimension.playSound("note.pling", location, { volume: 1.0, pitch: 1.0 });
 
-            //七祝福 5：玩偶效果翻倍（持续时长与修复速度都 ×2）
+            //七祝福 5：玩偶效果翻倍（持续时长、修复速度、生效范围都 ×2）
             let factor = 1;
             try {
                 if (hasBless(player, BLESS.doll)) factor = 2;
@@ -111,7 +116,9 @@ system.beforeEvents.startup.subscribe((event) => {
                     z: block.z + 0.5
                 },
                 expiresAt: system.currentTick + 2400 * factor,
-                speed: factor
+                speed: factor,
+                //生效范围同样 ×factor
+                half: DOLL_ZONE_HALF * factor
             });
         }
     });
