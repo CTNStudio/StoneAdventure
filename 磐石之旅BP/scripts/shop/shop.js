@@ -42,12 +42,13 @@ function formatEntry(entry) {
     const name = entry.name || { text: entry.itemId };
     return {
         translate: "sc.shop.item_count",
-        with: { rawtext: [{ text: entry.amount.toString() }, name] }
+        with: { rawtext: [name, { text: entry.amount.toString() }] }
     };
 }
 
 function buildButtonText(trade) {
-    const raw = [trade.name, { text: "  §7" }];
+    //格式：[动作名] 需求 → 奖励
+    const raw = [{ text: "[" }, trade.name, { text: "] " }];
     for (let i = 0; i < trade.requirements.length; i++) {
         if (i > 0) raw.push({ translate: "sc.shop.separator" });
         raw.push(formatEntry(trade.requirements[i]));
