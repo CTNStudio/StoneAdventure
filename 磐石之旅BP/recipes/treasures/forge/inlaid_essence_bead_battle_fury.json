@@ -1,28 +1,43 @@
 {
-    "format_version": "1.21.0",
-    "minecraft:recipe_shapeless": {
+    "format_version": "1.20.60",
+    "minecraft:recipe_shaped": {
       "description": {
-      "identifier": "inlaid_essence_bead_battle_fury"
+        "identifier": "stonecraft:inlaid_essence_bead_battle_fury"
       },
-      "tags": [ "crafting_table" ],
-      "ingredients": [
-        {
+      "tags": ["crafting_table"],
+      "pattern": [
+        "SIS", 
+        "IOI", 
+        "III"
+        ],
+      "key": {
+        "S": {
+          "item": "stonecraft:lv3stone_sword"
+        },
+        "O": {
           "item": "stonecraft:inlaid_essence_bead"
         },
-        {
-          "item": "stonecraft:lv3stone_sword"
+        "I": {
+          "item": "minecraft:iron_ingot"
         }
-      ],
+      },
       "unlock": [
         {
+          "item": "stonecraft:lv3stone_sword"
+        },
+        {
           "item": "stonecraft:inlaid_essence_bead"
         },
         {
-          "item": "stonecraft:lv3stone_sword"
+          "item": "stonecraft:inlaid_essence_bead_battle_fury"
+        },
+        {
+          "item": "minecraft:iron_ingot"
         }
       ],
       "result": {
-        "item": "stonecraft:inlaid_essence_bead_battle_fury"
+        "item": "stonecraft:inlaid_essence_bead_battle_fury",
+        "count": 1
       }
     }
 }
