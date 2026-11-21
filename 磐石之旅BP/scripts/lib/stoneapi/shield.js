@@ -20,9 +20,12 @@ const BLOCKABLE_CAUSES = new Set([
 	"ramAttack",       //劫掠兽冲撞
 	"charging",        //冲撞类
 ]);
-//近战攻击后直接禁用盾牌的生物
+//近战会禁用盾牌的生物：生物默认武器走 held_item，equippable 的 Mainhand 取不到，
+//所以持斧生物按 typeId 列出来，玩家持斧则走 holdsAxe 判定
 const DISABLE_FOR_MELEE_MOBS = new Set([
-	"minecraft:warden"
+	"minecraft:warden",
+	"minecraft:piglin_brute",
+	"minecraft:vindicator"
 ]);
 //已注册的盾牌组件名
 const shieldComponents = new Set();
@@ -219,7 +222,11 @@ function holdsAxe(entity) {
 		const item = entity
 			.getComponent(EntityComponentTypes.Equippable)
 			?.getEquipment(EquipmentSlot.Mainhand);
-		return item ? item.hasTag("minecraft:is_axe") : false;
+		if (!item) return false;
+		const tags = item.getTags ? item.getTags() : [];
+		if (tags.includes("minecraft:is_axe")) return true;
+		//兑底：部分原版物品的 is_axe 标签在多语言包下取不到，用 id 后缀判断
+		return String(item.typeId).endsWith("_axe");
 	} catch {
 		return false;
 	}
@@ -300,6 +307,8 @@ function subscribeOnce() {
 		const damage = Number(event.damage) || 0;
 		const thorns = readThorns(shield);
 		const disable = shouldDisableShield(attacker, cause);
+		//临时日志：确认破盾判定拿到了什么（查完可以删）
+		console.warn(`[Shield] attacker=${attacker?.typeId ?? "-"} cause=${cause} axe=${attacker ? holdsAxe(attacker) : "-"} disable=${disable}`);
 		//投掷物 family 判定要在事件内完成（箭矢随后会被移除）
 		const projectile = event.damageSource?.damagingProjectile;
 		const reflect = matchesFamily(projectile, REFLECT_PROJECTILE_FAMILY);
