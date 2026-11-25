@@ -1,6 +1,6 @@
 ﻿import { world, Player, system } from "@minecraft/server";
 import { displayMessage, messageChannels } from "../messageManager.js";
-//椋熺墿鏁堟灉
+//食物效果
 const NEGATIVE_EFFECTS = [
     "slowness", "mining_fatigue", "instant_damage", "nausea", "blindness",
     "hunger", "weakness", "poison", "wither", "fatal_poison", "levitation",

@@ -8,7 +8,7 @@ const TIDE_ACTIVE_KEY = `${NAMESPACE}:tide_active`;
 
 const WEEKEND_DAYS = [0,6];
 const NIGHT_START = 13000;
-const NIGHT_END = 22813;
+const NIGHT_END = 23000;
 
 let tideActive = false;
 let tideSpawnInterval = null;
@@ -85,13 +85,14 @@ function spawnMobsAroundPlayers() {
             const z = pos.z + Math.sin(angle) * dist;
 
             const y = getSpawnY(dimension, x, z, pos.y);
-            if (y === null) continue;  // 找不到合适位置，跳过
-
+            if (y === null) continue;
             const type = pickMobType();
             if (!type) continue;
             try {
                 dimension.spawnEntity(type, { x, y, z });
-            } catch (_) {}
+            } catch (error) {
+                console.error("[Tide] spawn failed:", error);
+            }
         }
     }
 }
@@ -221,8 +222,7 @@ function getSpawnY(dimension, x, z, playerY) {
     for (let y = surfaceY; y >= surfaceY - 4; y--) {
         const ground = tryGetBlock(dimension, x, y, z);
         if (!ground) continue;
-        if (avoidBlockTypes.includes(ground.typeId)) return null;
-        if (STONE_TIDE_CONFIG.avoidBlockTypes.includes(ground.typeId)) continue;   // 栅栏/作物等，继续向下
+        if (avoidBlockTypes.includes(ground.typeId)) continue;   // 栅栏/作物等，继续向下找
         // 确认上方两格都是可穿过的
         if (isAirOrPassable(dimension, x, y + 1, z) && isAirOrPassable(dimension, x, y + 2, z)) {
             return y + 1;

@@ -192,6 +192,7 @@ stonecraft.item.potion_of_growth=Зелье прорастания
 stonecraft.item.potion_of_corruption=Зелье разложения
 stonecraft.item.stone_heart=Каменное сердце
 stonecraft.item.septem_seal_stone=Камень семикратной печати
+stonecraft.item.sculk_veined_cross=Крест со скверной-жилами
 stonecraft.item.abyss_eye=Око Бездны
 stonecraft.item.trail_compass=Компас следа
 
@@ -260,6 +261,7 @@ entity.stonecraft:ancient_stone_totem.name=Древний каменный то�
 entity.stonecraft:spire_remnant.name=Остаток шпиля
 entity.stonecraft:pale_martyr.name=Мученик в белых одеждах
 entity.stonecraft:pale_martyr_shard.name=§k白衣§r的殉道者
+entity.stonecraft:pale_martyr_shade.name=Тень мученика
 entity.stonecraft:rock_lion.name=Каменный лев
 entity.stonecraft:abyss_eye.name=Страж Бездны
 entity.stonecraft:abyss_eye_pupil.name=Зрачок Бездны

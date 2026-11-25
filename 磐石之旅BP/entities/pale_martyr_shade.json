@@ -1,0 +1,197 @@
+{
+  "format_version": "1.21.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "stonecraft:pale_martyr_shade",
+      "is_spawnable": false,
+      "is_summonable": true
+    },
+    "components": {
+      "minecraft:breathable": {
+        "breathes_solids": true,
+        "breathes_air": true,
+        "total_supply": 15,
+        "suffocate_time": 0
+      },
+      "minecraft:type_family": {
+        "family": ["stone_shade", "mob"]
+      },
+      "minecraft:health": {
+        "value": 40,
+        "max": 40
+      },
+      "minecraft:tameable": {
+        "probability": 1.0,
+        "tame_event": {
+          "event": "stonecraft:on_tamed",
+          "target": "self"
+        }
+      },
+      "minecraft:teleport": {
+        "max_random_teleport_time": 18.0,
+        "min_random_teleport_time": 12.0,
+        "random_teleport_cube": [4, 2, 4],
+        "random_teleports": true
+      },
+      "minecraft:knockback_resistance": {
+        "value": 100.0
+      },
+      "minecraft:attack": {
+        "damage": 6,
+        "effect_duration": 2,
+        "effect_name": "slowness"
+      },
+      "minecraft:behavior.melee_attack": {
+        "priority": 2,
+        "melee_fov": 90.0,
+        "speed_multiplier": 1.0,
+        "track_target": false,
+        "reach_multiplier": 2.0,
+        "cooldown_time": 0.5
+      },
+      "minecraft:behavior.charge_attack": {
+        "priority": 4,
+        "max_distance": 10,
+        "min_distance": 1.5,
+        "success_rate": 0.5
+      },
+      "minecraft:behavior.sonic_boom": {
+        "duration": 3,
+        "speed_multiplier": 1.2,
+        "attack_damage": 4,
+        "attack_cooldown": 6,
+        "knockback_vertical_strength": 0.5,
+        "knockback_horizontal_strength": 0.5,
+        "knockback_height_cap": 0.5,
+        "charge_sound": "block.sculk_shrieker.shriek",
+        "attack_sound": "block.sculk_catalyst.bloom",
+        "priority": 1
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1,
+        "entity_types": [
+          {
+            "filters": {
+              "test": "is_family",
+              "subject": "other",
+              "operator": "!=",
+              "value": "player"
+            },
+            "max_dist": 16
+          }
+        ]
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "priority": 2,
+        "within_radius": 16,
+        "must_reach": false,
+        "reselect_targets": true,
+        "must_see_forget_duration": 17.0,
+        "entity_types": [
+          {
+            "filters": {
+              "all_of": [
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "value": "monster"
+                },
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "operator": "!=",
+                  "value": "stone_shade"
+                },
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "operator": "!=",
+                  "value": "player"
+                }
+              ]
+            },
+            "max_dist": 16.0,
+            "must_see": true
+          }
+        ]
+      },
+      "minecraft:movement": {
+        "value": 1
+      },
+      "minecraft:navigation.fly": {
+        "can_path_from_air": true,
+        "can_path_over_water": true
+      },
+      "minecraft:movement.fly": {},
+      "minecraft:can_fly": {},
+      "minecraft:jump.static": {},
+      "minecraft:scale": {
+        "value": 1.0
+      },
+      "minecraft:collision_box": {
+        "height": 1.8,
+        "width": 0.6
+      },
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": false
+      },
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:can_climb": {},
+      "minecraft:behavior.look_at_player": {
+        "priority": 8,
+        "look_distance": 8.0,
+        "probability": 0.02
+      },
+      "minecraft:behavior.random_fly": {
+        "priority": 6,
+        "xz_dist": 15,
+        "y_dist": 1,
+        "speed_multiplier": 1,
+        "avoid_damage_blocks": true
+      },
+      "minecraft:timer": {
+        "time": 30,
+        "looping": false,
+        "time_down_event": {
+          "event": "stonecraft:expire",
+          "target": "self"
+        }
+      }
+    },
+    "component_groups": {
+      "stonecraft:tamed": {
+        "minecraft:is_tamed": {},
+        "minecraft:behavior.follow_owner": {
+          "priority": 4,
+          "speed_multiplier": 1.0,
+          "start_distance": 10,
+          "stop_distance": 2
+        },
+        "minecraft:behavior.owner_hurt_target": {
+          "priority": 3
+        },
+        "minecraft:behavior.owner_hurt_by_target": {
+          "priority": 3
+        }
+      },
+      "stonecraft:expired": {
+        "minecraft:instant_despawn": {}
+      }
+    },
+    "events": {
+      "stonecraft:on_tamed": {
+        "add": {
+          "component_groups": ["stonecraft:tamed"]
+        }
+      },
+      "stonecraft:expire": {
+        "add": {
+          "component_groups": ["stonecraft:expired"]
+        }
+      }
+    }
+  }
+}

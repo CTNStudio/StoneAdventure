@@ -307,8 +307,6 @@ function subscribeOnce() {
 		const damage = Number(event.damage) || 0;
 		const thorns = readThorns(shield);
 		const disable = shouldDisableShield(attacker, cause);
-		//临时日志：确认破盾判定拿到了什么（查完可以删）
-		console.warn(`[Shield] attacker=${attacker?.typeId ?? "-"} cause=${cause} axe=${attacker ? holdsAxe(attacker) : "-"} disable=${disable}`);
 		//投掷物 family 判定要在事件内完成（箭矢随后会被移除）
 		const projectile = event.damageSource?.damagingProjectile;
 		const reflect = matchesFamily(projectile, REFLECT_PROJECTILE_FAMILY);

@@ -21,6 +21,7 @@ const sneakSince = new Map();
 const lastUse = new Map();
 const lastPrompt = new Map();
 const pendingShots = new Map();
+const autoChargeAt = new Map();
 
 function equippableOf(player) {
   return player.getComponent(EntityComponentTypes.Equippable);
@@ -45,14 +46,13 @@ function canPrompt(player, attr, now) {
   return true;
 }
 
-function addCharge(player, item, attr, delta) {
-  const level = levelOf(item, attr);
+function addCharge(player, target, attr, level, delta) {
   const threshold = thresholdOf(attr, level);
-  const current = chargeOf(item, attr, level);
+  const current = chargeOf(target, attr, level);
   if (current >= threshold) return false;
 
   const next = Math.min(current + delta, threshold);
-  item.setDynamicProperty(`stonecraft:xp_${attr}`, next);
+  target.setDynamicProperty(`stonecraft:xp_${attr}`, next);
   if (next >= threshold) {
     displayMessage(player, { translate: `stonecraft.${attr}.ready` });
     player.playSound("random.orb");
@@ -60,28 +60,39 @@ function addCharge(player, item, attr, delta) {
   return true;
 }
 
-function tickCharges(player) {
+function tickCharges(player, now) {
+  const equippable = equippableOf(player);
+  const sword = equippable.getEquipment(EquipmentSlot.Mainhand);
+  const chest = equippable.getEquipment(EquipmentSlot.Chest);
+
+  let amount = 0;
+
   const total = player.getTotalXp();
   const baseline = xpBaseline.get(player.id);
   if (baseline === undefined) {
     xpBaseline.set(player.id, total);
-    return;
+  } else {
+    xpBaseline.set(player.id, total);
+    amount += Math.max(0, total - baseline);
   }
-  xpBaseline.set(player.id, total);
 
-  const delta = total - baseline;
-  if (delta <= 0) return;
+  const last = autoChargeAt.get(player.id);
+  if (last === undefined) {
+    autoChargeAt.set(player.id, now);
+  } else if (now - last >= 20) {
+    const seconds = Math.floor((now - last) / 20);
+    autoChargeAt.set(player.id, last + seconds * 20); //每秒自动 +1
+    amount += seconds;
+  }
 
-  const equippable = equippableOf(player);
-  const sword = equippable.getEquipment(EquipmentSlot.Mainhand);
-  if (levelOf(sword, "sonic") > 0 && addCharge(player, sword, "sonic", delta)) {
+  if (amount <= 0) return;
+
+  const swordLevel = levelOf(sword, "sonic");
+  if (swordLevel > 0 && addCharge(player, sword, "sonic", swordLevel, amount)) {
     equippable.setEquipment(EquipmentSlot.Mainhand, sword);
   }
-
-  const chest = equippable.getEquipment(EquipmentSlot.Chest);
-  if (levelOf(chest, "veil") > 0 && addCharge(player, chest, "veil", delta)) {
-    equippable.setEquipment(EquipmentSlot.Chest, chest);
-  }
+  const veilLevel = levelOf(chest, "veil");
+  if (veilLevel > 0) addCharge(player, player, "veil", veilLevel, amount); //蓄能记在玩家身上，不写护甲槽
 }
 
 function tickVeil(player, now) {
@@ -100,7 +111,7 @@ function tickVeil(player, now) {
 
   sneakSince.set(player.id, now);
 
-  if (chargeOf(chest, "veil", level) < thresholdOf("veil", level)) {
+  if (chargeOf(player, "veil", level) < thresholdOf("veil", level)) {
     if (canPrompt(player, "veil", now)) {
       displayMessage(player, { translate: "stonecraft.veil.not_ready" });
     }
@@ -111,8 +122,7 @@ function tickVeil(player, now) {
   if (now - (lastUse.get(key) ?? -100) < 20) return; //技能 1 秒冷却
   lastUse.set(key, now);
 
-  chest.setDynamicProperty("stonecraft:xp_veil", 0);
-  equippable.setEquipment(EquipmentSlot.Chest, chest);
+  player.setDynamicProperty("stonecraft:xp_veil", 0);
 
   const darkness = [200, 400, 600][level - 1]; //10/20/30 秒
   const slowness = [60, 100, 200][level - 1]; //3/5/10 秒
@@ -199,6 +209,7 @@ export function initChargeAbilities() {
     xpBaseline.delete(playerId);
     sneakSince.delete(playerId);
     pendingShots.delete(playerId);
+    autoChargeAt.delete(playerId);
     for (const key of [...lastUse.keys()]) {
       if (key.startsWith(`${playerId}:`)) lastUse.delete(key);
     }
@@ -210,7 +221,7 @@ export function initChargeAbilities() {
   system.runInterval(() => {
     const now = system.currentTick;
     for (const player of world.getAllPlayers()) {
-      tickCharges(player);
+      tickCharges(player, now);
       tickVeil(player, now);
       tickSonicShots(player, now);
     }

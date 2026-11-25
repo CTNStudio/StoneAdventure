@@ -20,6 +20,7 @@ import "./items/stone_bow.js";
 import "./custom_crop.js";
 import "./custom_command.js";
 import "./items/items_lore.js";
+import "./items/sculk_veined_cross.js";
 import "./doll.js";
 import "./stone_point.js";
 import "./shop/shop.js";

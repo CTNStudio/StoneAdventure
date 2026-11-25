@@ -194,6 +194,7 @@ stonecraft.item.potion_of_growth=Potion of Growth
 stonecraft.item.potion_of_corruption=Potion of Corruption
 stonecraft.item.stone_heart=Stone Heart
 stonecraft.item.septem_seal_stone=Sevenfold Seal Stone
+stonecraft.item.sculk_veined_cross=Sculk-Veined Cross
 stonecraft.item.abyss_eye=Abyss Eye
 stonecraft.item.trail_compass=Trail Compass
 
@@ -262,6 +263,7 @@ entity.stonecraft:ancient_stone_totem.name=Stone Totem
 entity.stonecraft:spire_remnant.name=Spire Remnant
 entity.stonecraft:pale_martyr.name=White-Robed Martyr
 entity.stonecraft:pale_martyr_shard.name=§k白衣§r的殉道者
+entity.stonecraft:pale_martyr_shade.name=Pale Martyr Shade
 entity.stonecraft:rock_lion.name=Stone Lion
 entity.stonecraft:abyss_eye.name=Abyss Watcher
 entity.stonecraft:abyss_eye_pupil.name=Abyss Pupil

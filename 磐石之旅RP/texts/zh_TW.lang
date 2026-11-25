@@ -192,6 +192,7 @@ stonecraft.item.potion_of_growth=萌芽藥水
 stonecraft.item.potion_of_corruption=腐化藥水
 stonecraft.item.stone_heart=石心
 stonecraft.item.septem_seal_stone=七兆印石
+stonecraft.item.sculk_veined_cross=幽紋血十字
 stonecraft.item.abyss_eye=深淵之眼
 stonecraft.item.trail_compass=尋跡羅盤
 
@@ -260,6 +261,7 @@ entity.stonecraft:ancient_stone_totem.name=石之圖騰
 entity.stonecraft:spire_remnant.name=高塔餘裔
 entity.stonecraft:pale_martyr.name=白衣的殉道者
 entity.stonecraft:pale_martyr_shard.name=§k白衣§r的殉道者
+entity.stonecraft:pale_martyr_shade.name=幽影·白衣殉道者
 entity.stonecraft:rock_lion.name=石獅子
 entity.stonecraft:abyss_eye.name=深淵守望者
 entity.stonecraft:abyss_eye_pupil.name=深淵之瞳
