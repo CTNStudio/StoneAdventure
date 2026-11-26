@@ -51,6 +51,41 @@ function repairEntityEquipment(entity, times = 1) {
     }
 }
 
+function factorOf(player) {
+    try {
+        if (hasBless(player, BLESS.doll)) return 2;
+    } catch {
+    }
+    return 1;
+}
+
+//玩家右键和红石激活共用：给受益玩家上效果，并登记一个修复区
+function activateDoll(block, dimension, players) {
+    dimension.playSound("note.pling", block.location, { volume: 1.0, pitch: 1.0 });
+
+    //红石激活时没有具体玩家；修复区倍率取受益者里最高的那个
+    let factor = 1;
+    for (const player of players) {
+        const f = factorOf(player);
+        if (f > factor) factor = f;
+        player.addEffect("saturation", 2400 * f);
+        player.addEffect("regeneration", 2400 * f, { amplifier: 1 });
+    }
+
+    activeRepairZones.set(`${block.x},${block.y},${block.z}`, {
+        dimension,
+        center: {
+            x: block.x + 0.5,
+            y: block.y + 0.5,
+            z: block.z + 0.5
+        },
+        expiresAt: system.currentTick + 2400 * factor,
+        speed: factor,
+        //生效范围同样 ×factor
+        half: DOLL_ZONE_HALF * factor
+    });
+}
+
 // 每秒扫描一次所有活跃区域
 system.runInterval(() => {
     if (activeRepairZones.size === 0) return;
@@ -91,35 +126,15 @@ system.runInterval(() => {
 
 system.beforeEvents.startup.subscribe((event) => {
     event.blockComponentRegistry.registerCustomComponent("stonecraft:doll", {
-        onPlayerInteract: (event) => {
-            const { player, block, dimension } = event;
-            const location = block.location;
-
-            dimension.playSound("note.pling", location, { volume: 1.0, pitch: 1.0 });
-
-            //七祝福 5：玩偶效果翻倍（持续时长、修复速度、生效范围都 ×2）
-            let factor = 1;
-            try {
-                if (hasBless(player, BLESS.doll)) factor = 2;
-            } catch {
-            }
-
-            player.addEffect("saturation", 2400 * factor);
-            player.addEffect("regeneration", 2400 * factor, { amplifier: 1 });
-
-            const key = `${block.x},${block.y},${block.z}`;
-            activeRepairZones.set(key, {
-                dimension,
-                center: {
-                    x: block.x + 0.5,
-                    y: block.y + 0.5,
-                    z: block.z + 0.5
-                },
-                expiresAt: system.currentTick + 2400 * factor,
-                speed: factor,
-                //生效范围同样 ×factor
-                half: DOLL_ZONE_HALF * factor
-            });
+        onPlayerInteract: ({ player, block, dimension }) => {
+            if (!player) return;
+            activateDoll(block, dimension, [player]);
+        },
+        //红石上升沿触发：红石信号 0 → >0 时生效一次，常亮不会重复触发
+        onRedstoneUpdate: ({ block, dimension, powerLevel, previousPowerLevel }) => {
+            if (powerLevel <= 0 || previousPowerLevel > 0) return;
+            //红石激活没有操作者，取方块周围 8 格内的玩家
+            activateDoll(block, dimension, dimension.getPlayers({ location: block.center(), maxDistance: 8 }));
         }
     });
 });

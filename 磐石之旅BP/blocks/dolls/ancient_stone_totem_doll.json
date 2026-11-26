@@ -92,6 +92,7 @@
             "minecraft:precipitation_interactions": {
                 "precipitation_behavior": "obstruct_rain"
             },
+            "minecraft:redstone_consumer": {},
             "stonecraft:doll": {}
         }
     }

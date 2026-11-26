@@ -5,7 +5,11 @@
       "identifier": "stonecraft:lv2stone_shovel"
     },
     "tags": ["crafting_table"],
-    "pattern": [" A ", " B ", " B "],
+    "pattern": [
+      "A",
+      "B", 
+      "B"
+    ],
     "key": {
       "A": {
         "item": "stonecraft:lv2stone"
