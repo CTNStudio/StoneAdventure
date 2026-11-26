@@ -9,7 +9,7 @@
       "minecraft:display_name": {
         "value": "stonecraft.item.sculk_veined_cross"
       },
-      "minecraft:icon": "stonecraft.stone_encyclopedia",
+      "minecraft:icon": "stonecraft.sculk_veined_cross",
       "minecraft:max_stack_size": 1,
       "minecraft:hand_equipped": true,
       "minecraft:durability": {

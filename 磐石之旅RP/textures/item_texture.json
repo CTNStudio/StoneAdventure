@@ -399,6 +399,9 @@
     "stonecraft.trail_compass": {
       "textures": "textures/items/treasures/trail_compass"
     },
+    "stonecraft.sculk_veined_cross": {
+      "textures": "textures/items/tools/sculk_veined_cross"
+    },
     "stonecraft.spawn_eggs": {
       "textures": [
         "textures/items/spawn_eggs/spawn_egg_stone_shooter",//0
