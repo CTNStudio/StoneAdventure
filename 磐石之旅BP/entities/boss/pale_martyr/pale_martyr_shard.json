@@ -23,8 +23,8 @@
         ]
       },
       "minecraft:health": {
-        "value": 50,
-        "max": 50
+        "value": 100,
+        "max": 100
       },
       "minecraft:angry":{
         "broadcast_anger": true, //如果设置，广播范围内同一实体定义的其他实体也会生气
@@ -55,7 +55,7 @@
         "value": 100.0
       },
       "minecraft:attack": {
-        "damage": 4,
+        "damage": 6,
         "effect_duration": 4,
         "effect_name": "slowness"
       },
@@ -161,7 +161,7 @@
         "minecraft:behavior.sonic_boom": {
           "duration": 3,
           "speed_multiplier": 1.2,
-          "attack_damage": 3,
+          "attack_damage": 4,
           "attack_cooldown": 6,
           "knockback_vertical_strength": 0.5,
           "knockback_horizontal_strength": 0.5,

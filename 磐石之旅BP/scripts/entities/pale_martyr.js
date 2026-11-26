@@ -24,9 +24,9 @@ bossServer.addBoss(boss);
 const PHASE2_EVENT = "stonecraft:pale_martyr_enter_phase_2";
 const PHASE2_TAG = "stonecraft:pale_martyr_phase_2";
 const STARTED_TAG = "stonecraft:pale_martyr_started";
-const MAX_HP = 360;
+const MAX_HP = 710;
 const MIN_HP = 10;
-const MERGE_TICKS = 50;
+const MERGE_TICKS = 100;
 const MERGE_STEP = 2;
 const MERGE_PARTICLES = [
   "minecraft:sculk_soul",
