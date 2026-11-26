@@ -1,11 +1,11 @@
 {
-  "format_version": 2,
+  "format_version": 3,
   "header": {
     "description": "pack.description",
     "name": "pack.name",
     "uuid": "96f9f6ff-c8ae-8b06-9620-e5bf0099f3d6",
     "version": "1.3.0",
-    "min_engine_version": [1, 26, 60],
+    "min_engine_version": "1.26.60",
     "pack_scope": "world"
   },
   "metadata": {
@@ -26,18 +26,6 @@
       "type": "resources",
       "uuid": "7323b3c8-818c-67fa-5fdf-e908c147eb30",
       "version": "1.3.0"
-    }
-  ],
-  "subpacks": [
-    {
-      "folder_name": "classic",
-      "name": "磐石之旅经典纹理包",
-      "memory_tier": 2
-    },
-    {
-      "folder_name": "default",
-      "name": "磐石之旅默认纹理包",
-      "memory_tier": 1
     }
   ],
   "dependencies": [
