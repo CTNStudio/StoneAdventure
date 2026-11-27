@@ -148,7 +148,7 @@
         "priority": 11
       },
       "minecraft:experience_reward": {
-        "on_death": "query.last_hit_by_player ? 5 : 0"
+        "on_death": "query.last_hit_by_player ? 1 : 0"
       },
       "minecraft:loot": {
         "table": "loot_tables/entities/stone_block.json"

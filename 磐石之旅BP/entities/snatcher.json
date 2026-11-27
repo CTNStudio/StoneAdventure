@@ -144,7 +144,7 @@
         "table": "loot_tables/entities/gear/snatcher_gear.json"
       },
       "minecraft:experience_reward": {
-        "on_death": "query.last_hit_by_player ? 10 : 0"
+        "on_death": "query.last_hit_by_player ? 4 : 0"
       },
       "minecraft:follow_range": {
         "value": 64

@@ -180,7 +180,7 @@
       },
       "minecraft:physics": {},
       "minecraft:experience_reward": {
-        "on_death": "query.last_hit_by_player ? 30 : 0"
+        "on_death": "query.last_hit_by_player ? 15 : 0"
       },
       "minecraft:underwater_movement": {
         "value": 0

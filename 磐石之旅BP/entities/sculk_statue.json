@@ -66,7 +66,7 @@
         }
       },
       "minecraft:experience_reward": {
-        "on_death": "query.last_hit_by_player ? 30 : 0"
+        "on_death": "query.last_hit_by_player ? 22 : 0"
       },
       "minecraft:loot": {
         "table": "loot_tables/entities/sculk_statue.json"
