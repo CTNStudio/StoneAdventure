@@ -1,5 +1,5 @@
 {
-  "format_version": "1.21.100",
+  "format_version": "1.21.50",
   "minecraft:block": {
     "description": {
       "identifier": "stonecraft:lv2stone",

@@ -1,5 +1,5 @@
 {
-  "format_version": "1.26.40",
+  "format_version": "1.26.20",
   "minecraft:entity": {
     "description": {
       "identifier": "stonecraft:thrown_stone_nugget",

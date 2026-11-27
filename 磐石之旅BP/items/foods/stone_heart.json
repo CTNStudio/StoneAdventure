@@ -1,5 +1,5 @@
 {
-  "format_version": "1.26.40",
+  "format_version": "1.21.60",
   "minecraft:item": {
     "description": {
       "identifier": "stonecraft:stone_heart",

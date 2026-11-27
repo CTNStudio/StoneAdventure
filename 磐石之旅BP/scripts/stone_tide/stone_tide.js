@@ -2,9 +2,9 @@ import { world, system } from "@minecraft/server";
 import { STONE_TIDE_CONFIG } from "./stone_tide_config.js";
 import { displayMessage, messageChannels } from "../messageManager.js";
 
-const NAMESPACE = "stonecraft";
-const BOSS_KILLED_KEY = `${NAMESPACE}:totem_defeated`;
-const TIDE_ACTIVE_KEY = `${NAMESPACE}:tide_active`;
+const BOSS_KILLED_KEY = `stonecraft:totem_defeated`;
+const TIDE_ACTIVE_KEY = `stonecraft:tide_active`;
+const FOG_ID = `stonecraft:fog_stone_tide`;
 
 const WEEKEND_DAYS = [0,6];
 const NIGHT_START = 13000;
@@ -121,13 +121,36 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
     });
 });
 
+function applyTideFog(player) {
+    try {
+        player.fogSettings.remove(FOG_ID);
+        player.fogSettings.push(FOG_ID, FOG_ID);
+    } catch (error) {
+        console.warn("[Tide] fog push failed:", error);
+    }
+}
+
+function clearTideFog(player) {
+    try {
+        player.fogSettings.remove(FOG_ID);
+    } catch (error) {
+        console.warn("[Tide] fog remove failed:", error);
+    }
+}
+
+function tideIsActive() {
+    return tideActive || world.getDynamicProperty(TIDE_ACTIVE_KEY) === true;
+}
+
 export function startStoneTide() {
     if (tideActive) return;
     tideActive = true;
     world.setDynamicProperty(TIDE_ACTIVE_KEY, true);
     world.sendMessage({ translate: "sc.tide.tide_begins" });
-
-
+    //world.getDimension("overworld").runCommand("fog @a push stonecraft:fog_stone_tide");
+    for (const player of world.getAllPlayers()) {
+        applyTideFog(player);
+    }
     if (tideSpawnInterval === null) {
         tideSpawnInterval = system.runInterval(() => {
             if (!tideActive) {
@@ -146,7 +169,7 @@ export function startStoneTide() {
 }
 
 export function stopStoneTide() {
-    if (!tideActive) return;
+    if (!tideIsActive()) return;
     tideActive = false;
     world.setDynamicProperty(TIDE_ACTIVE_KEY, false);
     world.sendMessage({ translate: "sc.tide.tide_ends" });
@@ -154,7 +177,9 @@ export function stopStoneTide() {
         system.clearRun(tideSpawnInterval);
         tideSpawnInterval = null;
     }
-
+    for (const player of world.getAllPlayers()) {
+        clearTideFog(player);
+    }
 }
 
 world.afterEvents.entityDie.subscribe(({ deadEntity }) => {
@@ -249,3 +274,16 @@ function tryGetBlock(dimension, x, y, z) {
 }
 
 export { tideActive };
+
+// 迷雾栈只存在于当前会话，退出重进或中途加入都不会继承，必须按状态补推
+world.afterEvents.playerSpawn.subscribe(({ player }) => {
+    if (!tideIsActive()) return;
+    system.run(() => {
+        if (player.isValid) applyTideFog(player);
+    });
+});
+
+system.run(() => {
+    if (!tideIsActive()) return;
+    for (const player of world.getAllPlayers()) applyTideFog(player);
+});

@@ -22,7 +22,7 @@
         },
         "broadcast_range": 32,
         "duration": 25
-},
+      },
       "minecraft:health": {
         "value": 20,
         "max": 20

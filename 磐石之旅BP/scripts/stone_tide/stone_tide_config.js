@@ -1,7 +1,7 @@
 
 export const STONE_TIDE_CONFIG = {
     // 石潮爆发概率（0~1）
-    triggerChance: 0.2,
+    triggerChance: 0.15,
     // 每个玩家每次生成生物数量
     spawnCountPerPlayer: 2,
     // 生成半径（格）
